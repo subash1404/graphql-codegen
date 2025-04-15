@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "module": "CommonJS", // 👈 Important for Node.js compatibility
+      "target": "ES2020", // or higher
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "strict": true,
+      "skipLibCheck": true
+    },
+    "include": ["src/**/*"]
+  }
+  

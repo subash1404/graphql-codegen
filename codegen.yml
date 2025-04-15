@@ -1,0 +1,16 @@
+schema:
+  - http://localhost:8088/accounts/api:
+      headers:
+        x-csrf-token: "DCaQU938AsB3k2fdHV2PPA=="
+        CustomerSubDomain: "msp4375760122658275328"
+        Cookie: "CustomerSubDomain=msp4375760122658275328; app-csrf=DCaQU938AsB3k2fdHV2PPA==; app-token=VW8yeE9hSGp6ZnJ2YkFpUlhKY1ZldyUzRCUzRA; uitoken=4375760120158470144"
+        Content-Type: "application/json"
+
+documents: "src/**/*.graphql"
+
+generates:
+  src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-graphql-request"
