@@ -1,10 +1,10 @@
 schema:
-  - http://localhost:8088/accounts/api:
+  - http://localhost:8084/msp:
       headers:
-        x-csrf-token: "DCaQU938AsB3k2fdHV2PPA=="
         CustomerSubDomain: "msp4375760122658275328"
-        Cookie: "CustomerSubDomain=msp4375760122658275328; app-csrf=DCaQU938AsB3k2fdHV2PPA==; app-token=VW8yeE9hSGp6ZnJ2YkFpUlhKY1ZldyUzRCUzRA; uitoken=4375760120158470144"
         Content-Type: "application/json"
+        Authorization: "Bearer api-eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI0Mzc1NzYwMTI2MjA2NjU2NTEyIiwicmFuZG9taXplciI6Ilx1MDAxRTBcdTAwMDfvv71cdTAwMEbvv71cZu-_vUvvv70ifQ.J_jFEBHkeQ-_kMj6WYTCoA3tQRmjxITmMYeBR4QdwxSfvt4-Zh-Nw0hgK9eej0gX9qtbyRjLfr0biu2rFfB2K47fW5QdVzuomZGccyc201rkHhsMnx7il-O7i1VEkHJOEOCzMM6y6TCQucgQOyChvzXDznAajwAyej87L7NJ4K1V0QH-4Dcn-PjtU7EsLfwiVgEUfEZ9_bKkjQYNMp4hetIYlB-WSK79h5MsqK5RvqLHLg8LnDgUmZyjPlJL6mZ9ZvCcWx97UrZrDyrR2OPt4bzkTGHZ6Saqr23jzuErbm18rhRku2UxEYCC-ey9j92mvvEeLSpf8yBVMnnhSnaWSQ"
+        Cookie: "CustomerSubDomain=msp4375760122658275328; JSESSIONID=FCF9154544BE6A6F21A33339F177FC67; app-csrf=tMlUPza0x75vm/2cnz3s4w==; app-token=UmdKZ01FbjBqWmVOSm9hbEtoOUxXQSUzRCUzRA; uitoken=4375760120158470144"
 
 documents: "src/**/*.graphql"
 

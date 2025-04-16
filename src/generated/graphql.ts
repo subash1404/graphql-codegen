@@ -18,1723 +18,837 @@ export type Scalars = {
   JSON: { input: any; output: any; }
 };
 
-export type AchAccount = {
-  __typename?: 'ACHAccount';
-  bankName?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  isVerified?: Maybe<Scalars['Boolean']['output']>;
-  last4?: Maybe<Scalars['String']['output']>;
-  routingNumber?: Maybe<Scalars['String']['output']>;
-};
-
-export type AiConfiguration = {
-  __typename?: 'AIConfiguration';
-  name: Scalars['String']['output'];
-  value?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type AiConfigurationInfo = {
-  __typename?: 'AIConfigurationInfo';
-  authorizedBy?: Maybe<Scalars['JSON']['output']>;
-  configurations?: Maybe<Array<Maybe<AiConfiguration>>>;
-};
-
-export type AiConfigurationInfoInput = {
-  authorizedBy?: InputMaybe<UserIdentifierInput>;
-  configurations?: InputMaybe<Array<AiConfigurationInput>>;
-};
-
-export type AiConfigurationInput = {
-  name: Scalars['String']['input'];
-  value?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type AiFeature = {
-  __typename?: 'AIFeature';
-  aiFeatureGroup?: Maybe<AiFeatureGroup>;
-  constant?: Maybe<AiFeatureConstant>;
-  description?: Maybe<Scalars['String']['output']>;
-  displayIcon?: Maybe<Scalars['String']['output']>;
-  enabled: Scalars['Boolean']['output'];
-  featureId: Scalars['ID']['output'];
-  name: Scalars['String']['output'];
-  prompt?: Maybe<PromptAiFeature>;
-  state?: Maybe<AiFeatureState>;
-  subFeatures?: Maybe<Array<Maybe<AiFeature>>>;
-  usageCount: Scalars['Int']['output'];
-  /** Deprecated */
-  userDefined: Scalars['Boolean']['output'];
-};
-
-export enum AiFeatureConstant {
-  RealTimeAlerts = 'REAL_TIME_ALERTS',
-  RecommendedSolution = 'RECOMMENDED_SOLUTION',
-  ScriptGeneration = 'SCRIPT_GENERATION',
-  SideConversationCompose = 'SIDE_CONVERSATION_COMPOSE',
-  SimilarTickets = 'SIMILAR_TICKETS',
-  TicketsSummaryByCategory = 'TICKETS_SUMMARY_BY_CATEGORY',
-  TicketConversationSummarize = 'TICKET_CONVERSATION_SUMMARIZE',
-  WebSearch = 'WEB_SEARCH',
-  WorklogNoteCompose = 'WORKLOG_NOTE_COMPOSE',
-  WorklogSummarization = 'WORKLOG_SUMMARIZATION'
-}
-
-export type AiFeatureFeedback = {
-  __typename?: 'AIFeatureFeedback';
-  feedbackId: Scalars['ID']['output'];
-  prompt?: Maybe<PromptAiFeatureFeedback>;
-  rating: Scalars['Int']['output'];
-  ratingType: RatingType;
-  user?: Maybe<User>;
-};
-
-export type AiFeatureFeedbackList = {
-  __typename?: 'AIFeatureFeedbackList';
-  feedback?: Maybe<Array<Maybe<AiFeatureFeedback>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
-export type AiFeatureGroup = {
-  __typename?: 'AIFeatureGroup';
-  constant?: Maybe<AiFeatureGroupConstant>;
-  description?: Maybe<Scalars['String']['output']>;
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-  featureGroupId: Scalars['ID']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export enum AiFeatureGroupConstant {
-  Alert = 'ALERT',
-  Prompt = 'PROMPT',
-  Rmm = 'RMM',
-  TicketSummarize = 'TICKET_SUMMARIZE',
-  WorklogSummarize = 'WORKLOG_SUMMARIZE'
-}
-
-export type AiFeatureGroupIdentifierInput = {
-  featureGroupId: Scalars['ID']['input'];
-};
-
-export type AiFeatureIdentifierInput = {
-  featureId: Scalars['ID']['input'];
-};
-
-export type AiFeatureList = {
-  __typename?: 'AIFeatureList';
-  feature?: Maybe<Array<Maybe<AiFeature>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
-export enum AiFeatureState {
-  Active = 'ACTIVE',
-  Inactive = 'INACTIVE',
-  InProgress = 'IN_PROGRESS'
-}
-
-export type AiPromptInput = {
-  prompt: Scalars['String']['input'];
-};
-
-export type Account = {
-  __typename?: 'Account';
-  accountId?: Maybe<Scalars['ID']['output']>;
-  accountType: Scalars['String']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export enum AccountType {
-  Client = 'CLIENT',
-  Msp = 'MSP'
-}
-
-export type ActiveRecurringRevenue = {
-  __typename?: 'ActiveRecurringRevenue';
-  monthly: Scalars['String']['output'];
-  yearly: Scalars['String']['output'];
-};
-
-export enum ActorName {
-  EventTrigger = 'EVENT_TRIGGER',
-  PriorityMatrix = 'PRIORITY_MATRIX',
-  Sla = 'SLA',
-  System = 'SYSTEM',
-  TimeTrigger = 'TIME_TRIGGER',
-  UnknownUser = 'UNKNOWN_USER',
-  User = 'USER'
-}
-
-export type AddMailProviderConfigInput = {
-  boxId: Scalars['ID']['input'];
-  customServer?: InputMaybe<Scalars['Boolean']['input']>;
-  customServerProvider: Scalars['String']['input'];
-  customServerType: CustomMailServerType;
-  imapHost?: InputMaybe<Scalars['String']['input']>;
-  imapPort?: InputMaybe<Scalars['Int']['input']>;
-  password?: InputMaybe<Scalars['String']['input']>;
-  priority: Scalars['Int']['input'];
-  smtpHost?: InputMaybe<Scalars['String']['input']>;
-  smtpPort?: InputMaybe<Scalars['Int']['input']>;
-  sslRequired?: InputMaybe<Scalars['Boolean']['input']>;
-  userName?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AddOnBillingDetails = {
-  __typename?: 'AddOnBillingDetails';
-  addOnId?: Maybe<Scalars['ID']['output']>;
-  currentBillingPeriod?: Maybe<BillingDetails>;
-  nextBillingPeriod?: Maybe<BillingDetails>;
-};
-
-export type AddOnLicenseDetails = {
-  __typename?: 'AddOnLicenseDetails';
-  addOnDetails?: Maybe<IntegrationAddOn>;
-  licenseDetails?: Maybe<ResellingLicenseDetails>;
-};
-
-export type AddOnStatus = {
-  __typename?: 'AddOnStatus';
-  addOn?: Maybe<Scalars['String']['output']>;
-  addOnId?: Maybe<Scalars['ID']['output']>;
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type AddReportScheduleInput = {
-  addShareUsers?: InputMaybe<Array<InputMaybe<ShareReportUserInput>>>;
-  filterCondition?: InputMaybe<Scalars['JSON']['input']>;
-  notificationTemplate: NotificationTemplateInput;
-  scheduleDefinition: Scalars['JSON']['input'];
-  userType: UserType;
-};
-
-export type AddTpMappingRuleInput = {
-  conditionAttribute: Scalars['String']['input'];
-  conditionValue: MappingObjectInput;
-  destination: MappingObjectInput;
-  entityType: TpEntityType;
-};
-
-export type Addon = {
-  __typename?: 'Addon';
-  addonId?: Maybe<Scalars['ID']['output']>;
-  addonPrices?: Maybe<Array<Maybe<AddonPrice>>>;
-  chargeBeeAddonId?: Maybe<Scalars['String']['output']>;
-  countPerLicense?: Maybe<Scalars['Int']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  offeringEntityType?: Maybe<ProductOfferingEntityType>;
-};
-
-export type AddonIdentifierInput = {
-  addonId: Scalars['ID']['input'];
-};
-
-export type AddonInput = {
-  chargeBeeAddonPriceId?: InputMaybe<Scalars['String']['input']>;
-  quantity?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type AddonPrice = {
-  __typename?: 'AddonPrice';
-  chargeBeeAddonPriceId?: Maybe<Scalars['String']['output']>;
-  currency?: Maybe<PaymentCurrency>;
-  duration?: Maybe<Scalars['String']['output']>;
-  /** PaymentDuration */
-  durationValue?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  price?: Maybe<Scalars['JSON']['output']>;
-  priceValue?: Maybe<Scalars['Int']['output']>;
-  pricingModel?: Maybe<CustomerPricingModel>;
-};
-
-export type Address = {
-  __typename?: 'Address';
-  addressId?: Maybe<Scalars['ID']['output']>;
-  city?: Maybe<Scalars['String']['output']>;
-  countryCode?: Maybe<Scalars['String']['output']>;
-  line1?: Maybe<Scalars['String']['output']>;
-  line2?: Maybe<Scalars['String']['output']>;
-  line3?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  postalCode?: Maybe<Scalars['String']['output']>;
-  stateCode?: Maybe<Scalars['String']['output']>;
-  type?: Maybe<AddressCategory>;
-};
-
-export enum AddressCategory {
-  External = 'EXTERNAL',
-  Internal = 'INTERNAL'
-}
-
-export type AddressInput = {
-  addressId?: InputMaybe<Scalars['ID']['input']>;
-  city?: InputMaybe<Scalars['String']['input']>;
-  countryCode?: InputMaybe<Scalars['String']['input']>;
-  line1?: InputMaybe<Scalars['String']['input']>;
-  line2?: InputMaybe<Scalars['String']['input']>;
-  line3?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  postalCode?: InputMaybe<Scalars['String']['input']>;
-  stateCode?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AddressList = {
-  __typename?: 'AddressList';
-  address?: Maybe<Array<Maybe<Address>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
-export type AgentInstallerDetails = {
-  __typename?: 'AgentInstallerDetails';
-  bulkDeployment?: Maybe<BulkDeployment>;
-  installerPackage?: Maybe<Array<Maybe<InstallerPackage>>>;
-  silentInstaller?: Maybe<Array<Maybe<SilentInstaller>>>;
-};
-
-export type AgentSettingsConfig = {
-  __typename?: 'AgentSettingsConfig';
-  systemTrayIconConfig?: Maybe<TrayIcon>;
-};
-
-export type AggregatedValues = {
-  __typename?: 'AggregatedValues';
-  data?: Maybe<Scalars['JSON']['output']>;
-  /** when records are paginated based on group by column, this helps to decide whether more records are exist to fetch. */
-  hasMore?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type AggregationPaginationInput = {
-  page: Scalars['Int']['input'];
-  pageSize: Scalars['Int']['input'];
-};
-
-/** --------------- RMM ------------------- */
+/** Specifies an alert's data */
 export type Alert = {
   __typename?: 'Alert';
-  asset?: Maybe<Asset>;
+  /** The asset that the alert is associated to */
+  asset?: Maybe<Scalars['JSON']['output']>;
+  /** The time of creation of the alert */
   createdTime?: Maybe<Scalars['String']['output']>;
+  /** The alert's description */
   description?: Maybe<Scalars['String']['output']>;
-  externalSource?: Maybe<Scalars['String']['output']>;
+  /** ID of the alert */
   id?: Maybe<Scalars['ID']['output']>;
+  /** The alert message */
   message?: Maybe<Scalars['String']['output']>;
-  policy?: Maybe<Policy>;
-  resolvedTime?: Maybe<Scalars['String']['output']>;
+  /** The policy through which the alert is created */
+  policy?: Maybe<Scalars['JSON']['output']>;
+  /** The severity of the alert */
   severity?: Maybe<Scalars['String']['output']>;
+  /** The alert's status */
   status?: Maybe<Scalars['String']['output']>;
 };
 
-export type AlertCondition = {
-  __typename?: 'AlertCondition';
-  coolingOffInterval?: Maybe<Scalars['Int']['output']>;
-  criteria?: Maybe<Scalars['JSON']['output']>;
-  message?: Maybe<Scalars['String']['output']>;
-  policyId?: Maybe<Scalars['ID']['output']>;
-  resetIfConditionNotMet?: Maybe<Scalars['Boolean']['output']>;
-  resetIfConditionNotMetInterval?: Maybe<Scalars['Int']['output']>;
-  resetInterval?: Maybe<Scalars['Int']['output']>;
+/** The list of data for Alert details. */
+export type AlertList = {
+  __typename?: 'AlertList';
+  /** Data about the list of alerts. */
+  alerts?: Maybe<Array<Maybe<Alert>>>;
+  /** Details about the list. */
+  listInfo?: Maybe<ListInfo>;
 };
 
-export type AllAsset = AssetBase & {
-  __typename?: 'AllAsset';
-  assetClass?: Maybe<AssetClass>;
-  assetId?: Maybe<Scalars['ID']['output']>;
-  assetProtocolMapping?: Maybe<Array<Maybe<AssetProtocolMapping>>>;
-  /** AssetPlatformCategory */
-  associatedAssets?: Maybe<Scalars['JSON']['output']>;
-  /** AdvanceRuleBuilder */
-  categoryAssignedStrategy?: Maybe<PolicyCategoryAssignedBy>;
-  client?: Maybe<Organization>;
-  customFields?: Maybe<Scalars['JSON']['output']>;
-  department?: Maybe<BusinessFunction>;
-  loggedInUser?: Maybe<Scalars['String']['output']>;
-  monitoringStatus?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  nextPolicyCategory?: Maybe<PolicyCategory>;
-  owner?: Maybe<User>;
-  platformCategory?: Maybe<Scalars['String']['output']>;
-  policyCategory?: Maybe<PolicyCategory>;
-  site?: Maybe<Site>;
-  workstationInfo?: Maybe<WorkStationInfo>;
-};
-
-
-export type AllAssetAssociatedAssetsArgs = {
-  refEntityAttributes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type AllAssetCustomFieldsArgs = {
-  fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type AllowedDateTimeFormat = {
-  __typename?: 'AllowedDateTimeFormat';
-  dates?: Maybe<Array<Maybe<AllowedDateTimeFormatEntry>>>;
-  times?: Maybe<Array<Maybe<AllowedDateTimeFormatEntry>>>;
-};
-
-export type AllowedDateTimeFormatEntry = {
-  __typename?: 'AllowedDateTimeFormatEntry';
-  displayValue?: Maybe<Scalars['String']['output']>;
-  format?: Maybe<Scalars['String']['output']>;
-};
-
-export type AntiVirusPolicyConfig = {
-  __typename?: 'AntiVirusPolicyConfig';
-  avProduct?: Maybe<Scalars['String']['output']>;
-  /** BITDEFENDER, WEBROOT */
-  config?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type AppSecurityConfiguration = {
-  __typename?: 'AppSecurityConfiguration';
-  clientUserCustomPasswordPolicy?: Maybe<PasswordPolicy>;
-  /** PASSWORD_POLICY */
-  clientUserPasswordPolicy?: Maybe<Scalars['String']['output']>;
-  /** SSO_TYPE */
-  clientUserSsoDetail?: Maybe<SsoDetail>;
-  companyUserCustomPasswordPolicy?: Maybe<PasswordPolicy>;
-  /** PASSWORD_POLICY */
-  companyUserPasswordPolicy?: Maybe<Scalars['String']['output']>;
-  companyUserSsoDetail?: Maybe<SsoDetail>;
-  configurationId: Scalars['ID']['output'];
-  enforceTfa?: Maybe<Scalars['Boolean']['output']>;
-  idpDetail?: Maybe<IdpSamlProviderDetail>;
-  ipWhitelistEnable?: Maybe<Scalars['Boolean']['output']>;
-  ipWhitelistRange?: Maybe<Scalars['String']['output']>;
-  reqstrCustomPwdPolicy?: Maybe<PasswordPolicy>;
-  /** PASSWORD_POLICY */
-  requesterPasswordPolicy?: Maybe<Scalars['String']['output']>;
-  sessionInactiveDuration?: Maybe<Scalars['Int']['output']>;
-  sessionInactiveUnit?: Maybe<Scalars['String']['output']>;
-  /** SESSION_TIME_UNIT */
-  sessionTrustEnable?: Maybe<Scalars['Boolean']['output']>;
-  spDetail?: Maybe<SpSamlProviderDetail>;
-  ssoType?: Maybe<Scalars['String']['output']>;
-  /** PASSWORD_POLICY */
-  technCustomPwdPolicy?: Maybe<PasswordPolicy>;
-  technicianPasswordPolicy?: Maybe<Scalars['String']['output']>;
-};
-
-export type AppSecurityConfigurationInput = {
-  clientUserCustomPasswordPolicy?: InputMaybe<PasswordPolicyInput>;
-  /** PASSWORD_POLICY */
-  clientUserPasswordPolicy?: InputMaybe<Scalars['String']['input']>;
-  clientUserSsoDetail?: InputMaybe<SsoDetailInput>;
-  companyUserCustomPasswordPolicy?: InputMaybe<PasswordPolicyInput>;
-  /** PASSWORD_POLICY */
-  companyUserPasswordPolicy?: InputMaybe<Scalars['String']['input']>;
-  companyUserSsoDetail?: InputMaybe<SsoDetailInput>;
-  enforceTfa?: InputMaybe<Scalars['Boolean']['input']>;
-  /** SSO_TYPE */
-  idpDetail?: InputMaybe<IdpSamlProviderDetailInput>;
-  ipWhitelistEnable?: InputMaybe<Scalars['Boolean']['input']>;
-  ipWhitelistRange?: InputMaybe<Scalars['String']['input']>;
-  reqstrCustomPwdPolicy?: InputMaybe<PasswordPolicyInput>;
-  /** PASSWORD_POLICY */
-  requesterPasswordPolicy?: InputMaybe<Scalars['String']['input']>;
-  sessionInactiveDuration?: InputMaybe<Scalars['Int']['input']>;
-  sessionInactiveUnit?: InputMaybe<Scalars['String']['input']>;
-  /** SESSION_TIME_UNIT */
-  sessionTrustEnable?: InputMaybe<Scalars['Boolean']['input']>;
-  ssoType?: InputMaybe<Scalars['String']['input']>;
-  /** PASSWORD_POLICY */
-  technCustomPwdPolicy?: InputMaybe<PasswordPolicyInput>;
-  technicianPasswordPolicy?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Approval = {
-  __typename?: 'Approval';
-  actionTakenOn?: Maybe<Scalars['String']['output']>;
-  additionalMessage?: Maybe<Scalars['String']['output']>;
-  approvalId: Scalars['ID']['output'];
-  approver: User;
-  comment?: Maybe<Scalars['String']['output']>;
-  sentOn: Scalars['String']['output'];
-  status?: Maybe<Scalars['String']['output']>;
-  ticket?: Maybe<Ticket>;
-  ticketPermission?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type ApproveQuoteInput = {
-  approver: QuoteApproverInput;
-  /** QuoteApprovalStatus */
-  comment?: InputMaybe<Scalars['String']['input']>;
-  quote: QuoteIdentifierInput;
-  status: Scalars['String']['input'];
-};
-
-/** Used for fetching Basic information for all Asset types. */
-export type Asset = AssetBase & {
+/** Specifies the asset's data. */
+export type Asset = {
   __typename?: 'Asset';
-  assetClass?: Maybe<AssetClass>;
+  /** The asset's SuperOps.ai agent version */
+  agentVersion?: Maybe<Scalars['String']['output']>;
+  /** Asset class details of the asset */
+  assetClass: Scalars['JSON']['output'];
+  /** ID of the asset */
   assetId?: Maybe<Scalars['ID']['output']>;
-  assetProtocolMapping?: Maybe<Array<Maybe<AssetProtocolMapping>>>;
-  /** AssetPlatformCategory */
-  associatedAssets?: Maybe<Scalars['JSON']['output']>;
-  /** AdvanceRuleBuilder */
-  categoryAssignedStrategy?: Maybe<PolicyCategoryAssignedBy>;
-  client?: Maybe<Organization>;
+  /** Client details of the asset */
+  client: Scalars['JSON']['output'];
+  /** Custom field details of the asset */
   customFields?: Maybe<Scalars['JSON']['output']>;
-  department?: Maybe<BusinessFunction>;
+  /** The Device Category of the asset */
+  deviceCategory?: Maybe<Scalars['JSON']['output']>;
+  /** The domain of the asset */
+  domain?: Maybe<Scalars['String']['output']>;
+  /** Gateway of the asset */
+  gateway?: Maybe<Scalars['String']['output']>;
+  /** Hostname of the asset */
+  hostName?: Maybe<Scalars['String']['output']>;
+  /** The last communicated time of the asset to SuperOps.ai */
+  lastCommunicatedTime?: Maybe<Scalars['String']['output']>;
+  /** The last reported time of the asset to SuperOps.ai */
+  lastReportedTime?: Maybe<Scalars['String']['output']>;
+  /** The asset's current logged-in user */
   loggedInUser?: Maybe<Scalars['String']['output']>;
-  monitoringStatus?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  nextPolicyCategory?: Maybe<PolicyCategory>;
-  owner?: Maybe<User>;
+  /** Manufacturer of the asset */
+  manufacturer?: Maybe<Scalars['String']['output']>;
+  /** Model of the asset */
+  model?: Maybe<Scalars['String']['output']>;
+  /** Name of the asset */
+  name: Scalars['String']['output'];
+  /** The patch status of the asset */
+  patchStatus?: Maybe<Scalars['String']['output']>;
+  /** The platform of the asset */
+  platform?: Maybe<Scalars['String']['output']>;
+  /** The platform category of the asset */
   platformCategory?: Maybe<Scalars['String']['output']>;
-  policyCategory?: Maybe<PolicyCategory>;
-  site?: Maybe<Site>;
+  /** The platform family of the asset */
+  platformFamily?: Maybe<Scalars['String']['output']>;
+  /** The platform version of the asset */
+  platformVersion?: Maybe<Scalars['String']['output']>;
+  /** Primary mac address of the asset */
+  primaryMac?: Maybe<Scalars['String']['output']>;
+  /** The public IP of the asset */
+  publicIp?: Maybe<Scalars['String']['output']>;
+  /** The Purchased Date of the Asset */
+  purchasedDate?: Maybe<Scalars['String']['output']>;
+  /** The requester of the asset */
+  requester: Scalars['JSON']['output'];
+  /** Serial number of the asset */
+  serialNumber?: Maybe<Scalars['String']['output']>;
+  /** Site details of the asset */
+  site: Scalars['JSON']['output'];
+  /** ONLINE/ OFFLINE Status of the asset */
+  status?: Maybe<Scalars['String']['output']>;
+  /** System uptime of the asset */
+  sysUptime?: Maybe<Scalars['String']['output']>;
+  /** The Warranty Expiration Date of the Asset */
+  warrantyExpiryDate?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** Used for fetching Basic information for all Asset types. */
-export type AssetAssociatedAssetsArgs = {
-  refEntityAttributes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-/** Used for fetching Basic information for all Asset types. */
+/** Specifies the asset's data. */
 export type AssetCustomFieldsArgs = {
   fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type AssetBase = {
-  assetClass?: Maybe<AssetClass>;
-  assetId?: Maybe<Scalars['ID']['output']>;
-  assetProtocolMapping?: Maybe<Array<Maybe<AssetProtocolMapping>>>;
-  /**
-   * AssetPlatformCategory
-   *  TODO: Below field to be removed in further version use getAssociatedAssetClassListForAsset API
-   */
-  associatedAssets?: Maybe<Scalars['JSON']['output']>;
-  /** AdvanceRuleBuilder */
-  categoryAssignedStrategy?: Maybe<PolicyCategoryAssignedBy>;
-  client?: Maybe<Organization>;
-  customFields?: Maybe<Scalars['JSON']['output']>;
-  department?: Maybe<BusinessFunction>;
-  loggedInUser?: Maybe<Scalars['String']['output']>;
-  monitoringStatus?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  nextPolicyCategory?: Maybe<PolicyCategory>;
-  owner?: Maybe<User>;
-  platformCategory?: Maybe<Scalars['String']['output']>;
-  policyCategory?: Maybe<PolicyCategory>;
-  site?: Maybe<Site>;
-};
-
-
-export type AssetBaseAssociatedAssetsArgs = {
-  refEntityAttributes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type AssetBaseCustomFieldsArgs = {
-  fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type AssetClass = BaseEntity & {
-  __typename?: 'AssetClass';
-  assetDefaultFields?: Maybe<Scalars['JSON']['output']>;
-  assetsCount?: Maybe<Scalars['Int']['output']>;
-  classId?: Maybe<Scalars['ID']['output']>;
-  customFields?: Maybe<Array<Maybe<CustomField>>>;
-  description?: Maybe<Scalars['String']['output']>;
-  entityName?: Maybe<Scalars['String']['output']>;
-  formMeta?: Maybe<Scalars['String']['output']>;
-  iconClass?: Maybe<Scalars['String']['output']>;
-  isGated?: Maybe<Scalars['Boolean']['output']>;
-  isNonMonitored?: Maybe<Scalars['Boolean']['output']>;
-  isSystemGenerated?: Maybe<Scalars['Boolean']['output']>;
-  lastConfModified?: Maybe<Scalars['String']['output']>;
-  lastUpdatedTime?: Maybe<Scalars['String']['output']>;
-  metrics?: Maybe<Array<Maybe<Metrics>>>;
-  moduleType?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  policySet?: Maybe<PolicySet>;
-  status?: Maybe<Scalars['String']['output']>;
-  supportedModules?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type AssetClassPolicy = PolicyBase & {
-  __typename?: 'AssetClassPolicy';
-  description?: Maybe<Scalars['String']['output']>;
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-  inherited?: Maybe<Scalars['Boolean']['output']>;
-  name: Scalars['String']['output'];
-  overridden?: Maybe<Scalars['Boolean']['output']>;
-  overriddenPolicy?: Maybe<AssetClassPolicy>;
-  policyId: Scalars['ID']['output'];
-};
-
-export type AssetGroup = {
-  __typename?: 'AssetGroup';
-  assetClass?: Maybe<AssetClass>;
-  groupCondition?: Maybe<Scalars['JSON']['output']>;
-  groupId: Scalars['ID']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  policySet?: Maybe<PolicySet>;
-};
-
-export type AssetGroupPolicy = PolicyBase & {
-  __typename?: 'AssetGroupPolicy';
-  description?: Maybe<Scalars['String']['output']>;
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-  name: Scalars['String']['output'];
-  policyId: Scalars['ID']['output'];
-};
-
-export type AssetMake = {
-  __typename?: 'AssetMake';
-  makeId?: Maybe<Scalars['ID']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type AssetModel = {
-  __typename?: 'AssetModel';
-  make?: Maybe<AssetMake>;
-  modelId?: Maybe<Scalars['ID']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  userAdded?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type AssetOnboardingPolicyConfig = {
-  __typename?: 'AssetOnboardingPolicyConfig';
-  actionType: Scalars['String']['output'];
-  executionType: Scalars['String']['output'];
-  scheduleDetail?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type AssetPolicy = PolicyBase & {
-  __typename?: 'AssetPolicy';
-  applied?: Maybe<Scalars['Boolean']['output']>;
-  /**
-   * PolicySetCategory
-   * Asset Group Policy
-   */
-  assetGroup?: Maybe<AssetGroup>;
-  category: Scalars['String']['output'];
-  createdLevel?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-  /** PolicyLevel */
-  inherited?: Maybe<Scalars['Boolean']['output']>;
-  name: Scalars['String']['output'];
-  overridden?: Maybe<Scalars['Boolean']['output']>;
-  /** PolicyLevel */
-  overriddenLevel?: Maybe<Scalars['String']['output']>;
-  /** Asset Class Policy */
-  overriddenPolicy?: Maybe<AssetPolicy>;
-  policyId: Scalars['ID']['output'];
-};
-
-export type AssetProtocolMapping = {
-  __typename?: 'AssetProtocolMapping';
-  canDisableMonitoring?: Maybe<Scalars['Boolean']['output']>;
-  credential?: Maybe<Credential>;
-  failureDetails?: Maybe<Scalars['JSON']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  isEnabled?: Maybe<Scalars['Boolean']['output']>;
-  protocol?: Maybe<NetworkProtocol>;
-  success?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type AssetScript = {
-  __typename?: 'AssetScript';
-  addedBy?: Maybe<User>;
-  additionalFiles?: Maybe<Array<Maybe<AssetScriptAdditionalFile>>>;
-  communityScriptId?: Maybe<Scalars['ID']['output']>;
-  content?: Maybe<Scalars['String']['output']>;
+/** Specifies the activity data of an asset. */
+export type AssetActivityData = {
+  __typename?: 'AssetActivityData';
+  /** The activity's data */
+  activityData?: Maybe<Scalars['JSON']['output']>;
+  /** The ID of the activity data */
+  activityId?: Maybe<Scalars['ID']['output']>;
+  /** The type of the activity */
+  activityType?: Maybe<Scalars['String']['output']>;
+  /** Specifies the user that triggered the activity */
+  createdBy?: Maybe<Scalars['JSON']['output']>;
+  /** The time of creation of the activity */
   createdTime?: Maybe<Scalars['String']['output']>;
-  custom?: Maybe<Scalars['Boolean']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  favourite?: Maybe<Scalars['Boolean']['output']>;
-  imported?: Maybe<Scalars['Boolean']['output']>;
-  isScriptViewable?: Maybe<Scalars['Boolean']['output']>;
-  isUpdateAvailable?: Maybe<Scalars['Boolean']['output']>;
-  language?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  readMe?: Maybe<Scalars['String']['output']>;
-  runAs?: Maybe<Scalars['String']['output']>;
-  runTimeVariables?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  runTimeVars?: Maybe<Scalars['JSON']['output']>;
-  scriptId?: Maybe<Scalars['ID']['output']>;
-  scriptVariables?: Maybe<ScriptVariables>;
-  shared?: Maybe<Scalars['Boolean']['output']>;
-  tags?: Maybe<Scalars['JSON']['output']>;
-  timeOut?: Maybe<Scalars['Int']['output']>;
+  /** The module name of the activity */
+  module?: Maybe<Scalars['String']['output']>;
 };
 
-export type AssetScriptAdditionalFile = {
-  __typename?: 'AssetScriptAdditionalFile';
-  destinationLocation?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  scriptAdditionalFile?: Maybe<ScriptAdditionalFile>;
-};
-
-export type AssetUserLoggedIn = {
-  __typename?: 'AssetUserLoggedIn';
-  userId?: Maybe<Scalars['String']['output']>;
-  userName?: Maybe<Scalars['String']['output']>;
-};
-
-export type AssociatePolicyCategoryInput = {
-  accountId?: InputMaybe<Scalars['ID']['input']>;
-  addPolicySetMapping?: InputMaybe<Scalars['JSON']['input']>;
-  deletePolicySetMapping?: InputMaybe<Scalars['JSON']['input']>;
-  updatePolicySetMapping?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-export type Attachment = {
-  __typename?: 'Attachment';
-  /** applicable only for inline image upload like profile pic, logo, ... */
-  downloadURL?: Maybe<Scalars['String']['output']>;
-  fileName?: Maybe<Scalars['String']['output']>;
-  fileSize?: Maybe<Scalars['String']['output']>;
-  originalFileName?: Maybe<Scalars['String']['output']>;
-};
-
-export enum AttachmentCategory {
-  Msa = 'MSA',
-  Others = 'OTHERS'
-}
-
-export type AttachmentInput = {
-  fileName?: InputMaybe<Scalars['String']['input']>;
-  fileSize?: InputMaybe<Scalars['String']['input']>;
-  originalFileName?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Attribute = {
-  __typename?: 'Attribute';
-  attributePlaceHolder?: Maybe<PlaceHolder>;
-  autoComplete?: Maybe<Scalars['Boolean']['output']>;
-  conditionPlaceHolders?: Maybe<Array<Maybe<PlaceHolder>>>;
-  conditionPlaceHoldersMeta?: Maybe<Scalars['JSON']['output']>;
-  dataReportRenderType?: Maybe<DataReportColumnRenderType>;
-  dataType?: Maybe<Scalars['String']['output']>;
-  defaultMetricUnit?: Maybe<Scalars['String']['output']>;
-  /** DataType */
-  entity?: Maybe<Scalars['String']['output']>;
-  entityAttributeLabel?: Maybe<Scalars['String']['output']>;
-  /** UIDataType */
-  filterType?: Maybe<Scalars['String']['output']>;
-  isCustom?: Maybe<Scalars['Boolean']['output']>;
-  /** deprecated */
-  isDependent?: Maybe<Scalars['Boolean']['output']>;
-  isIdentifier?: Maybe<Scalars['Boolean']['output']>;
-  isKeyAttribute?: Maybe<Scalars['Boolean']['output']>;
-  isMultiValued?: Maybe<Scalars['Boolean']['output']>;
-  /** FilterType */
-  isNested?: Maybe<Scalars['Boolean']['output']>;
-  label?: Maybe<Scalars['String']['output']>;
-  labelInMetric?: Maybe<Scalars['String']['output']>;
-  metricFunctions?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  metricUnits?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  name: Scalars['String']['output'];
-  nestedAttribute?: Maybe<Scalars['String']['output']>;
-  nestedAttributes?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  nestedTo?: Maybe<Scalars['String']['output']>;
-  showToClient?: Maybe<Scalars['Boolean']['output']>;
-  uiDataType?: Maybe<Scalars['String']['output']>;
-  useInCondition?: Maybe<Scalars['Boolean']['output']>;
-  useInGroupBy?: Maybe<Scalars['Boolean']['output']>;
-  useInMetric?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type Audit = {
-  __typename?: 'Audit';
-  actorId?: Maybe<Scalars['ID']['output']>;
-  actorLabel?: Maybe<Scalars['String']['output']>;
-  actorName?: Maybe<ActorName>;
-  auditId: Scalars['ID']['output'];
-  client?: Maybe<Organization>;
-  data?: Maybe<Scalars['JSON']['output']>;
-  entity: Scalars['String']['output'];
-  entityId?: Maybe<Scalars['ID']['output']>;
-  operation: EntityOperation;
-  parentEntity?: Maybe<Scalars['String']['output']>;
-  parentEntityId?: Maybe<Scalars['ID']['output']>;
-  snapShot?: Maybe<Scalars['Boolean']['output']>;
-  time: Scalars['String']['output'];
-  user?: Maybe<User>;
-};
-
-export type AuditList = {
-  __typename?: 'AuditList';
-  audits?: Maybe<Array<Maybe<Audit>>>;
+/** Specifies the Response of AssetActivity */
+export type AssetActivityList = {
+  __typename?: 'AssetActivityList';
+  /** Specifies the list of activities on the asset. */
+  activities?: Maybe<Array<Maybe<AssetActivityData>>>;
+  /** Details about the list. */
   listInfo?: Maybe<ListInfo>;
 };
 
-export type BaseEntity = {
-  isGated?: Maybe<Scalars['Boolean']['output']>;
+/** Specifies the CPU Details */
+export type AssetCpu = {
+  __typename?: 'AssetCPU';
+  /** Specifies the CPU's architecture. */
+  architecture?: Maybe<Scalars['String']['output']>;
+  /** The ID of the asset */
+  assetId: Scalars['ID']['output'];
+  /** Specifies the asset's CPU name. */
+  cpuName?: Maybe<Scalars['String']['output']>;
+  /** specifies the asset's current CPU usage. */
+  cpuUsage?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the current CPU speed of the asset. */
+  currentSpeed?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the total number of handles of the CPU. */
+  handlesCount?: Maybe<Scalars['String']['output']>;
+  /** Specifies the details of the L1 cache. */
+  l1Cache?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the Details of the L2 cache. */
+  l2Cache?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the Details of the L3 cache. */
+  l3Cache?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the logical core count of the CPU. */
+  logicalCore?: Maybe<Scalars['Int']['output']>;
+  /** Specifies the maximum CPU speed of the asset. */
+  maxSpeed?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the physical core count of the CPU. */
+  physicalCore?: Maybe<Scalars['Int']['output']>;
+  /** Specifies the total number of processes. */
+  processCount?: Maybe<Scalars['String']['output']>;
+  /** Specifies the total thread count of the CPU. */
+  threadsCount?: Maybe<Scalars['String']['output']>;
 };
 
+/** Specifies the input required to fetch asset details */
+export type AssetDetailsListInput = {
+  /** The ID of the asset. */
+  assetId: Scalars['ID']['input'];
+  /** Specifies the input required to fetch multiple records. */
+  listInfo?: InputMaybe<ListInfoInput>;
+};
+
+/** Specifies the data in each partition */
+export type AssetDisk = {
+  __typename?: 'AssetDisk';
+  /** Specifies the disk's active time */
+  activeTime?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies whether the partition is autoMounted */
+  autoMounted?: Maybe<Scalars['Boolean']['output']>;
+  /** Specifies whether the partition is compressed */
+  compressed?: Maybe<Scalars['Boolean']['output']>;
+  /** Disk type of the partition Ex:"Local Disk" */
+  discType?: Maybe<Scalars['String']['output']>;
+  /** Name of the disk partition Ex:"c:" */
+  drive?: Maybe<Scalars['String']['output']>;
+  /** Specifies the drive usage of the partition drive */
+  driveUsage?: Maybe<Scalars['JSON']['output']>;
+  /** Type of file system Ex: "NTFS" */
+  fileSystem?: Maybe<Scalars['String']['output']>;
+  /** Free size available in the partition */
+  freeSize?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies whether the partition is indexed */
+  indexed?: Maybe<Scalars['Boolean']['output']>;
+  /** Specifies that maximum file size length in the partition */
+  maxFileLength?: Maybe<Scalars['Int']['output']>;
+  /** Specifies whether pagefile is enabled in the partition */
+  pageFile?: Maybe<Scalars['Boolean']['output']>;
+  /** Specifies the reading speed of the partition */
+  readSpeed?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the response time of the partition */
+  responseTime?: Maybe<Scalars['JSON']['output']>;
+  /** Total space allocated to the partition */
+  size?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the writing speed of the partition */
+  writeSpeed?: Maybe<Scalars['JSON']['output']>;
+};
+
+/** Specifies the identifier input for the asset. */
+export type AssetIdentifierInput = {
+  /** The ID of the asset. */
+  assetId: Scalars['ID']['input'];
+};
+
+/** Specifies the primary network interface's details */
+export type AssetInterface = {
+  __typename?: 'AssetInterface';
+  /** Specifies the adapter name Ex:Intel(R) PRO/1000 MT Desktop Adapter */
+  adapterName?: Maybe<Scalars['String']['output']>;
+  /** Specifies the connection type Ex: Ethernet 802.3 */
+  connectType?: Maybe<Scalars['String']['output']>;
+  /** Specifies the interface data in per sec */
+  dataInPerSec?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the interface data out per sec */
+  dataOutPerSec?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the unique identifying number associated with a physical or logical interface */
+  infIndex?: Maybe<Scalars['Int']['output']>;
+  /** Specifies ipv4 address of the interface */
+  ipv4Address?: Maybe<Scalars['String']['output']>;
+  /** Specifies ipv6 address of the interface */
+  ipv6Address?: Maybe<Scalars['String']['output']>;
+  /** Specifies the line speed of the interface */
+  lineSpeed?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the mac address of the interface */
+  mac?: Maybe<Scalars['String']['output']>;
+  /** Size of the maximum transmission unit of the interface */
+  mtu?: Maybe<Scalars['String']['output']>;
+  /** Specifies the interface name Ex: Ethernet */
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+/** The list of data for asset details. */
+export type AssetList = {
+  __typename?: 'AssetList';
+  /** The list of assets. */
+  assets?: Maybe<Array<Maybe<Asset>>>;
+  /** Details about the list. */
+  listInfo?: Maybe<ListInfo>;
+};
+
+/** Specifies the memory details of the asset */
+export type AssetMemory = {
+  __typename?: 'AssetMemory';
+  /** Specifies the available memory in the asset */
+  availableMemory?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the asset's cache memory details */
+  cachedMemory?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies how much memory was used (in %) */
+  memoryUsage?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the nonPagedPoolByte size */
+  nonPagedPoolByte?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the pagedPoolByte size */
+  pagedPoolByte?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the available swap memory */
+  swapAvailableMemory?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the total swap memory */
+  swapTotalMemory?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the used swap memory */
+  swapUsedMemory?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the asset's total memory */
+  totalMemory?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the used memory in the asset */
+  usedMemory?: Maybe<Scalars['JSON']['output']>;
+};
+
+/** Specifies the patch list data */
+export type AssetPatchList = {
+  __typename?: 'AssetPatchList';
+  /** Specifies the list of asset patch details */
+  assetPatches?: Maybe<Array<Maybe<PatchData>>>;
+  /** The detail about the list. */
+  listInfo?: Maybe<ListInfo>;
+};
+
+/** Specifies the asset software details */
+export type AssetSoftware = {
+  __typename?: 'AssetSoftware';
+  /** Bit version of the software */
+  bitVersion?: Maybe<Scalars['String']['output']>;
+  /** The ID of the Software Inventory */
+  id?: Maybe<Scalars['ID']['output']>;
+  /** Installed date of the software */
+  installedDate?: Maybe<Scalars['String']['output']>;
+  /** Installed path of the software */
+  installedPath?: Maybe<Scalars['String']['output']>;
+  /** Specifies the details about the software */
+  software?: Maybe<Scalars['JSON']['output']>;
+  /** Version of the software */
+  version?: Maybe<Scalars['String']['output']>;
+};
+
+/** Specifies the asset software list data */
+export type AssetSoftwareList = {
+  __typename?: 'AssetSoftwareList';
+  /** Specifies the list of asset softwares */
+  assetSoftwares?: Maybe<Array<Maybe<AssetSoftware>>>;
+  /** The detail about the list. */
+  listInfo?: Maybe<ListInfo>;
+};
+
+/** Specifies the Summary Details of Asset including CPU,Memory,disk,netinterface,userlog */
+export type AssetSummary = {
+  __typename?: 'AssetSummary';
+  /** specifies the interface details of the Asset */
+  assetInterface?: Maybe<AssetInterface>;
+  /** specifies the cpu details of the Asset */
+  cpu?: Maybe<AssetCpu>;
+  /** specifies the disk details of the Asset */
+  disk?: Maybe<Disks>;
+  /** user logs details of the Asset */
+  lastUserLog?: Maybe<AssetUserLog>;
+  /** specifies the memory details of the Asset */
+  memory?: Maybe<AssetMemory>;
+};
+
+/** Specifies an asset's user log details */
+export type AssetUserLog = {
+  __typename?: 'AssetUserLog';
+  /** Specifies the ID of the user log record */
+  id?: Maybe<Scalars['ID']['output']>;
+  /** Specifies the last logged-in time of the user */
+  lastLoginTime?: Maybe<Scalars['String']['output']>;
+  /** Specifies the user who last logged in to the asset */
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+/** The attachment. */
+export type Attachment = {
+  __typename?: 'Attachment';
+  /** The sanitized file name. */
+  fileName: Scalars['String']['output'];
+  /** The file size. */
+  fileSize: Scalars['String']['output'];
+  /** The original file name. */
+  originalFileName: Scalars['String']['output'];
+};
+
+/** Specifies the usage type of the block item. */
+export enum Block_Item_Usage_Type {
+  /** Denotes that the usage type is set to all hours. */
+  AllHours = 'ALL_HOURS',
+  /** Denotes that the usage type is set to business hours. */
+  BusinessHours = 'BUSINESS_HOURS'
+}
+
+/** Specifies the billable contract. */
 export type BillableContract = {
   __typename?: 'BillableContract';
+  /** The billable site type of the contract. */
   billableSiteType: BillableSiteType;
+  /** The block item balance details. */
   blockItemsInfo?: Maybe<Array<Maybe<BlockItemInfo>>>;
+  /** The contract quantity change list. */
   changes?: Maybe<Array<BillableContractQuantityChange>>;
-  chargeItem: ServiceCatalogItem;
+  /** The charge item associated with the contract. */
+  chargeItem: Scalars['JSON']['output'];
+  /** The ID of the contract. */
   contractId: Scalars['ID']['output'];
-  cumulatedQuantity?: Maybe<Scalars['String']['output']>;
+  /** The discount rate applied to the contract. */
   discountRate?: Maybe<Scalars['String']['output']>;
+  /** The contract's frequency type. */
   frequencyType: ContractFrequencyType;
-  generateInvoice: Scalars['Boolean']['output'];
-  includedItems?: Maybe<Array<ServiceCatalogItem>>;
-  paymentTerm?: Maybe<PaymentTerm>;
+  /** The items included in the contract. */
+  includedItems?: Maybe<Array<Scalars['JSON']['output']>>;
+  /** The perpetual contract details. */
   perpetualContract?: Maybe<PerpetualContract>;
-  project?: Maybe<Project>;
-  provisionRule?: Maybe<ProvisionRule>;
+  /** The project assoicated with the contract. */
+  project?: Maybe<Scalars['JSON']['output']>;
+  /** The provision rule associated with the contract if the contracts quantity calculation type is 'DYNAMIC'. */
+  provisionRule?: Maybe<Scalars['JSON']['output']>;
+  /** The contract's quantity calculation type. */
   quantityCalculationType: ContractQuantityCalculationType;
+  /** The recurring contract details. */
   recurringContract?: Maybe<RecurringContract>;
+  /** The redeemable contract details. */
   redeemableContract?: Maybe<RedeemableContract>;
+  /** The selling price of the contract. */
   sellingPrice?: Maybe<PricingModel>;
+  /** The contract's selling price calculation type. */
   sellingPriceCalculationType: ContractSellingPriceCalculationType;
+  /** Indicates whether the selling price is overridden. */
   sellingPriceOverridden?: Maybe<Scalars['Boolean']['output']>;
-  sites?: Maybe<Array<Site>>;
-  usageContract?: Maybe<UsageContract>;
+  /** The billable sites mentioned in the contract when the billable site type is 'INCLUDED'. */
+  sites?: Maybe<Array<Scalars['JSON']['output']>>;
 };
 
+/** Specifies the contract quantity change. */
 export type BillableContractQuantityChange = {
   __typename?: 'BillableContractQuantityChange';
+  /** The ID of the contract quantity change. */
   changeId: Scalars['ID']['output'];
+  /** The effective date for the contract quantity change. */
   effectiveDate?: Maybe<Scalars['String']['output']>;
+  /** The end date for the contract quantity change. */
   endDate?: Maybe<Scalars['String']['output']>;
-  generateInvoice: Scalars['Boolean']['output'];
-  prorated: Scalars['Boolean']['output'];
-  proratedAmount?: Maybe<Scalars['String']['output']>;
+  /** The quantity of the billable contract. */
   quantity?: Maybe<Scalars['String']['output']>;
+  /** The quantity change operation of the contract. */
   quantityChangeOperation: BillableContractQuantityChangeOperation;
 };
 
+/** Specifies the input required for a contract quantity change. */
 export type BillableContractQuantityChangeInput = {
+  /** The quantity change id of the billable contract. */
   changeId?: InputMaybe<Scalars['ID']['input']>;
+  /** The effective date of the billable contract. */
   effectiveDate?: InputMaybe<Scalars['String']['input']>;
-  generateInvoice?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The quantity of the billable contract. */
   quantity?: InputMaybe<Scalars['String']['input']>;
+  /** The quantity change operation date of the billable contract. */
   quantityChangeOperation?: InputMaybe<BillableContractQuantityChangeOperation>;
 };
 
+/** Specifies the quantity change operation for a billable contract. */
 export enum BillableContractQuantityChangeOperation {
+  /** Indicates the initial quantity value for the contract. */
   Baseline = 'BASELINE',
+  /** Indicates that the contract's quantity has decreased. */
   Decrease = 'DECREASE',
+  /** Indicates that the contract's quantity has increased. */
   Increase = 'INCREASE'
 }
 
+/** Specifies the type of billable site for the contract. */
 export enum BillableSiteType {
+  /** Indicates the contract will be billed to all the client sites. */
   All = 'ALL',
+  /** Indicates the contract will be billed to client's headquarters. */
   Hq = 'HQ',
+  /** Indicates the contract will be billed to the specified client sites. */
   Included = 'INCLUDED'
 }
 
-export type BillingAddress = {
-  __typename?: 'BillingAddress';
-  billing?: Maybe<Scalars['String']['output']>;
-  sender?: Maybe<Scalars['String']['output']>;
+/** Specifies the block item balance information. */
+export type BlockItemInfo = {
+  __typename?: 'BlockItemInfo';
+  /** Specifies the block item balance. */
+  balance?: Maybe<Scalars['String']['output']>;
+  /** The ID of the block item. */
+  blockItemId?: Maybe<Scalars['ID']['output']>;
 };
 
-export type BillingConfiguration = {
-  __typename?: 'BillingConfiguration';
-  layoutConfiguration?: Maybe<Scalars['JSON']['output']>;
-  preferences?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type BillingDetails = {
-  __typename?: 'BillingDetails';
-  assetCount?: Maybe<Scalars['Int']['output']>;
-  billingEndDate?: Maybe<Scalars['String']['output']>;
-  billingStartDate?: Maybe<Scalars['String']['output']>;
-  currency?: Maybe<Scalars['String']['output']>;
-  removedCount?: Maybe<Scalars['Int']['output']>;
-  requesterCount?: Maybe<Scalars['Int']['output']>;
-  totalPrice?: Maybe<Scalars['String']['output']>;
-  unitPrice?: Maybe<Scalars['String']['output']>;
-};
-
-export type BillingTemplate = {
-  __typename?: 'BillingTemplate';
-  description?: Maybe<Scalars['String']['output']>;
-  name: Scalars['String']['output'];
-  templateId: Scalars['ID']['output'];
-};
-
-export type BillingTemplateIdentifierInput = {
-  templateId: Scalars['ID']['input'];
-};
-
-export type BillingTemplateList = {
-  __typename?: 'BillingTemplateList';
-  listInfo?: Maybe<ListInfo>;
-  templates?: Maybe<Array<BillingTemplate>>;
-};
-
-export type BlockItemConsumptionInfo = {
-  __typename?: 'BlockItemConsumptionInfo';
-  blockHoursUnderAudit?: Maybe<Scalars['String']['output']>;
-  blockMoneyUnderAudit?: Maybe<Scalars['String']['output']>;
-  isUnderContract?: Maybe<Scalars['Boolean']['output']>;
-  remainingBlockHours?: Maybe<Scalars['String']['output']>;
-  remainingBlockMoney?: Maybe<Scalars['String']['output']>;
-};
-
-export type BulkDeployment = {
-  __typename?: 'BulkDeployment';
-  gpo?: Maybe<Array<Maybe<BulkDeploymentScriptDetails>>>;
-  inTune?: Maybe<Array<Maybe<BulkDeploymentScriptDetails>>>;
-};
-
-export type BulkDeploymentScriptDetails = {
-  __typename?: 'BulkDeploymentScriptDetails';
-  arch?: Maybe<Scalars['String']['output']>;
-  command?: Maybe<Scalars['String']['output']>;
-  os?: Maybe<Os>;
-  scriptType?: Maybe<Scalars['String']['output']>;
-};
-
+/** Business function of the technician. */
 export type BusinessFunction = {
   __typename?: 'BusinessFunction';
+  /** The ID of the business function. */
   businessFunctionId: Scalars['ID']['output'];
-  head?: Maybe<User>;
-  name?: Maybe<Scalars['String']['output']>;
+  /** The name of the business function. */
+  name: Scalars['String']['output'];
 };
 
+/** Specifies the identifier input for the business function. */
 export type BusinessFunctionIdentifierInput = {
+  /** The ID of the business function. */
   businessFunctionId: Scalars['ID']['input'];
 };
 
-export type BusinessFunctionInput = {
-  businessFunctionId?: InputMaybe<Scalars['ID']['input']>;
-  head?: InputMaybe<UserIdentifierInput>;
-  name?: InputMaybe<Scalars['String']['input']>;
-};
-
+/** The operating hours definition. */
 export type BusinessHour = {
   __typename?: 'BusinessHour';
-  day: Scalars['String']['output'];
+  /** The day of the week. */
+  day: DayOfWeek;
+  /** The end time of the day. */
   end: Scalars['String']['output'];
-  /** DayOfWeek */
+  /** The start time of the day. */
   start: Scalars['String']['output'];
 };
 
-export type BusinessHourInput = {
-  day: Scalars['String']['input'];
-  end: Scalars['String']['input'];
-  /** DayOfWeek */
-  start: Scalars['String']['input'];
-};
-
-export type CreTicketsByCategoryInput = {
-  client: ClientIdentifierInput;
-  condition: RuleConditionInput;
-  pagination: PaginationInput;
-  ticketCategory?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type CreTrendAnalysisInput = {
-  /** TrendType */
-  client: ClientIdentifierInput;
-  condition?: InputMaybe<RuleConditionInput>;
-  trendType: Scalars['String']['input'];
-};
-
-export type Card = {
-  __typename?: 'Card';
-  brand?: Maybe<Scalars['String']['output']>;
-  client?: Maybe<Organization>;
-  expiryMonth?: Maybe<Scalars['String']['output']>;
-  expiryYear?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  last4Digits?: Maybe<Scalars['String']['output']>;
-};
-
-export type CardList = {
-  __typename?: 'CardList';
-  cards?: Maybe<Array<Maybe<Card>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
+/** The ticket category. */
 export type Category = {
   __typename?: 'Category';
+  /** The ID of the category. */
   id: Scalars['ID']['output'];
+  /** The name of the category. */
   name: Scalars['String']['output'];
+  /** The list of subcategories. */
   subCategories?: Maybe<Array<Maybe<SubCategory>>>;
 };
 
-export type Charge = {
-  __typename?: 'Charge';
-  chargeId: Scalars['String']['output'];
-};
-
-export type ChargePrice = {
-  __typename?: 'ChargePrice';
-  charge?: Maybe<Charge>;
-  chargePriceId: Scalars['String']['output'];
-  currency?: Maybe<PaymentCurrency>;
-};
-
-export type Chart = {
-  __typename?: 'Chart';
-  chartId: Scalars['ID']['output'];
-  /** GroupBy */
-  createdBy?: Maybe<User>;
-  createdTime?: Maybe<Scalars['String']['output']>;
-  defaultChartType?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  entity?: Maybe<Scalars['String']['output']>;
-  groupBy?: Maybe<Scalars['JSON']['output']>;
-  internalName?: Maybe<Scalars['String']['output']>;
-  metrics?: Maybe<Array<Maybe<ChartMetric>>>;
-  name?: Maybe<Scalars['String']['output']>;
-  systemChart?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type ChartIdentifierInput = {
-  chartId: Scalars['ID']['input'];
-};
-
-export type ChartInput = {
-  addMetrics?: InputMaybe<Array<InputMaybe<MetricInput>>>;
-  chartId?: InputMaybe<Scalars['ID']['input']>;
-  defaultChartType?: InputMaybe<Scalars['String']['input']>;
-  deleteMetrics?: InputMaybe<Array<InputMaybe<MetricInput>>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  entity?: InputMaybe<Scalars['String']['input']>;
-  groupBy?: InputMaybe<Array<InputMaybe<GroupByInput>>>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  updateMetrics?: InputMaybe<Array<InputMaybe<MetricInput>>>;
-};
-
-export type ChartList = {
-  __typename?: 'ChartList';
-  charts?: Maybe<Array<Maybe<Chart>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
-export type ChartMetric = {
-  __typename?: 'ChartMetric';
-  attribute: Scalars['String']['output'];
-  /** ChartMetricFunction */
-  denominator?: Maybe<MetricPercentageDenominatorType>;
-  filterCondition?: Maybe<Scalars['JSON']['output']>;
-  metricFunction: Scalars['String']['output'];
-  metricId: Scalars['ID']['output'];
-  /** ChartMetricUnit */
-  metricOrder?: Maybe<Scalars['Int']['output']>;
-  metricUnit?: Maybe<Scalars['String']['output']>;
+/** The ticket cause. */
+export type Cause = {
+  __typename?: 'Cause';
+  /** The ID of the cause. */
+  id: Scalars['ID']['output'];
+  /** The name of the cause. */
   name: Scalars['String']['output'];
+  /** The list of sub causes. */
+  subCauses?: Maybe<Array<Maybe<SubCause>>>;
 };
 
-export type CheckListItem = {
-  __typename?: 'CheckListItem';
-  content?: Maybe<Scalars['String']['output']>;
-  itemId: Scalars['ID']['output'];
+/** The MSP's clients. */
+export type Client = {
+  __typename?: 'Client';
+  /** The ID of the client. */
+  accountId: Scalars['ID']['output'];
+  /**
+   * The account manager of the client i.,e the technician who is the point of contact for the client.
+   * The actual type of this field is Technician. Returns userId and name fields as JSON.
+   * The name, email fields of Technician can be used in the filter condition.
+   */
+  accountManager?: Maybe<Scalars['JSON']['output']>;
+  /** A JSON contains the values for the client custom fields. */
+  customFields?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * The list of email domains (for example, acme.com) of the client. These domains will be used to identify the client
+   * when receiving emails from the client user.
+   */
+  emailDomains?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /**
+   * The headquarters/main site of the client. The headquarters site is mandatory, it is recommended to update the headquarters
+   * site for the client after creation.
+   * The actual type of this field is ClientSite. Returns id, name fields as JSON.
+   */
+  hqSite?: Maybe<Scalars['JSON']['output']>;
+  /** The name of the client. */
+  name: Scalars['String']['output'];
+  /**
+   * The primary contact of the client. The primary contact is mandatory, it is recommended to update primary contact
+   * for the client after creation.
+   * The actual type of this field is ClientUser. Returns userId and name fields as JSON.
+   * The name, email fields of ClientUser can be used in the filter condition.
+   */
+  primaryContact?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * The secondary contact of the client.
+   * The actual type of this field is ClientUser. Returns userId and name fields as JSON.
+   * The name, email fields of ClientUser can be used in the filter condition.
+   */
+  secondaryContact?: Maybe<Scalars['JSON']['output']>;
+  /** The stage of the client. */
+  stage: Scalars['String']['output'];
+  /** The status of the client. */
+  status?: Maybe<Scalars['String']['output']>;
+  /**
+   * The list of technician groups associated to the client.
+   * The actual type of this field is TechnicianGroup. Returns array of object as JSON, each object contains groupId and name fields.
+   */
+  technicianGroups?: Maybe<Scalars['JSON']['output']>;
 };
 
-export type CheckListItemRefInput = {
-  itemId: Scalars['ID']['input'];
+
+/** The MSP's clients. */
+export type ClientCustomFieldsArgs = {
+  fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type CheckUserEmailAddressAvailabilityInput = {
-  accountType: AccountType;
-  clientId?: InputMaybe<Scalars['ID']['input']>;
-  email: Scalars['String']['input'];
-  validateDomain: Scalars['Boolean']['input'];
-};
-
-export type ClientAttachment = {
-  __typename?: 'ClientAttachment';
-  attachedBy?: Maybe<User>;
-  attachedOn?: Maybe<Scalars['String']['output']>;
-  attachmentCategory?: Maybe<AttachmentCategory>;
-  attachmentId?: Maybe<Scalars['ID']['output']>;
-  fileName?: Maybe<Scalars['String']['output']>;
-  fileSize?: Maybe<Scalars['String']['output']>;
-  originalFileName?: Maybe<Scalars['String']['output']>;
-};
-
-export type ClientAttachmentIdentifierInput = {
-  attachmentId: Scalars['ID']['input'];
-  fileName: Scalars['String']['input'];
-};
-
-export type ClientAttachmentList = {
-  __typename?: 'ClientAttachmentList';
-  attachments?: Maybe<Array<Maybe<ClientAttachment>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
+/** Specifies the client contract. */
 export type ClientContract = {
   __typename?: 'ClientContract';
-  canEditEndDate?: Maybe<Scalars['Boolean']['output']>;
-  client: Account;
+  /** The client associated with the contract. */
+  client: Scalars['JSON']['output'];
+  /** Details of the contract. */
   contract: Contract;
+  /** The ID of the contract. */
   contractId?: Maybe<Scalars['ID']['output']>;
+  /** The status of the client contract. */
   contractStatus: ClientContractStatus;
+  /** The end date of the client contract. */
   endDate?: Maybe<Scalars['String']['output']>;
-  remindDuration?: Maybe<FixedDuration>;
+  /** The start date of the cleint contract. */
   startDate: Scalars['String']['output'];
 };
 
-export type ClientContractDetail = {
-  __typename?: 'ClientContractDetail';
-  blacklistedItems?: Maybe<Array<Maybe<ServiceItem>>>;
-  conditionalPricing?: Maybe<Array<Maybe<ConditionalPricing>>>;
-  contractId: Scalars['ID']['output'];
-  customItems?: Maybe<Array<Maybe<ServiceItemCustomPrice>>>;
-  description?: Maybe<Scalars['String']['output']>;
-  discountRate?: Maybe<Scalars['String']['output']>;
-  endDate?: Maybe<Scalars['String']['output']>;
-  hasExpiredItems?: Maybe<Scalars['Boolean']['output']>;
-  invoiceDueDays?: Maybe<Scalars['Int']['output']>;
-  invoiceSchedule?: Maybe<Scalars['JSON']['output']>;
-  items?: Maybe<Array<Maybe<ContractServiceItem>>>;
-  name: Scalars['String']['output'];
-  pax8LastSyncStatus?: Maybe<OperationStatus>;
-  pax8LastSyncTime?: Maybe<Scalars['String']['output']>;
-  projectLineItemContent?: Maybe<Scalars['String']['output']>;
-  projectLineItemPlaceholdersUsed?: Maybe<Scalars['JSON']['output']>;
-  sla?: Maybe<Array<Maybe<ContractSla>>>;
-  startDate?: Maybe<Scalars['String']['output']>;
-  ticketLineItemContent?: Maybe<Scalars['String']['output']>;
-  ticketLineItemPlaceholdersUsed?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type ClientContractInput = {
-  addBlacklistedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  addConditionalPricing?: InputMaybe<Array<InputMaybe<ConditionalPricingInput>>>;
-  addCustomItems?: InputMaybe<Array<InputMaybe<ServiceItemCustomPriceInput>>>;
-  addItems?: InputMaybe<Array<InputMaybe<ContractServiceItemInput>>>;
-  addSLA?: InputMaybe<Array<InputMaybe<ContractSlaInput>>>;
-  contractId?: InputMaybe<Scalars['ID']['input']>;
-  deleteBlacklistedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  deleteConditionalPricing?: InputMaybe<Array<InputMaybe<ConditionalPricingInput>>>;
-  deleteCustomItems?: InputMaybe<Array<InputMaybe<ServiceItemCustomPriceInput>>>;
-  deleteItems?: InputMaybe<Array<InputMaybe<ContractServiceItemInput>>>;
-  deleteSLA?: InputMaybe<Array<InputMaybe<ContractSlaInput>>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  discountRate?: InputMaybe<Scalars['String']['input']>;
-  endDate?: InputMaybe<Scalars['String']['input']>;
-  invoiceDueDays?: InputMaybe<Scalars['Int']['input']>;
-  invoiceSchedule?: InputMaybe<Scalars['JSON']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  projectLineItemContent?: InputMaybe<Scalars['String']['input']>;
-  projectLineItemPlaceholdersUsed?: InputMaybe<Scalars['JSON']['input']>;
-  startDate?: InputMaybe<Scalars['String']['input']>;
-  ticketLineItemContent?: InputMaybe<Scalars['String']['input']>;
-  ticketLineItemPlaceholdersUsed?: InputMaybe<Scalars['JSON']['input']>;
-  updateConditionalPricing?: InputMaybe<Array<InputMaybe<ConditionalPricingInput>>>;
-  updateCustomItems?: InputMaybe<Array<InputMaybe<ServiceItemCustomPriceInput>>>;
-  updateItems?: InputMaybe<Array<InputMaybe<ContractServiceItemInput>>>;
-  updateSLA?: InputMaybe<Array<InputMaybe<ContractSlaInput>>>;
-};
-
+/** Specifies the client contract list. */
 export type ClientContractList = {
   __typename?: 'ClientContractList';
+  /** The list of client contracts. */
   clientContracts?: Maybe<Array<ClientContract>>;
+  /** Details about the list. */
   listInfo?: Maybe<ListInfo>;
 };
 
-export type ClientContractOrderInput = {
-  contract: ContractIdentifierInput;
-  contractOrder?: InputMaybe<Scalars['Int']['input']>;
-};
-
+/** Specifies the status of a client contract. */
 export enum ClientContractStatus {
+  /** Indicates that the client contract is currently active and in effect. */
   Active = 'ACTIVE',
+  /** Indicates that the client contract is in draft state. This could mean the start date is in the future or the contract hasn't been billed yet. */
   Draft = 'DRAFT',
+  /** Indicates that the client contract is inactive and not in effect. */
   Inactive = 'INACTIVE'
 }
 
-export type ClientContractTemplate = {
-  __typename?: 'ClientContractTemplate';
-  blacklistedItems?: Maybe<Array<Maybe<ServiceItem>>>;
-  conditionalPricing?: Maybe<Array<Maybe<ConditionalPricing>>>;
-  customItems?: Maybe<Array<Maybe<ServiceItemCustomPrice>>>;
-  description?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<ContractTemplateServiceItem>>>;
-  name: Scalars['String']['output'];
-  sla?: Maybe<Array<Maybe<ContractSla>>>;
-  templateId: Scalars['ID']['output'];
-};
-
-export type ClientContractTemplateInput = {
-  addBlacklistedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  addConditionalPricing?: InputMaybe<Array<InputMaybe<ConditionalPricingInput>>>;
-  addCustomItems?: InputMaybe<Array<InputMaybe<ServiceItemCustomPriceInput>>>;
-  addItems?: InputMaybe<Array<InputMaybe<ContractTemplateServiceItemInput>>>;
-  addSLA?: InputMaybe<Array<InputMaybe<ContractSlaInput>>>;
-  deleteBlacklistedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  deleteConditionalPricing?: InputMaybe<Array<InputMaybe<ConditionalPricingInput>>>;
-  deleteCustomItems?: InputMaybe<Array<InputMaybe<ServiceItemCustomPriceInput>>>;
-  deleteItems?: InputMaybe<Array<InputMaybe<ContractTemplateServiceItemInput>>>;
-  deleteSLA?: InputMaybe<Array<InputMaybe<ContractSlaInput>>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  templateId?: InputMaybe<Scalars['ID']['input']>;
-  updateConditionalPricing?: InputMaybe<Array<InputMaybe<ConditionalPricingInput>>>;
-  updateCustomItems?: InputMaybe<Array<InputMaybe<ServiceItemCustomPriceInput>>>;
-  updateItems?: InputMaybe<Array<InputMaybe<ContractTemplateServiceItemInput>>>;
-  updateSLA?: InputMaybe<Array<InputMaybe<ContractSlaInput>>>;
-};
-
-export type ClientContractTemplateList = {
-  __typename?: 'ClientContractTemplateList';
-  listInfo?: Maybe<ListInfo>;
-  templates?: Maybe<Array<Maybe<ClientContractTemplate>>>;
-};
-
-export type ClientConversationAttachment = {
-  __typename?: 'ClientConversationAttachment';
-  conversation?: Maybe<Conversation>;
-  fileName?: Maybe<Scalars['String']['output']>;
-  fileSize?: Maybe<Scalars['String']['output']>;
-  originalFileName?: Maybe<Scalars['String']['output']>;
-};
-
-export type ClientConversationAttachmentList = {
-  __typename?: 'ClientConversationAttachmentList';
-  attachments?: Maybe<Array<Maybe<ClientConversationAttachment>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
-export type ClientEfficiencyRankingInput = {
-  condition: RuleConditionInput;
-  /** PaginationType */
-  pagination?: InputMaybe<PaginationInput>;
-  type: Scalars['String']['input'];
-};
-
-export type ClientFinancialPerformanceMetric = {
-  __typename?: 'ClientFinancialPerformanceMetric';
-  client: Account;
-  financialPerformanceMetric: FinancialPerformanceMetric;
-};
-
-export type ClientFinancialPerformanceMetricList = {
-  __typename?: 'ClientFinancialPerformanceMetricList';
-  clientFinancialPerformanceMetrics?: Maybe<Array<ClientFinancialPerformanceMetric>>;
-  listInfo: ListInfo;
-};
-
+/** Specifies the identifier input for the client. */
 export type ClientIdentifierInput = {
+  /** The ID of the client. */
   accountId: Scalars['ID']['input'];
 };
 
-export type ClientInput = {
-  accountId?: InputMaybe<Scalars['ID']['input']>;
-  accountManager?: InputMaybe<UserInput>;
-  addPolicySetMapping?: InputMaybe<Scalars['JSON']['input']>;
-  /** to be deprecated */
-  addTechnicianGroups?: InputMaybe<Array<InputMaybe<GroupInput>>>;
-  /** deprecated */
-  customFields?: InputMaybe<Scalars['JSON']['input']>;
-  deletePolicySetMapping?: InputMaybe<Scalars['JSON']['input']>;
-  deleteTechnicianGroups?: InputMaybe<Array<InputMaybe<GroupInput>>>;
-  emailDomains?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  hqSite?: InputMaybe<SiteInput>;
-  integrationConfig?: InputMaybe<Array<InputMaybe<ClientIntegrationConfigInput>>>;
-  logoFileName?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  primaryContact?: InputMaybe<UserInput>;
-  secondaryContact?: InputMaybe<UserInput>;
-  site?: InputMaybe<SiteInput>;
-  stage?: InputMaybe<Scalars['String']['input']>;
-  status?: InputMaybe<Scalars['String']['input']>;
-  technicianGroups?: InputMaybe<Array<InputMaybe<GroupInput>>>;
-  updatePolicySetMapping?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-export type ClientIntegrationConfig = {
-  __typename?: 'ClientIntegrationConfig';
-  config?: Maybe<Scalars['JSON']['output']>;
-  integrationId?: Maybe<Scalars['ID']['output']>;
-};
-
-export type ClientIntegrationConfigInput = {
-  config?: InputMaybe<Scalars['JSON']['input']>;
-  integrationId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type ClientIntegrationsStatus = {
-  __typename?: 'ClientIntegrationsStatus';
-  pax8?: Maybe<Scalars['Boolean']['output']>;
-  quickBooks?: Maybe<Scalars['Boolean']['output']>;
-  stripe?: Maybe<Scalars['Boolean']['output']>;
-  xero?: Maybe<Scalars['Boolean']['output']>;
-};
-
+/** The response payload for list of clients fetched. */
 export type ClientList = {
   __typename?: 'ClientList';
-  clients?: Maybe<Array<Maybe<Organization>>>;
+  /** The list of clients. */
+  clients?: Maybe<Array<Maybe<Client>>>;
+  /** The detail about the list. */
   listInfo?: Maybe<ListInfo>;
 };
 
-export type ClientRankingByWorklogHoursInput = {
-  condition: RuleConditionInput;
-  pagination: PaginationInput;
-};
-
-export type ClientRevenue = {
-  __typename?: 'ClientRevenue';
-  monthlyRecurringRevenue: Scalars['String']['output'];
-  profit: Scalars['String']['output'];
-  revenue: Scalars['String']['output'];
-};
-
-export type ClientSla = {
-  __typename?: 'ClientSLA';
-  client: Organization;
-  id: Scalars['ID']['output'];
-  sla: Sla;
-  slaOrder: Scalars['Int']['output'];
-};
-
-export type ClientSlaInput = {
-  client?: InputMaybe<ClientInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  sla?: InputMaybe<SlaInput>;
-  slaOrder?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type ClientSiteQuantity = {
-  __typename?: 'ClientSiteQuantity';
-  quantity: Scalars['Int']['output'];
-  site: Site;
-};
-
-export type ClientSpecificEfficiencyInput = {
-  client: ClientIdentifierInput;
-  condition: RuleConditionInput;
-};
-
-export type ClientStage = {
-  __typename?: 'ClientStage';
-  constant?: Maybe<Scalars['String']['output']>;
-  name: Scalars['String']['output'];
-  stageId: Scalars['ID']['output'];
-  statuses?: Maybe<Array<Maybe<ClientStatus>>>;
-};
-
-export type ClientStatus = {
-  __typename?: 'ClientStatus';
-  constant?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  statusId: Scalars['ID']['output'];
-};
-
-export type CompanyInfo = {
-  __typename?: 'CompanyInfo';
-  /** SubscriptionStatus */
-  activatedDateTime?: Maybe<Scalars['String']['output']>;
+/** The site of a client. */
+export type ClientSite = {
+  __typename?: 'ClientSite';
+  /** The operation hours of the site. */
   businessHour?: Maybe<Array<Maybe<BusinessHour>>>;
-  chargeBeePlanId?: Maybe<Scalars['String']['output']>;
+  /** The city of the site. */
+  city?: Maybe<Scalars['String']['output']>;
+  /** The client to which this site belongs to. */
+  client: Scalars['JSON']['output'];
+  /** The contact number of the site. */
+  contactNumber?: Maybe<Scalars['String']['output']>;
+  /** The country of the site. */
   countryCode?: Maybe<Scalars['String']['output']>;
-  currency?: Maybe<Scalars['String']['output']>;
-  customDomain?: Maybe<Scalars['String']['output']>;
-  dateFormat?: Maybe<Scalars['String']['output']>;
-  daysSinceActivated?: Maybe<Scalars['Int']['output']>;
-  language?: Maybe<Scalars['String']['output']>;
-  planName?: Maybe<Scalars['String']['output']>;
-  portalDomain?: Maybe<Scalars['String']['output']>;
-  portalDomains?: Maybe<Array<Maybe<PortalDomain>>>;
-  subDomain?: Maybe<Scalars['String']['output']>;
-  subscriptionStatus?: Maybe<Scalars['String']['output']>;
-  timeFormat?: Maybe<Scalars['String']['output']>;
-  timezoneCode?: Maybe<Scalars['String']['output']>;
-  trialExpiryDays?: Maybe<Scalars['String']['output']>;
-  working24x7?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type ConditionalPricing = {
-  __typename?: 'ConditionalPricing';
-  description?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<ConditionalPricingItem>>>;
-  name?: Maybe<Scalars['String']['output']>;
-  pricingId: Scalars['ID']['output'];
-  ruleCondition?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type ConditionalPricingInput = {
-  addItems?: InputMaybe<Array<InputMaybe<ConditionalPricingItemInput>>>;
-  deleteItems?: InputMaybe<Array<InputMaybe<ConditionalPricingItemInput>>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  pricingId?: InputMaybe<Scalars['ID']['input']>;
-  ruleCondition?: InputMaybe<RuleConditionInput>;
-  updateItems?: InputMaybe<Array<InputMaybe<ConditionalPricingItemInput>>>;
-};
-
-export type ConditionalPricingItem = {
-  __typename?: 'ConditionalPricingItem';
-  afterHoursPrice?: Maybe<Scalars['String']['output']>;
-  businessHoursPrice?: Maybe<Scalars['String']['output']>;
-  itemId: Scalars['ID']['output'];
-  serviceItem?: Maybe<ServiceItem>;
-};
-
-export type ConditionalPricingItemInput = {
-  afterHoursPrice?: InputMaybe<Scalars['String']['input']>;
-  businessHoursPrice?: InputMaybe<Scalars['String']['input']>;
-  itemId?: InputMaybe<Scalars['ID']['input']>;
-  serviceItem?: InputMaybe<ServiceItemInput>;
-};
-
-export type ConfigureReportScheduleInput = {
-  addReportSchedule?: InputMaybe<Array<InputMaybe<AddReportScheduleInput>>>;
-  deleteReportSchedule?: InputMaybe<Array<InputMaybe<IdentifierInput>>>;
-  reportId: Scalars['ID']['input'];
-  updateReportSchedule?: InputMaybe<Array<InputMaybe<UpdateReportScheduleInput>>>;
-};
-
-export type Contract = {
-  __typename?: 'Contract';
-  billableContract?: Maybe<BillableContract>;
-  contractApplication?: Maybe<ContractApplication>;
-  contractId: Scalars['ID']['output'];
-  contractType: ContractType;
-  description?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  updatedTime?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContractApplication = {
-  __typename?: 'ContractApplication';
-  applicationRuleCondition?: Maybe<Scalars['JSON']['output']>;
-  autoApproveItems?: Maybe<Array<ServiceCatalogItem>>;
-  blacklistedItems?: Maybe<Array<ServiceCatalogItem>>;
-  contractId: Scalars['ID']['output'];
-  contractOrder: Scalars['Int']['output'];
-  contractSLA?: Maybe<Array<ContractSla>>;
-  overrides?: Maybe<Array<ContractPricingOverride>>;
-};
-
-export type ContractConditionalPricingOverride = {
-  __typename?: 'ContractConditionalPricingOverride';
-  description?: Maybe<Scalars['String']['output']>;
-  name: Scalars['String']['output'];
-  overrideId: Scalars['ID']['output'];
-  ticketRuleCondition: Scalars['JSON']['output'];
-};
-
-export type ContractConditionalPricingOverrideInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  name: Scalars['String']['input'];
-  ticketRuleCondition: Scalars['JSON']['input'];
-};
-
-export type ContractFinancialPerformanceMetric = {
-  __typename?: 'ContractFinancialPerformanceMetric';
-  contract: Contract;
-  financialPerformanceMetric: FinancialPerformanceMetric;
-};
-
-export type ContractFinancialPerformanceMetricList = {
-  __typename?: 'ContractFinancialPerformanceMetricList';
-  contractFinancialPerformanceMetrics?: Maybe<Array<ContractFinancialPerformanceMetric>>;
-  listInfo: ListInfo;
-};
-
-export enum ContractFrequencyType {
-  Once = 'ONCE',
-  Perpetual = 'PERPETUAL',
-  Recurring = 'RECURRING'
-}
-
-export type ContractIdentifierInput = {
-  contractId: Scalars['ID']['input'];
-};
-
-export type ContractItemFrequency = {
-  __typename?: 'ContractItemFrequency';
-  quantity?: Maybe<Scalars['Int']['output']>;
-  recurringBefore?: Maybe<Scalars['Int']['output']>;
-  recurringMode?: Maybe<ContractRecurringMode>;
-  type: ContractItemFrequencyType;
-  unit?: Maybe<SubscriptionDurationUnit>;
-};
-
-export type ContractItemFrequencyInput = {
-  /** SubscriptionDurationUnit */
-  quantity?: InputMaybe<Scalars['Int']['input']>;
-  recurringBefore?: InputMaybe<Scalars['Int']['input']>;
-  recurringMode?: InputMaybe<ContractRecurringMode>;
-  type: Scalars['String']['input'];
-  /** ContractItemFrequencyType */
-  unit?: InputMaybe<Scalars['String']['input']>;
-};
-
-export enum ContractItemFrequencyType {
-  Custom = 'CUSTOM',
-  Once = 'ONCE',
-  Perpetual = 'PERPETUAL'
-}
-
-export enum ContractPricingItemOverrideByMetric {
-  Percentage = 'PERCENTAGE',
-  Price = 'PRICE'
-}
-
-export enum ContractPricingItemOverrideType {
-  Decrease = 'DECREASE',
-  Flat = 'FLAT',
-  Increase = 'INCREASE'
-}
-
-export type ContractPricingOverride = {
-  __typename?: 'ContractPricingOverride';
-  conditionalPricing?: Maybe<ContractConditionalPricingOverride>;
-  overrideCategory: ContractPricingOverrideCategory;
-  overrideId: Scalars['ID']['output'];
-  overrideItems: Array<ContractPricingOverrideItem>;
-};
-
-export enum ContractPricingOverrideCategory {
-  Conditional = 'CONDITIONAL',
-  NonConditional = 'NON_CONDITIONAL'
-}
-
-export type ContractPricingOverrideIdentifierInput = {
-  overrideId: Scalars['ID']['input'];
-};
-
-export type ContractPricingOverrideItem = {
-  __typename?: 'ContractPricingOverrideItem';
-  overrideByMetric: ContractPricingItemOverrideByMetric;
-  overrideItemId: Scalars['ID']['output'];
-  overrideType: ContractPricingItemOverrideType;
-  overrideValue: PricingModel;
-  serviceCatalogItem: ServiceCatalogItem;
-};
-
-export type ContractPricingOverrideItemIdentifierInput = {
-  overrideItemId: Scalars['ID']['input'];
-};
-
-export type ContractPricingOverrideItemInput = {
-  overrideByMetric: ContractPricingItemOverrideByMetric;
-  overrideItemId?: InputMaybe<Scalars['ID']['input']>;
-  overrideType: ContractPricingItemOverrideType;
-  overrideValue: PricingModelInput;
-  serviceCatalogItem?: InputMaybe<ServiceCatalogItemIdentifierInput>;
-};
-
-export enum ContractQuantityCalculationType {
-  Dynamic = 'DYNAMIC',
-  Fixed = 'FIXED'
-}
-
-export enum ContractRecurringMode {
-  Advance = 'ADVANCE',
-  Arrear = 'ARREAR',
-  Upfront = 'UPFRONT'
-}
-
-export type ContractRevenue = {
-  __typename?: 'ContractRevenue';
-  monthlyRecurringRevenue: Scalars['String']['output'];
-  profit: Scalars['String']['output'];
-  revenueYTD: Scalars['String']['output'];
-  yearlyRecurringRevenue: Scalars['String']['output'];
-};
-
-export type ContractSla = {
-  __typename?: 'ContractSLA';
+  /** The holiday list of the site. */
+  holidayList?: Maybe<HolidayList>;
+  /** The ID of the site. */
   id: Scalars['ID']['output'];
-  sla: Sla;
-  slaOrder: Scalars['Int']['output'];
+  /** The agent Installer Details */
+  installerInfo?: Maybe<Array<Maybe<InstallerDetails>>>;
+  /** The address line 1 of the site. */
+  line1?: Maybe<Scalars['String']['output']>;
+  /** The address line 2 of the site. */
+  line2?: Maybe<Scalars['String']['output']>;
+  /** The address line 3 of the site. */
+  line3?: Maybe<Scalars['String']['output']>;
+  /** The name of the site. */
+  name: Scalars['String']['output'];
+  /** The postal code of the site. */
+  postalCode?: Maybe<Scalars['String']['output']>;
+  /** The state/subdivision of the site. */
+  stateCode?: Maybe<Scalars['String']['output']>;
+  /** The timezone of the site. */
+  timezoneCode: Scalars['String']['output'];
+  /** Denotes whether the site has specific business hours or works 24x7. */
+  working24x7: Scalars['Boolean']['output'];
 };
 
-export type ContractSlaIdentifierInput = {
+/** Specifies the identifier input for the client site. */
+export type ClientSiteIdentifierInput = {
+  /** The ID of the client site. */
   id: Scalars['ID']['input'];
 };
 
-export type ContractSlaInput = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-  sla?: InputMaybe<SlaInput>;
-  slaOrder?: InputMaybe<Scalars['Int']['input']>;
+/** The response payload for list of client sites fetched. */
+export type ClientSiteList = {
+  __typename?: 'ClientSiteList';
+  /** The detail about the list. */
+  listInfo?: Maybe<ListInfo>;
+  /** The list of sites. */
+  sites?: Maybe<Array<Maybe<ClientSite>>>;
 };
 
-export enum ContractSellingPriceCalculationType {
+/** The stage of the client. */
+export type ClientStage = {
+  __typename?: 'ClientStage';
+  /** The system-generated unique name to identify the default client stages provided by the system. */
+  constant?: Maybe<Scalars['String']['output']>;
+  /** The name of the client stage. */
+  name: Scalars['String']['output'];
+  /** The ID of the client stage. */
+  stageId: Scalars['ID']['output'];
+  /** The list of client statuses of the client stage. */
+  statuses?: Maybe<Array<Maybe<ClientStatus>>>;
+};
+
+/** The status of the client. */
+export type ClientStatus = {
+  __typename?: 'ClientStatus';
+  /** The system-generated unique name to identify the default client statuses provided by the system. */
+  constant?: Maybe<Scalars['String']['output']>;
+  /** The name of the client status. */
+  name?: Maybe<Scalars['String']['output']>;
+  /** The ID of the client status. */
+  statusId: Scalars['ID']['output'];
+};
+
+/** The client user ie. requester. */
+export type ClientUser = {
+  __typename?: 'ClientUser';
+  /**
+   * The client to which this requester belongs to.
+   * The actual type of this field is Client. This field returns accountId and name fields as JSON.
+   * The name field can be used in the filter condition.
+   * @deprecated As a client user can now be associated to multiple clients.
+   */
+  client?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * The contact number of the client user.
+   * It is recommended to provide the value in the standard format [+][country code][area code][local phone number].
+   */
+  contactNumber?: Maybe<Scalars['String']['output']>;
+  /**
+   * Specifies the custom fields values for the client user. Each entry in the JSON would be key-value.
+   * The key will be a system-generated, unique name of the custom field (columnName field of CustomField type).
+   * The value for text, paragraph, radio, select, numeric, decimal, date, datetime should be given as a string.
+   * The value for checkbox, multi-select should be an array of string.
+   *
+   * For example, the value could be {"udf1text": "value", "udf2mselect": ["value1", "value2"]}
+   */
+  customFields?: Maybe<Scalars['JSON']['output']>;
+  /** The email address of the client user. */
+  email: Scalars['String']['output'];
+  /** The first name of the client user. */
+  firstName: Scalars['String']['output'];
+  /** The last name of the client user. */
+  lastName?: Maybe<Scalars['String']['output']>;
+  /** The full name of the client user. */
+  name: Scalars['String']['output'];
+  /**
+   * The reporting manager of the client user.
+   * The actual type of this field is ClientUser. This field returns userId and name fields as JSON.
+   * The name and email fields can be used in the filter condition.
+   */
+  reportingManager?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * The application role of the client user.
+   * The actual type of this field is Role. This field returns roleId and name fields as JSON.
+   * The name field can be used in the filter condition.
+   */
+  role: Scalars['JSON']['output'];
+  /**
+   * The site to which the client user is associated.
+   * The actual type of this field is ClientSite. This field returns id and name fields as JSON.
+   * The name field can be used in the filter condition.
+   * @deprecated As a client user can now be associated to multiple clients.
+   */
+  site?: Maybe<Scalars['JSON']['output']>;
+  /** The ID of the client user. */
+  userId: Scalars['ID']['output'];
+};
+
+
+/** The client user ie. requester. */
+export type ClientUserCustomFieldsArgs = {
+  fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+/**
+ * All the clients and sites associated with a client user.
+ * A client user can have one or more associations.
+ */
+export type ClientUserAssociation = {
+  __typename?: 'ClientUserAssociation';
+  /** The client to which the client user is associated. */
+  client: Client;
+  /** The ID of the association. */
+  id: Scalars['ID']['output'];
+  /** The site to which the client user is associated. */
+  site: ClientSite;
+  /** The client user. */
+  user: ClientUser;
+};
+
+/** Specifies the identifier input for the client user association. */
+export type ClientUserAssociationIdentifierInput = {
+  /** Specifies the ID of the requester association. */
+  id: Scalars['ID']['input'];
+};
+
+/** The response payload for the list of client user associations. */
+export type ClientUserAssociationList = {
+  __typename?: 'ClientUserAssociationList';
+  /** The list of client user associations. */
+  associations?: Maybe<Array<Maybe<ClientUserAssociation>>>;
+  /** Information about the list of associations. */
+  listInfo?: Maybe<ListInfo>;
+};
+
+/** Specifies the identifier input for the client user. */
+export type ClientUserIdentifierInput = {
+  /** The ID of the client user. */
+  userId: Scalars['ID']['input'];
+};
+
+/** The response payload for list of client users fetched. */
+export type ClientUserList = {
+  __typename?: 'ClientUserList';
+  /** The detail about the list. */
+  listInfo?: Maybe<ListInfo>;
+  /** The list of client users. */
+  userList?: Maybe<Array<Maybe<ClientUser>>>;
+};
+
+/** Specifies the contract. */
+export type Contract = {
+  __typename?: 'Contract';
+  /** The billable contract details. */
+  billableContract?: Maybe<BillableContract>;
+  /** The ID of the contract. */
+  contractId: Scalars['ID']['output'];
+  /** The contract's type. */
+  contractType: ContractType;
+  /** The description of the contract. */
+  description?: Maybe<Scalars['String']['output']>;
+  /** The name of the contract. */
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+/** Specifies the frequency type of the contract. */
+export enum ContractFrequencyType {
+  /** Indicates the contract's frequency type is 'ONCE'. */
+  Once = 'ONCE',
+  /** Indicates the contract's frequency type is 'PERPETUAL'. */
+  Perpetual = 'PERPETUAL',
+  /** Indicates the contract's frequency type is 'RECURRING'. */
+  Recurring = 'RECURRING'
+}
+
+/** Specifies the identifier input for contract. */
+export type ContractIdentifierInput = {
+  /** The ID of the contract. */
+  contractId: Scalars['ID']['input'];
+};
+
+/** Specifies the quantity calculation type for the contract. */
+export enum ContractQuantityCalculationType {
+  /** Indicates the quantity calculation type is 'DYNAMIC'. */
   Dynamic = 'DYNAMIC',
+  /** Indicates the quantity calculation type is 'FIXED'. */
   Fixed = 'FIXED'
 }
 
-export type ContractServiceItem = {
-  __typename?: 'ContractServiceItem';
-  adjustBlockItemAgainstAllItems?: Maybe<Scalars['Boolean']['output']>;
-  amount?: Maybe<Scalars['String']['output']>;
-  assetView?: Maybe<ListView>;
-  autoRenew?: Maybe<Scalars['Boolean']['output']>;
-  billDate?: Maybe<Scalars['String']['output']>;
-  blockHoursAdjustedItems?: Maybe<Array<Maybe<ServiceItem>>>;
-  blockHoursUsedIn?: Maybe<Scalars['String']['output']>;
-  /** BLOCK_ITEM_USAGE_TYPE */
-  blockItemAdjustedItems?: Maybe<Array<Maybe<ServiceItem>>>;
-  /** null denotes all sites */
-  blockItemBalance?: Maybe<Scalars['String']['output']>;
-  blockItemUsedIn?: Maybe<Scalars['String']['output']>;
-  canEdit?: Maybe<Scalars['Boolean']['output']>;
-  canEditEndDate?: Maybe<Scalars['Boolean']['output']>;
-  carryForwardRemainingBlockHours?: Maybe<Scalars['Boolean']['output']>;
-  changes?: Maybe<Array<Maybe<ContractServiceItemChange>>>;
-  description?: Maybe<Scalars['String']['output']>;
-  effectiveDate?: Maybe<Scalars['String']['output']>;
-  endDate?: Maybe<Scalars['String']['output']>;
-  frequency?: Maybe<ContractItemFrequency>;
-  itemId: Scalars['ID']['output'];
-  nextBillDate?: Maybe<Scalars['String']['output']>;
-  quantity?: Maybe<Scalars['Int']['output']>;
-  remindDuration?: Maybe<FixedDuration>;
-  /** ServiceItemUnitType */
-  serviceItem: ServiceItem;
-  sites?: Maybe<Array<Maybe<Site>>>;
-  unitPrice?: Maybe<Scalars['String']['output']>;
-  unitPriceOverridden?: Maybe<Scalars['Boolean']['output']>;
-  unitType?: Maybe<Scalars['String']['output']>;
-  /** BLOCK_HOURS_USAGE_TYPE */
-  useAsWorklogItem?: Maybe<Scalars['Boolean']['output']>;
-};
+/** Specifies how the selling price of the contract is calculated. */
+export enum ContractSellingPriceCalculationType {
+  /** Indicates the selling price calculation type is 'DYNAMIC'. */
+  Dynamic = 'DYNAMIC',
+  /** Indicates the selling price calculation type is 'FIXED'. */
+  Fixed = 'FIXED'
+}
 
-export type ContractServiceItemChange = {
-  __typename?: 'ContractServiceItemChange';
-  amount?: Maybe<Scalars['String']['output']>;
-  changeId: Scalars['ID']['output'];
-  /** QuantityChangeOperation */
-  effectiveDate?: Maybe<Scalars['String']['output']>;
-  generateInvoice?: Maybe<Scalars['Boolean']['output']>;
-  proRatedAmount?: Maybe<Scalars['String']['output']>;
-  quantity?: Maybe<Scalars['String']['output']>;
-  quantityChangeOperation?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContractServiceItemChangeInput = {
-  /** applicable for block money subscription */
-  amount?: InputMaybe<Scalars['String']['input']>;
-  changeId?: InputMaybe<Scalars['ID']['input']>;
-  effectiveDate?: InputMaybe<Scalars['String']['input']>;
-  /**
-   * QuantityChangeOperation
-   *  It is used to indicate whether the user wanted to create invoice for the contract service item if prorated.
-   */
-  generateInvoice?: InputMaybe<Scalars['Boolean']['input']>;
-  /** applicable for units based and block hours subscription */
-  quantity?: InputMaybe<Scalars['String']['input']>;
-  /** It is used to specify whether the mentioned quantity is increase or decrease. This attribute is not required when the subscription added first time. */
-  quantityChangeOperation?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ContractServiceItemIdentifierInput = {
-  itemId: Scalars['ID']['input'];
-};
-
-export type ContractServiceItemInput = {
-  addBlockHoursAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  /** BLOCK_ITEM_USAGE_TYPE */
-  addBlockItemAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  addSites?: InputMaybe<Array<InputMaybe<SiteInput>>>;
-  adjustBlockItemAgainstAllItems?: InputMaybe<Scalars['Boolean']['input']>;
-  amount?: InputMaybe<Scalars['String']['input']>;
-  assetView?: InputMaybe<ListViewIdentifierInput>;
-  autoRenew?: InputMaybe<Scalars['Boolean']['input']>;
-  billDate?: InputMaybe<Scalars['String']['input']>;
-  blockHoursUsedIn?: InputMaybe<Scalars['String']['input']>;
-  blockItemUsedIn?: InputMaybe<Scalars['String']['input']>;
-  carryForwardRemainingBlockHours?: InputMaybe<Scalars['Boolean']['input']>;
-  change?: InputMaybe<ContractServiceItemChangeInput>;
-  deleteBlockHoursAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  deleteBlockItemAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  deleteSites?: InputMaybe<Array<InputMaybe<SiteInput>>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  effectiveDate?: InputMaybe<Scalars['String']['input']>;
-  endDate?: InputMaybe<Scalars['String']['input']>;
-  /** will be Deprecated */
-  frequency?: InputMaybe<ContractItemFrequencyInput>;
-  itemId?: InputMaybe<Scalars['ID']['input']>;
-  quantity?: InputMaybe<Scalars['String']['input']>;
-  remindDuration?: InputMaybe<FixedDurationInput>;
-  serviceItem?: InputMaybe<ServiceItemInput>;
-  subscriptionType?: InputMaybe<Scalars['String']['input']>;
-  unitPrice?: InputMaybe<Scalars['String']['input']>;
-  unitPriceOverridden?: InputMaybe<Scalars['Boolean']['input']>;
-  unitType?: InputMaybe<Scalars['String']['input']>;
-  /** BLOCK_HOURS_USAGE_TYPE */
-  useAsWorklogItem?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type ContractTemplate = {
-  __typename?: 'ContractTemplate';
-  contract: Contract;
-  templateId: Scalars['ID']['output'];
-};
-
-export type ContractTemplateServiceItem = {
-  __typename?: 'ContractTemplateServiceItem';
-  adjustBlockItemAgainstAllItems?: Maybe<Scalars['Boolean']['output']>;
-  amount?: Maybe<Scalars['String']['output']>;
-  assetView?: Maybe<ListView>;
-  autoRenew?: Maybe<Scalars['Boolean']['output']>;
-  blockHoursAdjustedItems?: Maybe<Array<Maybe<ServiceItem>>>;
-  blockHoursUsedIn?: Maybe<Scalars['String']['output']>;
-  /** BLOCK_ITEM_USAGE_TYPE */
-  blockItemAdjustedItems?: Maybe<Array<Maybe<ServiceItem>>>;
-  blockItemBalance?: Maybe<Scalars['String']['output']>;
-  blockItemUsedIn?: Maybe<Scalars['String']['output']>;
-  canEdit?: Maybe<Scalars['Boolean']['output']>;
-  canEditEndDate?: Maybe<Scalars['Boolean']['output']>;
-  carryForwardRemainingBlockHours?: Maybe<Scalars['Boolean']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  /** need to deprecate from front-end */
-  effectiveDate?: Maybe<Scalars['String']['output']>;
-  endDate?: Maybe<Scalars['String']['output']>;
-  frequency?: Maybe<ContractItemFrequency>;
-  itemId: Scalars['ID']['output'];
-  /** ServiceItemUnitType */
-  quantity?: Maybe<Scalars['String']['output']>;
-  serviceItem: ServiceItem;
-  sites?: Maybe<Array<Maybe<Site>>>;
-  unitPrice?: Maybe<Scalars['String']['output']>;
-  unitType?: Maybe<Scalars['String']['output']>;
-  /** BLOCK_HOURS_USAGE_TYPE */
-  useAsWorklogItem?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type ContractTemplateServiceItemInput = {
-  addBlockHoursAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  /** BLOCK_ITEM_USAGE_TYPE */
-  addBlockItemAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  addSites?: InputMaybe<Array<InputMaybe<SiteInput>>>;
-  adjustBlockItemAgainstAllItems?: InputMaybe<Scalars['Boolean']['input']>;
-  amount?: InputMaybe<Scalars['String']['input']>;
-  assetView?: InputMaybe<ListViewIdentifierInput>;
-  autoRenew?: InputMaybe<Scalars['Boolean']['input']>;
-  blockHoursUsedIn?: InputMaybe<Scalars['String']['input']>;
-  blockItemUsedIn?: InputMaybe<Scalars['String']['input']>;
-  carryForwardRemainingBlockHours?: InputMaybe<Scalars['Boolean']['input']>;
-  deleteBlockHoursAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  deleteBlockItemAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  deleteSites?: InputMaybe<Array<InputMaybe<SiteInput>>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** need to deprecate from front-end */
-  effectiveDate?: InputMaybe<Scalars['String']['input']>;
-  endDate?: InputMaybe<Scalars['String']['input']>;
-  /** will be Deprecated */
-  frequency?: InputMaybe<ContractItemFrequencyInput>;
-  itemId?: InputMaybe<Scalars['ID']['input']>;
-  quantity?: InputMaybe<Scalars['String']['input']>;
-  serviceItem?: InputMaybe<ServiceItemInput>;
-  subscriptionType?: InputMaybe<Scalars['String']['input']>;
-  unitPrice?: InputMaybe<Scalars['String']['input']>;
-  unitType?: InputMaybe<Scalars['String']['input']>;
-  /** BLOCK_HOURS_USAGE_TYPE */
-  useAsWorklogItem?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type ContractTicketMapping = {
-  __typename?: 'ContractTicketMapping';
-  contract?: Maybe<Contract>;
-  contractId?: Maybe<Scalars['ID']['output']>;
-  inUse?: Maybe<Scalars['Boolean']['output']>;
-};
-
+/** Specifies the type of client contract. */
 export enum ContractType {
   OneTime = 'ONE_TIME',
   Service = 'SERVICE',
@@ -1742,231 +856,315 @@ export enum ContractType {
   Usage = 'USAGE'
 }
 
-export type Conversation = {
-  __typename?: 'Conversation';
-  attachments?: Maybe<Array<Maybe<ConversationAttachment>>>;
-  bccUsers?: Maybe<Array<Maybe<RecipientInfo>>>;
-  ccUsers?: Maybe<Array<Maybe<RecipientInfo>>>;
-  client?: Maybe<Organization>;
-  content?: Maybe<Scalars['String']['output']>;
-  conversationId: Scalars['ID']['output'];
-  /** The below attributes are available for Conversation Thread. */
-  conversationStatus?: Maybe<ConversationStatus>;
-  data?: Maybe<Scalars['JSON']['output']>;
-  failureReason?: Maybe<Scalars['JSON']['output']>;
-  /** The below attributes are available if the entity supports multiple threaded conversations. */
-  latestReply?: Maybe<Conversation>;
-  minifiedContent?: Maybe<Scalars['Boolean']['output']>;
-  opened?: Maybe<Scalars['Boolean']['output']>;
-  outgoingMailFailureReason?: Maybe<Scalars['JSON']['output']>;
-  outgoingMailStatus?: Maybe<OperationStatus>;
-  parentConversationId?: Maybe<Scalars['ID']['output']>;
-  subject?: Maybe<Scalars['String']['output']>;
-  time?: Maybe<Scalars['String']['output']>;
-  toUsers?: Maybe<Array<Maybe<RecipientInfo>>>;
-  type?: Maybe<ConversationType>;
-  user?: Maybe<User>;
-  viewedByClient?: Maybe<Scalars['Boolean']['output']>;
-  /** The below attributes are available for vendor conversations. */
-  workItem?: Maybe<WorkItem>;
-};
-
-export type ConversationAttachment = {
-  __typename?: 'ConversationAttachment';
-  fileName?: Maybe<Scalars['String']['output']>;
-  fileSize?: Maybe<Scalars['String']['output']>;
-  originalFileName?: Maybe<Scalars['String']['output']>;
-};
-
-export type ConversationIdentifierInput = {
-  conversationId: Scalars['ID']['input'];
-};
-
-export type ConversationInput = {
-  attachments?: InputMaybe<Array<InputMaybe<AttachmentInput>>>;
-  bccUsers?: InputMaybe<Array<InputMaybe<UserInput>>>;
-  ccUsers?: InputMaybe<Array<InputMaybe<UserInput>>>;
-  content?: InputMaybe<Scalars['String']['input']>;
-  conversationId?: InputMaybe<Scalars['ID']['input']>;
-  /** TODO - remove this after frontend save the conversation within create ticket itself. */
-  createTicketFlow?: InputMaybe<Scalars['Boolean']['input']>;
-  dynamicContent?: InputMaybe<Scalars['Boolean']['input']>;
-  enableSurvey?: InputMaybe<Scalars['Boolean']['input']>;
-  fromMailbox?: InputMaybe<MailboxIdentifierInput>;
-  hasAdditionalRecipients?: InputMaybe<Scalars['Boolean']['input']>;
-  inlineImages?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  parentConversationId?: InputMaybe<Scalars['ID']['input']>;
-  sendMail?: InputMaybe<Scalars['Boolean']['input']>;
-  /**
-   * Send this property ONLY at that time of TICKET CREATION as value true
-   *  The below attributes are available if the entity supports multiple threaded conversations.
-   */
-  subject?: InputMaybe<Scalars['String']['input']>;
-  time?: InputMaybe<Scalars['String']['input']>;
-  toUsers?: InputMaybe<Array<InputMaybe<UserInput>>>;
-  tpSource?: InputMaybe<TpSourceInput>;
-  user?: InputMaybe<UserInput>;
-  /** The below attributes are available for vendor conversations. */
-  workItem?: InputMaybe<WorkItemIdentifierInput>;
-};
-
-export type ConversationList = {
-  __typename?: 'ConversationList';
-  conversations?: Maybe<Array<Maybe<Conversation>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
-export type ConversationRecipient = {
-  __typename?: 'ConversationRecipient';
-  email: Scalars['String']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  userId?: Maybe<Scalars['ID']['output']>;
-};
-
-export enum ConversationStatus {
-  Failed = 'FAILED',
-  InProgress = 'IN_PROGRESS',
-  Seen = 'SEEN',
-  Sent = 'SENT'
-}
-
-export enum ConversationType {
-  Description = 'DESCRIPTION',
-  Email = 'EMAIL',
-  /** Added below fields for Common Conversation */
-  Event = 'EVENT',
-  ReqNotification = 'REQ_NOTIFICATION',
-  ReqReply = 'REQ_REPLY',
-  /** Added below type for Vendor Conversation */
-  TechEmail = 'TECH_EMAIL',
-  TechNotification = 'TECH_NOTIFICATION',
-  TechReply = 'TECH_REPLY',
-  VendorEmail = 'VENDOR_EMAIL'
-}
-
-export type CreateAiFeatureFeedbackInput = {
-  feature: AiFeatureIdentifierInput;
-  prompt?: InputMaybe<PromptAiFeatureFeedbackInput>;
-  rating: Scalars['Int']['input'];
-  ratingType: RatingType;
-};
-
-export type CreateAiFeatureInput = {
-  aiFeatureGroup: AiFeatureGroupIdentifierInput;
+export type CreateAlertInput = {
+  /** ID of the Asset */
+  assetId: Scalars['ID']['input'];
+  /** The alert's description */
   description?: InputMaybe<Scalars['String']['input']>;
-  /** Deprecated */
-  displayIcon?: InputMaybe<Scalars['String']['input']>;
-  enabled?: InputMaybe<Scalars['Boolean']['input']>;
-  name: Scalars['String']['input'];
-  prompt?: InputMaybe<AiPromptInput>;
-  state?: InputMaybe<AiFeatureState>;
+  /** The alert message */
+  message: Scalars['String']['input'];
+  /** The severity of the alert */
+  severity?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** Specifies the input required to create an attachment. */
+export type CreateAttachmentInput = {
+  /**
+   * The name of the file.
+   * This input is mandatory.
+   */
+  fileName: Scalars['String']['input'];
+  /**
+   * The size of the file.
+   * This input is mandatory.
+   */
+  fileSize: Scalars['String']['input'];
+  /**
+   * The original file name of the file.
+   * This input is mandatory.
+   */
+  originalFileName: Scalars['String']['input'];
+};
+
+/** Specifies the input required to create a billable contract. */
 export type CreateBillableContractInput = {
-  addIncludedItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  addSites?: InputMaybe<Array<SiteIdentifierInput>>;
+  /** The sites to be billable for the contract if the billable site type is 'INCLUDED'. */
+  addSites?: InputMaybe<Array<ClientSiteIdentifierInput>>;
+  /** The billable site type for the contract. */
   billableSiteType: BillableSiteType;
-  change?: InputMaybe<BillableContractQuantityChangeInput>;
+  /** Specifies the billable contract quantity change input details. This input is mandatory. */
+  change: BillableContractQuantityChangeInput;
+  /** Specifies the charge item to be associated with the billable contract. This input is mandatory. */
   chargeItem: ServiceCatalogItemIdentifierInput;
+  /** The discount rate input for the contract. */
   discountRate?: InputMaybe<Scalars['String']['input']>;
-  frequencyType: ContractFrequencyType;
-  generateInvoice: Scalars['Boolean']['input'];
-  paymentTerm?: InputMaybe<PaymentTermIdentifierInput>;
-  perpetualContract?: InputMaybe<PerpetualContractInput>;
-  project?: InputMaybe<ProjectIdentifierInput>;
-  provisionRule?: InputMaybe<ProvisionRuleIdentifierInput>;
-  quantityCalculationType: ContractQuantityCalculationType;
-  recurringContract?: InputMaybe<RecurringContractInput>;
-  redeemableContract?: InputMaybe<RedeemableContractInput>;
+  /** Specifies the recurring contract input details. This input is mandatory. */
+  recurringContract: RecurringContractInput;
+  /** The selling price of the contract, applicable if the price is overridden. */
   sellingPrice?: InputMaybe<PricingModelInput>;
-  sellingPriceCalculationType: ContractSellingPriceCalculationType;
-  /** Mandatory if sellingPriceOverridden is enabled */
+  /** Indicates whether the contract's selling price is overridden. */
   sellingPriceOverridden: Scalars['Boolean']['input'];
 };
 
-export type CreateBillingTemplateInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
+/** Specifies the input to create business hours. */
+export type CreateBusinessHourInput = {
+  /**
+   * The day of the week.
+   * This input is mandatory.
+   */
+  day: DayOfWeek;
+  /**
+   * The end time of the day. The value should be in the format of HH:MM i.,e between 00:00 to 23:59.
+   * This input is mandatory.
+   */
+  end: Scalars['String']['input'];
+  /**
+   * The start time of the day. The value should be in the format of HH:MM i.,e between 00:00 to 23:59.
+   * This input is mandatory.
+   */
+  start: Scalars['String']['input'];
+};
+
+/** Specifies the input required to create a new ticket category. */
+export type CreateCategoryInput = {
+  /** Specifies the input to create subcategories. */
+  addSubCategories?: InputMaybe<Array<InputMaybe<CreateSubCategoryInput>>>;
+  /**
+   * Specifies the name of the category.
+   * This input should be mandatory and unique.
+   */
   name: Scalars['String']['input'];
 };
 
-export type CreateCheckListItemInput = {
-  content?: InputMaybe<Scalars['String']['input']>;
+/** Specifies the input create ticket cause. */
+export type CreateCauseInput = {
+  /** Specifies the input to create sub causes. */
+  addSubCauses?: InputMaybe<Array<InputMaybe<CreateSubCauseInput>>>;
+  /** Specifies the name of the cause. */
+  name: Scalars['String']['input'];
 };
 
-export type CreateClientContractFromBillingTemplateInput = {
-  client: ClientIdentifierInput;
-  contracts: Array<CreateContractFromBillingTemplateInput>;
-};
-
+/** Specifies the input required to create a client contract. */
 export type CreateClientContractInput = {
+  /** Specifies the client to be associated with the contract. */
   client: ClientIdentifierInput;
+  /** Specifies the contract input details. */
   contract: CreateContractInput;
+  /** Specifies the contract's end date. */
   endDate?: InputMaybe<Scalars['String']['input']>;
-  remindDuration?: InputMaybe<FixedDurationInput>;
+  /** Specifies the contract's start date. */
   startDate: Scalars['String']['input'];
 };
 
-export type CreateClientProvisionRuleInput = {
+/**
+ * Specifies the input required to create a new client.
+ * @deprecated(reason: "Use 'CreateClientInputV2' input instead.")
+ */
+export type CreateClientInput = {
+  /** Specifies the account manager of the client. */
+  accountManager?: InputMaybe<TechnicianIdentifierInput>;
+  /** Specifies the list of technician groups to be associated to the client. */
+  addTechnicianGroups?: InputMaybe<Array<InputMaybe<TechnicianGroupIdentifierInput>>>;
+  /**
+   * Specifies the custom field values for the client. Each entry in the JSON would be key-value.
+   * The key will be a system-generated unique name of the custom field (columnName field of CustomField type).
+   * The value for text, paragraph, radio, select, numeric, decimal, date, datetime should be given as a string.
+   * The value for checkbox, multi-select should be an array of string.
+   *
+   * For example, the value could be {"udf1text": "value", "udf2mselect": ["value1", "value2"]}
+   */
+  customFields?: InputMaybe<Scalars['JSON']['input']>;
+  /**
+   * Specifies the list of email domains (for example, acme.com) of the client. These domains will be used to identify the client
+   * when receiving emails from the client user. This input must be unique.
+   */
+  emailDomains?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /**
+   * Specifies the name of the client.
+   * This input should be mandatory and unique.
+   */
+  name: Scalars['String']['input'];
+  /** Specifies the stage of the client. The stage will be set to Active if not specified. */
+  stage?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the status of the client. The status will be set to Paid if not specified. */
+  status?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Specifies the input required to create a new client. */
+export type CreateClientInputV2 = {
+  /** Specifies the account manager of the client. */
+  accountManager?: InputMaybe<TechnicianIdentifierInput>;
+  /** Specifies the list of technician groups to be associated to the client. */
+  addTechnicianGroups?: InputMaybe<Array<InputMaybe<TechnicianGroupIdentifierInput>>>;
+  /**
+   * Specifies the custom field values for the client. Each entry in the JSON would be key-value.
+   * The key will be a system-generated unique name of the custom field (columnName field of CustomField type).
+   * The value for text, paragraph, radio, select, numeric, decimal, date, datetime should be given as a string.
+   * The value for checkbox, multi-select should be an array of string.
+   *
+   * For example, the value could be {"udf1text": "value", "udf2mselect": ["value1", "value2"]}
+   */
+  customFields?: InputMaybe<Scalars['JSON']['input']>;
+  /**
+   * Specifies the list of email domains (for example, acme.com) of the client. These domains will be used to identify the client
+   * when receiving emails from the client user. This input must be unique.
+   */
+  emailDomains?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specifies the headquarters site of the client. */
+  hqSite: CreateClientSiteInput;
+  /**
+   * Specifies the name of the client.
+   * This input should be mandatory and unique.
+   */
+  name: Scalars['String']['input'];
+  /** Specifies the stage of the client. The stage will be set to Active if not specified. */
+  stage?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the status of the client. The status will be set to Paid if not specified. */
+  status?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Specifies the input required to create a client site. */
+export type CreateClientSiteInput = {
+  /** Specifies the business hours of the site if working 24x7 is false. */
+  businessHour?: InputMaybe<Array<InputMaybe<CreateBusinessHourInput>>>;
+  /** Specifies the city of the site. */
+  city?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Specifies the client identifier input for the site to be created.
+   * When CreateClientSiteInput is used as part of a new client creation, this field is not mandatory; otherwise, it is required.
+   */
+  client?: InputMaybe<ClientIdentifierInput>;
+  /** The contact number of the site. */
+  contactNumber?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the country of the site. The value should be specified as ISO 3166 two letter country code. */
+  countryCode?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the holiday list of the site. */
+  holidayList?: InputMaybe<HolidayListIdentifierInput>;
+  /** Specifies the address line 1 of the site. */
+  line1?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the address line 2 of the site. */
+  line2?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the address line 3 of the site. */
+  line3?: InputMaybe<Scalars['String']['input']>;
+  /** The name of the site. This input is mandatory. */
+  name: Scalars['String']['input'];
+  /** Specifies the postal code of the site. */
+  postalCode?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the state/subdivision of the site. The value should be specified as an ISO 3166 state/subdivision code. */
+  stateCode?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Specifies the site's timezone. The value should be provided using the IANA time zone database format (e.g., America/New_York).
+   * This input is mandatory.
+   */
+  timezoneCode: Scalars['String']['input'];
+  /** Specifies whether the site has specific business hours or works 24x7. This input is mandatory. */
+  working24x7: Scalars['Boolean']['input'];
+};
+
+/** Specifies the input required to create a user association. */
+export type CreateClientUserAssociationInput = {
+  /** Specifies the client which will be associated to the client user. */
   client: ClientIdentifierInput;
-  provisionRule: CreateProvisionRuleInput;
+  /** Specifies the client site that will be associated to the client user. */
+  site: ClientSiteIdentifierInput;
+  /**
+   * Specifies the requester who will be associated.
+   * This attribute is optional when creating a new client user.
+   */
+  user?: InputMaybe<ClientUserIdentifierInput>;
 };
 
-export type CreateContractApplicationInput = {
-  addAutoApproveItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  addBlacklistedItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  addContractSLA?: InputMaybe<Array<CreateContractSlaInput>>;
-  addOverrides?: InputMaybe<Array<CreateContractPricingOverrideInput>>;
-  applicationRuleCondition?: InputMaybe<Scalars['JSON']['input']>;
-  contractOrder?: InputMaybe<Scalars['Int']['input']>;
+/** Specifies the input required to create client user. */
+export type CreateClientUserInput = {
+  /** Specifies the associated clients and sites. The user attribute is optional when creating a new client user. */
+  addAssociations?: InputMaybe<Array<InputMaybe<CreateClientUserAssociationInput>>>;
+  /** Specifies the client identifier input to which the client user is going to be created. This input is mandatory. */
+  client?: InputMaybe<ClientIdentifierInput>;
+  /**
+   * Specifies the contact number of the client user.
+   * It is recommended to provide the value in the standard format [+][country code][area code][local phone number].
+   */
+  contactNumber?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Specifies the custom fields values for the client user. Each entry in the JSON would be key-value.
+   * The key will be a system-generated, unique name of the custom field (columnName field of CustomField type).
+   * The value for text, paragraph, radio, select, numeric, decimal, date, datetime should be given as a string.
+   * The value for checkbox, multi-select should be an array of string.
+   *
+   * For example, the value could be {"udf1text": "value", "udf2mselect": ["value1", "value2"]}
+   */
+  customFields?: InputMaybe<Scalars['JSON']['input']>;
+  /**
+   * Specifies the email address of the client user which is unique across the technicians and client users. The email will be used for login.
+   * This input should be mandatory and unique.
+   */
+  email: Scalars['String']['input'];
+  /**
+   * Specifies the first name of the client user.
+   * This input is mandatory.
+   */
+  firstName: Scalars['String']['input'];
+  /** Specifies the last name of the client user. */
+  lastName?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the reporting manager identifier input for the client user. */
+  reportingManager?: InputMaybe<ClientUserIdentifierInput>;
+  /** Specifies the application role identifier input for the client user. This input is mandatory. */
+  role: RoleIdentifierInput;
+  /** Specifies the site identifier input to which the client user is going to be created. This input is mandatory. */
+  site?: InputMaybe<ClientSiteIdentifierInput>;
 };
 
-export type CreateContractFromBillingTemplateInput = {
-  addSites?: InputMaybe<Array<SiteIdentifierInput>>;
-  billableSiteType?: InputMaybe<BillableSiteType>;
-  contractId: Scalars['ID']['input'];
-  description?: InputMaybe<Scalars['String']['input']>;
-  endDate?: InputMaybe<Scalars['String']['input']>;
-  project?: InputMaybe<ProjectIdentifierInput>;
-  remindDuration?: InputMaybe<FixedDurationInput>;
-  startDate: Scalars['String']['input'];
-};
-
+/** Specifies the input required to create a contract. */
 export type CreateContractInput = {
-  billableContract?: InputMaybe<CreateBillableContractInput>;
-  contractApplication?: InputMaybe<CreateContractApplicationInput>;
-  contractType: ContractType;
+  /** Specifies the billable contract input details. */
+  billableContract: CreateBillableContractInput;
+  /** Specifies the description of the contract. */
   description?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type CreateContractPricingOverrideInput = {
-  addOverrideItems: Array<ContractPricingOverrideItemInput>;
-  conditionalPricing?: InputMaybe<ContractConditionalPricingOverrideInput>;
-  overrideCategory: ContractPricingOverrideCategory;
-};
-
-export type CreateContractSlaInput = {
-  sla: ContractSlaIdentifierInput;
-  slaOrder: Scalars['Int']['input'];
-};
-
-export type CreateContractTemplateInput = {
-  contract: CreateContractInput;
-  template: BillingTemplateIdentifierInput;
-};
-
-export type CreateFieldInput = {
-  addOptions?: InputMaybe<Array<InputMaybe<CreateFieldOptionInput>>>;
+/** Specifies the input to create a custom filed. */
+export type CreateCustomFieldInput = {
+  /** Specifies the description of the custom field. */
   description?: InputMaybe<Scalars['String']['input']>;
-  fieldType: FieldType;
+  /** Specifies the type of the custom field. */
+  fieldType: CustomFieldType;
+  /**
+   * Specifies the label of the custom field.
+   * This input should be mandatory and unique.
+   */
   label: Scalars['String']['input'];
-  mandatoryOnClosure?: InputMaybe<Scalars['Boolean']['input']>;
-  mandatoryOnCreate?: InputMaybe<Scalars['Boolean']['input']>;
-  module: Scalars['String']['input'];
-  parentField?: InputMaybe<IdentifierInput>;
-  showToClient?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specifies the options for select/radio/checkbox/multi select field. */
+  options?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /**
+   * Specifies whether the custom filed is visible for the client.
+   * This input is mandatory.
+   */
+  showToClient: Scalars['Boolean']['input'];
 };
 
+/** Specifies the input required to create a field for an entity */
+export type CreateFieldInput = {
+  /** This is for denoting the options for the field */
+  addOptions?: InputMaybe<Array<InputMaybe<CreateFieldOptionInput>>>;
+  /** The description of the field */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The type of the field */
+  fieldType: CustomFieldType;
+  /** The label of the field */
+  label: Scalars['String']['input'];
+  /** This is for fields of TICKET module whether the field valu e is mandatory when ticket is closed or resolved */
+  mandatoryOnClosure?: InputMaybe<Scalars['Boolean']['input']>;
+  /** This is for fields of TICKET module whether the field value is mandatory when ticket is created */
+  mandatoryOnCreate?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The module of the field i.e. TICKET, COMPANY_USER */
+  module: Scalars['String']['input'];
+  /** This denotes the id of the parent field */
+  parentField?: InputMaybe<IdentifierInput>;
+  /** The field which denotes whether field should be visible to requesters or not */
+  showToRequester?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Specifies the field options input */
 export type CreateFieldOptionInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   order: Scalars['Int']['input'];
@@ -1974,237 +1172,400 @@ export type CreateFieldOptionInput = {
   value: Scalars['String']['input'];
 };
 
+/** Input for details in a for a HOURS SERVICE item */
 export type CreateHourlyServiceTypeItemInput = {
+  /** Value to which a time spent is rounded up to */
   roundUpValue: Scalars['Int']['input'];
 };
 
-export type CreateInvoiceFromQuoteInput = {
-  invoice: CreateInvoiceInput;
-  quote: QuoteIdentifierInput;
-  quoteApproval?: InputMaybe<QuoteApprovalInput>;
-};
-
-export type CreateInvoiceInput = {
-  addItems: Array<InputMaybe<CreateInvoiceItemInput>>;
-  additionalDiscount?: InputMaybe<Scalars['String']['input']>;
-  additionalDiscountRate?: InputMaybe<Scalars['String']['input']>;
-  client: ClientInput;
-  dueDate?: InputMaybe<Scalars['String']['input']>;
-  footer?: InputMaybe<Scalars['String']['input']>;
-  inlineImages?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  invoiceDate: Scalars['String']['input'];
-  memo?: InputMaybe<Scalars['String']['input']>;
-  paymentTerm?: InputMaybe<PaymentTermIdentifierInput>;
-  sentToClient?: InputMaybe<Scalars['Boolean']['input']>;
-  site: SiteInput;
-  statusEnum: InvoiceStatusEnum;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type CreateInvoiceItemInput = {
-  billedDate: Scalars['String']['input'];
-  details?: InputMaybe<Scalars['String']['input']>;
-  discountAmount?: InputMaybe<Scalars['String']['input']>;
-  discountRate?: InputMaybe<Scalars['String']['input']>;
-  itemOrder?: InputMaybe<Scalars['Int']['input']>;
-  offeredItem?: InputMaybe<OfferedItemIdentifierInput>;
-  quantity: Scalars['String']['input'];
-  serviceCatalogItem?: InputMaybe<ServiceCatalogItemIdentifierInput>;
-  serviceItem?: InputMaybe<ServiceItemInput>;
-  tax?: InputMaybe<TaxInput>;
-  taxable?: InputMaybe<Scalars['Boolean']['input']>;
-  unitPrice: Scalars['String']['input'];
-};
-
-export type CreateInvoiceTemplateInput = {
-  footer?: InputMaybe<Scalars['String']['input']>;
-  inlineImages?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Optional to create invoice template and set it to invoice setting. */
-  invoiceSetting?: InputMaybe<InvoiceSettingIdentifierInput>;
-  layoutConfiguration?: InputMaybe<Scalars['JSON']['input']>;
-  memo?: InputMaybe<Scalars['String']['input']>;
-  preferences?: InputMaybe<Scalars['JSON']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type CreateMailboxInput = {
-  client?: InputMaybe<ClientInput>;
-  /** OutgoingAddressType */
-  conversationOnBehalfOf?: InputMaybe<Scalars['String']['input']>;
-  customServer?: InputMaybe<Scalars['Boolean']['input']>;
-  customServerOutgoingOnly?: InputMaybe<Scalars['Boolean']['input']>;
-  customServerType?: InputMaybe<CustomMailServerType>;
-  defaultBox?: InputMaybe<Scalars['Boolean']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  emailSignature?: InputMaybe<Scalars['String']['input']>;
-  hasAdvancedConfiguration?: InputMaybe<Scalars['Boolean']['input']>;
-  imapHost?: InputMaybe<Scalars['String']['input']>;
-  imapPort?: InputMaybe<Scalars['Int']['input']>;
-  /** MailSettingsType */
-  incomingAddress?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** ConversationOnBehalf -> Deprecated */
-  onBehalfOf?: InputMaybe<Scalars['String']['input']>;
-  outgoingAddress?: InputMaybe<Scalars['String']['input']>;
-  outgoingAddressType: Scalars['String']['input'];
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** ConversationOnBehalf */
-  senderName?: InputMaybe<Scalars['String']['input']>;
-  site?: InputMaybe<SiteIdentifierInput>;
-  smtpHost?: InputMaybe<Scalars['String']['input']>;
-  smtpPort?: InputMaybe<Scalars['Int']['input']>;
-  sslRequired?: InputMaybe<Scalars['Boolean']['input']>;
-  techGroup?: InputMaybe<TechnicianGroupIdentifierInput>;
-  type: Scalars['String']['input'];
-  userName?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type CreatePlanProductFeatureInput = {
-  available: Scalars['Boolean']['input'];
-  availableWithAddOn: Scalars['Boolean']['input'];
-  enabled: Scalars['Boolean']['input'];
-  enabledInTrial: Scalars['Boolean']['input'];
-  enabledWithFlag: Scalars['Boolean']['input'];
-  feature: ProductFeatureIdentifierInput;
-  upsellAddon?: InputMaybe<AddonIdentifierInput>;
-  upsellPlan?: InputMaybe<PlanIdentifierInput>;
-};
-
-export type CreatePortalDomainInput = {
-  domainName: Scalars['String']['input'];
-  isDefault?: InputMaybe<Scalars['Boolean']['input']>;
-  type: DomainType;
-};
-
-export type CreateProductFeatureCategoryInput = {
-  labelKey: Scalars['String']['input'];
-  order?: InputMaybe<Scalars['Int']['input']>;
-  parentCategoryId?: InputMaybe<Scalars['ID']['input']>;
-  releaseState?: InputMaybe<ProductFeatureReleaseState>;
-};
-
-export type CreateProductFeatureInput = {
-  category?: InputMaybe<ProductFeatureCategoryIdentifierInput>;
-  labelKey?: InputMaybe<Scalars['String']['input']>;
+/** Specifies the input required to create a new IT Document Record */
+export type CreateItDocumentationInput = {
+  /** Client details of the IT document record */
+  client?: InputMaybe<ClientIdentifierInput>;
+  /** Custom field details of the IT document record */
+  customFields?: InputMaybe<Scalars['JSON']['input']>;
+  /** Name of the IT document */
   name: Scalars['String']['input'];
-  order?: InputMaybe<Scalars['Int']['input']>;
-  releaseState: ProductFeatureReleaseState;
-  visibleInPurchase: Scalars['Boolean']['input'];
+  /** Site details of the IT document record */
+  site?: InputMaybe<ClientSiteIdentifierInput>;
+  /** Specifies the type ID of IT document category to create a new IT document */
+  typeId: Scalars['ID']['input'];
 };
 
-export type CreateProductSubscriptionLineItemAddOnInput = {
-  addonPrice: IdentifierInput;
-  quantity: Scalars['Int']['input'];
-};
-
-export type CreateProductSubscriptionLineItemPlanInput = {
-  planPrice: IdentifierInput;
-  quantity: Scalars['Int']['input'];
-};
-
-export type CreateProvisionRuleFromTemplateInput = {
-  client: ClientIdentifierInput;
-  template: BillingTemplateIdentifierInput;
-};
-
-export type CreateProvisionRuleInput = {
-  addItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  name: Scalars['String']['input'];
-  parentRule?: InputMaybe<ProvisionRuleIdentifierInput>;
-  ruleCondition: RuleConditionInput;
-  ruleEntityType: ProvisionRuleEntityType;
-};
-
-export type CreateProvisionRuleTemplateInput = {
-  provisionRule: CreateProvisionRuleInput;
-  template: BillingTemplateIdentifierInput;
-};
-
+/** Specifies the input required to create a quote. */
 export type CreateQuoteInput = {
+  /** Specifies the list of service items to be added to the quote. */
   addItems: Array<InputMaybe<CreateQuoteItemInput>>;
+  /** Specifies the additional discount amount applied on the quote. */
   additionalDiscount?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the additional discount rate applied on the quote. */
   additionalDiscountRate?: InputMaybe<Scalars['String']['input']>;
-  client: ClientInput;
+  /** Specifies the client to which the quote belongs to. */
+  client: ClientIdentifierInput;
+  /** Specifies the description of the quote. */
   description?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the expiry date of the quote. */
   expiryDate: Scalars['String']['input'];
+  /** Specifies the footer of the quote. */
   footer?: InputMaybe<Scalars['String']['input']>;
-  inlineImages?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specifies the memo of the quote. */
   memo?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the quote date. */
   quoteDate?: InputMaybe<Scalars['String']['input']>;
-  revisedQuoteId?: InputMaybe<Scalars['ID']['input']>;
-  site: SiteInput;
+  /** Specifies the site to which the quote belongs to. */
+  site: ClientSiteIdentifierInput;
+  /** Specifies the status of the quote. */
   statusEnum: QuoteStatusEnum;
+  /** Specifies the title of the quote. */
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** Specifies the input required to create a quote item. */
 export type CreateQuoteItemInput = {
+  /** Specifies the details of the quote item. */
   details?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the discount amount applied for the quote item. */
   discountAmount?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the discount rate applied for the quote item. */
   discountRate?: InputMaybe<Scalars['String']['input']>;
-  itemOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** Specifies the quantity of the quote item. */
   quantity: Scalars['String']['input'];
-  serviceCatalogItem?: InputMaybe<ServiceCatalogItemIdentifierInput>;
-  serviceItem?: InputMaybe<ServiceItemInput>;
-  tax?: InputMaybe<TaxInput>;
+  /** Specifies the service item. */
+  serviceItem: ServiceItemIdentifierInput;
+  /** Specifies the applicable tax for the quote item. */
+  tax?: InputMaybe<TaxIdentifierInput>;
+  /** Specifies whether the quote item is taxable or not. */
   taxable?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specifies the unit price of the quote item. */
   unitPrice: Scalars['String']['input'];
 };
 
-export type CreateQuoteTemplateInput = {
-  footer?: InputMaybe<Scalars['String']['input']>;
-  inlineImages?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Optional to create quote template and set it to invoice setting. */
-  invoiceSetting?: InputMaybe<InvoiceSettingIdentifierInput>;
-  layoutConfiguration?: InputMaybe<Scalars['JSON']['input']>;
-  memo?: InputMaybe<Scalars['String']['input']>;
-  preferences?: InputMaybe<Scalars['JSON']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
+/** Input for Retainer */
 export type CreateRedeemableServiceBundleInput = {
+  /** Can a retainer be consumed in business hours, after hours and all hours */
   applicableHours: RedeemableBundleApplicableHours;
+  /** Can a retainer be consumed by all items or items specified under it */
   applicableType: RedeemableBundleApplicableType;
+  /** Amount that can be consumed by the items under this item */
   redeemableQuantity: Scalars['String']['input'];
 };
 
+/** Specifies a input for service catalog item */
 export type CreateServiceCatalogItemInput = {
-  category?: InputMaybe<ServiceCategoryInput>;
+  /** Category under which the item is created. */
+  category?: InputMaybe<ServiceCategoryIdentifierInput>;
+  /** The cost price when item is purchased */
   costPrice?: InputMaybe<PricingModelInput>;
+  /** Description of the item which can be used in invoice */
   description?: InputMaybe<Scalars['String']['input']>;
+  /** Type of an Item */
   itemType: ServiceCatalogItemType;
+  /** Name of the item. must be unique in the list */
   name: Scalars['String']['input'];
+  /** Set to true to offer this item in worklog */
   offerAsWorklogItem?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Tax to be set for this item */
   salesTax?: InputMaybe<TaxIdentifierInput>;
+  /** Price at which item is offered to a client */
   sellingPrice?: InputMaybe<PricingModelInput>;
+  /** Details needed for a SERVICE type item */
   serviceTypeItem?: InputMaybe<CreateServiceTypeItemInput>;
+  /** Set to true to apply tax for this item */
   taxable: Scalars['Boolean']['input'];
 };
 
+/** Specifies the input for the service category. */
+export type CreateServiceCategoryInput = {
+  /** The name of the category. */
+  name: Scalars['String']['input'];
+};
+
+/** Specifies the input for the service item. */
+export type CreateServiceItemInput = {
+  /** The list of identifier input for BlockItem. */
+  addBlockItemAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemIdentifierInput>>>;
+  /** Denotes whether the service item is adjusted against all items. */
+  adjustBlockItemAgainstAllItems?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The unit price of the service item for after-hours. */
+  afterHoursUnitPrice?: InputMaybe<Scalars['String']['input']>;
+  /** The amount of the service item. */
+  amount?: InputMaybe<Scalars['String']['input']>;
+  /** Denotes the usage type of the service item. */
+  blockItemUsedIn?: InputMaybe<Block_Item_Usage_Type>;
+  /** The unit price of the service item for business hours. */
+  businessHoursUnitPrice?: InputMaybe<Scalars['String']['input']>;
+  /** The category of the service item. */
+  category?: InputMaybe<ServiceCategoryIdentifierInput>;
+  /** A short description of the service item. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The name of the service item. */
+  name: Scalars['String']['input'];
+  /** Denotes the quantity of the service item. */
+  quantity?: InputMaybe<Scalars['String']['input']>;
+  /** The type of service item. */
+  quantityType: ServiceItemQuantityType;
+  /** The rounded value of the service item. */
+  roundUpValue?: InputMaybe<Scalars['Int']['input']>;
+  /** The identifier input for sales tax. */
+  salesTax?: InputMaybe<TaxIdentifierInput>;
+  /** Denotes whether sales tax is enabled for the service item. */
+  salesTaxEnabled?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The unit price of the service item. */
+  unitPrice?: InputMaybe<Scalars['String']['input']>;
+  /** Denotes whether the service item is a worklog item. */
+  useAsWorklogItem?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Input details for a SERVICE type item */
 export type CreateServiceTypeItemInput = {
+  /** Items bundled under this item, used when creating a Package or Retainer */
   addBundledItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
+  /** input for details needed for a HOURS type SERVICE item */
   hourlyServiceTypeItem?: InputMaybe<CreateHourlyServiceTypeItemInput>;
+  /** Denotes type by which a SERVICE item is offered a client */
   offeringType: ServiceTypeItemOfferingType;
+  /** Input for details needed for a Retainer item */
   redeemableServiceBundle?: InputMaybe<CreateRedeemableServiceBundleInput>;
 };
 
-export type CreateSiteInput = {
-  address: AddressInput;
-  businessHour?: InputMaybe<Array<InputMaybe<BusinessHourInput>>>;
-  contactNumber?: InputMaybe<Scalars['String']['input']>;
-  holidayList?: InputMaybe<HolidayListInputIdentifierInput>;
-  hq?: InputMaybe<Scalars['Boolean']['input']>;
+/** Specifies the input required to create a new ticket status. */
+export type CreateStatusInput = {
+  /** The description of the status. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The name of the status. */
   name: Scalars['String']['input'];
-  /** This is mandatory to create client site but optional to create company site since our system supports one company for now. */
-  organization?: InputMaybe<OrganizationIdentifierInput>;
-  timezoneCode: Scalars['String']['input'];
-  working24x7: Scalars['Boolean']['input'];
 };
 
-export type CreateUserAssociationInput = {
-  client?: InputMaybe<ClientIdentifierInput>;
-  organization?: InputMaybe<OrganizationIdentifierInput>;
-  site?: InputMaybe<SiteIdentifierInput>;
+/** Specifies the input required to create a new ticket subcategory. */
+export type CreateSubCategoryInput = {
+  /**
+   * The name of the subcategory.
+   * Mandatory and unique within the category.
+   */
+  name: Scalars['String']['input'];
+};
+
+/** Specifies the input to create a sub cause. */
+export type CreateSubCauseInput = {
+  /** Specifies the description of the cause. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the name of the sub-cause. */
+  name: Scalars['String']['input'];
+};
+
+/** Specifies the input required to create a task. */
+export type CreateTaskInput = {
+  /** Specifies the description of the task. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the due datetime of the task. The datetime value should be specified in ISO 8601 format i.e., 2022-08-15T13:15:30 */
+  dueDate?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the estimated time of the task in minutes. */
+  estimatedTime?: InputMaybe<Scalars['Int']['input']>;
+  /** Specifies the entity for which the task is created. */
+  module: TaskModule;
+  /** Specifies the scheduled start datetime of the task. The datetime value should be specified in ISO 8601 format i.e., 2022-08-15T13:15:30 */
+  scheduledStartDate?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the status of the task. The value should be from the WorkStatus (name field) type. */
+  status: Scalars['String']['input'];
+  /** The Order in which the tasks should be displayed in UI */
+  taskOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** Specifies the technician group to which the task is assigned. */
+  techGroup?: InputMaybe<TechnicianGroupIdentifierInput>;
+  /** Specifies the technician to whom the task is assigned. */
+  technician?: InputMaybe<TechnicianIdentifierInput>;
+  /** Specifies the ticket identifier under which the task is created. This input is mandatory if the module is TICKET. */
+  ticket?: InputMaybe<TicketIdentifierInput>;
+  /** Specifies the title of the task. This input is mandatory. */
+  title: Scalars['String']['input'];
+};
+
+/** Specifies the input for the tax. */
+export type CreateTaxInput = {
+  /** The list of inputs for the tax rate. */
+  addRates: Array<InputMaybe<CreateTaxRateInput>>;
+  /** The name of the tax. */
+  name: Scalars['String']['input'];
+};
+
+/** Specifies the inputs for the tax rate. */
+export type CreateTaxRateInput = {
+  /** The name of the tax rate. */
+  name: Scalars['String']['input'];
+  /** The value of the tax rate. */
+  rateValue: Scalars['String']['input'];
+};
+
+/** Specifies the input required to create a new technician. */
+export type CreateTechnicianInput = {
+  /** Specifies the list of technician groups that the technician will be associated with. */
+  addGroups?: InputMaybe<Array<InputMaybe<TechnicianGroupIdentifierInput>>>;
+  /** Specifies the business function of the technician. */
+  businessFunction?: InputMaybe<BusinessFunctionIdentifierInput>;
+  /**
+   * The contact number of the technician.
+   * It is recommended to provide the value in the standard format [+][country code][area code][local phone number].
+   */
+  contactNumber?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the designation of the technician. */
+  designation?: InputMaybe<DesignationIdentifierInput>;
+  /**
+   * The email address of the technician. This is unique across technicians and client users. The email will be used for login.
+   * This input should be mandatory and unique.
+   */
+  email: Scalars['String']['input'];
+  /** The email signature of the technician which will be used in their email responses. */
+  emailSignature?: InputMaybe<Scalars['String']['input']>;
+  /** The first name of the technician. This input is mandatory. */
+  firstName: Scalars['String']['input'];
+  /** The last name of the technician. */
+  lastName?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the technician's reporting manager. */
+  reportingManager?: InputMaybe<TechnicianIdentifierInput>;
+  /** Specifies the application role of the technician. This input is mandatory. */
+  role: RoleIdentifierInput;
+  /** Specifies the technician's team. */
+  team?: InputMaybe<TeamIdentifierInput>;
+};
+
+/** Specifies the input required to create a ticket conversation. */
+export type CreateTicketConversationInput = {
+  /** Specifies the list of attachments */
+  attachments?: InputMaybe<Array<InputMaybe<CreateAttachmentInput>>>;
+  /** Specifies the list of BCC recipients. */
+  bccUsers?: InputMaybe<Array<InputMaybe<RecipientIdentifierInput>>>;
+  /** Specifies the list of CC recipients. */
+  ccUsers?: InputMaybe<Array<InputMaybe<RecipientIdentifierInput>>>;
+  /** Specifies the conversation content. */
+  content?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * An email will be send for the conversation initiated by the technician.
+   * This attribute specifies whether an email need to be send or not.
+   */
+  sendMail?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specifies the ticket under which the conversation will be created. */
+  ticket: TicketIdentifierInput;
+  /** Specifies the datetime when the conversation was created. */
+  time?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the list of TO recipients. */
+  toUsers?: InputMaybe<Array<InputMaybe<RecipientIdentifierInput>>>;
+  /**
+   * Specifies the third Party Integration source details from
+   * which the conversation will be created.
+   */
+  tpSource?: InputMaybe<ThirdPartySourceInput>;
+  /** Specifies the user who creates the conversation. */
   user?: InputMaybe<UserIdentifierInput>;
+};
+
+/** Specifies the input required to create a ticket. */
+export type CreateTicketInput = {
+  /** Specifies the additional requesters to be added. */
+  addAdditionalRequester?: InputMaybe<Array<InputMaybe<ClientUserIdentifierInput>>>;
+  /** Specifies the assets to be added */
+  addAssets?: InputMaybe<Array<InputMaybe<AssetIdentifierInput>>>;
+  /** Specifies the followers to be added. */
+  addFollowers?: InputMaybe<Array<InputMaybe<TechnicianIdentifierInput>>>;
+  /** Specifies the category of the ticket. The value should be from the Category (name field) type. */
+  category?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the cause of the ticket. The value should be from the Cause (name field) type. */
+  cause?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Specifies the client to whom the ticket is associated.
+   * This input is mandatory.
+   */
+  client: ClientIdentifierInput;
+  /** Specifies the datetime when the ticket was created. */
+  createdTime?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Specifies the custom fields values for the ticket. Each entry in the JSON would be a key-value.
+   * The key will be a system-generated, unique name of the custom field (columnName field of CustomField type).
+   * The value for text, paragraph, radio, select, numeric, decimal, date, datetime should be given as a string.
+   * The value for checkbox, multi-select should be an array of string.
+   *
+   * For example, the value could be {"udf1text": "value", "udf2mselect": ["value1", "value2"]}
+   */
+  customFields?: InputMaybe<Scalars['JSON']['input']>;
+  /** Specifies the description of the ticket. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the description attachments of the ticket. */
+  descriptionAttachments?: InputMaybe<Array<InputMaybe<CreateAttachmentInput>>>;
+  /** The first response time of the ticket. */
+  firstResponseTime?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the impact of the ticket. The value should be from the Impact (name field) type. */
+  impact?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the priority of the ticket. The value should be from the Priority (name field) type. */
+  priority?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the type of the ticket. */
+  requestType?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the requester for whom the ticket is created. */
+  requester?: InputMaybe<ClientUserIdentifierInput>;
+  /** Specifies the resolution code of the ticket. */
+  resolutionCode?: InputMaybe<Scalars['String']['input']>;
+  /** The resolution time of the ticket. */
+  resolutionTime?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the site to which the ticket is associated. The site of the requester will be assigned by the system if not specified. */
+  site?: InputMaybe<ClientSiteIdentifierInput>;
+  /** Specifies the SLA of the ticket. */
+  sla?: InputMaybe<SlaIdentifierInput>;
+  /**
+   * Specifies the creation source of the ticket.
+   * This input is mandatory.
+   */
+  source: TicketSource;
+  /** Specifies the referenceId of the ticket in the integration the ticket was created from. */
+  sourceReferenceId?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Specifies the status of the ticket. The value should be from the Status (name field) type.
+   * This input is mandatory.
+   */
+  status?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the source with which integration the ticket was created from. */
+  subSource?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the subcategory of the ticket. The value should be from the SubCategory (name field) type. */
+  subcategory?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the sub-cause of the ticket. The value should be from the SubCause (name field) type. */
+  subcause?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Specifies the subject of the ticket.
+   * This input is mandatory.
+   */
+  subject: Scalars['String']['input'];
+  /** Indicates whether the close notification has to be suppressed while closing the ticket */
+  suppressCloseNotification?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specifies the technician group to which the ticket is assigned. */
+  techGroup?: InputMaybe<TechnicianGroupIdentifierInput>;
+  /** Specifies the technician to whom the ticket is assigned. */
+  technician?: InputMaybe<TechnicianIdentifierInput>;
+  /**
+   * Specifies the type of the ticket.
+   * This input is mandatory.
+   */
+  ticketType?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Specifies the third Party Integration source details from
+   * which the ticket will be created.
+   */
+  tpSource?: InputMaybe<ThirdPartySourceInput>;
+  /** Specifies the datetime when the ticket was updated. */
+  updatedTime?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the urgency of the ticket. The value should be from the Urgency (name field) type. */
+  urgency?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Specifies the input to create ticket note. */
+export type CreateTicketNoteInput = {
+  /** Specifies the technician who created the note. */
+  addedBy?: InputMaybe<UserIdentifierInput>;
+  /** Specifies the datetime when the note was created. */
+  addedOn?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the attachments of the note. */
+  attachments?: InputMaybe<Array<InputMaybe<CreateAttachmentInput>>>;
+  /** Specifies the content of the note. */
+  content: Scalars['String']['input'];
+  /** Set to PUBLIC if the note should be shown to the requester; otherwise, set to PRIVATE. The default is PRIVATE. */
+  privacyType?: InputMaybe<NotePrivacyType>;
+  /** Specifies the ticket under which the note will be created. */
+  ticket: TicketIdentifierInput;
 };
 
 export type CreateWebhookSubscriptionInput = {
@@ -2215,308 +1576,186 @@ export type CreateWebhookSubscriptionInput = {
   webhookUrl: Scalars['String']['input'];
 };
 
-export type Credential = {
-  __typename?: 'Credential';
-  client?: Maybe<Account>;
-  createdBy?: Maybe<User>;
-  createdTime?: Maybe<Scalars['String']['output']>;
-  credentialId?: Maybe<Scalars['ID']['output']>;
-  data?: Maybe<Scalars['JSON']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  protocol?: Maybe<Scalars['String']['output']>;
-  sites?: Maybe<Array<Maybe<Site>>>;
-  type?: Maybe<Scalars['String']['output']>;
-  updatedTime?: Maybe<Scalars['String']['output']>;
+export type CreateWorklogEntryInput = {
+  /** Denotes whether the service is provided after business hours. */
+  afterHours?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The datetime of the worklog. */
+  billDateTime: Scalars['String']['input'];
+  /** Denotes whether the service item is billable or not. */
+  billable?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The notes of the worklog. */
+  notes?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The number of offered units/hours.
+   * The unit is hours if service item is HOURS type.
+   */
+  qty: Scalars['String']['input'];
+  /** Specifies the service item. */
+  serviceItem?: InputMaybe<ServiceItemIdentifierInput>;
+  /** Specifies the technician of the worklog. */
+  technician?: InputMaybe<TechnicianIdentifierInput>;
+  /** The unit price of the worklog item. */
+  unitPrice?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the Work identifier under which the worklog is created. */
+  workItem: WorkItemIdentifierInput;
 };
 
-export type CurrentUserDetails = {
-  __typename?: 'CurrentUserDetails';
-  currentUser: User;
-  demoDomain: Scalars['String']['output'];
-  realDomain?: Maybe<Scalars['String']['output']>;
+/** Specifies the input required to create a worklog. */
+export type CreateWorklogInput = {
+  /** Specifies the list of offered services/items through worklog. */
+  addItems?: InputMaybe<Array<InputMaybe<CreateWorklogItemInput>>>;
+  /** Specifies the entity for which the task is created. */
+  module: WorklogModule;
+  /** Specifies the worklog notes. */
+  notes?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the task if the worklog will be created under it. */
+  task?: InputMaybe<TaskIdentifierInput>;
+  /** Specifies the ticket under which the worklog will be created. It is mandatory if the module is TICKET. */
+  ticket?: InputMaybe<TicketIdentifierInput>;
+  /** Specifies the date of the worklog. */
+  worklogDate?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Cursor = {
-  __typename?: 'Cursor';
-  attribute: Scalars['String']['output'];
-  type: CursorType;
-  value: Scalars['String']['output'];
+/** Specifies the offered service/item through worklog. */
+export type CreateWorklogItemInput = {
+  /** Specifies whether the service is provided after the business hours. */
+  afterHours?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specifies whether the offered service/item is billable. */
+  billable?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specifies the number of offered units/hours. */
+  qty?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the service item. */
+  serviceItem: ServiceItemIdentifierInput;
 };
 
-export type CursorInput = {
-  attribute: Scalars['String']['input'];
-  type: CursorType;
-  value: Scalars['String']['input'];
+export type CreateWorklogTimerEntryInput = {
+  /** The below fields are applicable only for MANUAL timer. */
+  addSegments?: InputMaybe<Array<InputMaybe<CreateWorklogTimerSegmentInput>>>;
+  billable?: InputMaybe<Scalars['Boolean']['input']>;
+  notes?: InputMaybe<Scalars['String']['input']>;
+  serviceItem?: InputMaybe<ServiceItemIdentifierInput>;
+  type?: InputMaybe<WorklogTimerType>;
+  workItem?: InputMaybe<WorkItemIdentifierInput>;
 };
 
-export enum CursorType {
-  After = 'AFTER',
-  Before = 'BEFORE'
-}
+export type CreateWorklogTimerSegmentInput = {
+  afterHours: Scalars['Boolean']['input'];
+  endTime: Scalars['String']['input'];
+  startTime: Scalars['String']['input'];
+  timespent: Scalars['String']['input'];
+};
 
+/** The custom fields created by the user. */
 export type CustomField = {
   __typename?: 'CustomField';
-  /** Module */
+  /** The system-generated name of the custom field. This name is unique and will be used to identify the field. */
   columnName: Scalars['String']['output'];
-  commonWorkStationField?: Maybe<Scalars['Boolean']['output']>;
+  /** The description of the custom field. */
   description?: Maybe<Scalars['String']['output']>;
-  fieldType?: Maybe<Scalars['String']['output']>;
-  /** Deprecated */
+  /** The type of the custom field. */
+  fieldType: CustomFieldType;
+  /** The ID of custom field. */
   id: Scalars['ID']['output'];
+  /** Defines the boolean value, which represents the field must be filled compulsory or not. */
   isMandatory?: Maybe<Scalars['Boolean']['output']>;
+  /** The label of the custom field. */
   label: Scalars['String']['output'];
-  module: Scalars['String']['output'];
-  /** CustomFieldType! */
+  /** The list of options for select/radio/checkbox/multi select field. */
   options?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** Denotes whether the field is visible for the client. */
   showToClient: Scalars['Boolean']['output'];
 };
 
-export type CustomFieldConstraint = {
-  __typename?: 'CustomFieldConstraint';
-  decimalPrecision?: Maybe<Scalars['Int']['output']>;
-  decimalScale?: Maybe<Scalars['Int']['output']>;
-  multiChoiceOptionsLimit?: Maybe<Scalars['Int']['output']>;
-  numericPrecision?: Maybe<Scalars['Int']['output']>;
-  optionCharLength?: Maybe<Scalars['Int']['output']>;
-  paragraphTotalLimit?: Maybe<Scalars['Int']['output']>;
-  textCharLength?: Maybe<Scalars['Int']['output']>;
-  /** Deprecated */
-  totalLimit?: Maybe<Scalars['Int']['output']>;
+/** Specifies the identifier input for the custom field. */
+export type CustomFieldIdentifierInput = {
+  /** The ID of the custom field. */
+  fieldId: Scalars['ID']['input'];
 };
 
-export type CustomFieldInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  fieldType?: InputMaybe<Scalars['String']['input']>;
-  /** Deprecated */
-  label?: InputMaybe<Scalars['String']['input']>;
-  module?: InputMaybe<Scalars['String']['input']>;
-  /** FieldType */
-  options?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+/** The type of the custom field created by the user. */
+export enum CustomFieldType {
   /**
-   * Module
-   *  used in update
+   * The checkbox field. The maximum length of an option value is 255 characters.
+   * The maximum number of checkbox fields is 64.
    */
-  renamedOptions?: InputMaybe<Scalars['JSON']['input']>;
-  showToClient?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CustomFilterInput = {
-  entity?: InputMaybe<Scalars['String']['input']>;
-};
-
-export enum CustomMailServerAccountSyncState {
-  AuthenticationError = 'AUTHENTICATION_ERROR',
-  Connected = 'CONNECTED',
-  Connecting = 'CONNECTING',
-  ConnectError = 'CONNECT_ERROR',
-  Disconnected = 'DISCONNECTED',
-  Downloading = 'DOWNLOADING',
-  Exception = 'EXCEPTION',
-  Init = 'INIT',
-  Initializing = 'INITIALIZING',
-  Invalid = 'INVALID',
-  InvalidCredentials = 'INVALID_CREDENTIALS',
-  Partial = 'PARTIAL',
-  Reauthenticate = 'REAUTHENTICATE',
-  Running = 'RUNNING',
-  Stopped = 'STOPPED',
-  Syncing = 'SYNCING',
-  SyncError = 'SYNC_ERROR',
-  Unset = 'UNSET',
-  Valid = 'VALID'
+  Checkbox = 'CHECKBOX',
+  /** The date field. The date value should be specified in the ISO 8601 format i.e., 2022-08-15 */
+  Date = 'DATE',
+  /** The datetime filed. The datetime value should be specified in the ISO 8601 format i.e., 2022-08-15T13:15:30 */
+  Datetime = 'DATETIME',
+  /** The decimal number field. The maximum number of digits is 10 and maximum number of digits in the fractional part is 2. */
+  Decimal = 'DECIMAL',
+  /**
+   * The multi select field. The maximum length of an option value is 255 characters.
+   * The maximum number of checkbox fields is 64.
+   */
+  MultiSelect = 'MULTI_SELECT',
+  /** The whole number field. The maximum number of digits is 10. */
+  Numeric = 'NUMERIC',
+  /**
+   * The paragraph/multi-line field. The maximum length of the paragraph value is 65,535 characters.
+   * The maximum number of paragraph fields is 5.
+   */
+  Paragraph = 'PARAGRAPH',
+  /** The password field. used to store password value. */
+  Password = 'PASSWORD',
+  /** The radio field. The maximum length of an option value is 255 characters. */
+  Radio = 'RADIO',
+  /** The rich text field. used to store large formatted Text */
+  RichText = 'RICH_TEXT',
+  /** The Secure text field. used to store secure text */
+  SecureText = 'SECURE_TEXT',
+  /** The select/dropdown field. The maximum length of an option value is 255 characters. */
+  Select = 'SELECT',
+  /** The text field. The maximum length of the text value is 255 characters. */
+  Text = 'TEXT',
+  /** The URL field. used to store an url in secured text field type */
+  Url = 'URL'
 }
 
-export enum CustomMailServerType {
-  Google = 'GOOGLE',
-  Microsoft = 'MICROSOFT',
-  Others = 'OTHERS'
+/** The day of the week. */
+export enum DayOfWeek {
+  Friday = 'FRIDAY',
+  Monday = 'MONDAY',
+  Saturday = 'SATURDAY',
+  Sunday = 'SUNDAY',
+  Thursday = 'THURSDAY',
+  Tuesday = 'TUESDAY',
+  Wednesday = 'WEDNESDAY'
 }
 
-export type CustomerCardDetail = {
-  __typename?: 'CustomerCardDetail';
-  cardType?: Maybe<Scalars['String']['output']>;
-  /** FundingType */
-  expiryMonth?: Maybe<Scalars['Int']['output']>;
-  expiryYear?: Maybe<Scalars['Int']['output']>;
-  /** CardType */
-  fundingType?: Maybe<Scalars['String']['output']>;
-  /** CardStatus */
-  last4?: Maybe<Scalars['String']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
+/** Specifies the input to delete client user. */
+export type DeleteUserInput = {
+  /** The user will be soft deleted by default. The personally identifiable information (PII) will be anonymized by specifying true for this attribute. */
+  forget?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The ID of the client user who is going to be deleted. */
+  userId: Scalars['ID']['input'];
 };
 
-export type CustomerDetail = {
-  __typename?: 'CustomerDetail';
-  checkoutProgressState?: Maybe<Scalars['Boolean']['output']>;
-  collectProfile?: Maybe<Scalars['Boolean']['output']>;
-  customerId?: Maybe<Scalars['ID']['output']>;
-  signupEmailId?: Maybe<Scalars['String']['output']>;
-  source?: Maybe<CustomerSource>;
-};
-
-export enum CustomerPricingModel {
-  PerUnit = 'PER_UNIT',
-  Tiered = 'TIERED'
-}
-
-export type CustomerSource = {
-  __typename?: 'CustomerSource';
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type CustomerSubscription = {
-  __typename?: 'CustomerSubscription';
-  autoCollection?: Maybe<Scalars['Boolean']['output']>;
-  billingPeriod?: Maybe<Scalars['String']['output']>;
-  /** BillingPeriod */
-  currentPlanPrice?: Maybe<PlanPrice>;
-  customer?: Maybe<CustomerDetail>;
-  lastStatusUpdateTime?: Maybe<Scalars['String']['output']>;
-  licenseCount?: Maybe<Scalars['Int']['output']>;
-  nextBillingDateTime?: Maybe<Scalars['String']['output']>;
-  overageBillingPeriod?: Maybe<DateRange>;
-  resourceVersion?: Maybe<Scalars['String']['output']>;
-  subscribedAddons?: Maybe<Array<Maybe<SubscribedAddon>>>;
-  subscriptionId?: Maybe<Scalars['ID']['output']>;
-  /** SubscriptionStatus */
-  subscriptionStatus?: Maybe<Scalars['String']['output']>;
-  trialEndDateTime?: Maybe<Scalars['String']['output']>;
-};
-
-export type DataMapping = {
-  __typename?: 'DataMapping';
-  addOnItem?: Maybe<Scalars['JSON']['output']>;
-  destination?: Maybe<MappingObject>;
-  destinations?: Maybe<Array<Maybe<MappingObject>>>;
-  source?: Maybe<MappingObject>;
-  status?: Maybe<Scalars['String']['output']>;
-};
-
-export type DataMappingInput = {
-  addOnItem?: InputMaybe<Scalars['JSON']['input']>;
-  destination?: InputMaybe<MappingObjectInput>;
-  destinations?: InputMaybe<Array<InputMaybe<MappingObjectInput>>>;
-  operation?: InputMaybe<Scalars['String']['input']>;
-  source?: InputMaybe<MappingObjectInput>;
-};
-
-export type DataMappingList = {
-  __typename?: 'DataMappingList';
-  listInfo?: Maybe<ListInfo>;
-  mappings?: Maybe<Array<Maybe<DataMapping>>>;
-};
-
-export enum DataReportColumnRenderType {
-  Bgcolor = 'BGCOLOR',
-  Plain = 'PLAIN'
-}
-
-export type DataSyncReport = {
-  __typename?: 'DataSyncReport';
-  autoSyncStatus?: Maybe<Scalars['String']['output']>;
-  createFailedCount?: Maybe<Scalars['Int']['output']>;
-  createFailedDetails?: Maybe<Scalars['JSON']['output']>;
-  lastAutoSyncTime?: Maybe<Scalars['String']['output']>;
-  mappedCount?: Maybe<Scalars['Int']['output']>;
-};
-
-export type DateRange = {
-  __typename?: 'DateRange';
-  endDateTime?: Maybe<Scalars['String']['output']>;
-  startDateTime?: Maybe<Scalars['String']['output']>;
-};
-
-export type DeleteClientAttachmentsInput = {
-  attachments: Array<ClientAttachmentIdentifierInput>;
-  clientId: Scalars['ID']['input'];
-};
-
+/** Designation of the technician. */
 export type Designation = {
   __typename?: 'Designation';
+  /** The ID of the designation. */
   designationId: Scalars['ID']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type DesignationInput = {
-  designationId?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-};
-
-export enum DiscountType {
-  Amount = 'AMOUNT',
-  Percent = 'PERCENT'
-}
-
-export enum DomainType {
-  CustomDomain = 'CUSTOM_DOMAIN',
-  CustomSubdomain = 'CUSTOM_SUBDOMAIN',
-  SystemSubdomain = 'SYSTEM_SUBDOMAIN'
-}
-
-export type DownloadInventory = {
-  __typename?: 'DownloadInventory';
-  client?: Maybe<Organization>;
-  completionTime?: Maybe<Scalars['String']['output']>;
-  fileType?: Maybe<Scalars['String']['output']>;
-  inventoryId?: Maybe<Scalars['ID']['output']>;
-  module?: Maybe<Scalars['String']['output']>;
-  moduleSpecificId?: Maybe<Scalars['ID']['output']>;
-  sites?: Maybe<Array<Maybe<Site>>>;
-  status?: Maybe<Scalars['String']['output']>;
-  triggeredBy?: Maybe<Scalars['ID']['output']>;
-  triggeredSource?: Maybe<Scalars['String']['output']>;
-  triggeredTime?: Maybe<Scalars['String']['output']>;
-  user?: Maybe<User>;
-};
-
-export type DownloadInventoryList = {
-  __typename?: 'DownloadInventoryList';
-  inventoryList?: Maybe<Array<Maybe<DownloadInventory>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
-export type EndpointIntegrationInfo = {
-  __typename?: 'EndpointIntegrationInfo';
-  integrationId?: Maybe<Scalars['ID']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type Entity = {
-  __typename?: 'Entity';
-  attributes?: Maybe<Array<Maybe<Attribute>>>;
-  label?: Maybe<Scalars['String']['output']>;
+  /** The name of the designation. */
   name: Scalars['String']['output'];
 };
 
-export type EntityConfigInput = {
-  config?: InputMaybe<Scalars['JSON']['input']>;
-  itemId?: InputMaybe<Scalars['String']['input']>;
+/** Specifies the identifier input for the designation. */
+export type DesignationIdentifierInput = {
+  /** The ID of the designation. */
+  designationId: Scalars['ID']['input'];
 };
 
-export enum EntityOperation {
-  Associate = 'ASSOCIATE',
-  Closed = 'CLOSED',
-  Create = 'CREATE',
-  Delete = 'DELETE',
-  Merge = 'MERGE',
-  Resolved = 'RESOLVED',
-  Restore = 'RESTORE',
-  Spam = 'SPAM',
-  Split = 'SPLIT',
-  Trash = 'TRASH',
-  Unassociate = 'UNASSOCIATE',
-  Unspam = 'UNSPAM',
-  Update = 'UPDATE',
-  View = 'VIEW'
-}
-
-export type Enumeration = {
-  __typename?: 'Enumeration';
-  /** i18n key of the value */
-  key?: Maybe<Scalars['String']['output']>;
-  /** enum value */
-  value?: Maybe<Scalars['String']['output']>;
+/** Specifies the asset's disk data */
+export type Disks = {
+  __typename?: 'Disks';
+  /** disk partition details */
+  disks?: Maybe<Array<Maybe<AssetDisk>>>;
+  /** Total free space available in the disk */
+  totalFreeSpace?: Maybe<Scalars['JSON']['output']>;
+  /** Total size of the disk */
+  totalSize?: Maybe<Scalars['JSON']['output']>;
 };
 
 export enum EventType {
@@ -2535,2110 +1774,646 @@ export enum EventType {
   TicketReplyReceived = 'TICKET_REPLY_RECEIVED',
   TicketReplySent = 'TICKET_REPLY_SENT',
   TicketUpdated = 'TICKET_UPDATED',
-  UserCreated = 'USER_CREATED',
-  UserDeleted = 'USER_DELETED',
-  UserUpdated = 'USER_UPDATED',
   WorklogCreated = 'WORKLOG_CREATED'
 }
 
-export type ExportReportIdentifierInput = {
-  chartId?: InputMaybe<Scalars['ID']['input']>;
-  condition?: InputMaybe<Scalars['JSON']['input']>;
-  reportId?: InputMaybe<Scalars['ID']['input']>;
-};
-
+/** This is a system-defined feature which is used along with the operation to define the user authorization under a role. */
 export type Feature = {
   __typename?: 'Feature';
+  /** The ID of the feature. */
   featureId: Scalars['ID']['output'];
-  featureOrder?: Maybe<Scalars['Int']['output']>;
-  key?: Maybe<Scalars['String']['output']>;
-  labelKey?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  permissionCategory?: Maybe<PermissionCategory>;
+  /** The constant value used to identify the feature programmatically. */
+  key: Scalars['String']['output'];
+  /** The name of the feature. */
+  name: Scalars['String']['output'];
 };
 
-export type FeatureInput = {
-  featureId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type FetchTpEntityListInput = {
-  entityType: TpEntityType;
-  integration: IntegrationIdentifierInput;
-  listInfo: ListInfoInput;
-};
-
-export type FetchTpMappingRuleConditionInput = {
-  entityType: TpEntityType;
-  integration: IntegrationIdentifierInput;
-};
-
+/** The field of the entity. */
 export type Field = {
   __typename?: 'Field';
-  /** Module */
   columnName: Scalars['String']['output'];
-  commonWorkStationField?: Maybe<Scalars['Boolean']['output']>;
   description?: Maybe<Scalars['String']['output']>;
-  editable: Scalars['Boolean']['output'];
   fieldCategory?: Maybe<FieldCategory>;
   fieldOptions?: Maybe<Scalars['JSON']['output']>;
-  fieldType?: Maybe<FieldType>;
+  fieldType: CustomFieldType;
   id: Scalars['ID']['output'];
   label: Scalars['String']['output'];
   mandatoryOnClosure?: Maybe<Scalars['Boolean']['output']>;
   mandatoryOnCreate?: Maybe<Scalars['Boolean']['output']>;
   module: Scalars['String']['output'];
-  /** Deprecated - Field options have been moved to a separate table instead of being stored as JSON. Use the 'options' field to retrieve the values. */
   options?: Maybe<Array<Maybe<Option>>>;
   parentField?: Maybe<Field>;
-  showToClient: Scalars['Boolean']['output'];
+  /** Deprecated - Field options have been moved to a separate table instead of being stored as JSON. Use the 'options' field to retrieve the values. */
+  showToRequester: Scalars['Boolean']['output'];
 };
 
+/** The category of the field. */
 export enum FieldCategory {
   Custom = 'CUSTOM',
   Default = 'DEFAULT'
 }
 
-export type FieldConstraint = {
-  __typename?: 'FieldConstraint';
-  decimalPrecision?: Maybe<Scalars['Int']['output']>;
-  decimalScale?: Maybe<Scalars['Int']['output']>;
-  multiChoiceOptionsLimit?: Maybe<Scalars['Int']['output']>;
-  numericPrecision?: Maybe<Scalars['Int']['output']>;
-  optionCharLength?: Maybe<Scalars['Int']['output']>;
-  paragraphTotalLimit?: Maybe<Scalars['Int']['output']>;
-  singleChoiceOptionsLimit?: Maybe<Scalars['Int']['output']>;
-  textCharLength?: Maybe<Scalars['Int']['output']>;
-  totalLimit?: Maybe<Scalars['Int']['output']>;
-};
-
+/**
+ * Input for fetching a field by `id` or `columnName` in a specific module.
+ * The `module` must be either 'TICKET' or 'CLIENT'.
+ */
 export type FieldIdentifierInput = {
-  /** Module */
-  assetClassEntityName?: InputMaybe<Scalars['String']['input']>;
   columnName?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   module: Scalars['String']['input'];
 };
 
-export type FieldInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** FieldType */
-  fieldOptionsInput?: InputMaybe<Scalars['String']['input']>;
-  fieldType?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  label?: InputMaybe<Scalars['String']['input']>;
-  mandatoryOnClosure?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Module */
-  mandatoryOnCreate?: InputMaybe<Scalars['Boolean']['input']>;
-  module?: InputMaybe<Scalars['String']['input']>;
-  showToClient?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type FieldOption = {
-  __typename?: 'FieldOption';
-  field?: Maybe<Scalars['String']['output']>;
-  options?: Maybe<Array<Maybe<Option>>>;
-};
-
-export enum FieldType {
-  Checkbox = 'CHECKBOX',
-  Date = 'DATE',
-  Datetime = 'DATETIME',
-  Decimal = 'DECIMAL',
-  MultiSelect = 'MULTI_SELECT',
-  Numeric = 'NUMERIC',
-  Paragraph = 'PARAGRAPH',
-  Password = 'PASSWORD',
-  Radio = 'RADIO',
-  RichText = 'RICH_TEXT',
-  SecureText = 'SECURE_TEXT',
-  Select = 'SELECT',
-  Text = 'TEXT',
-  Url = 'URL'
-}
-
-export type FinancialPerformanceMetric = {
-  __typename?: 'FinancialPerformanceMetric';
-  effectiveRate?: Maybe<Scalars['String']['output']>;
-  hoursInvested?: Maybe<Scalars['String']['output']>;
-  profit?: Maybe<Scalars['String']['output']>;
-  profitPercentage?: Maybe<Scalars['String']['output']>;
-  revenue?: Maybe<Scalars['String']['output']>;
-};
-
-export type FixedDuration = {
-  __typename?: 'FixedDuration';
-  /** DurationUnit */
-  quantity: Scalars['Int']['output'];
-  unit: Scalars['String']['output'];
-};
-
-export type FixedDurationInput = {
-  /** DurationUnit */
-  quantity: Scalars['Int']['input'];
-  unit: Scalars['String']['input'];
-};
-
-export type FlowAction = {
-  __typename?: 'FlowAction';
-  actionId: Scalars['ID']['output'];
-  actionProcessCategory?: Maybe<FlowActionProcessCategory>;
-  actionType?: Maybe<FlowActionType>;
-  actionValueData?: Maybe<Scalars['JSON']['output']>;
-  actionValueType?: Maybe<FlowActionValueType>;
-  groupActions?: Maybe<Array<Maybe<GroupFlowAction>>>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type FlowActionIdentifier = {
-  __typename?: 'FlowActionIdentifier';
-  actionId: Scalars['ID']['output'];
-};
-
-export enum FlowActionProcessCategory {
-  Async = 'ASYNC',
-  None = 'NONE',
-  Sync = 'SYNC'
-}
-
-export enum FlowActionType {
-  Group = 'GROUP',
-  Single = 'SINGLE'
-}
-
-export enum FlowActionValueType {
-  Checklist = 'CHECKLIST',
-  NonMonitoringAsset = 'NON_MONITORING_ASSET',
-  Note = 'NOTE',
-  RequestNote = 'REQUEST_NOTE',
-  Script = 'SCRIPT',
-  SideConversation = 'SIDE_CONVERSATION',
-  TaskTemplate = 'TASK_TEMPLATE',
-  TicketApproval = 'TICKET_APPROVAL',
-  TicketReply = 'TICKET_REPLY',
-  TicketUpdate = 'TICKET_UPDATE',
-  Worklog = 'WORKLOG'
-}
-
+/** Specifies the frequency duration unit for a recurring contract. */
 export enum FrequencyDurationUnit {
+  /** Indicates the contract's recurring duration is based on 'DAY'. */
   Day = 'DAY',
+  /** Indicates the contract's recurring duration is based on 'MONTH'. */
   Month = 'MONTH',
+  /** Indicates the contract's recurring duration is based on 'WEEK'. */
   Week = 'WEEK',
+  /** Indicates the contract's recurring duration is based on 'YEAR'. */
   Year = 'YEAR'
 }
-
-export type GetAiFeatureFeedbackListInput = {
-  feature: AiFeatureIdentifierInput;
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-export type GetAiFeatureListInput = {
-  listInfo: ListInfoInput;
-};
-
-export type GetAddressInput = {
-  client: ClientIdentifierInput;
-  listInfo: ListInfoInput;
-};
-
-export type GetAggregatedValuesInput = {
-  entity: Scalars['String']['input'];
-  groupBy?: InputMaybe<Array<InputMaybe<GroupByInput>>>;
-  metrics: Array<InputMaybe<MetricInput>>;
-};
 
 export type GetAllowedServiceItemsInput = {
   client: ClientIdentifierInput;
   listInfo: ListInfoInput;
 };
 
-export type GetAllowedTechnicianGroupsInput = {
-  /** Used to filter the applicable technician groups for the specified client organizations. It should be used when the company offers services to other client organizations. */
-  forOrganizations?: InputMaybe<Array<OrganizationIdentifierInput>>;
-  /** Used to filter the applicable technician groups for the specified sites. */
-  forSites?: InputMaybe<Array<SiteIdentifierInput>>;
-};
-
-export type GetBillingAddressInput = {
-  client?: InputMaybe<ClientIdentifierInput>;
-  site?: InputMaybe<SiteIdentifierInput>;
-};
-
-export type GetBlockItemConsumptionInfoInput = {
-  client: ClientIdentifierInput;
-  eventEndDateTime?: InputMaybe<Scalars['String']['input']>;
-  serviceItem: ServiceItemIdentifierInput;
-  site?: InputMaybe<SiteIdentifierInput>;
-};
-
-export type GetBlockItemInfoInput = {
-  afterHours: Scalars['Boolean']['input'];
-  contract: ContractIdentifierInput;
-  eventEndDateTime?: InputMaybe<Scalars['String']['input']>;
-  serviceCatalogItem: ServiceCatalogItemIdentifierInput;
-  site: SiteIdentifierInput;
-};
-
-export type GetClientUsersListInput = {
+/** Specifies the input required to fetch the client site. */
+export type GetClientSiteListInput = {
+  /** The ID of the client. This optional input attribute can be used to fetch sites that belong to a particular client. */
   clientId?: InputMaybe<Scalars['ID']['input']>;
+  /** Specifies the list input required to fetch multiple records */
   listInfo?: InputMaybe<ListInfoInput>;
-  siteId?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export type GetContractNextBillDateInput = {
-  billDate: Scalars['String']['input'];
-  compute?: InputMaybe<Scalars['Boolean']['input']>;
-  endDate?: InputMaybe<Scalars['String']['input']>;
-  frequency: RecurringContractFrequencyInput;
-  nextBillDate?: InputMaybe<Scalars['String']['input']>;
+/** Specifies the input required to fetch client users. */
+export type GetClientUserListInput = {
+  /** The ID of the client. This optional input attribute can be used to fetch sites that belong to a particular client. */
+  clientId?: InputMaybe<Scalars['ID']['input']>;
+  /** Specifies the list input to fetch multiple records. */
+  listInfo?: InputMaybe<ListInfoInput>;
 };
 
-export type GetContractProRatedAmountInput = {
-  billDate: Scalars['String']['input'];
-  contract?: InputMaybe<ContractIdentifierInput>;
-  effectiveDate: Scalars['String']['input'];
-  endDate?: InputMaybe<Scalars['String']['input']>;
-  frequency: RecurringContractFrequencyInput;
-  itemType: ServiceCatalogItemType;
-  offeringType?: InputMaybe<ServiceTypeItemOfferingType>;
-  quantity: Scalars['String']['input'];
-  unitPrice: PricingModelInput;
-};
-
-export type GetConversationThreadedContentInput = {
-  entityId: Scalars['ID']['input'];
-};
-
-export type GetDependentFieldOptionsInput = {
-  /** Module */
-  field: Scalars['String']['input'];
-  module: Scalars['String']['input'];
-  parentValue: Scalars['String']['input'];
-};
-
-export type GetEligibleCatalogServiceItemsInput = {
+/** Input for get eligible items to create a worklog for ticket or a project using a contract associated with it. */
+export type GetEligibleServiceCatalogItemsInput = {
   contract?: InputMaybe<ContractIdentifierInput>;
   listInfo: ListInfoInput;
 };
 
-export type GetExpandedClientConversationContentInput = {
-  client: ClientIdentifierInput;
-  conversation: ConversationIdentifierInput;
-};
-
-export type GetExpandedVendorConversationContentInput = {
-  conversation: ConversationIdentifierInput;
-  workItem: WorkItemIdentifierInput;
-};
-
-export type GetFieldOptionsInput = {
-  /** Module */
-  fields: Array<InputMaybe<Scalars['String']['input']>>;
-  module: Scalars['String']['input'];
-};
-
-export type GetIntegrationAddonContractItemInput = {
-  client: ClientIdentifierInput;
-  serviceCatalogItem?: InputMaybe<ServiceCatalogItemIdentifierInput>;
-  serviceItem?: InputMaybe<ServiceItemIdentifierInput>;
-};
-
-export type GetNextBillDateInput = {
-  billDate: Scalars['String']['input'];
-  compute?: InputMaybe<Scalars['Boolean']['input']>;
-  endDate?: InputMaybe<Scalars['String']['input']>;
-  frequency: ContractItemFrequencyInput;
-  nextBillDate?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type GetOptionsInput = {
-  field: FieldIdentifierInput;
-  parentOptionValue?: InputMaybe<OptionIdentifierInput>;
-};
-
-export type GetProductFeaturesCategoriesInput = {
-  includePurchaseOnlyFeatures: Scalars['Boolean']['input'];
-};
-
-export type GetProductSubscriptionEstimateForLineItemsInput = {
-  addons?: InputMaybe<Array<InputMaybe<CreateProductSubscriptionLineItemAddOnInput>>>;
-  plan: CreateProductSubscriptionLineItemPlanInput;
-};
-
-export type GetProductSubscriptionEstimateForUpsellInput = {
-  feature: ProductFeatureIdentifierInput;
-};
-
-export type GetProratedAmountInput = {
-  amount?: InputMaybe<Scalars['String']['input']>;
-  /** ServiceItemQuantityType */
-  billDate: Scalars['String']['input'];
-  clientId: Scalars['ID']['input'];
-  effectiveDate: Scalars['String']['input'];
-  endDate?: InputMaybe<Scalars['String']['input']>;
-  /** will be Deprecated */
-  frequency?: InputMaybe<ContractItemFrequencyInput>;
-  quantity?: InputMaybe<Scalars['String']['input']>;
-  quantityType?: InputMaybe<Scalars['String']['input']>;
-  subscriptionType?: InputMaybe<Scalars['String']['input']>;
-  unitPrice?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type GetProvisionRuleConditionMetaInput = {
-  isTemplate: Scalars['Boolean']['input'];
-  ruleEntityType: ProvisionRuleEntityType;
-};
-
-export type GetQuoteEventsInput = {
-  listInfo?: InputMaybe<ListInfoInput>;
-  quote: QuoteIdentifierInput;
-};
-
-export type GetReportDataInput = {
-  condition?: InputMaybe<Scalars['JSON']['input']>;
-  /** the following attributes are required for previewing data report */
-  entity?: InputMaybe<Scalars['String']['input']>;
-  groupBy?: InputMaybe<Array<InputMaybe<GroupByInput>>>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  pageSize?: InputMaybe<Scalars['Int']['input']>;
-  reportId?: InputMaybe<Scalars['ID']['input']>;
-  reportType: ReportType;
-  selectAttributes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type GetSalesInboxViewsCountInput = {
-  clientId?: InputMaybe<Scalars['ID']['input']>;
-  viewIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-};
-
-export type GetSubscriptionItemQuantityInput = {
-  /** ServiceItemUnitType */
-  assetView?: InputMaybe<ListViewIdentifierInput>;
-  client: ClientIdentifierInput;
-  contractServiceItem?: InputMaybe<ContractServiceItemIdentifierInput>;
-  sites?: InputMaybe<Array<InputMaybe<SiteIdentifierInput>>>;
-  unitType: Scalars['String']['input'];
-};
-
-export type GetTechnicianListInput = {
-  /** Used to filter the applicable technicians for the specified client organizations. It should be used when the company offers services to other client organizations. */
-  forOrganizations?: InputMaybe<Array<OrganizationIdentifierInput>>;
-  /** Used to filter the allowed technicians for the specified sites. */
-  forSites?: InputMaybe<Array<SiteIdentifierInput>>;
-  listInfo: ListInfoInput;
-};
-
-export type GetTicketApproverInput = {
-  client?: InputMaybe<OrganizationIdentifierInput>;
-  listInfo?: InputMaybe<ListInfoInput>;
-  roleType?: InputMaybe<RoleTypeEnum>;
-};
-
-export type GetVendorConversationContentFromTemplateInput = {
-  mailbox?: InputMaybe<MailboxIdentifierInput>;
-  template?: InputMaybe<NotificationTemplateIdentifierInput>;
-  workItem: WorkItemIdentifierInput;
-};
-
-export type GetVendorConversationListInput = {
-  /** WorkModule */
-  listInfo?: InputMaybe<ListInfoInput>;
-  module?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type GetVendorConversationThreadedContentInput = {
-  /** The parent conversation identifier */
-  conversation?: InputMaybe<ConversationIdentifierInput>;
-  workItem: WorkItemIdentifierInput;
-};
-
-export type GetViewsCountInput = {
-  condition?: InputMaybe<RuleConditionInput>;
-  viewIds: Array<Scalars['ID']['input']>;
-};
-
-export type Group = {
-  __typename?: 'Group';
-  /** TechnicianAutoAssignMethod */
-  accessAllClients?: Maybe<Scalars['Boolean']['output']>;
-  accessAllSites?: Maybe<Scalars['Boolean']['output']>;
-  clientList?: Maybe<Array<Maybe<Organization>>>;
-  description?: Maybe<Scalars['String']['output']>;
-  groupId: Scalars['ID']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  siteList?: Maybe<Array<Maybe<Site>>>;
-  techAutoAssignmentMethod?: Maybe<Scalars['String']['output']>;
-  userList?: Maybe<Array<Maybe<User>>>;
-};
-
-export type GroupByInput = {
-  attribute?: InputMaybe<Scalars['String']['input']>;
+/** Specifies the input required to fetch a task. */
+export type GetTaskInput = {
   /**
-   * It is used to paginate the records based on the group by column. It is possible when one group by applied.
-   * In case, if more than one metric is requested, make sure that first metric among them should be super set of other metrics.
+   * The task can be created under different entities such as Tickets, Projects, etc.,
+   * This specifies the entity under which the task is created.
+   * This input is mandatory.
    */
-  pagination?: InputMaybe<AggregationPaginationInput>;
-  /** It is used to sort the results based on group by attribute. */
-  recordsOrder?: InputMaybe<Scalars['String']['input']>;
+  module?: InputMaybe<TaskModule>;
   /**
-   * It is used to specify the attributes optionally whose values are returned in the response, in addition to the group by attribute.
-   * Note that the attributes specified here should be compatible with all the attributes used in the group by.
+   * The ID of the task.
+   * This input is mandatory.
    */
-  selectAttributes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  unit?: InputMaybe<Scalars['String']['input']>;
+  taskId: Scalars['ID']['input'];
 };
 
-export type GroupFlowAction = {
-  __typename?: 'GroupFlowAction';
-  actionOrder: Scalars['Int']['output'];
-  flowAction?: Maybe<FlowAction>;
+/** Specifies the input required to fetch a list of tasks. */
+export type GetTaskListInput = {
+  /** Specifies the list input to fetch multiple records. */
+  listInfo?: InputMaybe<ListInfoInput>;
+  /** Specifies the entity to filter out the tasks belongs to that entity. */
+  module?: InputMaybe<TaskModule>;
 };
 
-export type GroupInput = {
-  /** TechnicianAutoAssignMethod */
-  accessAllClients?: InputMaybe<Scalars['Boolean']['input']>;
-  accessAllSites?: InputMaybe<Scalars['Boolean']['input']>;
-  /** depricated */
-  addClientList?: InputMaybe<Array<InputMaybe<ClientInput>>>;
-  /** depricated */
-  addSites?: InputMaybe<Array<SiteIdentifierInput>>;
-  addUserList?: InputMaybe<Array<InputMaybe<UserInput>>>;
-  associateClients?: InputMaybe<Array<OrganizationIdentifierInput>>;
-  associateSites?: InputMaybe<Array<SiteIdentifierInput>>;
-  /** depricated */
-  associateUsers?: InputMaybe<Array<UserIdentifierInput>>;
-  /** depricated */
-  deleteClientList?: InputMaybe<Array<InputMaybe<ClientInput>>>;
-  /** depricated */
-  deleteSites?: InputMaybe<Array<SiteIdentifierInput>>;
-  /** depricated */
-  deleteUserList?: InputMaybe<Array<InputMaybe<UserInput>>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  disassociateClients?: InputMaybe<Array<OrganizationIdentifierInput>>;
-  disassociateSites?: InputMaybe<Array<SiteIdentifierInput>>;
-  disassociateUsers?: InputMaybe<Array<UserIdentifierInput>>;
-  groupId?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  techAutoAssignmentMethod?: InputMaybe<Scalars['String']['input']>;
+/** Specifies the input required to fetch worklog entries. */
+export type GetWorklogEntriesInput = {
+  /** Specifies the list input required to fetch multiple records, with conditions, pagination etc.. */
+  listInfo?: InputMaybe<ListInfoInput>;
+  /** The worklog can be created under different entities such as tickets, projects, etc. and this specifies the entity under which the worklog is created. */
+  module?: InputMaybe<WorkModule>;
 };
 
-export type Holiday = {
-  __typename?: 'Holiday';
-  day: Scalars['Int']['output'];
-  id: Scalars['ID']['output'];
-  month: Scalars['String']['output'];
-  name: Scalars['String']['output'];
+/** Specifies the input required to fetch a worklog. */
+export type GetWorklogInput = {
+  /**
+   * The worklog can be created under different entities like Tickets, Projects, etc.,
+   * Specifies the entity under which the worklog is created.
+   * This input is mandatory.
+   */
+  module: WorklogModule;
+  /**
+   * Specifies the ID of the worklog.
+   * This input is mandatory.
+   */
+  worklogId: Scalars['ID']['input'];
 };
 
-export type HolidayInput = {
-  day?: InputMaybe<Scalars['Int']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  month?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
+/** Specifies the input required to fetch a list of worklogs. */
+export type GetWorklogListInput = {
+  /** Specifies the entity used to filter out the worklogs belonging to that entity. */
+  module?: InputMaybe<WorklogModule>;
+  /** Specifies the ticket identifier to fetch worklogs that belong to that ticket. This input is mandatory if the module is TICKET. */
+  ticket?: InputMaybe<TicketIdentifierInput>;
 };
 
+/** The list of holidays. */
 export type HolidayList = {
   __typename?: 'HolidayList';
-  holidays?: Maybe<Array<Maybe<Holiday>>>;
+  /** The ID of the holiday list. */
   id: Scalars['ID']['output'];
+  /** The name of the holiday list. */
   name: Scalars['String']['output'];
-  years?: Maybe<Array<Maybe<Scalars['Int']['output']>>>;
 };
 
-export type HolidayListInput = {
-  addHolidays?: InputMaybe<Array<InputMaybe<HolidayInput>>>;
-  deleteHolidays?: InputMaybe<Array<InputMaybe<HolidayInput>>>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  updateHolidays?: InputMaybe<Array<InputMaybe<HolidayInput>>>;
-};
-
-export type HolidayListInputIdentifierInput = {
+/** Specifies the identifier input for the holiday list. */
+export type HolidayListIdentifierInput = {
+  /** The ID of the holiday list. */
   id: Scalars['ID']['input'];
 };
 
-export type HomePageWidget = {
-  __typename?: 'HomePageWidget';
-  chart?: Maybe<Chart>;
-  /** WidgetGroup */
-  listView?: Maybe<ListView>;
-  /** WidgetType */
-  widgetGroup: Scalars['String']['output'];
-  widgetId: Scalars['ID']['output'];
-  widgetType: Scalars['String']['output'];
-};
-
-export type HomePageWidgetList = {
-  __typename?: 'HomePageWidgetList';
-  homePageWidgets?: Maybe<Array<Maybe<HomePageWidget>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
-export type HostedPage = {
-  __typename?: 'HostedPage';
-  createdAt: Scalars['String']['output'];
-  embed: Scalars['Boolean']['output'];
-  expiresAt: Scalars['String']['output'];
-  id: Scalars['String']['output'];
-  state: Scalars['String']['output'];
-  type: Scalars['String']['output'];
-  url: Scalars['String']['output'];
-};
-
-export type HostedPageInput = {
-  addons?: InputMaybe<Array<InputMaybe<AddonInput>>>;
-  chargeBeePlanPriceId: Scalars['String']['input'];
-  hostedPageId?: InputMaybe<Scalars['String']['input']>;
-  quantity: Scalars['Int']['input'];
-};
-
+/** Contains details for a HOURS type SERVICE item */
 export type HourlyServiceTypeItem = {
   __typename?: 'HourlyServiceTypeItem';
+  /** Denotes whether the item is used in default when a work is logged */
   defaultItem: Scalars['Boolean']['output'];
+  /** Identifier of the item */
   itemId: Scalars['ID']['output'];
+  /** Denotes the value to which a HOURS item quantity must be rounded up to during computation */
   roundUpValue: Scalars['Int']['output'];
 };
 
-export type IpAsset = AssetBase & {
-  __typename?: 'IPAsset';
-  architecture?: Maybe<Scalars['String']['output']>;
-  assetClass?: Maybe<AssetClass>;
-  assetId?: Maybe<Scalars['ID']['output']>;
-  assetMake?: Maybe<AssetMake>;
-  assetModel?: Maybe<AssetModel>;
-  assetProtocolMapping?: Maybe<Array<Maybe<AssetProtocolMapping>>>;
-  /** AssetPlatformCategory */
-  associatedAssets?: Maybe<Scalars['JSON']['output']>;
-  biosVersion?: Maybe<Scalars['String']['output']>;
-  /** AdvanceRuleBuilder */
-  categoryAssignedStrategy?: Maybe<PolicyCategoryAssignedBy>;
-  client?: Maybe<Organization>;
-  credential?: Maybe<Array<Maybe<Credential>>>;
+/** Specifies the IT Documentation Class created in SuperOps.ai */
+export type ItDocumentationType = {
+  __typename?: 'ITDocumentationType';
+  /** Specifies the custom field information of the IT document category */
   customFields?: Maybe<Scalars['JSON']['output']>;
-  department?: Maybe<BusinessFunction>;
-  deviceType?: Maybe<Scalars['String']['output']>;
-  firmwareVersion?: Maybe<Scalars['String']['output']>;
-  hardwareVersion?: Maybe<Scalars['String']['output']>;
-  hostName?: Maybe<Scalars['String']['output']>;
-  installerMessage?: Maybe<Scalars['String']['output']>;
-  installerStatus?: Maybe<Scalars['String']['output']>;
-  ipAddress?: Maybe<Scalars['String']['output']>;
-  isProbe?: Maybe<Scalars['Boolean']['output']>;
-  loggedInUser?: Maybe<Scalars['String']['output']>;
-  macAddress?: Maybe<Scalars['String']['output']>;
-  maintenanceStatus?: Maybe<MaintenanceStatus>;
-  monitoringOptions?: Maybe<Scalars['JSON']['output']>;
-  monitoringStatus?: Maybe<Scalars['String']['output']>;
+  /** Description of the IT document category */
+  description?: Maybe<Scalars['String']['output']>;
+  /** Entity name of the IT document category */
+  entityName?: Maybe<Scalars['String']['output']>;
+  /** Last Updated Time of the IT Documentation Class */
+  lastUpdatedTime?: Maybe<Scalars['String']['output']>;
+  /** Name of the IT document category */
   name?: Maybe<Scalars['String']['output']>;
-  nextPolicyCategory?: Maybe<PolicyCategory>;
-  owner?: Maybe<User>;
-  platformCategory?: Maybe<Scalars['String']['output']>;
-  policyCategory?: Maybe<PolicyCategory>;
-  probeAsset?: Maybe<Scalars['JSON']['output']>;
-  publicIpAddress?: Maybe<Scalars['String']['output']>;
-  serialKey?: Maybe<Scalars['String']['output']>;
-  serialNumber?: Maybe<Scalars['String']['output']>;
-  site?: Maybe<Site>;
-  status?: Maybe<Scalars['String']['output']>;
-  sysUptime?: Maybe<Scalars['String']['output']>;
-  timeZone?: Maybe<Scalars['String']['output']>;
-  workstationInfo?: Maybe<WorkStationInfo>;
+  /** Type ID of the IT document category */
+  typeId?: Maybe<Scalars['ID']['output']>;
 };
 
-
-export type IpAssetAssociatedAssetsArgs = {
-  refEntityAttributes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type IpAssetCustomFieldsArgs = {
-  fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
+/** Specifies the identifier for denoting the parent custom field */
 export type IdentifierInput = {
   id: Scalars['ID']['input'];
 };
 
-export enum IdentifierName {
-  InvoiceIdentifier = 'INVOICE_IDENTIFIER',
-  ProjectIdentifier = 'PROJECT_IDENTIFIER',
-  QuoteIdentifier = 'QUOTE_IDENTIFIER',
-  TaskIdentifier = 'TASK_IDENTIFIER',
-  TicketIdentifier = 'TICKET_IDENTIFIER'
-}
-
-export type IdpSamlProviderDetail = {
-  __typename?: 'IdpSamlProviderDetail';
-  certificate?: Maybe<Scalars['String']['output']>;
-  idpLoginUrl?: Maybe<Scalars['String']['output']>;
-  postLogoutUrl?: Maybe<Scalars['String']['output']>;
-};
-
-export type IdpSamlProviderDetailInput = {
-  certificate?: InputMaybe<Scalars['String']['input']>;
-  idpLoginUrl?: InputMaybe<Scalars['String']['input']>;
-  postLogoutUrl?: InputMaybe<Scalars['String']['input']>;
-};
-
+/** The ticket's impact. */
 export type Impact = {
   __typename?: 'Impact';
+  /** The ID of the impact. */
   id: Scalars['ID']['output'];
+  /** The name of the impact. */
   name: Scalars['String']['output'];
 };
 
-export type InAppNotification = {
-  __typename?: 'InAppNotification';
-  alert?: Maybe<Alert>;
-  approval?: Maybe<Approval>;
-  clientConversation?: Maybe<Conversation>;
-  emailAddress?: Maybe<Scalars['String']['output']>;
-  event: InAppNotificationEvent;
-  /** deprecated */
-  initiatedBy?: Maybe<Scalars['String']['output']>;
-  mention?: Maybe<Mention>;
-  notificationId: Scalars['ID']['output'];
-  state?: Maybe<InAppNotificationState>;
-  task?: Maybe<Task>;
-  time: Scalars['String']['output'];
-  user?: Maybe<User>;
-  vendorConversation?: Maybe<Conversation>;
-  workItem?: Maybe<WorkItem>;
-};
-
-export enum InAppNotificationEvent {
-  AssetAlert = 'ASSET_ALERT',
-  ClientTechNewSalesEmail = 'CLIENT_TECH_NEW_SALES_EMAIL',
-  ClientTechQuoteApproval = 'CLIENT_TECH_QUOTE_APPROVAL',
-  ClientTechQuoteRejection = 'CLIENT_TECH_QUOTE_REJECTION',
-  ClientTechReqReply = 'CLIENT_TECH_REQ_REPLY',
-  TaskTechAssigned = 'TASK_TECH_ASSIGNED',
-  TaskTechDueToday = 'TASK_TECH_DUE_TODAY',
-  TaskTechOverdue = 'TASK_TECH_OVERDUE',
-  TechMention = 'TECH_MENTION',
-  TechVendorReply = 'TECH_VENDOR_REPLY',
-  TicketTechApprovalActionTaken = 'TICKET_TECH_APPROVAL_ACTION_TAKEN',
-  TicketTechApprovalStatus = 'TICKET_TECH_APPROVAL_STATUS',
-  TicketTechAssignment = 'TICKET_TECH_ASSIGNMENT',
-  TicketTechCreation = 'TICKET_TECH_CREATION',
-  TicketTechFrSlaEscalation = 'TICKET_TECH_FR_SLA_ESCALATION',
-  TicketTechGroupAssignment = 'TICKET_TECH_GROUP_ASSIGNMENT',
-  TicketTechNoteAdded = 'TICKET_TECH_NOTE_ADDED',
-  TicketTechReqReply = 'TICKET_TECH_REQ_REPLY',
-  TicketTechResSlaEscalation = 'TICKET_TECH_RES_SLA_ESCALATION',
-  TicketTechTechnicianApproval = 'TICKET_TECH_TECHNICIAN_APPROVAL'
-}
-
-export type InAppNotificationIdentifierInput = {
-  notificationId: Scalars['ID']['input'];
-};
-
-export type InAppNotificationList = {
-  __typename?: 'InAppNotificationList';
-  listInfo?: Maybe<ListInfo>;
-  notifications?: Maybe<Array<Maybe<InAppNotification>>>;
-};
-
-export enum InAppNotificationState {
-  New = 'NEW',
-  Read = 'READ',
-  Unread = 'UNREAD'
-}
-
-export type InitialConfiguration = {
-  __typename?: 'InitialConfiguration';
-  completed?: Maybe<Scalars['Boolean']['output']>;
-  configuration?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  mandatory?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type InstallerInfo = {
-  __typename?: 'InstallerInfo';
-  archPlaceholder?: Maybe<Scalars['String']['output']>;
-  /** OS */
-  customBuild?: Maybe<Scalars['Boolean']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  installerCommandDetails?: Maybe<Scalars['JSON']['output']>;
+/** Specifies the installer Information of a specific client-site */
+export type InstallerDetails = {
+  __typename?: 'InstallerDetails';
+  /** ID of the SuperOps Agent installer */
+  id?: Maybe<Scalars['String']['output']>;
+  /** Download URL of the SuperOps Agent */
   installerDownloadUrl?: Maybe<Scalars['String']['output']>;
+  /** Agent installer name */
   installerName?: Maybe<Scalars['String']['output']>;
+  /** OS type of the Installer */
   os?: Maybe<Scalars['String']['output']>;
 };
 
+/** specifies the input required to fetch Superops installer details */
 export type InstallerInfoInput = {
-  clientName: Scalars['String']['input'];
-  siteName: Scalars['String']['input'];
+  /** Client name of the Installer */
+  clientName?: InputMaybe<Scalars['String']['input']>;
+  /** Site name of the Installer */
+  siteName?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type InstallerPackage = {
-  __typename?: 'InstallerPackage';
-  arch?: Maybe<Scalars['String']['output']>;
-  installerDownloadUrl?: Maybe<Scalars['String']['output']>;
-  installerId?: Maybe<Scalars['String']['output']>;
-  installerName?: Maybe<Scalars['String']['output']>;
-  os?: Maybe<Os>;
-};
-
-export type Integration = {
-  __typename?: 'Integration';
-  activated?: Maybe<Scalars['Boolean']['output']>;
-  connectionStatus?: Maybe<Scalars['String']['output']>;
-  data?: Maybe<Scalars['JSON']['output']>;
-  deletionInProgress?: Maybe<Scalars['Boolean']['output']>;
-  integrationId?: Maybe<Scalars['String']['output']>;
-  /** IntegrationType */
-  integrationRefId?: Maybe<Scalars['ID']['output']>;
-  /** ConnectionStatus */
-  ownLicense?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type IntegrationAddOn = {
-  __typename?: 'IntegrationAddOn';
-  addOn?: Maybe<Scalars['String']['output']>;
-  addOnId?: Maybe<Scalars['ID']['output']>;
-  billingDetails?: Maybe<Scalars['JSON']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-  serviceCatalogItem?: Maybe<ServiceCatalogItemIdentifier>;
-  serviceItem?: Maybe<ServiceItemIdentifier>;
-};
-
-export type IntegrationAddOnDetails = {
-  __typename?: 'IntegrationAddOnDetails';
-  addOnDetails?: Maybe<IntegrationAddOn>;
-  clientConfig?: Maybe<Array<Maybe<ResellingClientConfig>>>;
-  itemConfig?: Maybe<Array<Maybe<ResellingItemConfig>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
-export type IntegrationAddOnInput = {
-  addClientConfigs?: InputMaybe<Array<InputMaybe<ResellingClientConfigInput>>>;
-  addOnId?: InputMaybe<Scalars['ID']['input']>;
-  deleteClientConfigs?: InputMaybe<Array<InputMaybe<ResellingClientConfigInput>>>;
-  enabled?: InputMaybe<Scalars['Boolean']['input']>;
-  serviceCatalogItem?: InputMaybe<ServiceCatalogItemIdentifierInput>;
-  serviceItem?: InputMaybe<ServiceItemIdentifierInput>;
-  updateClientConfigs?: InputMaybe<Array<InputMaybe<ResellingClientConfigInput>>>;
-};
-
+/** the response type for Integration Data Mapping Data */
 export type IntegrationDataMapping = {
   __typename?: 'IntegrationDataMapping';
+  /** Superops Item Id mapped with Third party item */
   superOpsId?: Maybe<Scalars['String']['output']>;
+  /** Third party item ID mapped with Superops item */
   tpItemId?: Maybe<Scalars['String']['output']>;
 };
 
-export type IntegrationIdentifierInput = {
-  integrationId?: InputMaybe<Scalars['String']['input']>;
-  /** IntegrationType */
-  integrationRefId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type IntegrationInput = {
-  activated?: InputMaybe<Scalars['Boolean']['input']>;
-  addTPMappingRules?: InputMaybe<Array<AddTpMappingRuleInput>>;
-  data?: InputMaybe<Scalars['JSON']['input']>;
-  deleteTPMappingRules?: InputMaybe<Array<TpMappingRuleIdentifierInput>>;
-  ownLicense?: InputMaybe<Scalars['Boolean']['input']>;
-  updateTPMappingRules?: InputMaybe<Array<UpdateTpMappingRuleInput>>;
-};
-
-export enum IntegrationSource {
-  Pax8 = 'PAX8',
-  SplashtopWorkFromHome = 'SPLASHTOP_WORK_FROM_HOME'
-}
-
 export type Invoice = {
   __typename?: 'Invoice';
+  /** The additional discount amount applied on the invoice. */
   additionalDiscount?: Maybe<Scalars['String']['output']>;
+  /** The additional discount rate applied on the invoice. */
   additionalDiscountRate?: Maybe<Scalars['String']['output']>;
-  additionalDiscountType?: Maybe<DiscountType>;
-  billingAddress?: Maybe<Scalars['String']['output']>;
-  client?: Maybe<Organization>;
-  conversationIds?: Maybe<Array<Maybe<Scalars['ID']['output']>>>;
-  conversationInfo?: Maybe<Array<Maybe<InvoiceConversationInfo>>>;
-  createdTime?: Maybe<Scalars['String']['output']>;
+  /** The client to whom the invoice is created. */
+  client?: Maybe<Scalars['JSON']['output']>;
+  /** The sum of discount amounts applied on each line items. */
   discountAmount?: Maybe<Scalars['String']['output']>;
-  discountRate?: Maybe<Scalars['String']['output']>;
-  displayId: Scalars['ID']['output'];
+  /** The system-generated, human-readable ID of the invoice. */
+  displayId: Scalars['String']['output'];
+  /**
+   * The due date of the invoice i.,e the invoice should be paid on or before the due date.
+   * Otherwise the invoice will be marked as overdue.
+   */
   dueDate?: Maybe<Scalars['String']['output']>;
-  emailOperationalStatus?: Maybe<OperationStatus>;
-  footer?: Maybe<Scalars['String']['output']>;
-  integratedAppInvoiceId?: Maybe<Scalars['String']['output']>;
+  /** The invoice creation date. */
   invoiceDate: Scalars['String']['output'];
+  /** The ID of the invoice */
   invoiceId: Scalars['ID']['output'];
-  invoicePaymentTerm?: Maybe<PaymentTerm>;
+  /** The payment term of the invoice. */
+  invoicePaymentTerm?: Maybe<Scalars['JSON']['output']>;
+  /** The list of line items. */
   items?: Maybe<Array<Maybe<InvoiceItem>>>;
-  lastPaymentError?: Maybe<Scalars['JSON']['output']>;
-  memo?: Maybe<Scalars['String']['output']>;
+  /** The notes about the invoice. */
   notes?: Maybe<Scalars['String']['output']>;
-  operationStatus?: Maybe<OperationStatus>;
+  /** The payment date of the invoice. */
   paymentDate?: Maybe<Scalars['String']['output']>;
   paymentLink?: Maybe<Scalars['String']['output']>;
-  paymentLinkToken?: Maybe<Scalars['String']['output']>;
-  paymentMethod?: Maybe<PaymentMethod>;
+  /** The payment method of the invoice. */
+  paymentMethod?: Maybe<Scalars['JSON']['output']>;
+  /** Denotes the comments, notes, or references related to a payment, providing additional context or information. */
   paymentReference?: Maybe<Scalars['String']['output']>;
-  pushPaymentToIntegratedAppError?: Maybe<Scalars['JSON']['output']>;
-  pushPaymentToIntegratedAppStatus?: Maybe<OperationStatus>;
-  pushedToIntegratedAppError?: Maybe<Scalars['JSON']['output']>;
-  pushedToIntegratedAppStatus?: Maybe<OperationStatus>;
-  quote?: Maybe<Quote>;
-  sendEmailError?: Maybe<Scalars['JSON']['output']>;
-  senderAddress?: Maybe<Scalars['String']['output']>;
+  /** Denotes whether the invoice has been sent to the client. */
   sentToClient?: Maybe<Scalars['Boolean']['output']>;
-  site?: Maybe<Site>;
-  status?: Maybe<Scalars['String']['output']>;
-  statusEnum?: Maybe<InvoiceStatusEnum>;
-  taxAmount?: Maybe<Scalars['String']['output']>;
-  taxDetails?: Maybe<Scalars['String']['output']>;
-  taxRate?: Maybe<Scalars['String']['output']>;
+  /** The client site to which the invoice is created. */
+  site?: Maybe<Scalars['JSON']['output']>;
+  /** The invoice status. */
+  statusEnum?: Maybe<InvoiceStatus>;
+  /** The list of tax line items. */
   taxes?: Maybe<Array<Maybe<InvoiceTaxItem>>>;
-  title?: Maybe<Scalars['String']['output']>;
+  /** The total amount of the invoice includes all the discounts and taxes. */
   totalAmount?: Maybe<Scalars['String']['output']>;
 };
 
-export type InvoiceConversationInfo = {
-  __typename?: 'InvoiceConversationInfo';
-  conversationId?: Maybe<Scalars['ID']['output']>;
-  viewedByClient?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type InvoiceConversationInput = {
-  conversation: ConversationInput;
-  invoiceId: Scalars['ID']['input'];
-};
-
+/** Specifies the identifier input for the invoice. */
 export type InvoiceIdentifierInput = {
+  /** The ID of the invoice. */
   invoiceId: Scalars['ID']['input'];
 };
 
+/** Denotes the line items on the invoice */
 export type InvoiceItem = {
   __typename?: 'InvoiceItem';
-  amount: Scalars['String']['output'];
+  /** The total amount of the line item, excluding tax i.,e (unitPrice * quantity) - discount */
+  amount?: Maybe<Scalars['String']['output']>;
+  /** The offered/billed date of the line item */
   billedDate: Scalars['String']['output'];
+  /** The details about the line item. */
   details?: Maybe<Scalars['String']['output']>;
+  /** The discount amount applied for the line item. */
   discountAmount?: Maybe<Scalars['String']['output']>;
+  /** The discount rate applied for the line item. */
   discountRate?: Maybe<Scalars['String']['output']>;
-  discountType?: Maybe<DiscountType>;
+  /** The invoice for the line item */
   invoice?: Maybe<Invoice>;
+  /** The ID of the invoice line item. */
   itemId: Scalars['ID']['output'];
-  itemOrder?: Maybe<Scalars['Int']['output']>;
-  offeredItem?: Maybe<OfferedItem>;
+  /** The quantity of the line item. */
   quantity: Scalars['String']['output'];
-  serviceCatalogItem?: Maybe<ServiceCatalogItem>;
-  serviceItem?: Maybe<ServiceItem>;
-  tax?: Maybe<Tax>;
+  /** The offered service item. */
+  serviceItem?: Maybe<Scalars['JSON']['output']>;
+  /** The applicable tax for the line item. */
+  tax?: Maybe<Scalars['JSON']['output']>;
+  /** Shows the tax amount applied for the line item. */
   taxAmount?: Maybe<Scalars['String']['output']>;
-  taxRate?: Maybe<Scalars['String']['output']>;
+  /** Specifies whether the line item is taxable or not. */
   taxable?: Maybe<Scalars['Boolean']['output']>;
+  /** Indicates the total amount for the line item. This includes the total of all the charges and the taxes. */
   totalAmount?: Maybe<Scalars['String']['output']>;
+  /** The unit price of the line item. */
   unitPrice: Scalars['String']['output'];
 };
 
-export type InvoiceItemInput = {
-  itemId: Scalars['ID']['input'];
-  offeredItemInput?: InputMaybe<OfferedItemInput>;
-};
-
+/** The response payload for a list of invoice items. */
 export type InvoiceItemList = {
   __typename?: 'InvoiceItemList';
+  /** The list of invoice items. */
   items?: Maybe<Array<Maybe<InvoiceItem>>>;
+  /** The details about the list */
   listInfo?: Maybe<ListInfo>;
 };
 
-export type InvoiceItemRefInput = {
-  itemId: Scalars['ID']['input'];
-};
-
+/** The response payload for list of invoices fetched. */
 export type InvoiceList = {
   __typename?: 'InvoiceList';
+  /** The list of invoices. */
   invoices?: Maybe<Array<Maybe<Invoice>>>;
+  /** The detail about the list. */
   listInfo?: Maybe<ListInfo>;
 };
 
-export enum InvoiceMetaSource {
-  ListView = 'LIST_VIEW',
-  Reporting = 'REPORTING'
-}
-
-export type InvoiceOfferedItemsInput = {
-  invoiceDate?: InputMaybe<Scalars['String']['input']>;
-  invoiceDueDate?: InputMaybe<Scalars['String']['input']>;
-  selectionInput: SelectionInput;
-};
-
-export type InvoicePaymentInput = {
-  invoiceId: Scalars['ID']['input'];
-  paymentMethod: Scalars['String']['input'];
-  /** PaymentMethod */
-  paymentMethodId: Scalars['String']['input'];
-};
-
-export type InvoiceSetting = {
-  __typename?: 'InvoiceSetting';
-  allowEmptyInvoice?: Maybe<Scalars['Boolean']['output']>;
-  attachPdf?: Maybe<Scalars['Boolean']['output']>;
-  autoPushInvoice?: Maybe<Scalars['Boolean']['output']>;
-  autoSendInvoice?: Maybe<Scalars['Boolean']['output']>;
-  generateSiteSpecific?: Maybe<Scalars['Boolean']['output']>;
-  ignoreConsumedItem?: Maybe<Scalars['Boolean']['output']>;
-  invoiceDueDays?: Maybe<Scalars['Int']['output']>;
-  invoicePaymentMethod?: Maybe<PaymentMethod>;
-  invoicePaymentTerm?: Maybe<PaymentTerm>;
-  invoiceSchedule?: Maybe<Scalars['JSON']['output']>;
-  invoiceTemplate?: Maybe<InvoiceTemplate>;
-  lastScheduleAt?: Maybe<Scalars['String']['output']>;
-  nextScheduleAt?: Maybe<Scalars['String']['output']>;
-  overriddenSetting?: Maybe<Array<Maybe<OverriddenBillingSetting>>>;
-  projectLineItemContent?: Maybe<Scalars['String']['output']>;
-  projectLineItemPlaceholdersUsed?: Maybe<Scalars['JSON']['output']>;
-  quoteTemplate?: Maybe<QuoteTemplate>;
-  salesTax?: Maybe<Tax>;
-  scheduleEnabled?: Maybe<Scalars['Boolean']['output']>;
-  sendTemplate?: Maybe<NotificationTemplate>;
-  settingId?: Maybe<Scalars['ID']['output']>;
-  subscriptionLineItemContent?: Maybe<Scalars['String']['output']>;
-  subscriptionLineItemPlaceholdersUsed?: Maybe<Scalars['JSON']['output']>;
-  taxExempted?: Maybe<Scalars['Boolean']['output']>;
-  ticketLineItemContent?: Maybe<Scalars['String']['output']>;
-  ticketLineItemPlaceholdersUsed?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type InvoiceSettingIdentifierInput = {
-  settingId: Scalars['ID']['input'];
-};
-
-export type InvoiceSettingInput = {
-  allowEmptyInvoice?: InputMaybe<Scalars['Boolean']['input']>;
-  attachPdf?: InputMaybe<Scalars['Boolean']['input']>;
-  autoPushInvoice?: InputMaybe<Scalars['Boolean']['input']>;
-  autoSendInvoice?: InputMaybe<Scalars['Boolean']['input']>;
-  generateSiteSpecific?: InputMaybe<Scalars['Boolean']['input']>;
-  invoiceDueDays?: InputMaybe<Scalars['Int']['input']>;
-  invoicePaymentMethod?: InputMaybe<PaymentMethodInput>;
-  invoicePaymentTerm?: InputMaybe<PaymentTermIdentifierInput>;
-  invoiceSchedule?: InputMaybe<Scalars['JSON']['input']>;
-  projectLineItemContent?: InputMaybe<Scalars['String']['input']>;
-  projectLineItemPlaceholdersUsed?: InputMaybe<Scalars['JSON']['input']>;
-  salesTax?: InputMaybe<TaxInput>;
-  sendTemplate?: InputMaybe<NotificationTemplateInput>;
-  taxExempted?: InputMaybe<Scalars['Boolean']['input']>;
-  ticketLineItemContent?: InputMaybe<Scalars['String']['input']>;
-  ticketLineItemPlaceholdersUsed?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-export type InvoiceStatus = {
-  __typename?: 'InvoiceStatus';
-  constant?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  statusId: Scalars['ID']['output'];
-};
-
-export enum InvoiceStatusEnum {
+/** Specifies the status of the invoice. */
+export enum InvoiceStatus {
+  /** Denotes that the invoice has been finalized. The invoice is moved to this status when it is sent to the client or synced with bookkeeping tools such as QuickBooks or Xero. */
   Approved = 'APPROVED',
+  /** Denotes that the invoice has been created. */
   Draft = 'DRAFT',
-  InGeneration = 'IN_GENERATION',
+  /** Denotes that the invoice has not paid on or before the due date. */
   Overdue = 'OVERDUE',
+  /** Denotes that the invoice has been paid. */
   Paid = 'PAID',
+  /** Denotes that the invoice payment is in progress. */
   PaymentInProgress = 'PAYMENT_IN_PROGRESS',
+  /** Denotes that the invoice has been marked as void. */
   Void = 'VOID'
 }
 
-export type InvoiceSummary = {
-  __typename?: 'InvoiceSummary';
-  pendingInvoiceAmount?: Maybe<Scalars['String']['output']>;
-  totalRevenueAmount?: Maybe<Scalars['String']['output']>;
-};
-
+/** The invoice tax line item. */
 export type InvoiceTaxItem = {
   __typename?: 'InvoiceTaxItem';
+  /** Id of the tax Item. */
   id: Scalars['ID']['output'];
-  rate: TaxRate;
-  tax: Tax;
+  /** The rate under a tax. */
+  rate: Scalars['JSON']['output'];
+  /** The tax. The actual type of this field is Tax. This field returns taxId and name fields of Tax as JSON. */
+  tax: Scalars['JSON']['output'];
+  /** The tax amount. */
   taxAmount: Scalars['String']['output'];
+  /** The rate of the tax. */
   taxRate: Scalars['String']['output'];
+  /** The taxable amount. */
   taxableAmount: Scalars['String']['output'];
 };
 
-export type InvoiceTemplate = {
-  __typename?: 'InvoiceTemplate';
-  footer?: Maybe<Scalars['String']['output']>;
-  layoutConfiguration?: Maybe<Scalars['JSON']['output']>;
-  memo?: Maybe<Scalars['String']['output']>;
-  preferences?: Maybe<Scalars['JSON']['output']>;
-  templateId?: Maybe<Scalars['ID']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+/** Specifies the IT document Record Details */
+export type ItDocumentation = {
+  __typename?: 'ItDocumentation';
+  /** Client Details of the IT document record */
+  client?: Maybe<Scalars['JSON']['output']>;
+  /** Custom field details of the IT document record */
+  customFields?: Maybe<Scalars['JSON']['output']>;
+  /** ID of the IT Document */
+  itDocId: Scalars['ID']['output'];
+  /** Name of the IT document record */
+  name?: Maybe<Scalars['String']['output']>;
+  /** Site details of the IT document record */
+  site?: Maybe<Scalars['JSON']['output']>;
 };
 
-export type InvoiceTemplateIdentifierInput = {
-  templateId: Scalars['ID']['input'];
+
+/** Specifies the IT document Record Details */
+export type ItDocumentationCustomFieldsArgs = {
+  fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type LabourRevenue = {
-  __typename?: 'LabourRevenue';
-  effectiveRevenue: Scalars['String']['output'];
-  revenue: Scalars['String']['output'];
+/** Specifies the identifier input for the IT Document. */
+export type ItDocumentationIdentifierInput = {
+  /** The ID of the IT Document. */
+  itDocId: Scalars['ID']['input'];
 };
 
+/** Specifies the list of IT Documents that are fetched */
+export type ItDocumentationList = {
+  __typename?: 'ItDocumentationList';
+  /** list of IT documents */
+  documents?: Maybe<Array<Maybe<ItDocumentation>>>;
+  /** The detail about the list. */
+  listInfo?: Maybe<ListInfo>;
+};
+
+/** specifies the input required to fetch a list of IT documents under one type ID */
+export type ItDocumentationListInput = {
+  /** list info details */
+  listInfo?: InputMaybe<ListInfoInput>;
+  /** type ID of the IT document */
+  typeId?: InputMaybe<Scalars['ID']['input']>;
+};
+
+/** Displays details about the list when multiple records are fetched. */
 export type ListInfo = {
   __typename?: 'ListInfo';
+  /** Filter condition. */
   condition?: Maybe<Scalars['JSON']['output']>;
-  cursor?: Maybe<Cursor>;
+  /** Denotes whether more number of records still present during pagination. */
   hasMore?: Maybe<Scalars['Boolean']['output']>;
-  nextPageKey?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** The page number starts from 1 during pagination. */
   page?: Maybe<Scalars['Int']['output']>;
+  /** The maximum number of records per page. */
   pageSize?: Maybe<Scalars['Int']['output']>;
-  prevPageKey?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** Sort definition. */
   sort?: Maybe<Array<Maybe<Sort>>>;
+  /** Denotes the total number of available records. */
   totalCount?: Maybe<Scalars['Int']['output']>;
-  view?: Maybe<ListView>;
 };
 
+/** Specifies the input required to fetch multiple records. */
 export type ListInfoInput = {
+  /** Specifies the filter condition. */
   condition?: InputMaybe<RuleConditionInput>;
-  cursor?: InputMaybe<CursorInput>;
-  nextPageKey?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specifies the page number for pagination. */
   page?: InputMaybe<Scalars['Int']['input']>;
+  /** Specifies the maximum number of records per page for pagination. */
   pageSize?: InputMaybe<Scalars['Int']['input']>;
-  prevPageKey?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specifies the sorting. */
   sort?: InputMaybe<Array<InputMaybe<SortInput>>>;
-  view?: InputMaybe<ListViewInput>;
-};
-
-export type ListView = {
-  __typename?: 'ListView';
-  customView: Scalars['Boolean']['output'];
-  displayIcon?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  labelKey?: Maybe<Scalars['String']['output']>;
-  module?: Maybe<Scalars['String']['output']>;
-  name: Scalars['String']['output'];
-  shared: Scalars['Boolean']['output'];
-  systemViewProperty?: Maybe<Scalars['String']['output']>;
-  viewCondition: Scalars['JSON']['output'];
-  viewSubType?: Maybe<Scalars['String']['output']>;
-};
-
-export type ListViewIdentifierInput = {
-  id: Scalars['ID']['input'];
-};
-
-export type ListViewInput = {
-  displayIcon?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  module?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  shared?: InputMaybe<Scalars['Boolean']['input']>;
-  viewCondition?: InputMaybe<RuleConditionInput>;
-  viewSubType?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ListViewRecordsCount = {
-  __typename?: 'ListViewRecordsCount';
-  count?: Maybe<Scalars['Int']['output']>;
-  viewId: Scalars['ID']['output'];
 };
 
 export type LogInContext = {
   __typename?: 'LogInContext';
-  customer?: Maybe<CustomerDetail>;
-  hqSiteContext?: Maybe<SiteContext>;
-  organizationContext?: Maybe<OrganizationContext>;
-  rmmAppProperties?: Maybe<Scalars['JSON']['output']>;
-  subscriptionContext?: Maybe<SubscriptionContext>;
-  /** Logged-in user. This will be returned only if the request includes user context. */
-  user?: Maybe<User>;
-};
-
-export type LoggedInUserAsApprover = {
-  __typename?: 'LoggedInUserAsApprover';
-  ticketPermission?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type LoggedInUserAsFollower = {
-  __typename?: 'LoggedInUserAsFollower';
-  ticketPermission?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type MspCompany = {
-  __typename?: 'MSPCompany';
-  businessHour?: Maybe<Array<Maybe<BusinessHour>>>;
-  canAlterSubDomain?: Maybe<Scalars['Boolean']['output']>;
-  city?: Maybe<Scalars['String']['output']>;
-  contactList?: Maybe<Array<Maybe<User>>>;
-  contactNumber?: Maybe<Scalars['String']['output']>;
-  countryCode?: Maybe<Scalars['String']['output']>;
-  currency?: Maybe<Scalars['String']['output']>;
-  customDomain?: Maybe<Scalars['String']['output']>;
-  customDomainAlias?: Maybe<Scalars['String']['output']>;
-  customDomainStatus?: Maybe<Scalars['String']['output']>;
-  customerId: Scalars['ID']['output'];
-  dateFormat?: Maybe<Scalars['String']['output']>;
-  emailSignature?: Maybe<Scalars['String']['output']>;
-  favIconFileName?: Maybe<Scalars['String']['output']>;
-  holidayList?: Maybe<HolidayList>;
-  language?: Maybe<Scalars['String']['output']>;
-  line1?: Maybe<Scalars['String']['output']>;
-  line2?: Maybe<Scalars['String']['output']>;
-  line3?: Maybe<Scalars['String']['output']>;
-  /** CustomDomainStatus */
-  logoFileName?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  portalDomain?: Maybe<Scalars['String']['output']>;
-  portalDomains?: Maybe<Array<Maybe<PortalDomain>>>;
-  postalCode?: Maybe<Scalars['String']['output']>;
-  rmmAppProperties?: Maybe<Scalars['JSON']['output']>;
-  senderName?: Maybe<Scalars['String']['output']>;
-  stateCode?: Maybe<Scalars['String']['output']>;
-  subDomain?: Maybe<Scalars['String']['output']>;
-  timeFormat?: Maybe<Scalars['String']['output']>;
-  timezoneCode?: Maybe<Scalars['String']['output']>;
-  working24x7?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type MailConfigurationRecord = {
-  __typename?: 'MailConfigurationRecord';
-  /** RecordType */
-  host: Scalars['String']['output'];
-  recordType?: Maybe<Scalars['String']['output']>;
-  value?: Maybe<Scalars['String']['output']>;
-};
-
-export type MailProviderConfig = {
-  __typename?: 'MailProviderConfig';
-  boxId: Scalars['ID']['output'];
-  customServer?: Maybe<Scalars['Boolean']['output']>;
-  customServerAccountSyncState?: Maybe<CustomMailServerAccountSyncState>;
-  customServerProvider?: Maybe<Scalars['String']['output']>;
-  customServerType?: Maybe<CustomMailServerType>;
-  imapHost?: Maybe<Scalars['String']['output']>;
-  imapPort?: Maybe<Scalars['Int']['output']>;
-  priority?: Maybe<Scalars['Int']['output']>;
-  providerConfigId: Scalars['ID']['output'];
-  smtpHost?: Maybe<Scalars['String']['output']>;
-  smtpPort?: Maybe<Scalars['Int']['output']>;
-  sslRequired?: Maybe<Scalars['Boolean']['output']>;
-  userName?: Maybe<Scalars['String']['output']>;
-};
-
-export type MailSenderConfiguration = {
-  __typename?: 'MailSenderConfiguration';
-  verificationRecords?: Maybe<Array<Maybe<MailConfigurationRecord>>>;
-};
-
-export type MailSetting = {
-  __typename?: 'MailSetting';
-  conversationOnBehalfOf?: Maybe<Scalars['String']['output']>;
-  /** ReplyToType */
-  incomingEmailAddress?: Maybe<Scalars['String']['output']>;
-  /** MailSettingsType */
-  replyTo?: Maybe<Scalars['String']['output']>;
-  replyToType?: Maybe<Scalars['String']['output']>;
-  /** deprecated */
-  type: Scalars['String']['output'];
-};
-
-export type MailSettingsConfiguration = {
-  __typename?: 'MailSettingsConfiguration';
-  isDomainVerified?: Maybe<Scalars['Boolean']['output']>;
-  mailSettings?: Maybe<Array<MailSetting>>;
-  /** deprecated */
-  records?: Maybe<Array<MailConfigurationRecord>>;
-};
-
-export type Mailbox = {
-  __typename?: 'Mailbox';
-  boxId: Scalars['ID']['output'];
-  /** ConversationOnBehalf */
-  client?: Maybe<Organization>;
-  conversationOnBehalfOf?: Maybe<Scalars['String']['output']>;
-  /** Deprecated */
-  customServer?: Maybe<Scalars['Boolean']['output']>;
-  customServerAccountSyncState?: Maybe<CustomMailServerAccountSyncState>;
-  customServerOutgoingOnly?: Maybe<Scalars['Boolean']['output']>;
-  customServerType?: Maybe<CustomMailServerType>;
-  defaultBox?: Maybe<Scalars['Boolean']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  emailSignature?: Maybe<Scalars['String']['output']>;
-  hasAdvancedConfiguration?: Maybe<Scalars['Boolean']['output']>;
-  imapHost?: Maybe<Scalars['String']['output']>;
-  /** Deprecated */
-  imapPort?: Maybe<Scalars['Int']['output']>;
-  /** MailSettingsType */
-  incomingAddress?: Maybe<Scalars['String']['output']>;
-  /** Deprecated */
-  mailProviderConfigs?: Maybe<Array<Maybe<MailProviderConfig>>>;
-  name?: Maybe<Scalars['String']['output']>;
-  /** ConversationOnBehalf -> Deprecated */
-  onBehalfOf?: Maybe<Scalars['String']['output']>;
-  outgoingAddress?: Maybe<Scalars['String']['output']>;
-  outgoingAddressType: Scalars['String']['output'];
-  outgoingDomainVerified?: Maybe<Scalars['Boolean']['output']>;
-  /** OutgoingAddressType */
-  senderConfiguration?: Maybe<MailSenderConfiguration>;
-  senderName?: Maybe<Scalars['String']['output']>;
-  site?: Maybe<Site>;
-  /** Deprecated */
-  smtpHost?: Maybe<Scalars['String']['output']>;
-  /** Deprecated */
-  smtpPort?: Maybe<Scalars['Int']['output']>;
-  /** Deprecated */
-  sslRequired?: Maybe<Scalars['Boolean']['output']>;
-  systemBox?: Maybe<Scalars['Boolean']['output']>;
-  techGroup?: Maybe<Group>;
-  type: Scalars['String']['output'];
-  /** Deprecated */
-  userName?: Maybe<Scalars['String']['output']>;
-};
-
-export type MailboxIdentifierInput = {
-  boxId: Scalars['ID']['input'];
-};
-
-export type MaintenanceMode = {
-  __typename?: 'MaintenanceMode';
-  assetCount?: Maybe<Scalars['Int']['output']>;
-  createdBy?: Maybe<Scalars['ID']['output']>;
-  createdTime: Scalars['String']['output'];
-  maintenanceDetail: Scalars['JSON']['output'];
-  maintenanceEnds?: Maybe<Scalars['String']['output']>;
-  maintenanceId: Scalars['ID']['output'];
-  maintenanceStarts?: Maybe<Scalars['String']['output']>;
-  mode: Mode;
-  scope: ScopeEnum;
-  status: StatusEnum;
-  title: Scalars['String']['output'];
-  updatedBy?: Maybe<Scalars['ID']['output']>;
-  updatedTime: Scalars['String']['output'];
-};
-
-export type MaintenanceScheduleConfig = {
-  __typename?: 'MaintenanceScheduleConfig';
-  maintenanceInfo?: Maybe<MaintenanceMode>;
-  scheduleDetail?: Maybe<Scalars['JSON']['output']>;
-};
-
-export enum MaintenanceStatus {
-  Active = 'ACTIVE',
-  Inactive = 'INACTIVE'
-}
-
-export type MappingObject = {
-  __typename?: 'MappingObject';
-  details?: Maybe<Scalars['JSON']['output']>;
-  id: Scalars['ID']['output'];
-  name: Scalars['String']['output'];
-  parentDetails?: Maybe<ParentDetailsDto>;
-};
-
-export type MappingObjectInput = {
-  details?: InputMaybe<Scalars['JSON']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type MarkInvoicesAsPaidInput = {
-  paymentDate: Scalars['String']['input'];
-  paymentMethod: PaymentMethodIdentifierInput;
-  paymentReference: Scalars['String']['input'];
-  selectionInput: SelectionInput;
-};
-
-export type Mention = {
-  __typename?: 'Mention';
-  mentionId: Scalars['ID']['output'];
-  note?: Maybe<Note>;
-  projectConversation?: Maybe<ProjectConversation>;
-  /** MentionEntityType */
-  time: Scalars['String']['output'];
-  type: Scalars['String']['output'];
-};
-
-export type MentionList = {
-  __typename?: 'MentionList';
-  listInfo?: Maybe<ListInfo>;
-  mentions?: Maybe<Array<Maybe<Mention>>>;
-};
-
-export enum MetricCategory {
-  Disk = 'DISK',
-  Eventlog = 'EVENTLOG',
-  File = 'FILE',
-  Folder = 'FOLDER',
-  General = 'GENERAL',
-  Hardware = 'HARDWARE',
-  Log = 'LOG',
-  Memory = 'MEMORY',
-  Network = 'NETWORK',
-  Others = 'OTHERS',
-  Process = 'PROCESS',
-  Processors = 'PROCESSORS',
-  Service = 'SERVICE',
-  Software = 'SOFTWARE',
-  User = 'USER'
-}
-
-export enum MetricDataType {
-  Arrayofjsonarray = 'ARRAYOFJSONARRAY',
-  Decimal = 'DECIMAL',
-  Integer = 'INTEGER',
-  Json = 'JSON',
-  Jsonarray = 'JSONARRAY',
-  String = 'STRING',
-  Text = 'TEXT',
-  Timestamp = 'TIMESTAMP'
-}
-
-export type MetricInput = {
-  attribute?: InputMaybe<Scalars['String']['input']>;
-  /** MetricFunction */
-  denominator?: InputMaybe<MetricPercentageDenominatorType>;
-  filterCondition?: InputMaybe<Scalars['JSON']['input']>;
-  metricFunction?: InputMaybe<Scalars['String']['input']>;
-  metricId?: InputMaybe<Scalars['ID']['input']>;
-  /** SortOrder */
-  metricOrder?: InputMaybe<Scalars['Int']['input']>;
-  metricUnit?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  /**
-   * It can be used to sort the results based on one metric. In case multiple metrics are requested,
-   * ensure that the metric with an order should be a superset, i.e., all other metrics should not have more records
-   * than this metric in the result.
-   */
-  recordsOrder?: InputMaybe<Scalars['String']['input']>;
-};
-
-export enum MetricPercentageDenominatorType {
-  Filter = 'FILTER',
-  Group = 'GROUP'
-}
-
-export enum MetricUnits {
-  Bps = 'Bps',
-  Bytes = 'Bytes',
-  GBps = 'GBps',
-  Gbps = 'Gbps',
-  Kb = 'KB',
-  Kbps = 'Kbps',
-  Mb = 'MB',
-  MBps = 'MBps',
-  Mhz = 'MHZ',
-  Mbps = 'Mbps',
-  Millis = 'Millis',
-  None = 'NONE',
-  Percent = 'PERCENT',
-  Tb = 'TB',
-}
-
-export type Metrics = {
-  __typename?: 'Metrics';
-  category?: Maybe<MetricCategory>;
-  dataFormat?: Maybe<MetricDataType>;
-  description?: Maybe<Scalars['String']['output']>;
-  metricId?: Maybe<Scalars['ID']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  pollInterval?: Maybe<Scalars['String']['output']>;
-  state?: Maybe<State>;
-  unit?: Maybe<MetricUnits>;
-};
-
-export type Milestone = {
-  __typename?: 'Milestone';
-  actualEndDate?: Maybe<Scalars['String']['output']>;
-  blockedTasks?: Maybe<Scalars['Int']['output']>;
-  completedTasks?: Maybe<Scalars['Int']['output']>;
-  inProgressTasks?: Maybe<Scalars['Int']['output']>;
-  milestoneId: Scalars['ID']['output'];
-  milestoneOrder?: Maybe<Scalars['Int']['output']>;
-  name: Scalars['String']['output'];
-  overdueTasks?: Maybe<Scalars['Int']['output']>;
-  plannedTasks?: Maybe<Scalars['Int']['output']>;
-  status: Scalars['String']['output'];
-  totalTasks?: Maybe<Scalars['Int']['output']>;
-};
-
-export enum Mode {
-  Immediate = 'IMMEDIATE',
-  Schedule = 'SCHEDULE'
-}
-
-export type ModuleListView = {
-  __typename?: 'ModuleListView';
-  module?: Maybe<Scalars['String']['output']>;
-  views?: Maybe<Array<Maybe<ListView>>>;
+  /** Logged-in user. */
+  user?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addACHAccount?: Maybe<AchAccount>;
-  addContractServiceItem?: Maybe<ContractServiceItem>;
+  /** Creates an alert for an asset */
+  createAlert?: Maybe<Alert>;
+  /** Creates new ticket categories. */
+  createCategories?: Maybe<Array<Maybe<Category>>>;
+  /** Creates new ticket causes. */
+  createCauses?: Maybe<Array<Maybe<Cause>>>;
   /**
-   * updateGroupUsers(input:  GroupsInput): Groups
-   * updateGroupPermissions(input: GroupsInput): Groups
-   * deleteGroup(groupId: String): Boolean
-   * updateGroup(input: GroupsInput): Groups
+   * Creates a client.
+   * @deprecated(reason: "Use 'createClientV2' instead.")
    */
-  addHolidayList?: Maybe<HolidayList>;
-  /**
-   * deprecated
-   *     associateUnknownEmailToClient(clientId: ID!, unknownEmailIds: [ID!]!): Boolean
-   */
-  addIntegration?: Maybe<Integration>;
-  /** Integration v2 */
-  addIntegrationV2?: Maybe<Integration>;
-  addMailProviderConfig?: Maybe<MailProviderConfig>;
-  addOrUpdatePaymentSource?: Maybe<HostedPage>;
-  addReservedSubDomains?: Maybe<Array<Maybe<ReservedSubDomain>>>;
-  addRole?: Maybe<Role>;
-  addSite?: Maybe<Site>;
-  /** addGroup(input:GroupsInput): Groups */
-  addTechnicianGroup?: Maybe<Group>;
-  /** View APIs */
-  addView?: Maybe<ListView>;
-  approveOfferedItems?: Maybe<Array<Maybe<OfferedItem>>>;
-  approveQuote?: Maybe<Scalars['Boolean']['output']>;
-  associatePolicySetMappings?: Maybe<Scalars['Boolean']['output']>;
-  bulkDeleteDownloads?: Maybe<Scalars['Boolean']['output']>;
-  cancelSubscription?: Maybe<Scalars['Boolean']['output']>;
-  checkUserEmailAddressAvailability?: Maybe<UserEmailAddressAvailability>;
-  clearDemoData?: Maybe<Scalars['Boolean']['output']>;
-  clearStickyNote?: Maybe<Scalars['Boolean']['output']>;
-  /** Deprecated, Use confirmIntegratedPaymentMethod instead */
-  confirmAddPaymentType?: Maybe<Scalars['Boolean']['output']>;
-  confirmIntegratedPaymentMethod?: Maybe<Scalars['Boolean']['output']>;
-  confirmInvoicePayment?: Maybe<Scalars['Boolean']['output']>;
-  confirmPayment?: Maybe<Scalars['Boolean']['output']>;
-  convertUnknownEmailToClientConversation?: Maybe<Scalars['Boolean']['output']>;
-  convertUnknownEmailsToClientConversation?: Maybe<Scalars['Boolean']['output']>;
-  createAIFeature?: Maybe<AiFeature>;
-  createAIFeatureFeedback?: Maybe<AiFeatureFeedback>;
-  createAddress?: Maybe<Address>;
-  createBillingContractTemplate?: Maybe<ContractTemplate>;
-  createBillingTemplate?: Maybe<BillingTemplate>;
-  createBusinessFunction?: Maybe<BusinessFunction>;
-  createChart?: Maybe<Chart>;
-  createClient?: Maybe<Organization>;
-  createClientBillingContract?: Maybe<ClientContract>;
-  createClientContract?: Maybe<ClientContractDetail>;
-  createClientContractFromBillingTemplate?: Maybe<Scalars['Boolean']['output']>;
-  createClientConversation?: Maybe<Conversation>;
-  createClientProvisionRule?: Maybe<ProvisionRule>;
-  createClientSCIMConfiguration?: Maybe<Array<Maybe<ScimConfiguration>>>;
-  createClientSite?: Maybe<Site>;
-  createClientUser?: Maybe<User>;
-  /** Deprecated, Use updateClientUser instead */
-  createClientUserAssociations?: Maybe<Array<Maybe<UserAssociation>>>;
-  createClientUserGroup?: Maybe<Group>;
-  createCompanySCIMConfiguration?: Maybe<ScimConfiguration>;
-  createCompanySite?: Maybe<Site>;
-  createCompanyUser?: Maybe<User>;
-  createCompanyUsers?: Maybe<Array<Maybe<User>>>;
-  createContractTemplate?: Maybe<ClientContractTemplate>;
-  createCustomField?: Maybe<CustomField>;
-  /**
-   * addUser(input:UserInput): User
-   * createUser(input: UserInput): User
-   */
-  createEmployee?: Maybe<User>;
-  createEmployees?: Maybe<Array<Maybe<User>>>;
-  /** use createFieldV2 instead */
+  createClient?: Maybe<Client>;
+  /** Creates a new usage based client contract. */
+  createClientContract: Scalars['ID']['output'];
+  /** Creates a client custom field. */
+  createClientCustomField?: Maybe<CustomField>;
+  /** Creates a client site. */
+  createClientSite?: Maybe<ClientSite>;
+  /** Creates a new client user. */
+  createClientUser?: Maybe<ClientUser>;
+  /** Creates client user associations */
+  createClientUserAssociations?: Maybe<Array<Maybe<ClientUserAssociation>>>;
+  /** Creates a client user custom field. */
+  createClientUserCustomField?: Maybe<CustomField>;
+  /** Creates a client. */
+  createClientV2?: Maybe<Client>;
+  /** Creates a new field. */
   createField?: Maybe<Field>;
-  createFieldV2?: Maybe<Field>;
-  createInvoice?: Maybe<Invoice>;
-  createInvoiceFromQuote?: Maybe<Invoice>;
-  createInvoiceTemplate?: Maybe<InvoiceTemplate>;
-  createMailbox?: Maybe<Mailbox>;
-  createNotificationTemplate?: Maybe<NotificationTemplate>;
-  createProductFeatureCategories?: Maybe<Array<Maybe<ProductFeatureCategory>>>;
-  createProductFeatures?: Maybe<Array<Maybe<ProductFeature>>>;
-  createProvisionRuleFromTemplate?: Maybe<Scalars['Boolean']['output']>;
-  createProvisionRuleTemplate?: Maybe<ProvisionRule>;
-  createPurchaseSubscriptionConfiguration?: Maybe<HostedPage>;
+  /** Creates a new IT document record. */
+  createItDocumentation?: Maybe<ItDocumentation>;
+  /** Creates a quote. */
   createQuote?: Maybe<Quote>;
-  createQuoteTemplate?: Maybe<QuoteTemplate>;
-  createReport?: Maybe<Report>;
-  createSCIMConfiguration?: Maybe<Array<Maybe<ScimConfiguration>>>;
+  /** Creates a new item in the Products and Services catalog */
   createServiceCatalogItem?: Maybe<ServiceCatalogItem>;
+  /** Creates a new service category in the service catalog. */
   createServiceCategory?: Maybe<ServiceCategory>;
+  /**
+   * Creates a new service item in the service catalog.
+   * @deprecated Use createServiceCatalogItem
+   */
   createServiceItem?: Maybe<ServiceItem>;
+  /** Creates new ticket statuses. */
+  createStatus?: Maybe<Array<Maybe<Status>>>;
+  /** Creates a task */
+  createTask?: Maybe<Task>;
+  /** Creates a new tax rate. */
   createTax?: Maybe<Tax>;
-  /** Vendor Conversations */
-  createVendorConversation?: Maybe<Conversation>;
-  /** webhookSubscription APIs */
+  /** Creates a new technician. */
+  createTechnician?: Maybe<Technician>;
+  /** Creates a new ticket */
+  createTicket?: Maybe<Ticket>;
+  /** Creates a new ticket conversation. */
+  createTicketConversation?: Maybe<TicketConversation>;
+  /**
+   * Creates a ticket custom field.
+   * @deprecated Use CreateField API
+   */
+  createTicketCustomField?: Maybe<CustomField>;
+  /** Creates a new ticket note. */
+  createTicketNote?: Maybe<Note>;
   createWebhookSubscription?: Maybe<WebhookSubscription>;
-  deleteAIFeature?: Maybe<Scalars['ID']['output']>;
-  deleteBillingContractTemplate?: Maybe<Scalars['Boolean']['output']>;
-  deleteBillingTemplate?: Maybe<Scalars['Boolean']['output']>;
-  deleteBusinessFunctions?: Maybe<Array<Maybe<Scalars['ID']['output']>>>;
-  deleteChart?: Maybe<Scalars['ID']['output']>;
-  deleteCharts?: Maybe<Array<Maybe<Scalars['ID']['output']>>>;
-  deleteClientAttachments?: Maybe<Scalars['Boolean']['output']>;
-  deleteClientContract?: Maybe<Scalars['Boolean']['output']>;
-  deleteClientSites?: Maybe<Array<Maybe<Scalars['ID']['output']>>>;
-  deleteClientUser?: Maybe<Scalars['Boolean']['output']>;
-  /** This mutation can be used to delete the client user associations along with the associated user if that user doesn't have any associations. */
-  deleteClientUserAssociations?: Maybe<Scalars['Boolean']['output']>;
-  deleteCompanySites?: Maybe<Array<Maybe<Scalars['ID']['output']>>>;
-  deleteCompanyUsers?: Maybe<Scalars['Boolean']['output']>;
-  deleteContractTemplate?: Maybe<Scalars['ID']['output']>;
-  /** Deprecated */
-  deleteCustomField: Scalars['ID']['output'];
-  deleteEmployee?: Maybe<Scalars['ID']['output']>;
-  /** use deleteFieldV2 instead */
+  createWorklog?: Maybe<Worklog>;
+  /** Creates new worklog entries */
+  createWorklogEntries?: Maybe<Array<Maybe<WorklogEntry>>>;
+  createWorklogTimerEntry?: Maybe<WorklogTimerEntry>;
+  /** Deletes the records of an existing client user. */
+  deleteClientUser: Scalars['ID']['output'];
+  /** Deletes existing client user associations. */
+  deleteClientUserAssociations?: Maybe<Array<Maybe<Scalars['ID']['output']>>>;
+  /** Delete an existing field. */
   deleteField?: Maybe<Field>;
-  deleteFieldV2: Field;
-  deleteHolidayList: Scalars['ID']['output'];
-  deleteInAppNotifications?: Maybe<Scalars['Boolean']['output']>;
-  deleteIntegration?: Maybe<Integration>;
-  deleteIntegrationV2?: Maybe<Scalars['Boolean']['output']>;
-  deleteInvoice?: Maybe<Scalars['ID']['output']>;
-  deleteInvoices?: Maybe<Array<Maybe<Scalars['ID']['output']>>>;
-  deleteMailProviderConfig?: Maybe<Scalars['Boolean']['output']>;
-  deleteMailbox?: Maybe<Scalars['ID']['output']>;
-  deleteNotificationTemplate?: Maybe<Scalars['ID']['output']>;
-  deleteNotificationTemplateAttachment?: Maybe<Scalars['Boolean']['output']>;
-  deleteOutgoingMailSettings?: Maybe<Scalars['Boolean']['output']>;
-  deleteProductFeatureCategories?: Maybe<Scalars['Boolean']['output']>;
-  deleteProductFeatures?: Maybe<Scalars['Boolean']['output']>;
-  deleteProvisionRule?: Maybe<Scalars['Boolean']['output']>;
-  deleteQuotes?: Maybe<Scalars['Boolean']['output']>;
-  deleteReport?: Maybe<Scalars['ID']['output']>;
-  deleteReservedDomains: Array<Scalars['ID']['output']>;
-  deleteRole?: Maybe<Scalars['ID']['output']>;
-  deleteServiceCatalogItems?: Maybe<Scalars['Boolean']['output']>;
-  deleteServiceCategories?: Maybe<Array<Maybe<Scalars['ID']['output']>>>;
-  deleteServiceItems?: Maybe<Array<Maybe<Scalars['ID']['output']>>>;
-  deleteSites?: Maybe<Array<Scalars['ID']['output']>>;
-  deleteTax: Scalars['ID']['output'];
-  deleteTechGroup?: Maybe<Scalars['ID']['output']>;
-  deleteTechnician?: Maybe<Scalars['Boolean']['output']>;
-  deleteUnknownEmails: Array<Scalars['ID']['output']>;
-  deleteUser?: Maybe<Scalars['ID']['output']>;
-  deleteUserGroup?: Maybe<Scalars['ID']['output']>;
-  deleteView?: Maybe<Scalars['Boolean']['output']>;
+  /** Deletes an IT document record. */
+  deleteItDocumentation?: Maybe<Scalars['Boolean']['output']>;
+  /** Deletes the records of an existing technician. */
+  deleteTechnician?: Maybe<Scalars['ID']['output']>;
   deleteWebhookSubscription?: Maybe<Scalars['Boolean']['output']>;
-  disableCurrUserTfaAuthenticator?: Maybe<Scalars['Boolean']['output']>;
-  disableCurrUserTfaAuthenticatorV2?: Maybe<Scalars['Boolean']['output']>;
-  disableSSO?: Maybe<Scalars['JSON']['output']>;
-  /** Support Admin API’s */
-  disableTfa?: Maybe<Scalars['JSON']['output']>;
-  downgradeSubscription?: Maybe<Scalars['Boolean']['output']>;
-  enableCustomerSubDomainModification?: Maybe<Scalars['Boolean']['output']>;
-  enableNylasV3?: Maybe<Scalars['JSON']['output']>;
-  expireClientContract?: Maybe<Scalars['Boolean']['output']>;
-  exportInvoicesAsCSV?: Maybe<Scalars['Boolean']['output']>;
-  generateAPIToken?: Maybe<Scalars['String']['output']>;
-  generateAuthenticatorSecretForCurrentUser?: Maybe<UserTfaDetail>;
-  generateInstallers?: Maybe<Array<Maybe<InstallerInfo>>>;
-  generatePaymentLinkToken?: Maybe<Scalars['String']['output']>;
-  generateSupportAccess?: Maybe<SupportAccess>;
-  hardDeleteClientConversations?: Maybe<Scalars['Boolean']['output']>;
+  /** Delete a worklog entry */
+  deleteWorklogEntry?: Maybe<Scalars['Boolean']['output']>;
+  deleteWorklogTimerEntry?: Maybe<Scalars['Boolean']['output']>;
+  /** Trashed clients will be deleted from the system automatically after 30 days. This mutation can be used to permanently delete clients in the trash. */
   hardDeleteClients?: Maybe<Scalars['Boolean']['output']>;
-  hardResetClientContracts?: Maybe<Scalars['Boolean']['output']>;
-  ignoreOfferedItems?: Maybe<Array<Maybe<OfferedItem>>>;
-  /** Deprecated. Use setupIntegratedPaymentMethod instead */
-  initAddPaymentType?: Maybe<Scalars['JSON']['output']>;
-  initInvoicePayment?: Maybe<Scalars['JSON']['output']>;
-  /** initiateDataPull(name: String): Integration */
-  initiateDataPull?: Maybe<Integration>;
-  initiateDataPullV2?: Maybe<Integration>;
-  invoiceOfferedItems?: Maybe<Scalars['Boolean']['output']>;
-  killUserSessions?: Maybe<Scalars['Boolean']['output']>;
-  mapIntegrationData?: Maybe<Scalars['Boolean']['output']>;
-  markInvoicesAsPaid?: Maybe<Scalars['Boolean']['output']>;
-  markServiceCatalogItemsAsActive?: Maybe<Scalars['Boolean']['output']>;
-  markServiceCatalogItemsAsInActive?: Maybe<Scalars['Boolean']['output']>;
-  modifyOutboundMailThresholdLimit?: Maybe<Scalars['Boolean']['output']>;
-  payInvoice?: Maybe<Scalars['Boolean']['output']>;
-  paymentSourceCallBack?: Maybe<Scalars['Boolean']['output']>;
-  pushInvoicePaymentToThirdPartyApp?: Maybe<Invoice>;
-  pushInvoiceToThirdPartyApp?: Maybe<Invoice>;
-  /**
-   * Dummy call in this area which is a workaround fix for an issue in SchemaParser Dictionary
-   * solution suggested in https://github.com/graphql-java-kickstart/graphql-java-tools/issues/77#issuecomment-336153637
-   */
-  registerAccountsNestedInputTypes?: Maybe<Scalars['Boolean']['output']>;
-  /** Dummy API for registering Printer GraphQL type */
-  registerAllAsset?: Maybe<AllAsset>;
-  /** Dummy API for registering NonMonitoredAsset */
-  registerAsset?: Maybe<Asset>;
-  registerAssetClassPolicy?: Maybe<AssetClassPolicy>;
-  registerAssetGroupPolicy?: Maybe<AssetGroupPolicy>;
-  registerAssetPolicy?: Maybe<AssetPolicy>;
-  /**
-   *  Dummy API for registering Asset type
-   * testUpload(file: FileUpload): Boolean
-   */
-  registerIPAsset?: Maybe<IpAsset>;
-  /** Dummy API for registering WorkStation */
-  registerNonMonitoredAsset?: Maybe<NonMonitoredAsset>;
-  registerWorkStation?: Maybe<WorkStation>;
-  /** Deprecated, Use updateClientUser or deleteClientUserAssociations instead */
-  removeClientUserAssociations?: Maybe<Array<Maybe<Scalars['ID']['output']>>>;
-  resendEmployeeActivationMail?: Maybe<Scalars['Boolean']['output']>;
-  resendUserActivationMail?: Maybe<Scalars['Boolean']['output']>;
-  /** Deprecated */
-  resendUsersActivationMail?: Maybe<Array<Maybe<User>>>;
-  resendVendorConversation?: Maybe<Conversation>;
+  /** Trashed tickets will be deleted from the system automatically after 30 days. This mutation can be used to delete tickets from the trash. */
+  hardDeleteTickets?: Maybe<Scalars['Boolean']['output']>;
+  registerAPIGatewayNestedInputTypes?: Maybe<Scalars['Boolean']['output']>;
   resetSigningSecret?: Maybe<WebhookSubscription>;
+  /** Resolves a list of alerts. */
+  resolveAlerts?: Maybe<Scalars['Boolean']['output']>;
+  /** Restores trashed clients. */
   restoreClients?: Maybe<Scalars['Boolean']['output']>;
-  restoreDeleteClientConversations?: Maybe<Scalars['Boolean']['output']>;
-  resyncFailedDataMappings?: Maybe<ResyncItems>;
-  revokeSupportAccess?: Maybe<Scalars['Boolean']['output']>;
-  saveAppPersonalization?: Maybe<Personalization>;
-  savePersonalization?: Maybe<Scalars['Boolean']['output']>;
-  sendInvoice?: Maybe<Scalars['Boolean']['output']>;
-  sendInvoices?: Maybe<Array<Maybe<Invoice>>>;
-  setupIntegratedPaymentMethod?: Maybe<Scalars['JSON']['output']>;
-  shareReport?: Maybe<Scalars['Boolean']['output']>;
-  softDeleteClientConversations?: Maybe<Scalars['Boolean']['output']>;
-  /** Dummy API for registering Printer GraphQL type */
+  /** Restores trashed tickets. */
+  restoreTickets?: Maybe<Scalars['Boolean']['output']>;
+  /** Runs a script on an asset. */
+  runScriptOnAsset?: Maybe<RunScriptData>;
+  /** Soft-deletes an asset from the platform. */
+  softDeleteAsset?: Maybe<Scalars['Boolean']['output']>;
+  /** Trash i.,e soft delete an existing client. */
   softDeleteClients?: Maybe<Scalars['Boolean']['output']>;
-  updateAIConfiguration?: Maybe<AiConfigurationInfo>;
-  updateAIFeature?: Maybe<AiFeature>;
-  updateAIFeatureGroup?: Maybe<AiFeatureGroup>;
-  updateAIFeatureUsageCount?: Maybe<Scalars['Boolean']['output']>;
-  updateAddon?: Maybe<Scalars['Boolean']['output']>;
-  /** whenever there is change in any IDP detail fields, send the whole fields of idp details and also the ssotype field as value SAML */
-  updateAppSecurityConfiguration?: Maybe<AppSecurityConfiguration>;
-  updateBillableContractPrices?: Maybe<Scalars['Boolean']['output']>;
-  updateBillingContractTemplate?: Maybe<ContractTemplate>;
-  updateBillingTemplate?: Maybe<BillingTemplate>;
-  updateBiometricStatus?: Maybe<Scalars['Boolean']['output']>;
-  updateBusinessFunction?: Maybe<BusinessFunction>;
-  updateChart?: Maybe<Chart>;
-  updateCheckList?: Maybe<Array<Maybe<CheckListItem>>>;
-  updateClient?: Maybe<Organization>;
-  updateClientBillingContract?: Maybe<ClientContract>;
-  updateClientContract?: Maybe<ClientContractDetail>;
-  updateClientContractsOrder?: Maybe<Scalars['Boolean']['output']>;
-  updateClientPolicyMigrationStatus?: Maybe<Scalars['Boolean']['output']>;
-  updateClientProvisionRuleLayout?: Maybe<Scalars['Boolean']['output']>;
-  updateClientSite?: Maybe<Site>;
-  updateClientUser?: Maybe<User>;
-  /** Deprecated, Use updateClientUser instead */
-  updateClientUserAssociations?: Maybe<Array<Maybe<UserAssociation>>>;
-  updateCompanySite?: Maybe<Site>;
-  updateCompanyUser?: Maybe<User>;
-  updateConfigurationCompletion?: Maybe<InitialConfiguration>;
-  updateContractServiceItem?: Maybe<ContractServiceItem>;
-  updateContractTemplate?: Maybe<ClientContractTemplate>;
-  updateCurrentUser?: Maybe<User>;
-  updateCurrentUserPassword?: Maybe<User>;
-  updateCurrentUserPasswordV2?: Maybe<User>;
-  /** Deprecated */
-  updateCustomField?: Maybe<CustomField>;
-  updateCustomerAsVerified?: Maybe<Scalars['Boolean']['output']>;
-  updateCustomerOnPostSignup?: Maybe<Scalars['Boolean']['output']>;
-  updateDataMapping?: Maybe<Integration>;
-  updateDataMappingV2?: Maybe<Integration>;
-  /** BitDefender Integration */
-  updateDefaultPackagesForBitDefenderClients?: Maybe<Scalars['Boolean']['output']>;
-  /** Acronis Integration */
-  updateDefaultProtectPlanForAcronisClients?: Maybe<Scalars['Boolean']['output']>;
-  updateEmployee?: Maybe<User>;
-  /** use updateFieldV2 instead */
+  /** Trash i.,e soft delete tickets. */
+  softDeleteTickets?: Maybe<Scalars['Boolean']['output']>;
+  /** Updates an asset's data. */
+  updateAsset?: Maybe<UpdatedAsset>;
+  /** Updates information of an existing client. */
+  updateClient?: Maybe<Client>;
+  /** Updates an existing usage or recurring client contract. */
+  updateClientContract: Scalars['ID']['output'];
+  /** Updates information of an existing client user. */
+  updateClientUser?: Maybe<ClientUser>;
+  /** Updates existing client user associations. */
+  updateClientUserAssociations?: Maybe<Array<Maybe<ClientUserAssociation>>>;
+  /** Updates an existing field. */
   updateField?: Maybe<Field>;
-  updateFieldV2?: Maybe<Field>;
-  updateGroupClients?: Maybe<Group>;
-  updateHolidayList?: Maybe<HolidayList>;
-  /** entity id, metadata url, certificate is mandatory even in update */
-  updateIdentityProviderDetail?: Maybe<IdpSamlProviderDetail>;
-  updateInAppNotificationState?: Maybe<Scalars['Boolean']['output']>;
-  updateIntegration?: Maybe<Integration>;
-  updateIntegrationAddOn?: Maybe<Scalars['Boolean']['output']>;
-  updateIntegrationConfigForClients?: Maybe<Scalars['Boolean']['output']>;
-  /** wrapper api for updateDataMappingV2 for single row data mapping cases */
-  updateIntegrationEntityConfigs?: Maybe<Scalars['Boolean']['output']>;
-  updateIntegrationEntityMapping?: Maybe<Integration>;
-  updateIntegrationV2?: Maybe<Integration>;
+  /** Updates an existing invoice */
   updateInvoice?: Maybe<Invoice>;
-  /** Deprecated. Use createCompanySCIMConfiguration or createClientSCIMConfiguration instead */
-  updateInvoiceSetting?: Maybe<InvoiceSetting>;
-  updateInvoiceSettings?: Maybe<InvoiceSetting>;
-  updateInvoiceTemplate?: Maybe<InvoiceTemplate>;
-  updateInvoiceViewedByClientStatus?: Maybe<Scalars['Boolean']['output']>;
-  updateMSPEmailDomains?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  updateMailProviderConfig?: Maybe<MailProviderConfig>;
-  updateMailbox?: Maybe<Mailbox>;
-  updateNotificationTemplate?: Maybe<NotificationTemplate>;
-  updateNotificationTemplateInfo?: Maybe<NotificationTemplateInfo>;
-  updateOfferedItems?: Maybe<Array<Maybe<OfferedItem>>>;
-  updatePaymentMethods?: Maybe<Array<Maybe<PaymentMethod>>>;
-  updatePaymentSetting?: Maybe<PaymentSetting>;
-  updatePaymentTerms?: Maybe<Array<Maybe<PaymentTerm>>>;
-  updatePlaceholderTemplate?: Maybe<PlaceholderTemplate>;
-  updatePlan?: Maybe<Scalars['Boolean']['output']>;
-  updatePrimaryCompany?: Maybe<Organization>;
-  updateProductFeatureCategories?: Maybe<Array<Maybe<ProductFeatureCategory>>>;
-  updateProductFeatures?: Maybe<Array<Maybe<ProductFeature>>>;
-  updateProvisionRule?: Maybe<ProvisionRule>;
-  updateProvisionRuleTemplateLayout?: Maybe<Scalars['Boolean']['output']>;
+  /** Updates an existing IT document record. */
+  updateItDocumentation?: Maybe<ItDocumentation>;
+  /** Updates an existing quote */
   updateQuote?: Maybe<Quote>;
-  updateQuoteTemplate?: Maybe<QuoteTemplate>;
-  updateQuoteViewedByClientStatus?: Maybe<Scalars['Boolean']['output']>;
-  updateReadStatus?: Maybe<Scalars['Boolean']['output']>;
-  updateRecentSearchInfo?: Maybe<Scalars['Boolean']['output']>;
-  updateReport?: Maybe<Report>;
-  updateReportCalculationStatus?: Maybe<OfferedItemAuditStatus>;
-  updateReportExportConfig?: Maybe<ReportExportConfig>;
-  updateReportSchedules?: Maybe<ReportScheduleList>;
-  updateReservedSubDomain?: Maybe<ReservedSubDomain>;
-  updateRole?: Maybe<Role>;
-  updateSequenceGenerators?: Maybe<Array<Maybe<SequenceGenerator>>>;
-  updateServiceCatalogItem?: Maybe<ServiceCatalogItem>;
-  updateServiceCategory?: Maybe<ServiceCategory>;
-  updateServiceItem?: Maybe<ServiceItem>;
-  updateSite?: Maybe<Site>;
-  updateStickyNote?: Maybe<StickyNote>;
-  updateSubscriptionPurchaseStatus?: Maybe<Scalars['Boolean']['output']>;
-  updateTax?: Maybe<Tax>;
-  updateTechGroup?: Maybe<Group>;
-  updateTechnicianLicenseState?: Maybe<Scalars['Boolean']['output']>;
-  /** One time API call from Mobile to update Mobile device FCM ID based on user session exists already. */
-  updateUserDeviceInfo?: Maybe<Scalars['Boolean']['output']>;
-  updateUserGroup?: Maybe<Group>;
-  updateVendorConversationReadStatus?: Maybe<Scalars['Boolean']['output']>;
-  updateView?: Maybe<ListView>;
+  /** Updates information of an existing technician. */
+  updateTechnician?: Maybe<Technician>;
+  /** Updates an existing ticket */
+  updateTicket?: Maybe<Ticket>;
   updateWebhookSubscription?: Maybe<WebhookSubscription>;
-  upgradeSubscription?: Maybe<HostedPage>;
-  validateACHAccount?: Maybe<AchAccount>;
-  validateEmailAddress?: Maybe<User_Email_Validation_Status>;
-  validatePassword?: Maybe<Scalars['JSON']['output']>;
-  verifyACHAccount?: Maybe<AchAccount>;
-  verifyAndEnableCurrUserTfaAuthenticator?: Maybe<Scalars['Boolean']['output']>;
-  verifyAndEnableCurrUserTfaAuthenticatorV2?: Maybe<Scalars['Boolean']['output']>;
-  verifyCurrentPassword?: Maybe<Scalars['Boolean']['output']>;
-  verifyIncomingAddressAvailability?: Maybe<Scalars['Boolean']['output']>;
-  verifyOutgoingDomain?: Maybe<Scalars['Boolean']['output']>;
-  verifyPasswordAndPasscode?: Maybe<Scalars['String']['output']>;
-  /** Deprecated */
-  verifyRecordsForFromAddressDomain?: Maybe<Scalars['Boolean']['output']>;
+  /** Updates a worklog entry */
+  updateWorklogEntry?: Maybe<WorklogEntry>;
+  updateWorklogTimerEntry?: Maybe<WorklogTimerEntry>;
 };
 
 
-export type MutationAddAchAccountArgs = {
-  clientId: Scalars['ID']['input'];
-  token?: InputMaybe<Scalars['String']['input']>;
+export type MutationCreateAlertArgs = {
+  input: CreateAlertInput;
 };
 
 
-export type MutationAddContractServiceItemArgs = {
-  clientId: Scalars['ID']['input'];
-  input: ContractServiceItemInput;
+export type MutationCreateCategoriesArgs = {
+  input: Array<CreateCategoryInput>;
 };
 
 
-export type MutationAddHolidayListArgs = {
-  input: HolidayListInput;
-  year: Scalars['Int']['input'];
-};
-
-
-export type MutationAddIntegrationArgs = {
-  input?: InputMaybe<IntegrationInput>;
-  integrationId: Scalars['String']['input'];
-};
-
-
-export type MutationAddIntegrationV2Args = {
-  input?: InputMaybe<IntegrationInput>;
-  integrationRefId: Scalars['ID']['input'];
-};
-
-
-export type MutationAddMailProviderConfigArgs = {
-  input: AddMailProviderConfigInput;
-};
-
-
-export type MutationAddReservedSubDomainsArgs = {
-  reservedSubDomainsInput: Array<ReservedSubDomainInput>;
-};
-
-
-export type MutationAddRoleArgs = {
-  input?: InputMaybe<RoleInput>;
-};
-
-
-export type MutationAddSiteArgs = {
-  accountId: Scalars['ID']['input'];
-  input?: InputMaybe<SiteInput>;
-};
-
-
-export type MutationAddTechnicianGroupArgs = {
-  input?: InputMaybe<GroupInput>;
-};
-
-
-export type MutationAddViewArgs = {
-  input?: InputMaybe<ListViewInput>;
-};
-
-
-export type MutationApproveOfferedItemsArgs = {
-  input: SelectionInput;
-};
-
-
-export type MutationApproveQuoteArgs = {
-  input: ApproveQuoteInput;
-};
-
-
-export type MutationAssociatePolicySetMappingsArgs = {
-  input?: InputMaybe<AssociatePolicyCategoryInput>;
-};
-
-
-export type MutationBulkDeleteDownloadsArgs = {
-  inventoryIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-};
-
-
-export type MutationCheckUserEmailAddressAvailabilityArgs = {
-  input: CheckUserEmailAddressAvailabilityInput;
-};
-
-
-export type MutationConfirmAddPaymentTypeArgs = {
-  setupIntentId: Scalars['String']['input'];
-};
-
-
-export type MutationConfirmIntegratedPaymentMethodArgs = {
-  setupIntentId: Scalars['String']['input'];
-};
-
-
-export type MutationConfirmInvoicePaymentArgs = {
-  paymentIntentId: Scalars['String']['input'];
-};
-
-
-export type MutationConfirmPaymentArgs = {
-  hostedPageInput?: InputMaybe<HostedPageInput>;
-};
-
-
-export type MutationConvertUnknownEmailToClientConversationArgs = {
-  clientId: Scalars['ID']['input'];
-  unknownEmailId: Scalars['ID']['input'];
-};
-
-
-export type MutationConvertUnknownEmailsToClientConversationArgs = {
-  clientId: Scalars['ID']['input'];
-  unknownEmailIds: Array<Scalars['ID']['input']>;
-};
-
-
-export type MutationCreateAiFeatureArgs = {
-  input: CreateAiFeatureInput;
-};
-
-
-export type MutationCreateAiFeatureFeedbackArgs = {
-  input: CreateAiFeatureFeedbackInput;
-};
-
-
-export type MutationCreateAddressArgs = {
-  input: AddressInput;
-};
-
-
-export type MutationCreateBillingContractTemplateArgs = {
-  input: CreateContractTemplateInput;
-};
-
-
-export type MutationCreateBillingTemplateArgs = {
-  input: CreateBillingTemplateInput;
-};
-
-
-export type MutationCreateBusinessFunctionArgs = {
-  input: BusinessFunctionInput;
-};
-
-
-export type MutationCreateChartArgs = {
-  input: ChartInput;
+export type MutationCreateCausesArgs = {
+  input: Array<CreateCauseInput>;
 };
 
 
 export type MutationCreateClientArgs = {
-  input?: InputMaybe<ClientInput>;
-};
-
-
-export type MutationCreateClientBillingContractArgs = {
-  input: CreateClientContractInput;
+  input: CreateClientInput;
 };
 
 
 export type MutationCreateClientContractArgs = {
-  clientId: Scalars['ID']['input'];
-  contract: ClientContractInput;
+  input: CreateClientContractInput;
 };
 
 
-export type MutationCreateClientContractFromBillingTemplateArgs = {
-  input: CreateClientContractFromBillingTemplateInput;
-};
-
-
-export type MutationCreateClientConversationArgs = {
-  clientId: Scalars['ID']['input'];
-  input: ConversationInput;
-};
-
-
-export type MutationCreateClientProvisionRuleArgs = {
-  input: CreateClientProvisionRuleInput;
-};
-
-
-export type MutationCreateClientScimConfigurationArgs = {
-  input: Array<InputMaybe<OrganizationIdentifierInput>>;
+export type MutationCreateClientCustomFieldArgs = {
+  input: CreateCustomFieldInput;
 };
 
 
 export type MutationCreateClientSiteArgs = {
-  input: CreateSiteInput;
+  input: CreateClientSiteInput;
 };
 
 
 export type MutationCreateClientUserArgs = {
-  accountId?: InputMaybe<Scalars['ID']['input']>;
-  input: UserInput;
+  input: CreateClientUserInput;
 };
 
 
 export type MutationCreateClientUserAssociationsArgs = {
-  input: Array<CreateUserAssociationInput>;
+  input: Array<CreateClientUserAssociationInput>;
 };
 
 
-export type MutationCreateClientUserGroupArgs = {
-  accountId: Scalars['ID']['input'];
-  input?: InputMaybe<GroupInput>;
+export type MutationCreateClientUserCustomFieldArgs = {
+  input: CreateCustomFieldInput;
 };
 
 
-export type MutationCreateCompanySiteArgs = {
-  input: CreateSiteInput;
-};
-
-
-export type MutationCreateCompanyUserArgs = {
-  input?: InputMaybe<UserInput>;
-};
-
-
-export type MutationCreateCompanyUsersArgs = {
-  input?: InputMaybe<Array<InputMaybe<UserInput>>>;
-};
-
-
-export type MutationCreateContractTemplateArgs = {
-  template: ClientContractTemplateInput;
-};
-
-
-export type MutationCreateCustomFieldArgs = {
-  input: CustomFieldInput;
-};
-
-
-export type MutationCreateEmployeeArgs = {
-  input?: InputMaybe<UserInput>;
-};
-
-
-export type MutationCreateEmployeesArgs = {
-  input?: InputMaybe<Array<InputMaybe<UserInput>>>;
+export type MutationCreateClientV2Args = {
+  input: CreateClientInputV2;
 };
 
 
 export type MutationCreateFieldArgs = {
-  input: FieldInput;
-};
-
-
-export type MutationCreateFieldV2Args = {
   input: CreateFieldInput;
 };
 
 
-export type MutationCreateInvoiceArgs = {
-  input: CreateInvoiceInput;
-};
-
-
-export type MutationCreateInvoiceFromQuoteArgs = {
-  input: CreateInvoiceFromQuoteInput;
-};
-
-
-export type MutationCreateInvoiceTemplateArgs = {
-  input: CreateInvoiceTemplateInput;
-};
-
-
-export type MutationCreateMailboxArgs = {
-  input: CreateMailboxInput;
-};
-
-
-export type MutationCreateNotificationTemplateArgs = {
-  input?: InputMaybe<NotificationTemplateInput>;
-  notificationTemplateType: Scalars['String']['input'];
-};
-
-
-export type MutationCreateProductFeatureCategoriesArgs = {
-  input: Array<CreateProductFeatureCategoryInput>;
-};
-
-
-export type MutationCreateProductFeaturesArgs = {
-  input: Array<CreateProductFeatureInput>;
-};
-
-
-export type MutationCreateProvisionRuleFromTemplateArgs = {
-  input: CreateProvisionRuleFromTemplateInput;
-};
-
-
-export type MutationCreateProvisionRuleTemplateArgs = {
-  input: CreateProvisionRuleTemplateInput;
-};
-
-
-export type MutationCreatePurchaseSubscriptionConfigurationArgs = {
-  hostedPageInput?: InputMaybe<HostedPageInput>;
+export type MutationCreateItDocumentationArgs = {
+  input: CreateItDocumentationInput;
 };
 
 
 export type MutationCreateQuoteArgs = {
   input: CreateQuoteInput;
-};
-
-
-export type MutationCreateQuoteTemplateArgs = {
-  input: CreateQuoteTemplateInput;
-};
-
-
-export type MutationCreateReportArgs = {
-  input: ReportInput;
-};
-
-
-export type MutationCreateScimConfigurationArgs = {
-  input?: InputMaybe<Array<InputMaybe<ScimConfigurationInput>>>;
 };
 
 
@@ -4648,22 +2423,52 @@ export type MutationCreateServiceCatalogItemArgs = {
 
 
 export type MutationCreateServiceCategoryArgs = {
-  category: ServiceCategoryInput;
+  input: CreateServiceCategoryInput;
 };
 
 
 export type MutationCreateServiceItemArgs = {
-  item?: InputMaybe<ServiceItemInput>;
+  input: CreateServiceItemInput;
+};
+
+
+export type MutationCreateStatusArgs = {
+  input: Array<CreateStatusInput>;
+};
+
+
+export type MutationCreateTaskArgs = {
+  input: CreateTaskInput;
 };
 
 
 export type MutationCreateTaxArgs = {
-  tax: TaxInput;
+  input: CreateTaxInput;
 };
 
 
-export type MutationCreateVendorConversationArgs = {
-  input: ConversationInput;
+export type MutationCreateTechnicianArgs = {
+  input?: InputMaybe<CreateTechnicianInput>;
+};
+
+
+export type MutationCreateTicketArgs = {
+  input: CreateTicketInput;
+};
+
+
+export type MutationCreateTicketConversationArgs = {
+  input: CreateTicketConversationInput;
+};
+
+
+export type MutationCreateTicketCustomFieldArgs = {
+  input: CreateCustomFieldInput;
+};
+
+
+export type MutationCreateTicketNoteArgs = {
+  input: CreateTicketNoteInput;
 };
 
 
@@ -4672,243 +2477,43 @@ export type MutationCreateWebhookSubscriptionArgs = {
 };
 
 
-export type MutationDeleteAiFeatureArgs = {
-  input: AiFeatureIdentifierInput;
+export type MutationCreateWorklogArgs = {
+  input: CreateWorklogInput;
 };
 
 
-export type MutationDeleteBillingContractTemplateArgs = {
-  input: ContractIdentifierInput;
+export type MutationCreateWorklogEntriesArgs = {
+  input: Array<CreateWorklogEntryInput>;
 };
 
 
-export type MutationDeleteBillingTemplateArgs = {
-  input: BillingTemplateIdentifierInput;
-};
-
-
-export type MutationDeleteBusinessFunctionsArgs = {
-  input: Array<BusinessFunctionIdentifierInput>;
-};
-
-
-export type MutationDeleteChartArgs = {
-  chartId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteChartsArgs = {
-  chartIds: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDeleteClientAttachmentsArgs = {
-  input: DeleteClientAttachmentsInput;
-};
-
-
-export type MutationDeleteClientContractArgs = {
-  input: ContractIdentifierInput;
-};
-
-
-export type MutationDeleteClientSitesArgs = {
-  input: Array<SiteIdentifierInput>;
+export type MutationCreateWorklogTimerEntryArgs = {
+  input: CreateWorklogTimerEntryInput;
 };
 
 
 export type MutationDeleteClientUserArgs = {
-  forget?: InputMaybe<Scalars['Boolean']['input']>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  input: DeleteUserInput;
 };
 
 
 export type MutationDeleteClientUserAssociationsArgs = {
-  forget?: InputMaybe<Scalars['Boolean']['input']>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDeleteCompanySitesArgs = {
-  input: Array<SiteIdentifierInput>;
-};
-
-
-export type MutationDeleteCompanyUsersArgs = {
-  forget?: InputMaybe<Scalars['Boolean']['input']>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDeleteContractTemplateArgs = {
-  templateId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteCustomFieldArgs = {
-  fieldId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteEmployeeArgs = {
-  forget?: InputMaybe<Scalars['Boolean']['input']>;
-  userId: Scalars['ID']['input'];
+  input: Array<ClientUserAssociationIdentifierInput>;
 };
 
 
 export type MutationDeleteFieldArgs = {
-  input: FieldIdentifierInput;
+  input?: InputMaybe<FieldIdentifierInput>;
 };
 
 
-export type MutationDeleteFieldV2Args = {
-  input: FieldIdentifierInput;
-};
-
-
-export type MutationDeleteHolidayListArgs = {
-  listId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteInAppNotificationsArgs = {
-  input: Array<InputMaybe<InAppNotificationIdentifierInput>>;
-};
-
-
-export type MutationDeleteIntegrationArgs = {
-  integrationId: Scalars['String']['input'];
-};
-
-
-export type MutationDeleteIntegrationV2Args = {
-  integrationRefId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteInvoiceArgs = {
-  invoiceId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteInvoicesArgs = {
-  input: Array<InvoiceIdentifierInput>;
-};
-
-
-export type MutationDeleteMailProviderConfigArgs = {
-  mailProviderConfigId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteMailboxArgs = {
-  boxId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteNotificationTemplateArgs = {
-  notificationTemplateType: Scalars['String']['input'];
-  templateId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteNotificationTemplateAttachmentArgs = {
-  fileName?: InputMaybe<Scalars['String']['input']>;
-  notificationTemplateId: Scalars['ID']['input'];
-  notificationTemplateType: Scalars['String']['input'];
-};
-
-
-export type MutationDeleteProductFeatureCategoriesArgs = {
-  input: Array<ProductFeatureCategoryIdentifierInput>;
-};
-
-
-export type MutationDeleteProductFeaturesArgs = {
-  input: Array<ProductFeatureIdentifierInput>;
-};
-
-
-export type MutationDeleteProvisionRuleArgs = {
-  input: ProvisionRuleIdentifierInput;
-};
-
-
-export type MutationDeleteQuotesArgs = {
-  input: Array<QuoteIdentifierInput>;
-};
-
-
-export type MutationDeleteReportArgs = {
-  reportId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteReservedDomainsArgs = {
-  reservedDomainIds: Array<Scalars['ID']['input']>;
-};
-
-
-export type MutationDeleteRoleArgs = {
-  roleId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteServiceCatalogItemsArgs = {
-  input: Array<ServiceCatalogItemIdentifierInput>;
-};
-
-
-export type MutationDeleteServiceCategoriesArgs = {
-  categoryIds: Array<Scalars['ID']['input']>;
-};
-
-
-export type MutationDeleteServiceItemsArgs = {
-  itemIds: Array<Scalars['ID']['input']>;
-};
-
-
-export type MutationDeleteSitesArgs = {
-  siteIds: Array<Scalars['ID']['input']>;
-};
-
-
-export type MutationDeleteTaxArgs = {
-  taxId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteTechGroupArgs = {
-  groupId: Scalars['ID']['input'];
+export type MutationDeleteItDocumentationArgs = {
+  input: ItDocumentationIdentifierInput;
 };
 
 
 export type MutationDeleteTechnicianArgs = {
-  forget?: InputMaybe<Scalars['Boolean']['input']>;
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
-};
-
-
-export type MutationDeleteUnknownEmailsArgs = {
-  unknownEmailIds: Array<Scalars['ID']['input']>;
-};
-
-
-export type MutationDeleteUserArgs = {
-  forget?: InputMaybe<Scalars['Boolean']['input']>;
-  userId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteUserGroupArgs = {
-  groupId: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteViewArgs = {
-  id: Scalars['ID']['input'];
-  input: ListViewInput;
+  input: DeleteUserInput;
 };
 
 
@@ -4917,323 +2522,90 @@ export type MutationDeleteWebhookSubscriptionArgs = {
 };
 
 
-export type MutationDisableCurrUserTfaAuthenticatorV2Args = {
-  authenticationVerifiedToken?: InputMaybe<Scalars['String']['input']>;
+export type MutationDeleteWorklogEntryArgs = {
+  input: WorklogEntryIdentifier;
 };
 
 
-export type MutationDisableTfaArgs = {
-  email?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationDowngradeSubscriptionArgs = {
-  chargeBeePlanPriceId?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationExpireClientContractArgs = {
-  input: ContractIdentifierInput;
-};
-
-
-export type MutationExportInvoicesAsCsvArgs = {
-  input?: InputMaybe<SelectionInput>;
-};
-
-
-export type MutationGenerateInstallersArgs = {
-  siteId: Scalars['ID']['input'];
-};
-
-
-export type MutationGeneratePaymentLinkTokenArgs = {
-  input: InvoiceIdentifierInput;
-};
-
-
-export type MutationGenerateSupportAccessArgs = {
-  expiry?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-export type MutationHardDeleteClientConversationsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+export type MutationDeleteWorklogTimerEntryArgs = {
+  input: WorklogTimerEntryIdentifier;
 };
 
 
 export type MutationHardDeleteClientsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  input: Array<ClientIdentifierInput>;
 };
 
 
-export type MutationHardResetClientContractsArgs = {
-  input: ClientIdentifierInput;
+export type MutationHardDeleteTicketsArgs = {
+  input?: InputMaybe<Array<InputMaybe<TicketIdentifierInput>>>;
 };
 
 
-export type MutationIgnoreOfferedItemsArgs = {
-  input: SelectionInput;
-};
-
-
-export type MutationInitAddPaymentTypeArgs = {
-  clientId: Scalars['ID']['input'];
-};
-
-
-export type MutationInitInvoicePaymentArgs = {
-  invoiceId: Scalars['ID']['input'];
-};
-
-
-export type MutationInitiateDataPullArgs = {
-  clientId?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationInitiateDataPullV2Args = {
-  entityName?: InputMaybe<Scalars['String']['input']>;
-  integrationRefId: Scalars['ID']['input'];
-};
-
-
-export type MutationInvoiceOfferedItemsArgs = {
-  input: InvoiceOfferedItemsInput;
-};
-
-
-export type MutationKillUserSessionsArgs = {
-  userId: Scalars['ID']['input'];
-};
-
-
-export type MutationMapIntegrationDataArgs = {
-  entityName?: InputMaybe<Scalars['String']['input']>;
-  integrationRefId?: InputMaybe<Scalars['ID']['input']>;
-  tpItemId?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationMarkInvoicesAsPaidArgs = {
-  input?: InputMaybe<MarkInvoicesAsPaidInput>;
-};
-
-
-export type MutationMarkServiceCatalogItemsAsActiveArgs = {
-  input: Array<ServiceCatalogItemIdentifierInput>;
-};
-
-
-export type MutationMarkServiceCatalogItemsAsInActiveArgs = {
-  input: Array<ServiceCatalogItemIdentifierInput>;
-};
-
-
-export type MutationModifyOutboundMailThresholdLimitArgs = {
-  value?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-export type MutationPayInvoiceArgs = {
-  input: InvoicePaymentInput;
-};
-
-
-export type MutationPaymentSourceCallBackArgs = {
-  status?: InputMaybe<OperationStatus>;
-};
-
-
-export type MutationPushInvoicePaymentToThirdPartyAppArgs = {
-  integrationType?: InputMaybe<Scalars['String']['input']>;
-  invoiceId: Scalars['ID']['input'];
-};
-
-
-export type MutationPushInvoiceToThirdPartyAppArgs = {
-  clientId: Scalars['ID']['input'];
-  integrationType?: InputMaybe<Scalars['String']['input']>;
-  invoiceId: Scalars['ID']['input'];
-};
-
-
-export type MutationRegisterAccountsNestedInputTypesArgs = {
-  WebhookSubscriptionStatusInput?: InputMaybe<WebhookSubscriptionStatusInput>;
-  addReportScheduleInput?: InputMaybe<AddReportScheduleInput>;
-  addTPMappingRuleInput?: InputMaybe<AddTpMappingRuleInput>;
-  addonIdentifierInput?: InputMaybe<AddonIdentifierInput>;
-  aggregationPaginationInput?: InputMaybe<AggregationPaginationInput>;
-  aiConfigurationInput?: InputMaybe<AiConfigurationInput>;
-  aiFeatureIdentifierInput?: InputMaybe<AiFeatureIdentifierInput>;
-  aiPromptInput?: InputMaybe<AiPromptInput>;
-  attachments?: InputMaybe<AttachmentInput>;
+export type MutationRegisterApiGatewayNestedInputTypesArgs = {
   billableContractQuantityChangeInput?: InputMaybe<BillableContractQuantityChangeInput>;
-  businessFunctionInput?: InputMaybe<BusinessFunctionInput>;
-  businessHourInput?: InputMaybe<BusinessHourInput>;
-  checkListItemRefInput?: InputMaybe<CheckListItemRefInput>;
-  clientAttachmentIdentifierInput?: InputMaybe<ClientAttachmentIdentifierInput>;
-  clientSLAInput?: InputMaybe<ClientSlaInput>;
+  businessFunctionIdentifierInput?: InputMaybe<BusinessFunctionIdentifierInput>;
+  businessHour?: InputMaybe<CreateBusinessHourInput>;
+  clientIdentifierInput?: InputMaybe<ClientIdentifierInput>;
+  clientSiteIdentifierInput?: InputMaybe<ClientSiteIdentifierInput>;
+  clientUserIdentifierInput?: InputMaybe<ClientUserIdentifierInput>;
   condition?: InputMaybe<RuleConditionInput>;
-  conditionalPricing?: InputMaybe<ConditionalPricingInput>;
-  conditionalPricingItem?: InputMaybe<ConditionalPricingItemInput>;
-  contractConditionalPricingOverrideInput?: InputMaybe<ContractConditionalPricingOverrideInput>;
   contractIdentifierInput?: InputMaybe<ContractIdentifierInput>;
-  contractPricingOverrideIdentifierInput?: InputMaybe<ContractPricingOverrideIdentifierInput>;
-  contractPricingOverrideItemIdentifierInput?: InputMaybe<ContractPricingOverrideItemIdentifierInput>;
-  contractPricingOverrideItemInput?: InputMaybe<ContractPricingOverrideItemInput>;
-  contractSLAIdentifierInput?: InputMaybe<ContractSlaIdentifierInput>;
-  contractSLAInput?: InputMaybe<ContractSlaInput>;
-  contractServiceItem?: InputMaybe<ContractServiceItemInput>;
-  contractServiceItemChangeInput?: InputMaybe<ContractServiceItemChangeInput>;
-  contractServiceItemIdentifierInput?: InputMaybe<ContractServiceItemIdentifierInput>;
-  contractTemplateServiceItemInput?: InputMaybe<ContractTemplateServiceItemInput>;
+  createAttachmentInput?: InputMaybe<CreateAttachmentInput>;
   createBillableContractInput?: InputMaybe<CreateBillableContractInput>;
-  createCheckListItemInput?: InputMaybe<CreateCheckListItemInput>;
-  createContractApplicationInput?: InputMaybe<CreateContractApplicationInput>;
-  createContractFromBillingTemplateInput?: InputMaybe<CreateContractFromBillingTemplateInput>;
   createContractInput?: InputMaybe<CreateContractInput>;
-  createContractPricingOverrideInput?: InputMaybe<CreateContractPricingOverrideInput>;
-  createContractSLAInput?: InputMaybe<CreateContractSlaInput>;
   createFieldOptionInput?: InputMaybe<CreateFieldOptionInput>;
   createHourlyServiceTypeItemInput?: InputMaybe<CreateHourlyServiceTypeItemInput>;
-  createInvoiceItemInput?: InputMaybe<CreateInvoiceItemInput>;
-  createPlanProductFeatureInput?: InputMaybe<CreatePlanProductFeatureInput>;
-  createPortalDomainInput?: InputMaybe<CreatePortalDomainInput>;
-  createProductSubscriptionLineItemAddOnInput?: InputMaybe<CreateProductSubscriptionLineItemAddOnInput>;
-  createProductSubscriptionLineItemPlanInput?: InputMaybe<CreateProductSubscriptionLineItemPlanInput>;
-  createProvisionRuleInput?: InputMaybe<CreateProvisionRuleInput>;
   createQuoteItemInput?: InputMaybe<CreateQuoteItemInput>;
   createRedeemableServiceBundleInput?: InputMaybe<CreateRedeemableServiceBundleInput>;
   createServiceTypeItemInput?: InputMaybe<CreateServiceTypeItemInput>;
-  cursorInput?: InputMaybe<CursorInput>;
-  denominator?: InputMaybe<MetricPercentageDenominatorType>;
-  designationInput?: InputMaybe<DesignationInput>;
-  featureGroup?: InputMaybe<AiFeatureGroupIdentifierInput>;
-  featureInput?: InputMaybe<FeatureInput>;
-  fixedDurationInput?: InputMaybe<FixedDurationInput>;
-  groupByInputMap?: InputMaybe<GroupByInput>;
-  holidayInput?: InputMaybe<HolidayInput>;
-  holidayListInput?: InputMaybe<HolidayListInputIdentifierInput>;
+  createSubCategoryInput?: InputMaybe<CreateSubCategoryInput>;
+  createSubCauseInput?: InputMaybe<CreateSubCauseInput>;
+  createTaxRateInput?: InputMaybe<CreateTaxRateInput>;
+  createWebhookSubscriptionInput?: InputMaybe<CreateWebhookSubscriptionInput>;
+  createWorklogItemInput?: InputMaybe<CreateWorklogItemInput>;
+  createWorklogTimerSegmentInput?: InputMaybe<CreateWorklogTimerSegmentInput>;
+  customFieldType?: InputMaybe<CustomFieldType>;
+  day?: InputMaybe<DayOfWeek>;
+  designationIdentifierInput?: InputMaybe<DesignationIdentifierInput>;
+  holidayList?: InputMaybe<HolidayListIdentifierInput>;
   identifierInput?: InputMaybe<IdentifierInput>;
-  input?: InputMaybe<NotificationTemplateAttachmentInput>;
-  integrationConfigInput?: InputMaybe<ClientIntegrationConfigInput>;
-  integrationIdentifierInput?: InputMaybe<IntegrationIdentifierInput>;
-  invoiceItemInput?: InputMaybe<InvoiceItemInput>;
-  invoiceItemRefInput?: InputMaybe<InvoiceItemRefInput>;
-  invoiceSettingIdentifierInput?: InputMaybe<InvoiceSettingIdentifierInput>;
-  listView?: InputMaybe<ListViewInput>;
-  listViewIdentifier?: InputMaybe<ListViewIdentifierInput>;
-  mailboxIdentifierInput?: InputMaybe<MailboxIdentifierInput>;
-  metricInput?: InputMaybe<MetricInput>;
-  notificationTemplateIdentifierInput?: InputMaybe<NotificationTemplateIdentifierInput>;
-  notificationTemplateInput?: InputMaybe<NotificationTemplateInput>;
-  operationInput?: InputMaybe<OperationInput>;
-  optionIdentifierInput?: InputMaybe<OptionIdentifierInput>;
-  orgDetails?: InputMaybe<OrganizationDetailsInput>;
-  orgIdentifierInput?: InputMaybe<OrganizationIdentifierInput>;
-  paginationInput?: InputMaybe<PaginationInput>;
-  passwordPolicyInput?: InputMaybe<PasswordPolicyInput>;
-  paymentMethodIdentifierInput?: InputMaybe<PaymentMethodIdentifierInput>;
-  paymentMethodInput?: InputMaybe<PaymentMethodInput>;
-  paymentTermIdentifierInput?: InputMaybe<PaymentTermIdentifierInput>;
-  paymentTermInput?: InputMaybe<PaymentTermInput>;
-  perpetualContractInput?: InputMaybe<PerpetualContractInput>;
-  planIdentifierInput?: InputMaybe<PlanIdentifierInput>;
-  planProductFeatureIdentifierInput?: InputMaybe<PlanProductFeatureIdentifierInput>;
-  portalDomainIdentifierInput?: InputMaybe<PortalDomainIdentifierInput>;
+  order?: InputMaybe<SortOrder>;
+  paymentMethodInput?: InputMaybe<PaymentTermIdentifierInput>;
+  paymentTermInput?: InputMaybe<PaymentMethodIdentifierInput>;
   pricingModelDetailsInput?: InputMaybe<PricingModelDetailsInput>;
   pricingModelInput?: InputMaybe<PricingModelInput>;
-  projectIdentifierInput?: InputMaybe<ProjectIdentifierInput>;
-  promptAIFeatureFeedback?: InputMaybe<PromptAiFeatureFeedbackInput>;
-  promptAIFeedbackInput?: InputMaybe<PromptAiFeatureFeedbackInput>;
-  quoteApprovalInput?: InputMaybe<QuoteApprovalInput>;
-  quoteApprovalStatus?: InputMaybe<QuoteApprovalStatus>;
-  quoteApproverInput?: InputMaybe<QuoteApproverInput>;
   quoteItemIdentifierInput?: InputMaybe<QuoteItemIdentifierInput>;
-  recipientInput?: InputMaybe<RecipientInput>;
-  recipientType?: InputMaybe<RecipientType>;
-  recurringContractFrequencyInput?: InputMaybe<RecurringContractFrequencyInput>;
+  recipientIdentifierInput?: InputMaybe<RecipientIdentifierInput>;
   recurringContractInput?: InputMaybe<RecurringContractInput>;
-  redeemableContractInput?: InputMaybe<RedeemableContractInput>;
-  resellingClientConfigInput?: InputMaybe<ResellingClientConfigInput>;
-  resellingItemConfigInput?: InputMaybe<ResellingItemConfigInput>;
-  roleFeatureInput?: InputMaybe<RoleFeatureInput>;
-  roleTypeInput?: InputMaybe<RoleTypeInput>;
-  selectionInput?: InputMaybe<SelectionInput>;
+  roleIdentifierInput?: InputMaybe<RoleIdentifierInput>;
   serviceCatalogItemIdentifierInput?: InputMaybe<ServiceCatalogItemIdentifierInput>;
-  serviceCategory?: InputMaybe<ServiceCategoryInput>;
-  serviceItemCustomPrice?: InputMaybe<ServiceItemCustomPriceInput>;
+  serviceCategoryIdentifierInput?: InputMaybe<ServiceCategoryIdentifierInput>;
   serviceItemIdentifierInput?: InputMaybe<ServiceItemIdentifierInput>;
-  sessionAppType?: InputMaybe<SessionAppType>;
-  shareReportUserInput?: InputMaybe<ShareReportUserInput>;
-  siteIdentifierInput?: InputMaybe<SiteIdentifierInput>;
-  slaDurationInput?: InputMaybe<SlaDurationInput>;
-  slaEscalationInput?: InputMaybe<SlaEscalationActionInput>;
-  slaInput?: InputMaybe<SlaInput>;
-  slaTiming?: InputMaybe<SlaTimingInput>;
+  slaIdentifierInput?: InputMaybe<SlaIdentifierInput>;
   sort?: InputMaybe<SortInput>;
-  ssoDetailInput?: InputMaybe<SsoDetailInput>;
-  state?: InputMaybe<InAppNotificationState>;
-  taxIdentifierInput?: InputMaybe<TaxIdentifierInput>;
-  taxRateInput?: InputMaybe<TaxRateInput>;
-  teamInput?: InputMaybe<TeamInput>;
-  techGroupIdentifierInput?: InputMaybe<TechnicianGroupIdentifierInput>;
-  timeseriesAggregationInput?: InputMaybe<TimeseriesAggregationInput>;
-  tpEntityType?: InputMaybe<TpEntityType>;
-  tpMappingRuleIdentifierInput?: InputMaybe<TpMappingRuleIdentifierInput>;
-  tpSource?: InputMaybe<TpSourceInput>;
-  type?: InputMaybe<DomainType>;
+  source?: InputMaybe<TicketSource>;
+  taskIdentifierInput?: InputMaybe<TaskIdentifierInput>;
+  taskModule?: InputMaybe<TaskModule>;
+  teamIdentifierInput?: InputMaybe<TeamIdentifierInput>;
+  technicianGroupIdentifierInput?: InputMaybe<TechnicianGroupIdentifierInput>;
+  technicianIdentifierInput?: InputMaybe<TechnicianIdentifierInput>;
+  thirdPartySourceInput?: InputMaybe<ThirdPartySourceInput>;
   updateBillableContractInput?: InputMaybe<UpdateBillableContractInput>;
-  updateCheckListItemInput?: InputMaybe<UpdateCheckListItemInput>;
-  updateContractApplicationInput?: InputMaybe<UpdateContractApplicationInput>;
   updateContractInput?: InputMaybe<UpdateContractInput>;
-  updateContractPricingOverrideInput?: InputMaybe<UpdateContractPricingOverrideInput>;
-  updateContractSLAInput?: InputMaybe<UpdateContractSlaInput>;
-  updateContractTemplateInput?: InputMaybe<UpdateContractTemplateInput>;
   updateFieldOptionInput?: InputMaybe<UpdateFieldOptionInput>;
-  updateHourlyServiceTypeItemInput?: InputMaybe<UpdateHourlyServiceTypeItemInput>;
-  updateInvoiceItemInput?: InputMaybe<UpdateInvoiceItemInput>;
-  updatePlanProductFeatureInput?: InputMaybe<UpdatePlanProductFeatureInput>;
-  updatePortalDomainInput?: InputMaybe<UpdatePortalDomainInput>;
   updateQuoteItemInput?: InputMaybe<UpdateQuoteItemInput>;
-  updateRedeemableServiceBundleInput?: InputMaybe<UpdateRedeemableServiceBundleInput>;
-  updateReportScheduleInput?: InputMaybe<UpdateReportScheduleInput>;
-  updateServiceTypeItemInput?: InputMaybe<UpdateServiceTypeItemInput>;
-  updateTPMappingRuleInput?: InputMaybe<UpdateTpMappingRuleInput>;
+  updateTicketInput?: InputMaybe<UpdateTicketInput>;
   updateWebhookSubscriptionInput?: InputMaybe<UpdateWebhookSubscriptionInput>;
+  updateWorklogTimerSegmentInput?: InputMaybe<UpdateWorklogTimerSegmentInput>;
   userIdentifierInput?: InputMaybe<UserIdentifierInput>;
-  userType?: InputMaybe<UserType>;
-  vendor?: InputMaybe<VendorsInput>;
   webhookSubscriptionEventInput?: InputMaybe<WebhookSubscriptionEventInput>;
   webhookSubscriptionIdentifierInput?: InputMaybe<WebhookSubscriptionIdentifierInput>;
+  webhookSubscriptionStatusInput?: InputMaybe<WebhookSubscriptionStatusInput>;
   workItemIdentifierInput?: InputMaybe<WorkItemIdentifierInput>;
-};
-
-
-export type MutationRemoveClientUserAssociationsArgs = {
-  input: Array<UserAssociationIdentifierInput>;
-};
-
-
-export type MutationResendEmployeeActivationMailArgs = {
-  userId: Scalars['ID']['input'];
-};
-
-
-export type MutationResendUserActivationMailArgs = {
-  userId: Scalars['ID']['input'];
-};
-
-
-export type MutationResendUsersActivationMailArgs = {
-  input: Array<Scalars['ID']['input']>;
-};
-
-
-export type MutationResendVendorConversationArgs = {
-  input: ResendVendorConversationInput;
+  workModule?: InputMaybe<WorkModule>;
+  worklogModule?: InputMaybe<WorklogModule>;
+  worklogTimerSegmentIdentifierInput?: InputMaybe<WorklogTimerSegmentIdentifierInput>;
 };
 
 
@@ -5242,327 +2614,68 @@ export type MutationResetSigningSecretArgs = {
 };
 
 
+export type MutationResolveAlertsArgs = {
+  input?: InputMaybe<Array<InputMaybe<ResolveAlertInput>>>;
+};
+
+
 export type MutationRestoreClientsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  input: Array<ClientIdentifierInput>;
 };
 
 
-export type MutationRestoreDeleteClientConversationsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+export type MutationRestoreTicketsArgs = {
+  input?: InputMaybe<Array<InputMaybe<TicketIdentifierInput>>>;
 };
 
 
-export type MutationResyncFailedDataMappingsArgs = {
-  entityName: Scalars['String']['input'];
-  integrationRefId: Scalars['ID']['input'];
+export type MutationRunScriptOnAssetArgs = {
+  input: RunScriptInput;
 };
 
 
-export type MutationSaveAppPersonalizationArgs = {
-  input: PersonalizationInput;
-};
-
-
-export type MutationSavePersonalizationArgs = {
-  input?: InputMaybe<UserPersonalizationInput>;
-};
-
-
-export type MutationSendInvoiceArgs = {
-  input: InvoiceConversationInput;
-};
-
-
-export type MutationSendInvoicesArgs = {
-  input: Array<InvoiceIdentifierInput>;
-};
-
-
-export type MutationSetupIntegratedPaymentMethodArgs = {
-  input: SetupIntegratedPaymentMethodInput;
-};
-
-
-export type MutationShareReportArgs = {
-  input?: InputMaybe<ShareReportInput>;
-};
-
-
-export type MutationSoftDeleteClientConversationsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+export type MutationSoftDeleteAssetArgs = {
+  input?: InputMaybe<AssetIdentifierInput>;
 };
 
 
 export type MutationSoftDeleteClientsArgs = {
-  ids: Array<InputMaybe<Scalars['ID']['input']>>;
+  input: Array<ClientIdentifierInput>;
 };
 
 
-export type MutationUpdateAiConfigurationArgs = {
-  input: AiConfigurationInfoInput;
+export type MutationSoftDeleteTicketsArgs = {
+  input?: InputMaybe<Array<InputMaybe<TicketIdentifierInput>>>;
 };
 
 
-export type MutationUpdateAiFeatureArgs = {
-  input: UpdateAiFeatureInput;
-};
-
-
-export type MutationUpdateAiFeatureGroupArgs = {
-  input: UpdateAiFeatureGroupInput;
-};
-
-
-export type MutationUpdateAiFeatureUsageCountArgs = {
-  input: UpdateAiFeatureUsageCountInput;
-};
-
-
-export type MutationUpdateAddonArgs = {
-  input: UpdateAddonInput;
-};
-
-
-export type MutationUpdateAppSecurityConfigurationArgs = {
-  configurationId: Scalars['ID']['input'];
-  input?: InputMaybe<AppSecurityConfigurationInput>;
-};
-
-
-export type MutationUpdateBillableContractPricesArgs = {
-  input: UpdateBillableContractPricesInput;
-};
-
-
-export type MutationUpdateBillingContractTemplateArgs = {
-  input: UpdateContractTemplateInput;
-};
-
-
-export type MutationUpdateBillingTemplateArgs = {
-  input: UpdateBillingTemplateInput;
-};
-
-
-export type MutationUpdateBiometricStatusArgs = {
-  enabled?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-export type MutationUpdateBusinessFunctionArgs = {
-  input: BusinessFunctionInput;
-};
-
-
-export type MutationUpdateChartArgs = {
-  chartId: Scalars['ID']['input'];
-  input: ChartInput;
-};
-
-
-export type MutationUpdateCheckListArgs = {
-  input?: InputMaybe<UpdateCheckListInput>;
+export type MutationUpdateAssetArgs = {
+  input: UpdateAssetInput;
 };
 
 
 export type MutationUpdateClientArgs = {
-  input?: InputMaybe<ClientInput>;
-};
-
-
-export type MutationUpdateClientBillingContractArgs = {
-  input: UpdateClientContractInput;
+  input: UpdateClientInput;
 };
 
 
 export type MutationUpdateClientContractArgs = {
-  contract: ClientContractInput;
-  contractId: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdateClientContractsOrderArgs = {
-  input: Array<ClientContractOrderInput>;
-};
-
-
-export type MutationUpdateClientPolicyMigrationStatusArgs = {
-  clientId?: InputMaybe<Scalars['ID']['input']>;
-  enabled?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-export type MutationUpdateClientProvisionRuleLayoutArgs = {
-  input: UpdateClientProvisionRuleLayoutInput;
-};
-
-
-export type MutationUpdateClientSiteArgs = {
-  input: UpdateSiteInput;
+  input: UpdateClientContractInput;
 };
 
 
 export type MutationUpdateClientUserArgs = {
-  input?: InputMaybe<UserInput>;
+  input: UpdateClientUserInput;
 };
 
 
 export type MutationUpdateClientUserAssociationsArgs = {
-  input: Array<UpdateUserAssociationInput>;
-};
-
-
-export type MutationUpdateCompanySiteArgs = {
-  input: UpdateSiteInput;
-};
-
-
-export type MutationUpdateCompanyUserArgs = {
-  input?: InputMaybe<UserInput>;
-};
-
-
-export type MutationUpdateConfigurationCompletionArgs = {
-  id: Scalars['ID']['input'];
-  isCompleted?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-export type MutationUpdateContractServiceItemArgs = {
-  input: ContractServiceItemInput;
-};
-
-
-export type MutationUpdateContractTemplateArgs = {
-  template: ClientContractTemplateInput;
-  templateId: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdateCurrentUserArgs = {
-  input?: InputMaybe<UserInput>;
-};
-
-
-export type MutationUpdateCurrentUserPasswordArgs = {
-  newPassword?: InputMaybe<Scalars['String']['input']>;
-  oldPassword?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationUpdateCurrentUserPasswordV2Args = {
-  authenticationVerifiedToken?: InputMaybe<Scalars['String']['input']>;
-  newPassword?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationUpdateCustomFieldArgs = {
-  fieldId: Scalars['ID']['input'];
-  input: CustomFieldInput;
-};
-
-
-export type MutationUpdateCustomerOnPostSignupArgs = {
-  input: UpdateCustomerOnPostSignupInput;
-};
-
-
-export type MutationUpdateDataMappingArgs = {
-  data: Array<InputMaybe<DataMappingInput>>;
-  name: Scalars['String']['input'];
-};
-
-
-export type MutationUpdateDataMappingV2Args = {
-  data: Array<InputMaybe<DataMappingInput>>;
-  entityName?: InputMaybe<Scalars['String']['input']>;
-  integrationRefId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type MutationUpdateDefaultPackagesForBitDefenderClientsArgs = {
-  packageMappings?: InputMaybe<Array<InputMaybe<ClientInput>>>;
-};
-
-
-export type MutationUpdateDefaultProtectPlanForAcronisClientsArgs = {
-  planMappings?: InputMaybe<Array<InputMaybe<ClientInput>>>;
-};
-
-
-export type MutationUpdateEmployeeArgs = {
-  input?: InputMaybe<UserInput>;
+  input: Array<UpdateClientUserAssociationInput>;
 };
 
 
 export type MutationUpdateFieldArgs = {
-  input: FieldInput;
-};
-
-
-export type MutationUpdateFieldV2Args = {
   input: UpdateFieldInput;
-};
-
-
-export type MutationUpdateGroupClientsArgs = {
-  input?: InputMaybe<GroupInput>;
-};
-
-
-export type MutationUpdateHolidayListArgs = {
-  id: Scalars['ID']['input'];
-  input?: InputMaybe<HolidayListInput>;
-  year: Scalars['Int']['input'];
-};
-
-
-export type MutationUpdateIdentityProviderDetailArgs = {
-  input?: InputMaybe<IdpSamlProviderDetailInput>;
-};
-
-
-export type MutationUpdateInAppNotificationStateArgs = {
-  input?: InputMaybe<UpdateInAppNotificationInput>;
-};
-
-
-export type MutationUpdateIntegrationArgs = {
-  input?: InputMaybe<IntegrationInput>;
-  integrationId: Scalars['String']['input'];
-};
-
-
-export type MutationUpdateIntegrationAddOnArgs = {
-  input: IntegrationAddOnInput;
-};
-
-
-export type MutationUpdateIntegrationConfigForClientsArgs = {
-  clientIntegrationInfoInput?: InputMaybe<Array<InputMaybe<ClientInput>>>;
-  integrationId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type MutationUpdateIntegrationEntityConfigsArgs = {
-  entity?: InputMaybe<Scalars['String']['input']>;
-  entityConfigInput?: InputMaybe<Array<InputMaybe<EntityConfigInput>>>;
-  input?: InputMaybe<Scalars['JSON']['input']>;
-  integrationRefId: Scalars['ID']['input'];
-  version?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-export type MutationUpdateIntegrationEntityMappingArgs = {
-  entityName?: InputMaybe<Scalars['String']['input']>;
-  integrationRefId?: InputMaybe<Scalars['ID']['input']>;
-  mappingInput?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-
-export type MutationUpdateIntegrationV2Args = {
-  input?: InputMaybe<IntegrationInput>;
-  integrationRefId: Scalars['ID']['input'];
 };
 
 
@@ -5571,102 +2684,8 @@ export type MutationUpdateInvoiceArgs = {
 };
 
 
-export type MutationUpdateInvoiceSettingArgs = {
-  clientId: Scalars['ID']['input'];
-  setting: InvoiceSettingInput;
-};
-
-
-export type MutationUpdateInvoiceSettingsArgs = {
-  input: UpdateInvoiceSettingInput;
-};
-
-
-export type MutationUpdateInvoiceTemplateArgs = {
-  input: UpdateInvoiceTemplateInput;
-};
-
-
-export type MutationUpdateMspEmailDomainsArgs = {
-  input?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type MutationUpdateMailProviderConfigArgs = {
-  input: UpdateMailProviderConfigInput;
-};
-
-
-export type MutationUpdateMailboxArgs = {
-  input: UpdateMailboxInput;
-};
-
-
-export type MutationUpdateNotificationTemplateArgs = {
-  input?: InputMaybe<NotificationTemplateInput>;
-  notificationTemplateType: Scalars['String']['input'];
-  templateId: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdateNotificationTemplateInfoArgs = {
-  input: UpdateNotificationTemplateInfoInput;
-};
-
-
-export type MutationUpdateOfferedItemsArgs = {
-  items?: InputMaybe<Array<InputMaybe<OfferedItemInput>>>;
-};
-
-
-export type MutationUpdatePaymentMethodsArgs = {
-  input: UpdatePaymentMethodsInput;
-};
-
-
-export type MutationUpdatePaymentSettingArgs = {
-  clientId: Scalars['ID']['input'];
-  setting: PaymentSettingInput;
-};
-
-
-export type MutationUpdatePaymentTermsArgs = {
-  input: UpdatePaymentTermInput;
-};
-
-
-export type MutationUpdatePlaceholderTemplateArgs = {
-  input: UpdatePlaceholderTemplateInput;
-};
-
-
-export type MutationUpdatePlanArgs = {
-  input: UpdatePlanInput;
-};
-
-
-export type MutationUpdatePrimaryCompanyArgs = {
-  input: UpdateOrganizationInput;
-};
-
-
-export type MutationUpdateProductFeatureCategoriesArgs = {
-  input: Array<UpdateProductFeatureCategoryInput>;
-};
-
-
-export type MutationUpdateProductFeaturesArgs = {
-  input: Array<UpdateProductFeatureInput>;
-};
-
-
-export type MutationUpdateProvisionRuleArgs = {
-  input: UpdateProvisionRuleInput;
-};
-
-
-export type MutationUpdateProvisionRuleTemplateLayoutArgs = {
-  input: UpdateProvisionRuleTemplateLayoutInput;
+export type MutationUpdateItDocumentationArgs = {
+  input: UpdateItDocumentationInput;
 };
 
 
@@ -5675,128 +2694,13 @@ export type MutationUpdateQuoteArgs = {
 };
 
 
-export type MutationUpdateQuoteTemplateArgs = {
-  input: UpdateQuoteTemplateInput;
+export type MutationUpdateTechnicianArgs = {
+  input?: InputMaybe<UpdateTechnicianInput>;
 };
 
 
-export type MutationUpdateReadStatusArgs = {
-  conversationId: Scalars['ID']['input'];
-  status?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-export type MutationUpdateRecentSearchInfoArgs = {
-  hit?: InputMaybe<Scalars['JSON']['input']>;
-  term?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationUpdateReportArgs = {
-  input: ReportInput;
-  reportId: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdateReportCalculationStatusArgs = {
-  input: OfferedItemStatusInput;
-};
-
-
-export type MutationUpdateReportExportConfigArgs = {
-  input: ReportExportConfigInput;
-};
-
-
-export type MutationUpdateReportSchedulesArgs = {
-  input: ConfigureReportScheduleInput;
-};
-
-
-export type MutationUpdateReservedSubDomainArgs = {
-  id: Scalars['ID']['input'];
-  reservedSubDomainsInput: ReservedSubDomainInput;
-};
-
-
-export type MutationUpdateRoleArgs = {
-  input?: InputMaybe<RoleInput>;
-};
-
-
-export type MutationUpdateSequenceGeneratorsArgs = {
-  input?: InputMaybe<Array<InputMaybe<UpdateSequenceGeneratorInput>>>;
-};
-
-
-export type MutationUpdateServiceCatalogItemArgs = {
-  input: UpdateServiceCatalogItemInput;
-};
-
-
-export type MutationUpdateServiceCategoryArgs = {
-  category: ServiceCategoryInput;
-  categoryId: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdateServiceItemArgs = {
-  item?: InputMaybe<ServiceItemInput>;
-  itemId: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdateSiteArgs = {
-  input?: InputMaybe<SiteInput>;
-  siteId: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdateStickyNoteArgs = {
-  content?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationUpdateSubscriptionPurchaseStatusArgs = {
-  input?: InputMaybe<UpdatePurchaseSubscriptionStatusInput>;
-};
-
-
-export type MutationUpdateTaxArgs = {
-  tax: TaxInput;
-  taxId: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdateTechGroupArgs = {
-  input?: InputMaybe<GroupInput>;
-};
-
-
-export type MutationUpdateTechnicianLicenseStateArgs = {
-  operationalStatus: UserOperationalStatus;
-  userIds?: InputMaybe<Array<Scalars['ID']['input']>>;
-};
-
-
-export type MutationUpdateUserDeviceInfoArgs = {
-  input: UserSessionDeviceInfoInput;
-};
-
-
-export type MutationUpdateUserGroupArgs = {
-  input?: InputMaybe<GroupInput>;
-};
-
-
-export type MutationUpdateVendorConversationReadStatusArgs = {
-  input: UpdateVendorConversationReadStatusInput;
-};
-
-
-export type MutationUpdateViewArgs = {
-  id: Scalars['ID']['input'];
-  input: ListViewInput;
+export type MutationUpdateTicketArgs = {
+  input: UpdateTicketInput;
 };
 
 
@@ -5805,115 +2709,33 @@ export type MutationUpdateWebhookSubscriptionArgs = {
 };
 
 
-export type MutationUpgradeSubscriptionArgs = {
-  hostedPageInput?: InputMaybe<HostedPageInput>;
+export type MutationUpdateWorklogEntryArgs = {
+  input: UpdateWorklogEntryInput;
 };
 
 
-export type MutationValidateAchAccountArgs = {
-  input?: InputMaybe<ValidateAchAccountInput>;
+export type MutationUpdateWorklogTimerEntryArgs = {
+  input: UpdateWorklogTimerEntryInput;
 };
 
-
-export type MutationValidateEmailAddressArgs = {
-  accountType: AccountType;
-  clientId?: InputMaybe<Scalars['ID']['input']>;
-  email: Scalars['String']['input'];
-};
-
-
-export type MutationValidatePasswordArgs = {
-  password?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationVerifyAchAccountArgs = {
-  deposit1?: InputMaybe<Scalars['String']['input']>;
-  deposit2?: InputMaybe<Scalars['String']['input']>;
-  paymentMethodId: Scalars['ID']['input'];
-};
-
-
-export type MutationVerifyAndEnableCurrUserTfaAuthenticatorArgs = {
-  passcode?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationVerifyAndEnableCurrUserTfaAuthenticatorV2Args = {
-  authenticationVerifiedToken?: InputMaybe<Scalars['String']['input']>;
-  passcode?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationVerifyCurrentPasswordArgs = {
-  currentPassword?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationVerifyIncomingAddressAvailabilityArgs = {
-  emailAddress?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationVerifyOutgoingDomainArgs = {
-  boxId: Scalars['ID']['input'];
-};
-
-
-export type MutationVerifyPasswordAndPasscodeArgs = {
-  currentPassword?: InputMaybe<Scalars['String']['input']>;
-  passcode?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type NetworkProtocol = {
-  __typename?: 'NetworkProtocol';
-  name?: Maybe<Scalars['String']['output']>;
-  protocolId?: Maybe<Scalars['ID']['output']>;
-};
-
-export type NonMonitoredAsset = AssetBase & {
-  __typename?: 'NonMonitoredAsset';
-  assetClass?: Maybe<AssetClass>;
-  assetId?: Maybe<Scalars['ID']['output']>;
-  assetProtocolMapping?: Maybe<Array<Maybe<AssetProtocolMapping>>>;
-  /** AssetPlatformCategory */
-  associatedAssets?: Maybe<Scalars['JSON']['output']>;
-  /** AdvanceRuleBuilder */
-  categoryAssignedStrategy?: Maybe<PolicyCategoryAssignedBy>;
-  client?: Maybe<Organization>;
-  customFields?: Maybe<Scalars['JSON']['output']>;
-  department?: Maybe<BusinessFunction>;
-  loggedInUser?: Maybe<Scalars['String']['output']>;
-  monitoringStatus?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  nextPolicyCategory?: Maybe<PolicyCategory>;
-  owner?: Maybe<User>;
-  platformCategory?: Maybe<Scalars['String']['output']>;
-  policyCategory?: Maybe<PolicyCategory>;
-  site?: Maybe<Site>;
-};
-
-
-export type NonMonitoredAssetAssociatedAssetsArgs = {
-  refEntityAttributes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type NonMonitoredAssetCustomFieldsArgs = {
-  fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
+/** The note added by a technician. */
 export type Note = {
   __typename?: 'Note';
-  /** Deprecated */
-  addedBy?: Maybe<User>;
+  /**
+   * The technician who created the note.
+   * The actual type of this field is Technician. Returns userId and name fields as JSON.
+   */
+  addedBy?: Maybe<Scalars['JSON']['output']>;
+  /** The created datetime of the note. */
   addedOn: Scalars['String']['output'];
+  /** The list of attachments. */
   attachments?: Maybe<Array<Maybe<Attachment>>>;
+  /** The content of the note. */
   content: Scalars['String']['output'];
+  /** The ID of the note. */
   noteId: Scalars['ID']['output'];
+  /** Indicates whether the note can be shown to the requester if set to PUBLIC; otherwise, it can be shown to the technician only. */
   privacyType?: Maybe<NotePrivacyType>;
-  ticket?: Maybe<Ticket>;
-  workItem?: Maybe<WorkItem>;
 };
 
 export enum NotePrivacyType {
@@ -5921,162 +2743,67 @@ export enum NotePrivacyType {
   Public = 'PUBLIC'
 }
 
-export enum NotificationChannel {
-  InApp = 'IN_APP',
-  Mail = 'MAIL',
-  PushNotification = 'PUSH_NOTIFICATION'
-}
-
-export type NotificationTemplate = {
-  __typename?: 'NotificationTemplate';
-  activated?: Maybe<Scalars['Boolean']['output']>;
-  attachmentList?: Maybe<Array<Maybe<NotificationTemplateAttachment>>>;
-  bcc?: Maybe<Array<Maybe<Recipient>>>;
-  canConfigureCcAndBcc?: Maybe<Scalars['Boolean']['output']>;
-  canConfigureTo?: Maybe<Scalars['Boolean']['output']>;
-  cc?: Maybe<Array<Maybe<Recipient>>>;
-  channel?: Maybe<NotificationChannel>;
-  constant?: Maybe<Scalars['String']['output']>;
-  content?: Maybe<Scalars['String']['output']>;
-  defaultTemplate?: Maybe<Scalars['Boolean']['output']>;
-  id: Scalars['ID']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  placeholdersUsed?: Maybe<Scalars['String']['output']>;
-  skipDomains?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  skipEmails?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** AccountType */
-  skipInitiatedByTechnician?: Maybe<Scalars['Boolean']['output']>;
-  skipInitiatorAccountType?: Maybe<Scalars['String']['output']>;
-  subject?: Maybe<Scalars['String']['output']>;
-  templateSubtype?: Maybe<NotificationTemplateSubtype>;
-  templateType?: Maybe<NotificationTemplateType>;
-  to?: Maybe<Array<Maybe<Recipient>>>;
-};
-
-export type NotificationTemplateAttachment = {
-  __typename?: 'NotificationTemplateAttachment';
-  fileName?: Maybe<Scalars['String']['output']>;
-  fileSize?: Maybe<Scalars['String']['output']>;
-  originalFileName?: Maybe<Scalars['String']['output']>;
-};
-
-export type NotificationTemplateAttachmentInput = {
-  fileName?: InputMaybe<Scalars['String']['input']>;
-  fileSize?: InputMaybe<Scalars['String']['input']>;
-  originalFileName?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type NotificationTemplateIdentifierInput = {
-  templateId: Scalars['ID']['input'];
-};
-
-export type NotificationTemplateInfo = {
-  __typename?: 'NotificationTemplateInfo';
-  constant?: Maybe<Scalars['String']['output']>;
-  dataCondition?: Maybe<Scalars['JSON']['output']>;
-  id: Scalars['ID']['output'];
-  name?: Maybe<Scalars['String']['output']>;
-  templateSubtype?: Maybe<NotificationTemplateSubtype>;
-  templateType: NotificationTemplateType;
-  templates?: Maybe<Array<Maybe<NotificationTemplate>>>;
-};
-
-export type NotificationTemplateInput = {
-  activated?: InputMaybe<Scalars['Boolean']['input']>;
-  attachmentList?: InputMaybe<Array<InputMaybe<NotificationTemplateAttachmentInput>>>;
-  bcc?: InputMaybe<Array<InputMaybe<RecipientInput>>>;
-  cc?: InputMaybe<Array<InputMaybe<RecipientInput>>>;
-  content?: InputMaybe<Scalars['String']['input']>;
-  defaultTemplate?: InputMaybe<Scalars['Boolean']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  inlineImages?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  placeholdersUsed?: InputMaybe<Scalars['String']['input']>;
-  skipDomains?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  skipEmails?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** AccountType */
-  skipInitiatedByTechnician?: InputMaybe<Scalars['Boolean']['input']>;
-  skipInitiatorAccountType?: InputMaybe<Scalars['String']['input']>;
-  subject?: InputMaybe<Scalars['String']['input']>;
-  templateSubtype?: InputMaybe<Scalars['String']['input']>;
-  /**
-   *  NotificationTemplateSubtype
-   * send the whole recipient array,even if there is change(add/remove) in one recipient
-   */
-  to?: InputMaybe<Array<InputMaybe<RecipientInput>>>;
-};
-
-export enum NotificationTemplateSubtype {
-  Requester = 'REQUESTER',
-  Technician = 'TECHNICIAN',
-  User = 'USER'
-}
-
-export enum NotificationTemplateType {
-  Alerts = 'ALERTS',
-  CustomAsset = 'CUSTOM_ASSET',
-  CustomTicketing = 'CUSTOM_TICKETING',
-  Invoice = 'INVOICE',
-  Reply = 'REPLY',
-  Report = 'REPORT',
-  SideConversation = 'SIDE_CONVERSATION',
-  SystemAsset = 'SYSTEM_ASSET',
-  SystemClient = 'SYSTEM_CLIENT',
-  SystemOnboarding = 'SYSTEM_ONBOARDING',
-  SystemTask = 'SYSTEM_TASK',
-  SystemTicketing = 'SYSTEM_TICKETING'
-}
-
-export enum Os {
-  Aix = 'AIX',
-  FreeBsd = 'FreeBSD',
-  Hpux = 'HPUX',
-  Ios = 'IOS',
-  Iossx = 'IOSSX',
-  Junos = 'Junos',
-  Linux = 'LINUX',
-  Mac = 'MAC',
-  NetBsd = 'NetBSD',
-  OpenBsd = 'OpenBSD',
-  Solaris = 'Solaris',
-  Tru64 = 'Tru64',
-  Windows = 'WINDOWS'
-}
-
+/** The offered items */
 export type OfferedItem = {
   __typename?: 'OfferedItem';
+  /** If the type is WORK, and the offered item was adjusted from block hour, it indicates the quantity adjusted from the block hour */
   adjustedBlockHour?: Maybe<Scalars['String']['output']>;
+  /** If the type is WORK, and the offered item was adjusted from block money, it indicates the amount adjusted from the block money */
   adjustedBlockMoney?: Maybe<Scalars['String']['output']>;
+  /** If the type is WORK, it indicates whether the service is offered after hours */
   afterHours?: Maybe<Scalars['Boolean']['output']>;
+  /** The actual amount of the offered item. */
   amount?: Maybe<Scalars['String']['output']>;
-  billDate?: Maybe<Scalars['String']['output']>;
-  client?: Maybe<Organization>;
+  /** The offered date. */
+  billDate: Scalars['String']['output'];
+  /**
+   * The client to whom the offered item belongs.
+   * The actual type of this field is Client. Returns accountId, name fields as JSON.
+   */
+  client?: Maybe<Scalars['JSON']['output']>;
+  /** The created time of the offered item. */
   createdTime?: Maybe<Scalars['String']['output']>;
+  /** The actual discount rate of the offered item. */
   discountRate?: Maybe<Scalars['String']['output']>;
-  eligibleBlockHour?: Maybe<Scalars['String']['output']>;
-  eligibleBlockMoney?: Maybe<Scalars['String']['output']>;
+  /** The ID of the offered item */
   itemId: Scalars['ID']['output'];
-  module?: Maybe<Scalars['String']['output']>;
+  /** The notes of the offered item. */
   notes?: Maybe<Scalars['String']['output']>;
-  operationStatus?: Maybe<OperationStatus>;
-  project?: Maybe<Project>;
+  /** The actual quantity of the offered item. */
   qty?: Maybe<Scalars['String']['output']>;
+  /** The revised amount of the offered item after the audit. */
   revisedAmount?: Maybe<Scalars['String']['output']>;
+  /** The revised discount rate of the offered item after the audit. */
   revisedDiscountRate?: Maybe<Scalars['String']['output']>;
+  /** The revised quantity of the offered item after the audit. */
   revisedQuantity?: Maybe<Scalars['String']['output']>;
+  /** The revised unit price of the offered item after the audit. */
   revisedUnitPrice?: Maybe<Scalars['String']['output']>;
-  serviceCatalogItem?: Maybe<ServiceCatalogItem>;
-  serviceItem?: Maybe<ServiceItem>;
-  site?: Maybe<Site>;
-  status?: Maybe<Scalars['String']['output']>;
-  technician?: Maybe<User>;
-  ticket?: Maybe<Ticket>;
-  type?: Maybe<OfferedItemType>;
-  /** OfferedItemAuditStatus */
+  /**
+   * The offered service item.
+   * The actual type of this field is ServiceItem. Returns itemId, name, quantityType fields as JSON.
+   */
+  serviceItem: Scalars['JSON']['output'];
+  /**
+   * The client site to which the offered item belongs.
+   * The actual type of this field is ClientSite. Returns id, name fields as JSON.
+   */
+  site?: Maybe<Scalars['JSON']['output']>;
+  /** Indicates the audit state of the offered item */
+  status: OfferedItemAuditStatus;
+  /** If the type is WORK, it indicates the technician who offered the item. */
+  technician?: Maybe<Scalars['JSON']['output']>;
+  /** Indicates whether the offered item is from the contract or worklog. */
+  type: OfferedItemType;
+  /** The actual unit price of the offered item. */
   unitPrice?: Maybe<Scalars['String']['output']>;
+  /** The updated time of the offered item. */
   updatedTime?: Maybe<Scalars['String']['output']>;
-  workItem?: Maybe<WorkItem>;
-  worklog?: Maybe<Worklog>;
+  /**
+   * If the type is WORK, it indicates the work item (ticket/project) to which the offered item belongs.
+   * The actual type of this field is WorkItem. Returns workId, displayId, module fields as JSON.
+   */
+  workItem?: Maybe<Scalars['JSON']['output']>;
 };
 
 export enum OfferedItemAuditStatus {
@@ -6086,1445 +2813,378 @@ export enum OfferedItemAuditStatus {
   Pending = 'PENDING'
 }
 
-export type OfferedItemIdentifierInput = {
-  itemId: Scalars['ID']['input'];
-};
-
-export type OfferedItemInput = {
-  itemId?: InputMaybe<Scalars['ID']['input']>;
-  notes?: InputMaybe<Scalars['String']['input']>;
-  revisedDiscountRate?: InputMaybe<Scalars['String']['input']>;
-  /** OfferedItemAuditStatus */
-  revisedQuantity?: InputMaybe<Scalars['String']['input']>;
-  revisedUnitPrice?: InputMaybe<Scalars['String']['input']>;
-  serviceCatalogItem?: InputMaybe<ServiceCatalogItemIdentifierInput>;
-  serviceItem?: InputMaybe<ServiceItemIdentifierInput>;
-  status?: InputMaybe<Scalars['String']['input']>;
-};
-
+/** The response payload for the list of offered items. */
 export type OfferedItemList = {
   __typename?: 'OfferedItemList';
+  /** The list of offered items */
   items?: Maybe<Array<Maybe<OfferedItem>>>;
+  /** The details about the list. */
   listInfo?: Maybe<ListInfo>;
 };
 
-export enum OfferedItemModule {
-  Project = 'PROJECT',
-  Subscription = 'SUBSCRIPTION',
-  Ticket = 'TICKET'
-}
-
-export type OfferedItemStatusInput = {
-  status: OfferedItemAuditStatus;
-};
-
+/** Specifies the offered item type. */
 export enum OfferedItemType {
+  /** The specified item is under a contract. */
   Contract = 'CONTRACT',
+  /** The specified item is part of a ticket/project. */
   Work = 'WORK'
 }
 
-export type OnBoardingState = {
-  __typename?: 'OnBoardingState';
-  agentDeployed?: Maybe<Scalars['Boolean']['output']>;
-  clientCreated?: Maybe<Scalars['Boolean']['output']>;
-  customDomainConfigured?: Maybe<Scalars['Boolean']['output']>;
-  isMSPSignatureConfigured?: Maybe<Scalars['Boolean']['output']>;
-  itDocCreated?: Maybe<Scalars['Boolean']['output']>;
-  projectCreated?: Maybe<Scalars['Boolean']['output']>;
-  reportCreated?: Maybe<Scalars['Boolean']['output']>;
-  salesMailConfigured?: Maybe<Scalars['Boolean']['output']>;
-  subDomainConfigured?: Maybe<Scalars['Boolean']['output']>;
-  supportMailConfigured?: Maybe<Scalars['Boolean']['output']>;
-};
-
+/** A system-defined operation like Add, Edit, Delete, View, Allow which is used along with the feature to define the user authorization under a role. */
 export type Operation = {
   __typename?: 'Operation';
-  labelKey?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+  /** The name of the operation. */
+  name: Scalars['String']['output'];
+  /** The ID of the operation. */
   operationId: Scalars['ID']['output'];
-  value?: Maybe<Scalars['Int']['output']>;
 };
 
-export type OperationInput = {
-  name?: InputMaybe<Scalars['String']['input']>;
-  operationId: Scalars['ID']['input'];
-  value?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export enum OperationStatus {
-  Cancel = 'CANCEL',
-  DeletionInProgress = 'DELETION_IN_PROGRESS',
-  Failure = 'FAILURE',
-  InQueue = 'IN_QUEUE',
-  Progress = 'PROGRESS',
-  Success = 'SUCCESS'
-}
-
+/** Option of the field */
 export type Option = {
   __typename?: 'Option';
   children?: Maybe<Array<Maybe<Option>>>;
-  deletable: Scalars['Boolean']['output'];
-  /** Following field used in FieldDTO */
   description?: Maybe<Scalars['String']['output']>;
-  /** To be deprecated */
   details?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   order: Scalars['Int']['output'];
-  parentOption?: Maybe<Option>;
   value?: Maybe<Scalars['String']['output']>;
 };
 
-export type OptionIdentifierInput = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-  value?: InputMaybe<Scalars['String']['input']>;
+/** Specifies all the details of a particular patch */
+export type PatchData = {
+  __typename?: 'PatchData';
+  /** The approval status of that patch in that asset */
+  approvalStatus?: Maybe<Scalars['String']['output']>;
+  /** The failure message, if the patch installation failed */
+  failedMessage?: Maybe<Scalars['String']['output']>;
+  /** Patch installation status of the asset */
+  installationStatus?: Maybe<Scalars['String']['output']>;
+  /** The installation time of that patch, if installed */
+  installationTime?: Maybe<Scalars['String']['output']>;
+  /** Specifies the patch details */
+  patchDetail?: Maybe<PatchDetails>;
 };
 
-export type Organization = {
-  __typename?: 'Organization';
-  accountId: Scalars['ID']['output'];
-  accountManager?: Maybe<User>;
-  accountType?: Maybe<Scalars['String']['output']>;
-  /** It will be return while creating an client user as part of client creation to indicate whether activation mail has been sent or not */
-  activationMailSent?: Maybe<Scalars['Boolean']['output']>;
-  clientOrg?: Maybe<Scalars['Boolean']['output']>;
-  companyOrg?: Maybe<Scalars['Boolean']['output']>;
-  customFields?: Maybe<Scalars['JSON']['output']>;
-  details?: Maybe<OrganizationDetails>;
-  emailDomains?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  hqSite?: Maybe<Site>;
-  integrationConfig?: Maybe<Array<Maybe<ClientIntegrationConfig>>>;
-  integrationStatus?: Maybe<ClientIntegrationsStatus>;
-  /** AccountOperationalStatus */
-  logoFileName?: Maybe<Scalars['String']['output']>;
-  /** used in requester portal to show remote option for Splasthtop WFH AddOn */
-  mappedToWFH?: Maybe<Scalars['Boolean']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  operationalStatus?: Maybe<Scalars['String']['output']>;
-  policyMigrationStatus?: Maybe<Scalars['String']['output']>;
-  primaryContact?: Maybe<User>;
-  /** this attribute is used to indicate whether the particular client is present in QuickBooks if that app is integrated */
-  quickBooksCustomerId?: Maybe<Scalars['String']['output']>;
-  secondaryContact?: Maybe<User>;
-  stage: Scalars['String']['output'];
-  status?: Maybe<Scalars['String']['output']>;
-  technicianGroups?: Maybe<Array<Maybe<Group>>>;
-};
-
-
-export type OrganizationCustomFieldsArgs = {
-  fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type OrganizationIntegrationConfigArgs = {
-  integrationIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-};
-
-export type OrganizationContext = {
-  __typename?: 'OrganizationContext';
-  baseDomain?: Maybe<Scalars['String']['output']>;
-  clientOrg?: Maybe<Scalars['Boolean']['output']>;
-  companyOrg?: Maybe<Scalars['Boolean']['output']>;
-  currency?: Maybe<Scalars['String']['output']>;
-  dateFormat?: Maybe<Scalars['String']['output']>;
-  language?: Maybe<Scalars['String']['output']>;
-  logoFileName?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  portalDomains?: Maybe<Array<Maybe<PortalDomain>>>;
-  timeFormat?: Maybe<Scalars['String']['output']>;
-};
-
-export type OrganizationDetails = {
-  __typename?: 'OrganizationDetails';
-  baseDomain?: Maybe<Scalars['String']['output']>;
-  canAlterSubDomain?: Maybe<Scalars['Boolean']['output']>;
-  currency?: Maybe<Scalars['String']['output']>;
-  customDomainAlias?: Maybe<Scalars['String']['output']>;
-  dateFormat?: Maybe<Scalars['String']['output']>;
-  emailSignature?: Maybe<Scalars['String']['output']>;
-  favIconFileName?: Maybe<Scalars['String']['output']>;
-  language?: Maybe<Scalars['String']['output']>;
-  portalDomains?: Maybe<Array<Maybe<PortalDomain>>>;
-  senderName?: Maybe<Scalars['String']['output']>;
-  timeFormat?: Maybe<Scalars['String']['output']>;
-};
-
-export type OrganizationDetailsInput = {
-  addPortalDomains?: InputMaybe<Array<InputMaybe<CreatePortalDomainInput>>>;
-  currency?: InputMaybe<Scalars['String']['input']>;
-  dateFormat?: InputMaybe<Scalars['String']['input']>;
-  deletePortalDomains?: InputMaybe<Array<InputMaybe<PortalDomainIdentifierInput>>>;
-  emailSignature?: InputMaybe<Scalars['String']['input']>;
-  favIconFileName?: InputMaybe<Scalars['String']['input']>;
-  language?: InputMaybe<Scalars['String']['input']>;
-  senderName?: InputMaybe<Scalars['String']['input']>;
-  timeFormat?: InputMaybe<Scalars['String']['input']>;
-  updatePortalDomains?: InputMaybe<Array<InputMaybe<UpdatePortalDomainInput>>>;
-};
-
-export type OrganizationIdentifierInput = {
-  accountId: Scalars['ID']['input'];
-};
-
-export type OverageItemDetailList = {
-  __typename?: 'OverageItemDetailList';
-  listInfo?: Maybe<ListInfo>;
-  overageItems?: Maybe<Array<Maybe<OverageItems>>>;
-};
-
-export type OverageItems = {
-  __typename?: 'OverageItems';
-  endDateTime?: Maybe<Scalars['String']['output']>;
-  entityId?: Maybe<Scalars['ID']['output']>;
-  itemId?: Maybe<Scalars['ID']['output']>;
-  itemName?: Maybe<Scalars['String']['output']>;
-  startDateTime?: Maybe<Scalars['String']['output']>;
-};
-
-export enum OverriddenBillingSetting {
-  AllowEmptyInvoice = 'ALLOW_EMPTY_INVOICE',
-  AutoPushInvoice = 'AUTO_PUSH_INVOICE',
-  AutoSendInvoice = 'AUTO_SEND_INVOICE',
-  DueDate = 'DUE_DATE',
-  IgnoreConsumedItem = 'IGNORE_CONSUMED_ITEM',
-  InvoiceEmailTemplate = 'INVOICE_EMAIL_TEMPLATE',
-  InvoicePaymentMethod = 'INVOICE_PAYMENT_METHOD',
-  InvoicePaymentTerm = 'INVOICE_PAYMENT_TERM',
-  ProjectLineItemTemplate = 'PROJECT_LINE_ITEM_TEMPLATE',
-  QuoteTemplate = 'QUOTE_TEMPLATE',
-  Schedule = 'SCHEDULE',
-  ScheduleEnabled = 'SCHEDULE_ENABLED',
-  SubscriptionLineItemTemplate = 'SUBSCRIPTION_LINE_ITEM_TEMPLATE',
-  Template = 'TEMPLATE',
-  TicketLineItemTemplate = 'TICKET_LINE_ITEM_TEMPLATE'
-}
-
-export type OverriddenPatchApprovalConfig = {
-  __typename?: 'OverriddenPatchApprovalConfig';
-  approvalBased?: Maybe<Scalars['String']['output']>;
-  approvalState?: Maybe<Scalars['String']['output']>;
-  /** Kb, PatchKey */
-  approvalValue?: Maybe<Scalars['String']['output']>;
-  configId?: Maybe<Scalars['ID']['output']>;
-  /** Approve, Reject */
-  description?: Maybe<Scalars['String']['output']>;
-  lastUpdatedBy?: Maybe<User>;
-  lastUpdatedTime?: Maybe<Scalars['String']['output']>;
-};
-
-export type PaginationInput = {
-  page?: InputMaybe<Scalars['Int']['input']>;
-  pageSize?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type PasswordPolicy = {
-  __typename?: 'PasswordPolicy';
-  allowedFailureAtempt?: Maybe<Scalars['Int']['output']>;
-  checkEmailMatch?: Maybe<Scalars['Boolean']['output']>;
-  checkPrevPasswordMatchCount?: Maybe<Scalars['Int']['output']>;
-  isAlphaNumeric?: Maybe<Scalars['Boolean']['output']>;
-  isMixCaseWithSpecialChar?: Maybe<Scalars['Boolean']['output']>;
-  /** PASSWORD_POLICY_TYPE */
-  length?: Maybe<Scalars['Int']['output']>;
-  passwordExpiryDays?: Maybe<Scalars['Int']['output']>;
-  /** PASSWORD_POLICY_TYPE */
-  passwordPolicyType?: Maybe<Scalars['String']['output']>;
-  type?: Maybe<Scalars['String']['output']>;
-};
-
-export type PasswordPolicyInput = {
-  allowedFailureAtempt?: InputMaybe<Scalars['Int']['input']>;
-  checkEmailMatch?: InputMaybe<Scalars['Boolean']['input']>;
-  checkPrevPasswordMatchCount?: InputMaybe<Scalars['Int']['input']>;
-  isAlphaNumeric?: InputMaybe<Scalars['Boolean']['input']>;
-  isMixCaseWithSpecialChar?: InputMaybe<Scalars['Boolean']['input']>;
-  length?: InputMaybe<Scalars['Int']['input']>;
-  passwordExpiryDays?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type PatchCategory = {
-  __typename?: 'PatchCategory';
-  name?: Maybe<Scalars['String']['output']>;
-  patchCategoryId?: Maybe<Scalars['ID']['output']>;
-};
-
-export type PatchPolicyApprovalConfig = {
-  __typename?: 'PatchPolicyApprovalConfig';
-  approvalState?: Maybe<Scalars['String']['output']>;
-  patchCategory?: Maybe<PatchCategory>;
-  patchSeverity?: Maybe<PatchSeverity>;
-};
-
-export type PatchPolicyConfig = {
-  __typename?: 'PatchPolicyConfig';
-  deferredApprovalConfig?: Maybe<Scalars['JSON']['output']>;
-  deployPatchOnAssetOnboard?: Maybe<Scalars['Boolean']['output']>;
-  manageExistingSoftware?: Maybe<Scalars['Boolean']['output']>;
-  osManager?: Maybe<Scalars['String']['output']>;
-  wakeOnLan?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type PatchPolicyRebootConfig = {
-  __typename?: 'PatchPolicyRebootConfig';
-  /** PATCH_REBOOT_ON_INACTIVE_SESSION */
-  activeRebootWindowInterval?: Maybe<Scalars['Int']['output']>;
-  customizedRebootMessage?: Maybe<Scalars['JSON']['output']>;
-  rebootOnActiveSession?: Maybe<Scalars['String']['output']>;
-  rebootOnInactiveSession?: Maybe<Scalars['String']['output']>;
-  rebootPermissionConfig?: Maybe<Scalars['JSON']['output']>;
-  /** PATCH_REBOOT_ON_ACTIVE_SESSION */
-  rebootTriggerWindowInterval?: Maybe<Scalars['Int']['output']>;
-};
-
-export type PatchPolicyScheduleCondition = {
-  __typename?: 'PatchPolicyScheduleCondition';
-  conditionConfigs?: Maybe<Array<Maybe<PatchPolicyScheduleConditionConfig>>>;
-  conditionId?: Maybe<Scalars['ID']['output']>;
-};
-
-export type PatchPolicyScheduleConditionConfig = {
-  __typename?: 'PatchPolicyScheduleConditionConfig';
-  mappingId?: Maybe<Scalars['ID']['output']>;
-  patchCategory?: Maybe<PatchCategory>;
-  patchSeverity?: Maybe<PatchSeverity>;
-};
-
-export type PatchPolicyScheduleConfig = {
-  __typename?: 'PatchPolicyScheduleConfig';
-  /** @deprecated Use scheduleDetail instead */
-  cycleType?: Maybe<Scalars['String']['output']>;
-  /** @deprecated Use scheduleDetail instead */
-  dayOfWeek?: Maybe<Scalars['Int']['output']>;
-  installWindowDuration?: Maybe<Scalars['Int']['output']>;
-  installWindowEnabled?: Maybe<Scalars['Boolean']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  scheduleConditions?: Maybe<Array<Maybe<PatchPolicyScheduleCondition>>>;
-  scheduleDetail?: Maybe<Scalars['JSON']['output']>;
-  scheduleId?: Maybe<Scalars['ID']['output']>;
-  /** @deprecated Use scheduleDetail instead */
-  startTime?: Maybe<Scalars['String']['output']>;
-};
-
-export type PatchSeverity = {
-  __typename?: 'PatchSeverity';
-  name?: Maybe<Scalars['String']['output']>;
-  patchSeverityId?: Maybe<Scalars['ID']['output']>;
-};
-
-export type Pax8Subscription = {
-  __typename?: 'Pax8Subscription';
-  contractId: Scalars['ID']['output'];
-  subscriptionId: Scalars['ID']['output'];
-};
-
-export type PaymentCurrency = {
-  __typename?: 'PaymentCurrency';
-  currencyCode?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type PaymentMethod = {
-  __typename?: 'PaymentMethod';
-  paymentMethodId: Scalars['ID']['output'];
-  paymentMethodName: Scalars['String']['output'];
-};
-
-export type PaymentMethodIdentifierInput = {
-  paymentMethodId: Scalars['ID']['input'];
-};
-
-export type PaymentMethodInput = {
-  paymentMethodId?: InputMaybe<Scalars['ID']['input']>;
-  paymentMethodName?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type PaymentSetting = {
-  __typename?: 'PaymentSetting';
-  autoProcessPayment?: Maybe<Scalars['Boolean']['output']>;
-  clientId?: Maybe<Scalars['ID']['output']>;
-  paymentMethod?: Maybe<Scalars['String']['output']>;
-  paymentMethodId?: Maybe<Scalars['String']['output']>;
-};
-
-export type PaymentSettingInput = {
-  autoProcessPayment?: InputMaybe<Scalars['Boolean']['input']>;
-  paymentMethod?: InputMaybe<Scalars['String']['input']>;
-  paymentMethodId?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type PaymentTerm = {
-  __typename?: 'PaymentTerm';
-  paymentTermId?: Maybe<Scalars['ID']['output']>;
-  paymentTermName: Scalars['String']['output'];
-  paymentTermValue?: Maybe<Scalars['Int']['output']>;
-  placeholder?: Maybe<Scalars['String']['output']>;
-  systemPaymentTerm: Scalars['Boolean']['output'];
-};
-
-export type PaymentTermIdentifierInput = {
-  paymentTermId: Scalars['ID']['input'];
-};
-
-export type PaymentTermInput = {
-  paymentTermId?: InputMaybe<Scalars['ID']['input']>;
-  paymentTermName: Scalars['String']['input'];
-  paymentTermValue?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type PdfReportExportConfig = {
-  __typename?: 'PdfReportExportConfig';
-  autoGeneratedText?: Maybe<Scalars['Boolean']['output']>;
-  clientLogo?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type PermissionCategory = {
-  __typename?: 'PermissionCategory';
-  categoryOrder?: Maybe<Scalars['Int']['output']>;
-  labelKey?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  permissionCategoryId: Scalars['ID']['output'];
-};
-
-export type PerpetualContract = {
-  __typename?: 'PerpetualContract';
-  autoRenew: Scalars['Boolean']['output'];
-  contractId: Scalars['ID']['output'];
-};
-
-export type PerpetualContractInput = {
-  autoRenew: Scalars['Boolean']['input'];
-};
-
-export type Personalization = {
-  __typename?: 'Personalization';
-  name?: Maybe<Scalars['String']['output']>;
-  value?: Maybe<Scalars['String']['output']>;
-};
-
-export type PersonalizationInput = {
-  name: Scalars['String']['input'];
-  value?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type PlaceHolder = {
-  __typename?: 'PlaceHolder';
-  key?: Maybe<Scalars['String']['output']>;
-  label?: Maybe<Scalars['String']['output']>;
-};
-
-export type PlaceholderTemplate = {
-  __typename?: 'PlaceholderTemplate';
-  constant: PlaceholderTemplateConstant;
-  content?: Maybe<Scalars['String']['output']>;
-  enabled: Scalars['Boolean']['output'];
-  placeholdersUsed: Scalars['JSON']['output'];
-  templateId: Scalars['ID']['output'];
+/** Specifies the patch details */
+export type PatchDetails = {
+  __typename?: 'PatchDetails';
+  /** The category of the patch */
+  category?: Maybe<Scalars['String']['output']>;
+  /** The KB numbers of the patch */
+  kbNumbers?: Maybe<Array<Maybe<PatchKb>>>;
+  /** The patch ID of the patch's data */
+  patchId: Scalars['ID']['output'];
+  /** The patch key of the patch's data */
+  patchKey?: Maybe<Scalars['String']['output']>;
+  /** The published data of the patch */
+  publishedDate?: Maybe<Scalars['String']['output']>;
+  /** Specifies whether a restart is required after patch installation */
+  restartRequired?: Maybe<Scalars['Boolean']['output']>;
+  /** The severity of the patch */
+  severity?: Maybe<Scalars['String']['output']>;
+  /** The title of the patch */
   title?: Maybe<Scalars['String']['output']>;
 };
 
-export enum PlaceholderTemplateConstant {
-  CalendarEventDescription = 'CALENDAR_EVENT_DESCRIPTION',
-  Chat = 'CHAT'
-}
-
-export type Plan = {
-  __typename?: 'Plan';
-  chargeBeePlanId?: Maybe<Scalars['String']['output']>;
-  endPointsCount?: Maybe<Scalars['Int']['output']>;
-  features?: Maybe<Scalars['JSON']['output']>;
-  offeringEntityType?: Maybe<ProductOfferingEntityType>;
-  planFeatures?: Maybe<Array<Maybe<PlanFeature>>>;
-  planId?: Maybe<Scalars['ID']['output']>;
-  planName?: Maybe<Scalars['String']['output']>;
-  planOrder?: Maybe<Scalars['Int']['output']>;
-  planPrices?: Maybe<Array<Maybe<PlanPrice>>>;
-  purchaseFeatures?: Maybe<Array<Maybe<PlanProductFeature>>>;
+/** Specifies the PatchKb numbers of a patch */
+export type PatchKb = {
+  __typename?: 'PatchKb';
+  /** KB number associated with the patch */
+  kbNumber?: Maybe<Scalars['String']['output']>;
 };
 
-export type PlanFeature = {
-  __typename?: 'PlanFeature';
-  featureName?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  module?: Maybe<Scalars['String']['output']>;
+/** Payment method is the specific way or channel used to transfer funds for a purchase, like credit card, bank transfer, or cash */
+export type PaymentMethod = {
+  __typename?: 'PaymentMethod';
+  /** The ID of the payment method. */
+  paymentMethodId: Scalars['ID']['output'];
+  /** The name of the payment method. */
+  paymentMethodName: Scalars['String']['output'];
 };
 
-export type PlanIdentifierInput = {
-  planId: Scalars['ID']['input'];
+/** Specifies the identifier input for the payment method. */
+export type PaymentMethodIdentifierInput = {
+  /** The ID of the payment method. */
+  paymentMethodId: Scalars['ID']['input'];
 };
 
-export type PlanPrice = {
-  __typename?: 'PlanPrice';
-  chargeBeePlanPriceId?: Maybe<Scalars['String']['output']>;
-  currency?: Maybe<PaymentCurrency>;
-  duration?: Maybe<Scalars['String']['output']>;
-  /** PaymentDuration */
-  durationValue?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  plan?: Maybe<Plan>;
-  price?: Maybe<Scalars['JSON']['output']>;
-  priceValue?: Maybe<Scalars['Int']['output']>;
-  pricingModel?: Maybe<CustomerPricingModel>;
+/**
+ * Payment term specifies when and how a customer is expected to make a payment in a business transaction,
+ * such as "Net 30" meaning payment due within 30 days.
+ */
+export type PaymentTerm = {
+  __typename?: 'PaymentTerm';
+  /** The ID of the payment term. */
+  paymentTermId: Scalars['ID']['output'];
+  /** The name of the payemnt term. */
+  paymentTermName: Scalars['String']['output'];
+  /** The number of days. */
+  paymentTermValue?: Maybe<Scalars['Int']['output']>;
 };
 
-export type PlanProductFeature = {
-  __typename?: 'PlanProductFeature';
-  available: Scalars['Boolean']['output'];
-  availableWithAddOn: Scalars['Boolean']['output'];
-  enabled: Scalars['Boolean']['output'];
-  feature: ProductFeature;
-  planProductFeatureId?: Maybe<Scalars['ID']['output']>;
-  upsell: Scalars['Boolean']['output'];
-  upsellAddonId?: Maybe<Scalars['ID']['output']>;
-  upsellPlanId?: Maybe<Scalars['ID']['output']>;
+/** Specifies the identifier input for the payment term. */
+export type PaymentTermIdentifierInput = {
+  /** The ID of the payment term. */
+  paymentTermId: Scalars['ID']['input'];
 };
 
-export type PlanProductFeatureIdentifierInput = {
-  planProductFeatureId: Scalars['ID']['input'];
+/** Specifies the perpetual contract. */
+export type PerpetualContract = {
+  __typename?: 'PerpetualContract';
+  /** Indicates whether the autoRenew option is enabled. */
+  autoRenew: Scalars['Boolean']['output'];
+  /** The ID of the contract. */
+  contractId: Scalars['ID']['output'];
 };
 
-export type Policy = {
-  __typename?: 'Policy';
-  /** Todo. Rename as alertConditionConfig */
-  actions?: Maybe<Array<Maybe<PolicyActionConfig>>>;
-  agentSettingsConfig?: Maybe<AgentSettingsConfig>;
-  alertConfig?: Maybe<AlertCondition>;
-  antiVirusConfig?: Maybe<AntiVirusPolicyConfig>;
-  dataBackupPolicyConfig?: Maybe<Scalars['JSON']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-  endpointIntegrationConfig?: Maybe<PolicyEndpointIntegrationConfig>;
-  maintenanceModeSchedules?: Maybe<MaintenanceScheduleConfig>;
-  name?: Maybe<Scalars['String']['output']>;
-  onboardingPolicyConfig?: Maybe<AssetOnboardingPolicyConfig>;
-  overriddenPatchApprovalConfigs?: Maybe<Array<Maybe<OverriddenPatchApprovalConfig>>>;
-  patchApprovals?: Maybe<Array<Maybe<PatchPolicyApprovalConfig>>>;
-  patchConfiguration?: Maybe<PatchPolicyConfig>;
-  patchRebootConfig?: Maybe<PatchPolicyRebootConfig>;
-  patchScanSchedules?: Maybe<Array<Maybe<PatchPolicyScheduleConfig>>>;
-  patchSchedules?: Maybe<Array<Maybe<PatchPolicyScheduleConfig>>>;
-  policyId?: Maybe<Scalars['ID']['output']>;
-  policySet?: Maybe<PolicySet>;
-  policyType?: Maybe<Scalars['String']['output']>;
-  remoteDesktopConfig?: Maybe<Array<Maybe<RemoteDesktopConfig>>>;
-  resetActions?: Maybe<Array<Maybe<PolicyActionConfig>>>;
-  thirdPartyApplicationConfig?: Maybe<ThirdPartyApplicationPolicyConfig>;
-};
-
-export type PolicyActionConfig = {
-  __typename?: 'PolicyActionConfig';
-  actionConfigId?: Maybe<Scalars['ID']['output']>;
-  actionType?: Maybe<Scalars['String']['output']>;
-  alertName?: Maybe<Scalars['String']['output']>;
-  alertSeverity?: Maybe<Scalars['String']['output']>;
-  executionOrder?: Maybe<Scalars['Int']['output']>;
-  executionType?: Maybe<Scalars['String']['output']>;
-  notification?: Maybe<NotificationTemplate>;
-  resetTicketStatus?: Maybe<Scalars['String']['output']>;
-  scheduleDetail?: Maybe<Scalars['JSON']['output']>;
-  /** PolicyActionExecutionType */
-  script?: Maybe<AssetScript>;
-  scriptArguments?: Maybe<Scalars['JSON']['output']>;
-  /** @deprecated Use ticketData */
-  slackMessage?: Maybe<Scalars['String']['output']>;
-  slackWebHook?: Maybe<SlackWebHook>;
-  ticketData?: Maybe<TicketData>;
-  ticketTemplate?: Maybe<TicketTemplate>;
-};
-
-export type PolicyAssociation = {
-  __typename?: 'PolicyAssociation';
-  policies?: Maybe<Array<Maybe<PolicyBase>>>;
-  policyType?: Maybe<Scalars['String']['output']>;
-};
-
-export type PolicyBase = {
-  description?: Maybe<Scalars['String']['output']>;
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-  name: Scalars['String']['output'];
-  policyId: Scalars['ID']['output'];
-};
-
-export type PolicyCategory = {
-  __typename?: 'PolicyCategory';
-  assetClass?: Maybe<AssetClass>;
-  createdBy?: Maybe<User>;
-  createdTime?: Maybe<Scalars['String']['output']>;
-  custom?: Maybe<Scalars['Boolean']['output']>;
-  lastUpdatedBy?: Maybe<User>;
-  lastUpdatedTime?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  policyCategoryId: Scalars['ID']['output'];
-};
-
-export enum PolicyCategoryAssignedBy {
-  Manual = 'MANUAL',
-  Rule = 'RULE',
-  System = 'SYSTEM'
-}
-
-export type PolicyEndpointIntegrationConfig = {
-  __typename?: 'PolicyEndpointIntegrationConfig';
-  configMapping?: Maybe<Scalars['JSON']['output']>;
-  integrationInfo?: Maybe<EndpointIntegrationInfo>;
-};
-
-export type PolicySet = {
-  __typename?: 'PolicySet';
-  assetClass?: Maybe<AssetClass>;
-  assetGroups?: Maybe<Array<Maybe<AssetGroup>>>;
-  category?: Maybe<Scalars['String']['output']>;
-  createdBy?: Maybe<User>;
-  createdTime?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  lastUpdatedBy?: Maybe<User>;
-  lastUpdatedTime?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  /** PolicySetCategory */
-  override?: Maybe<Scalars['Boolean']['output']>;
-  parentPolicySet?: Maybe<PolicySet>;
-  policies?: Maybe<Array<Maybe<PolicyBase>>>;
-  policyAssociations?: Maybe<Array<Maybe<PolicyAssociation>>>;
-  policySetId: Scalars['ID']['output'];
-};
-
-export type PortalDomain = {
-  __typename?: 'PortalDomain';
-  domainId?: Maybe<Scalars['ID']['output']>;
-  domainName?: Maybe<Scalars['String']['output']>;
-  isDefault?: Maybe<Scalars['Boolean']['output']>;
-  status?: Maybe<PortalDomainStatus>;
-  type?: Maybe<Scalars['String']['output']>;
-};
-
-export type PortalDomainIdentifierInput = {
-  domainId: Scalars['String']['input'];
-};
-
-export enum PortalDomainStatus {
-  Active = 'ACTIVE',
-  CertificateGenerated = 'CERTIFICATE_GENERATED',
-  CertificateRenewed = 'CERTIFICATE_RENEWED',
-  CnamePropagated = 'CNAME_PROPAGATED',
-  Pending = 'PENDING'
-}
-
-export type PreviewChartInput = {
-  chart?: InputMaybe<ChartIdentifierInput>;
-  condition?: InputMaybe<Scalars['JSON']['input']>;
-  entity?: InputMaybe<Scalars['String']['input']>;
-  groupBy?: InputMaybe<Array<InputMaybe<GroupByInput>>>;
-  metrics?: InputMaybe<Array<InputMaybe<MetricInput>>>;
-};
-
+/** Contains pricing details of the item */
 export type PricingModel = {
   __typename?: 'PricingModel';
+  /** List of pricing details */
   details: Array<PricingModelDetail>;
+  /** Indicates the pricing model used */
   model: PricingModelType;
 };
 
+/** Contains price for a item in business hours and after hours */
 export type PricingModelDetail = {
   __typename?: 'PricingModelDetail';
+  /** The after hours price value. */
   afterHoursValue?: Maybe<Scalars['String']['output']>;
+  /** The business hours price value. */
   value: Scalars['String']['output'];
 };
 
+/** Specifies the input details of a pricing model. */
 export type PricingModelDetailsInput = {
+  /** Indicates the after hours price value. */
   afterHoursValue?: InputMaybe<Scalars['String']['input']>;
+  /** Indicates the business hours price value. */
   value: Scalars['String']['input'];
 };
 
+/** Specifies the input for the pricing model and its details. */
 export type PricingModelInput = {
+  /** Specifies the pricing model details. */
   details: Array<PricingModelDetailsInput>;
+  /** Specifies the pricing model type. */
   model: PricingModelType;
 };
 
+/** Specifies the pricing model type. */
 export enum PricingModelType {
   PerUnit = 'PER_UNIT'
 }
 
+/** The ticket's priority. */
 export type Priority = {
   __typename?: 'Priority';
+  /** The color code of the priority. The value should be CSS color code like #00FFFF. */
   colorCode?: Maybe<Scalars['String']['output']>;
+  /** The ID of the priority. */
   id: Scalars['ID']['output'];
+  /** The name of the priority. */
   name: Scalars['String']['output'];
-};
-
-export type ProductFeature = {
-  __typename?: 'ProductFeature';
-  featureId?: Maybe<Scalars['ID']['output']>;
-  labelKey?: Maybe<Scalars['String']['output']>;
-  /** unique key to identify the feature, it will be served as key. */
-  name: Scalars['String']['output'];
-  /** Indicates whether this feature is released. If its false, it indicates the feature is coming soon. It will be used in purchase page. */
-  releaseState?: Maybe<ProductFeatureReleaseState>;
-};
-
-export type ProductFeatureCategory = {
-  __typename?: 'ProductFeatureCategory';
-  categoryId: Scalars['ID']['output'];
-  features?: Maybe<Array<Maybe<ProductFeature>>>;
-  labelKey: Scalars['String']['output'];
-  releaseState: ProductFeatureReleaseState;
-  subcategories?: Maybe<Array<Maybe<ProductFeatureCategory>>>;
-};
-
-export type ProductFeatureCategoryIdentifierInput = {
-  categoryId: Scalars['ID']['input'];
-};
-
-export type ProductFeatureIdentifierInput = {
-  featureId: Scalars['ID']['input'];
-  name?: InputMaybe<Scalars['String']['input']>;
-};
-
-export enum ProductFeatureReleaseState {
-  Beta = 'BETA',
-  NewReleased = 'NEW_RELEASED',
-  Released = 'RELEASED',
-  Upcoming = 'UPCOMING'
-}
-
-export type ProductInvoiceBaseEstimate = {
-  __typename?: 'ProductInvoiceBaseEstimate';
-  addons?: Maybe<Array<Maybe<ProductSubscriptionAddOnLineItem>>>;
-  plan: ProductSubscriptionPlanLineItem;
-  subTotal: Scalars['String']['output'];
-  taxes?: Maybe<Array<Maybe<ProductSubscriptionTaxDetail>>>;
-  total: Scalars['String']['output'];
-};
-
-export type ProductInvoiceEstimate = {
-  __typename?: 'ProductInvoiceEstimate';
-  amountDue: Scalars['String']['output'];
-  creditsApplied?: Maybe<Scalars['String']['output']>;
-  lineItemGroups?: Maybe<Array<Maybe<ProductInvoiceEstimateLineItemGroup>>>;
-  /** Denotes the positive or negative rounded off value in total. */
-  roundOff?: Maybe<Scalars['String']['output']>;
-  subTotal: Scalars['String']['output'];
-  taxes?: Maybe<Array<Maybe<ProductSubscriptionTaxDetail>>>;
-  total: Scalars['String']['output'];
-};
-
-export type ProductInvoiceEstimateLineItemGroup = {
-  __typename?: 'ProductInvoiceEstimateLineItemGroup';
-  addons?: Maybe<Array<Maybe<ProductSubscriptionAddOnLineItem>>>;
-  charge?: Maybe<ProductSubscriptionChargeLineItem>;
-  dateFrom: Scalars['String']['output'];
-  dateTo: Scalars['String']['output'];
-  isProrated?: Maybe<Scalars['Boolean']['output']>;
-  plan?: Maybe<ProductSubscriptionPlanLineItem>;
-};
-
-export type ProductInvoiceImmediateEstimate = {
-  __typename?: 'ProductInvoiceImmediateEstimate';
-  addons?: Maybe<Array<Maybe<ProductSubscriptionAddOnLineItem>>>;
-  amountDue: Scalars['String']['output'];
-  creditsApplied?: Maybe<Scalars['String']['output']>;
-  plan?: Maybe<ProductSubscriptionPlanLineItem>;
-  subTotal: Scalars['String']['output'];
-  taxes?: Maybe<Array<Maybe<ProductSubscriptionTaxDetail>>>;
-  total: Scalars['String']['output'];
-};
-
-export type ProductOfferingEntity = {
-  __typename?: 'ProductOfferingEntity';
-  available: Scalars['Int']['output'];
-  billableOverage: Scalars['Int']['output'];
-  offeringEntityType: ProductOfferingEntityType;
-  overageAllowed: Scalars['Boolean']['output'];
-  purchased: Scalars['Int']['output'];
-};
-
-export enum ProductOfferingEntityType {
-  AllAsset = 'ALL_ASSET',
-  EndPointAsset = 'END_POINT_ASSET',
-  NetworkAsset = 'NETWORK_ASSET',
-  Technician = 'TECHNICIAN'
-}
-
-export type ProductSubscriptionAddOnLineItem = ProductSubscriptionLineItem & {
-  __typename?: 'ProductSubscriptionAddOnLineItem';
-  active: Scalars['Boolean']['output'];
-  addon?: Maybe<Addon>;
-  addonPrice: AddonPrice;
-  amount: Scalars['String']['output'];
-  minimumQuantity?: Maybe<Scalars['Int']['output']>;
-  quantity: Scalars['Int']['output'];
-  /** If the pricing model of the plan is TIERED, this field will contain a breakdown. */
-  tieredBreakdown?: Maybe<Scalars['JSON']['output']>;
-  unitPrice?: Maybe<Scalars['String']['output']>;
-};
-
-export type ProductSubscriptionChargeLineItem = {
-  __typename?: 'ProductSubscriptionChargeLineItem';
-  amount: Scalars['String']['output'];
-  chargePrice: ChargePrice;
-  quantity: Scalars['Int']['output'];
-  unitPrice: Scalars['String']['output'];
-};
-
-export type ProductSubscriptionEstimate = {
-  __typename?: 'ProductSubscriptionEstimate';
-  currentInvoiceEstimate?: Maybe<ProductInvoiceEstimate>;
-  /** Deprecated. Use 'currentInvoiceEstimate' instead. */
-  immediateInvoiceEstimate?: Maybe<ProductInvoiceImmediateEstimate>;
-  nextInvoiceEstimate?: Maybe<ProductInvoiceEstimate>;
-  offeringEntities?: Maybe<Array<Maybe<ProductOfferingEntity>>>;
-  overageInvoiceEstimate?: Maybe<ProductInvoiceEstimate>;
-  restrictedOfferingEntities?: Maybe<Array<Maybe<ProductOfferingEntityType>>>;
-  /** Deprecated. Use 'nextInvoiceEstimate' instead. */
-  termInvoiceEstimate?: Maybe<ProductInvoiceBaseEstimate>;
-};
-
-export type ProductSubscriptionLineItem = {
-  amount: Scalars['String']['output'];
-  minimumQuantity?: Maybe<Scalars['Int']['output']>;
-  quantity: Scalars['Int']['output'];
-  unitPrice?: Maybe<Scalars['String']['output']>;
-};
-
-export type ProductSubscriptionPlanLineItem = ProductSubscriptionLineItem & {
-  __typename?: 'ProductSubscriptionPlanLineItem';
-  amount: Scalars['String']['output'];
-  minimumQuantity?: Maybe<Scalars['Int']['output']>;
-  planPrice: PlanPrice;
-  quantity: Scalars['Int']['output'];
-  /** If the pricing model of the plan is TIERED, this field will contain a breakdown. */
-  tieredBreakdown?: Maybe<Scalars['JSON']['output']>;
-  unitPrice?: Maybe<Scalars['String']['output']>;
-};
-
-export type ProductSubscriptionTaxDetail = {
-  __typename?: 'ProductSubscriptionTaxDetail';
-  taxAmount: Scalars['String']['output'];
-  taxName: Scalars['String']['output'];
-};
-
-export type Project = {
-  __typename?: 'Project';
-  actualEndDate?: Maybe<Scalars['String']['output']>;
-  actualStartDate?: Maybe<Scalars['String']['output']>;
-  blockedTasks?: Maybe<Scalars['Int']['output']>;
-  client: Organization;
-  completedMilestones?: Maybe<Scalars['Int']['output']>;
-  completedTasks?: Maybe<Scalars['Int']['output']>;
-  contract?: Maybe<Contract>;
-  /** ProjectOperationalStatus */
-  createdTime: Scalars['String']['output'];
-  displayId: Scalars['String']['output'];
-  dueDate?: Maybe<Scalars['String']['output']>;
-  inProgressTasks?: Maybe<Scalars['Int']['output']>;
-  loggedInUserRole?: Maybe<Role>;
-  members?: Maybe<Array<Maybe<ProjectMember>>>;
-  milestones?: Maybe<Array<Maybe<Milestone>>>;
-  operationalStatus?: Maybe<Scalars['String']['output']>;
-  overdue?: Maybe<Scalars['Boolean']['output']>;
-  overdueTasks?: Maybe<Scalars['Int']['output']>;
-  owner: User;
-  plannedTasks?: Maybe<Scalars['Int']['output']>;
-  projectId: Scalars['ID']['output'];
-  scheduledStartDate?: Maybe<Scalars['String']['output']>;
-  showToClient?: Maybe<Scalars['Boolean']['output']>;
-  site?: Maybe<Site>;
-  status: Scalars['String']['output'];
-  title: Scalars['String']['output'];
-  totalMilestones?: Maybe<Scalars['Int']['output']>;
-  totalTasks?: Maybe<Scalars['Int']['output']>;
-};
-
-export type ProjectConversation = {
-  __typename?: 'ProjectConversation';
-  addedBy: User;
-  addedOn: Scalars['String']['output'];
-  attachments?: Maybe<Array<Maybe<Attachment>>>;
-  content?: Maybe<Scalars['String']['output']>;
-  conversationId: Scalars['ID']['output'];
-  project: Project;
-};
-
-export type ProjectIdentifierInput = {
-  projectId: Scalars['ID']['input'];
-};
-
-export type ProjectMember = {
-  __typename?: 'ProjectMember';
-  completedTasks?: Maybe<Scalars['Int']['output']>;
-  /** ProjectMemberType */
-  totalTasks?: Maybe<Scalars['Int']['output']>;
-  type?: Maybe<Scalars['String']['output']>;
-  user: User;
-};
-
-export type PromptAiFeature = {
-  __typename?: 'PromptAIFeature';
-  featureId?: Maybe<Scalars['ID']['output']>;
-  prompt?: Maybe<Scalars['String']['output']>;
-};
-
-export type PromptAiFeatureFeedback = {
-  __typename?: 'PromptAIFeatureFeedback';
-  actualMessage: Scalars['String']['output'];
-  aiMessage: Scalars['String']['output'];
-  feedbackId: Scalars['ID']['output'];
-};
-
-export type PromptAiFeatureFeedbackInput = {
-  actualMessage: Scalars['String']['input'];
-  aiMessage: Scalars['String']['input'];
-};
-
-export type ProvisionRule = {
-  __typename?: 'ProvisionRule';
-  defaultRule: Scalars['Boolean']['output'];
-  items?: Maybe<Array<ServiceCatalogItem>>;
-  name: Scalars['String']['output'];
-  parentRule?: Maybe<ProvisionRule>;
-  provisionRuleId: Scalars['ID']['output'];
-  ruleCondition: Scalars['JSON']['output'];
-  ruleEntityType: ProvisionRuleEntityType;
-  siteQuantities?: Maybe<Array<ClientSiteQuantity>>;
-};
-
-export enum ProvisionRuleEntityType {
-  Asset = 'ASSET',
-  Client = 'CLIENT',
-  Site = 'SITE',
-  User = 'USER'
-}
-
-export type ProvisionRuleIdentifierInput = {
-  name?: InputMaybe<Scalars['String']['input']>;
-  provisionRuleId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type ProvisionRuleItem = {
-  __typename?: 'ProvisionRuleItem';
-  provisionRule: ProvisionRule;
-  serviceCatalogItem: ServiceCatalogItem;
-};
-
-export type ProvisionRuleItemList = {
-  __typename?: 'ProvisionRuleItemList';
-  listInfo?: Maybe<ListInfo>;
-  provisionRuleItems?: Maybe<Array<ProvisionRuleItem>>;
-};
-
-export type ProvisionRuleList = {
-  __typename?: 'ProvisionRuleList';
-  layout?: Maybe<Scalars['JSON']['output']>;
-  provisionRules?: Maybe<Array<ProvisionRule>>;
 };
 
 export type Query = {
   __typename?: 'Query';
-  constructInvoiceItems?: Maybe<Array<Maybe<TransientInvoiceItem>>>;
-  exportChart?: Maybe<Scalars['Boolean']['output']>;
-  exportReport?: Maybe<Scalars['Boolean']['output']>;
-  fetchClientContract?: Maybe<ClientContract>;
-  fetchClientContractList?: Maybe<ClientContractList>;
-  fetchNylasV3Status?: Maybe<Scalars['JSON']['output']>;
-  fetchSSOStatus?: Maybe<Scalars['JSON']['output']>;
-  fetchSupportAdminOperations?: Maybe<Array<Maybe<Scalars['JSON']['output']>>>;
-  fetchTFAStatus?: Maybe<Scalars['JSON']['output']>;
-  fetchTPEntityList?: Maybe<TpEntityList>;
-  fetchTPMappingRuleCondition?: Maybe<Array<Maybe<TpMappingRuleCondition>>>;
-  generateAndSendReport?: Maybe<Scalars['Boolean']['output']>;
-  getAIConfiguration?: Maybe<AiConfigurationInfo>;
-  getAIFeature?: Maybe<AiFeature>;
-  getAIFeatureFeedbackList?: Maybe<AiFeatureFeedbackList>;
-  getAIFeatureGroups?: Maybe<Array<Maybe<AiFeatureGroup>>>;
-  getAIFeatureList?: Maybe<AiFeatureList>;
-  getAPIToken?: Maybe<Scalars['String']['output']>;
-  /** Acronis Integration */
-  getAcronisProtectionPlansForClient?: Maybe<Scalars['JSON']['output']>;
-  getActiveRecurringRevenue: ActiveRecurringRevenue;
-  getAddOnBillingDetails?: Maybe<AddOnBillingDetails>;
-  getAddOnDetails?: Maybe<IntegrationAddOnDetails>;
-  getAddOnItemListByClient?: Maybe<ResellingItemList>;
-  getAddOnStatusForLoggedInUser?: Maybe<Array<Maybe<AddOnStatus>>>;
-  getAddOnUsageByChargeBeeItemId?: Maybe<Scalars['Int']['output']>;
-  getAddresses?: Maybe<AddressList>;
-  getAgentInstallerDetails?: Maybe<AgentInstallerDetails>;
-  getAggregatedValues?: Maybe<AggregatedValues>;
-  getAllActiveAddons?: Maybe<Array<Maybe<Addon>>>;
-  getAllActivePlans?: Maybe<Array<Maybe<Plan>>>;
-  /** Deprecated, use getCompanySCIMConfiguration */
-  getAllClientSCIMConfigurations?: Maybe<Array<Maybe<ScimConfiguration>>>;
-  getAllCustomFields?: Maybe<Array<Maybe<CustomField>>>;
-  getAllEmployees?: Maybe<Array<Maybe<User>>>;
+  /** Fetches the list of all your alerts. */
+  getAlertList?: Maybe<AlertList>;
+  /** Fetches the list of alerts of an asset. */
+  getAlertsForAsset?: Maybe<AlertList>;
+  /** Fetches all the fields for a Module, Ex: TICKET, CLIENT,CLIENT_USER, Windows, Mac */
   getAllFields?: Maybe<Array<Maybe<Field>>>;
-  getAllHolidayList?: Maybe<Array<Maybe<HolidayList>>>;
-  getAllHomePageWidgets?: Maybe<HomePageWidgetList>;
-  getAllPaymentCurrencies?: Maybe<Array<Maybe<PaymentCurrency>>>;
-  getAllPlans?: Maybe<Array<Maybe<Plan>>>;
-  getAllReservedSubDomains?: Maybe<Array<Maybe<ReservedSubDomain>>>;
-  getAllTax?: Maybe<Array<Maybe<Tax>>>;
-  getAllTechnicians?: Maybe<Array<Maybe<User>>>;
-  getAllowedChartEntities?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  getAllowedClientSites?: Maybe<SiteList>;
+  /** @deprecated Use getAllowedServiceCatalogItems */
   getAllowedServiceItems?: Maybe<ServiceItemList>;
-  getAllowedTechnicianGroups?: Maybe<Array<Maybe<Group>>>;
-  getAppPersonalization?: Maybe<Personalization>;
-  getAppSecurityConfiguration?: Maybe<AppSecurityConfiguration>;
-  getAssetHealthSummaryReportConfigMeta?: Maybe<Scalars['JSON']['output']>;
-  getAudits?: Maybe<AuditList>;
-  getBillingTemplateList?: Maybe<BillingTemplateList>;
-  /** Bitdefender Integration */
-  getBitDefenderInstallationPackagesForClient?: Maybe<Scalars['JSON']['output']>;
-  getBlockItemConsumptionInfo?: Maybe<BlockItemConsumptionInfo>;
-  getBlockItemInfo?: Maybe<BlockItemConsumptionInfo>;
-  getBusinessFunction?: Maybe<BusinessFunction>;
-  getBusinessFunctionList?: Maybe<Array<Maybe<BusinessFunction>>>;
-  getCRECompanyBaselineMetrics?: Maybe<Scalars['JSON']['output']>;
-  getCRETicketsByCategory?: Maybe<Scalars['JSON']['output']>;
-  getCRETrendAnalysis?: Maybe<Scalars['JSON']['output']>;
-  getChart?: Maybe<Chart>;
-  getChartViews?: Maybe<Array<Maybe<ListView>>>;
-  getCharts?: Maybe<ChartList>;
-  getCheckList?: Maybe<Array<Maybe<CheckListItem>>>;
-  getClient?: Maybe<Organization>;
-  getClientApproversForTicket?: Maybe<UserList>;
-  getClientAttachments?: Maybe<ClientAttachmentList>;
-  getClientContract?: Maybe<ClientContractDetail>;
-  getClientContractTemplate?: Maybe<ClientContractTemplate>;
-  getClientContractTemplates?: Maybe<ClientContractTemplateList>;
-  getClientConversationAttachments?: Maybe<ClientConversationAttachmentList>;
-  getClientConversationList?: Maybe<ConversationList>;
-  getClientConversationReplyRecipients?: Maybe<ReplyContext>;
-  getClientConversationThreadedContent?: Maybe<Scalars['String']['output']>;
-  getClientConversations?: Maybe<ConversationList>;
-  getClientEfficiencyRanking?: Maybe<Scalars['JSON']['output']>;
-  getClientFinancialPerformanceMetrics?: Maybe<ClientFinancialPerformanceMetricList>;
-  getClientHeadQuarterSite?: Maybe<Site>;
-  getClientList?: Maybe<ClientList>;
-  getClientListViewMetaInfo?: Maybe<Scalars['JSON']['output']>;
-  getClientListViewMetaInfoV2?: Maybe<Scalars['JSON']['output']>;
-  getClientProvisionRuleList?: Maybe<ProvisionRuleList>;
-  getClientRankingByWorklogHoursLogged?: Maybe<Scalars['JSON']['output']>;
-  getClientRevenueMetrics: ClientRevenue;
-  getClientSite?: Maybe<Site>;
-  /** APIs for sites which are associated with an organization that is a client not a company. It is used to fetch sites of client organizations in MSP system. */
-  getClientSiteList?: Maybe<SiteList>;
-  getClientSpecificEfficiency?: Maybe<Scalars['JSON']['output']>;
-  getClientStages?: Maybe<Array<Maybe<ClientStage>>>;
-  getClientUser?: Maybe<User>;
-  getClientUserAssociationListViewMetaInfo?: Maybe<Scalars['JSON']['output']>;
-  getClientUserAssociationsList?: Maybe<UserAssociationList>;
-  getClientUserGroups?: Maybe<Array<Maybe<Group>>>;
-  /** Deprecated */
-  getClientUserList?: Maybe<UserList>;
-  getClientUserListViewMetaInfo?: Maybe<Scalars['JSON']['output']>;
-  getClientUsers?: Maybe<Array<Maybe<User>>>;
-  getClientUsersList?: Maybe<UserList>;
-  getClientViews?: Maybe<Array<Maybe<ListView>>>;
-  getCommonTechGroupsForClients?: Maybe<Array<Maybe<Group>>>;
-  getCommonTechGroupsUsersForClients?: Maybe<Array<Maybe<User>>>;
-  getCompanyInfo?: Maybe<CompanyInfo>;
-  getCompanySCIMConfiguration?: Maybe<ScimConfiguration>;
-  getCompanySite?: Maybe<Site>;
-  /** APIs for sites which are associated with an organization that is a company or both a company and a client. It is used to fetch sites of MSP and Internal IT. */
-  getCompanySiteList?: Maybe<SiteList>;
-  getCompanyUser?: Maybe<User>;
-  getCompanyUserListViewMetaInfo?: Maybe<Scalars['JSON']['output']>;
-  getCompanyUsersList?: Maybe<UserList>;
-  getConditionalPricingMeta?: Maybe<Scalars['JSON']['output']>;
-  getContentForSendInvoice?: Maybe<Conversation>;
-  getContentForSendQuote?: Maybe<Conversation>;
-  getContractApplicationConditionMeta?: Maybe<Scalars['JSON']['output']>;
-  getContractExpiredSubscriptions?: Maybe<Array<Maybe<ContractServiceItem>>>;
-  getContractFinancialPerformanceMetrics?: Maybe<ContractFinancialPerformanceMetricList>;
-  getContractNextBillDate?: Maybe<Scalars['String']['output']>;
-  getContractProRatedAmount?: Maybe<Scalars['String']['output']>;
-  getContractRevenueMetrics: ContractRevenue;
-  getContractTemplate?: Maybe<ContractTemplate>;
-  getContractTemplates?: Maybe<Array<ContractTemplate>>;
-  /** Deprecated getCurrentUser, Use getLoggedInContext instead */
-  getCurrentUser?: Maybe<User>;
-  getCurrentUserBackupCodes?: Maybe<Array<Maybe<UserBackupCode>>>;
-  /** Deprecated getCurrentUserDetails, Use getLoggedInContext instead */
-  getCurrentUserDetails?: Maybe<CurrentUserDetails>;
-  getCurrentUserPasswordPolicy?: Maybe<PasswordPolicy>;
-  getCurrentUserTfaDetail?: Maybe<UserTfaDetail>;
-  getCurrentUserThirdPartyHashKey?: Maybe<Scalars['JSON']['output']>;
-  /** Deprecated */
-  getCustomField?: Maybe<CustomField>;
-  /** Deprecated */
-  getCustomFieldByName?: Maybe<CustomField>;
-  /** Deprecated */
-  getCustomFieldConstraints?: Maybe<CustomFieldConstraint>;
-  /** Custom Field */
-  getCustomFieldsForAlertConditions?: Maybe<Array<Maybe<CustomField>>>;
-  getCustomFilterValues?: Maybe<Scalars['JSON']['output']>;
-  getCustomerCardDetails?: Maybe<CustomerCardDetail>;
-  getCustomerDetail?: Maybe<CustomerDetail>;
-  getCustomerIdentityToken?: Maybe<Scalars['String']['output']>;
-  getCustomerLicenseExceededDetails?: Maybe<Scalars['JSON']['output']>;
-  getCustomerSubscription?: Maybe<CustomerSubscription>;
-  getDataMapping?: Maybe<DataMappingList>;
-  getDataMappingV2?: Maybe<DataMappingList>;
-  getDataReportModules?: Maybe<Scalars['JSON']['output']>;
-  getDataSource?: Maybe<Array<Maybe<MappingObject>>>;
-  getDateTimeAllowedFormats?: Maybe<AllowedDateTimeFormat>;
-  getDefaultPasswordPoliciesConfig?: Maybe<Array<Maybe<PasswordPolicy>>>;
-  /** Deprecated */
-  getDeletedCustomFields?: Maybe<Array<Maybe<CustomField>>>;
-  getDeletedFields?: Maybe<Array<Maybe<Field>>>;
-  getDependentFieldOptions?: Maybe<FieldOption>;
+  /** Fetches an asset. */
+  getAsset?: Maybe<Asset>;
+  /** Fetches the list of asset activities. */
+  getAssetActivity?: Maybe<AssetActivityList>;
+  /** Fetches the list of asset custom fields based on module Ex: Windows, Mac */
+  getAssetCustomFields?: Maybe<Array<Maybe<CustomField>>>;
+  /** To Fetch Asset Disk Details. */
+  getAssetDiskDetails?: Maybe<Array<Maybe<AssetDisk>>>;
+  /** Fetch Asset Info By TP EndpointIds */
+  getAssetInfoByTPEndpointIds?: Maybe<Array<Maybe<TpEndpointAssetInfo>>>;
+  /** Fetches the list of assets. */
+  getAssetList?: Maybe<AssetList>;
+  /** Fetches all the patch details of an asset. */
+  getAssetPatchDetails?: Maybe<AssetPatchList>;
   /**
-   * getGroupUsers(groupId: String): Groups
-   * getGroupPermissions(groupId: String): Groups
+   * Fetches the asset's patch status.
+   * @deprecated use Patch status in getAsset API
    */
+  getAssetPatchStatus?: Maybe<Scalars['String']['output']>;
+  /** Fetch Asset's Softwares */
+  getAssetSoftwareList?: Maybe<AssetSoftwareList>;
+  /** Fetches the asset's summary details. */
+  getAssetSummary?: Maybe<AssetSummary>;
+  /** Fetches the asset's user logs. */
+  getAssetUserLog?: Maybe<Array<Maybe<AssetUserLog>>>;
+  /** Fetches the list of business functions. */
+  getBusinessFunctionList?: Maybe<Array<Maybe<BusinessFunction>>>;
+  /** Fetches the list of available ticket categories. */
+  getCategoryList?: Maybe<Array<Maybe<Category>>>;
+  /** Fetches the list of available ticket causes. */
+  getCauseList?: Maybe<Array<Maybe<Cause>>>;
+  /** Fetches a client. */
+  getClient?: Maybe<Client>;
+  /** Fetches a client contract */
+  getClientContract?: Maybe<ClientContract>;
+  /** Fetches a list of client contracts */
+  getClientContractList?: Maybe<ClientContractList>;
+  /** Fetches a client custom field. */
+  getClientCustomField?: Maybe<CustomField>;
+  /** Fetches the list of client custom fields. */
+  getClientCustomFieldList?: Maybe<Array<Maybe<CustomField>>>;
+  /** Fetches a list of clients. */
+  getClientList?: Maybe<ClientList>;
+  /** Fetch a client site. */
+  getClientSite?: Maybe<ClientSite>;
+  /** Fetches a list of client sites. */
+  getClientSiteList?: Maybe<ClientSiteList>;
+  /** Fetches a list of client stages. */
+  getClientStageList?: Maybe<Array<Maybe<ClientStage>>>;
+  /** Fetches a client user. */
+  getClientUser?: Maybe<ClientUser>;
+  /** Fetches a list of client user associations. */
+  getClientUserAssociationList?: Maybe<ClientUserAssociationList>;
+  /** Fetches a client user custom field. */
+  getClientUserCustomField?: Maybe<CustomField>;
+  /** Fetches the list of client user custom fields. */
+  getClientUserCustomFieldList?: Maybe<Array<Maybe<CustomField>>>;
+  /** Fetches a list of client users. */
+  getClientUserList?: Maybe<ClientUserList>;
+  /** Fetches the list of designations. */
   getDesignationList?: Maybe<Array<Maybe<Designation>>>;
-  getDownloadInventoryList?: Maybe<DownloadInventoryList>;
-  getEligibleParentFields?: Maybe<Array<Maybe<Field>>>;
-  /** Have to discuss the behaviour for the below api whether to use all or selective on account of performance improvement */
+  /** Fetch a list of eligible service catalog items. */
   getEligibleServiceCatalogItems?: Maybe<ServiceCatalogItemList>;
-  getEmployee?: Maybe<User>;
-  /** Deprecated, use getTechnicianListByCriteria */
-  getEmployeeViewMetaInfo?: Maybe<Scalars['JSON']['output']>;
-  getEntitiesMeta?: Maybe<Array<Maybe<Entity>>>;
-  getEntityMeta?: Maybe<Entity>;
-  /** The entity name should be one of the value from EnumerationEntity enum */
-  getEnumerations?: Maybe<Array<Maybe<Enumeration>>>;
-  getExpandedClientConversationContent?: Maybe<Conversation>;
-  getExpandedVendorConversationContent?: Maybe<Conversation>;
-  getFeatureGatingInfo?: Maybe<Scalars['JSON']['output']>;
-  /** getAllGroups: [Groups] */
-  getFeatures?: Maybe<Array<Maybe<Feature>>>;
+  /** Fetches a field by module. */
   getField?: Maybe<Field>;
-  getFieldConstraints?: Maybe<FieldConstraint>;
-  /** Deprecated */
-  getFieldOptions?: Maybe<Array<Maybe<FieldOption>>>;
+  /** Fetches the fields's of entities. */
   getFields?: Maybe<Array<Maybe<Field>>>;
-  getGlobalInvoiceTemplate?: Maybe<InvoiceTemplate>;
-  getGlobalQuoteTemplate?: Maybe<QuoteTemplate>;
-  getGroup?: Maybe<Group>;
-  getGroupClients?: Maybe<Group>;
-  getGroupUsers?: Maybe<Group>;
-  getHolidayList?: Maybe<HolidayList>;
-  getInAppNotifications?: Maybe<InAppNotificationList>;
-  getInitialConfigurations?: Maybe<Array<Maybe<InitialConfiguration>>>;
-  getInstallerInfo?: Maybe<Array<Maybe<InstallerInfo>>>;
-  getIntegration?: Maybe<Integration>;
-  getIntegrationAddOnContractItem?: Maybe<ContractServiceItem>;
-  /** Reseller framework APIs */
-  getIntegrationAddOns?: Maybe<Array<Maybe<AddOnLicenseDetails>>>;
-  getIntegrationConfigForMappedClients?: Maybe<Array<Maybe<Organization>>>;
-  getIntegrationDataMappingByTPItemIds?: Maybe<Array<Maybe<IntegrationDataMapping>>>;
-  getIntegrationDataSyncReport?: Maybe<DataSyncReport>;
-  getIntegrationEntityDefaultMappingInfo?: Maybe<Scalars['JSON']['output']>;
-  getIntegrationEntityFields?: Maybe<Scalars['JSON']['output']>;
-  /** Todo: Expose generic API getTPIntegrationClientList(integrationRefId: ID): JSON */
-  getIntegrationEntityMapping?: Maybe<Scalars['JSON']['output']>;
-  getIntegrationSetupCurrentState?: Maybe<Scalars['JSON']['output']>;
-  /** wrapper api for getDataMappingV2 for getting mapped TPItem details alone */
-  getIntegrationSetupMeta?: Maybe<Scalars['JSON']['output']>;
-  /** Integration V2 */
-  getIntegrationV2?: Maybe<Integration>;
-  getIntegrations?: Maybe<Array<Maybe<Integration>>>;
-  getIntegrationsByIds?: Maybe<Array<Maybe<Integration>>>;
-  getIntegrationsByIdsV2?: Maybe<Array<Maybe<Integration>>>;
+  /** Fetches the list of holiday lists. */
+  getHolidayList?: Maybe<Array<Maybe<HolidayList>>>;
+  /** Fetches the list of available impact levels. */
+  getImpactList?: Maybe<Array<Maybe<Impact>>>;
+  /** Fetch Installer Info for a Specific client site */
+  getInstallerInfo?: Maybe<Array<Maybe<InstallerDetails>>>;
+  /** Fetch Integration Data Mappings By TP ItemIds */
+  getIntegrationDataMapping?: Maybe<Array<Maybe<IntegrationDataMapping>>>;
+  /** Fetches an invoice. */
   getInvoice?: Maybe<Invoice>;
-  getInvoiceAddress?: Maybe<BillingAddress>;
-  getInvoiceConfiguration?: Maybe<BillingConfiguration>;
-  getInvoiceDownloadLink?: Maybe<Scalars['String']['output']>;
+  /** Fetches a list of all the invoice items. */
   getInvoiceItemList?: Maybe<InvoiceItemList>;
-  getInvoiceLineItemPlaceholders?: Maybe<Scalars['JSON']['output']>;
+  /** Fetches a list of invoices. */
   getInvoiceList?: Maybe<InvoiceList>;
-  getInvoiceListViewMeta?: Maybe<Scalars['JSON']['output']>;
-  getInvoiceSetting?: Maybe<InvoiceSetting>;
-  getInvoiceSettings?: Maybe<InvoiceSetting>;
-  getInvoiceStatus?: Maybe<Array<Maybe<InvoiceStatusEnum>>>;
-  getInvoiceStatuses?: Maybe<Array<Maybe<InvoiceStatus>>>;
-  getInvoiceSummary?: Maybe<InvoiceSummary>;
-  getInvoiceTemplate?: Maybe<InvoiceTemplate>;
-  getInvoiceTemplatePlaceholdersMeta?: Maybe<Scalars['JSON']['output']>;
-  getInvoiceViewsCount?: Maybe<Array<Maybe<ListViewRecordsCount>>>;
-  getKbItemListViewMeta?: Maybe<Scalars['JSON']['output']>;
-  getLabourRevenue?: Maybe<LabourRevenue>;
+  /** Fetches an IT document's details. */
+  getItDocumentation?: Maybe<ItDocumentation>;
+  /** Fetches all available IT document categories. */
+  getItDocumentationCategories?: Maybe<Array<Maybe<ItDocumentationType>>>;
+  /** Fetches all the IT documents under a category. */
+  getItDocumentationList?: Maybe<ItDocumentationList>;
   getLoggedInContext?: Maybe<LogInContext>;
-  getMSPCompany?: Maybe<MspCompany>;
-  /** getAllUsers: [User] */
-  getMSPContacts?: Maybe<Array<Maybe<User>>>;
-  /** deprecated */
-  getMSPEmailDomains?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  getMSPGroups?: Maybe<Array<Maybe<Group>>>;
-  getMailProviderConfigs?: Maybe<Array<Maybe<MailProviderConfig>>>;
-  /** authentiateUser(input:UserInput): User */
-  getMailSettings?: Maybe<MailSettingsConfiguration>;
-  getMailboxForwardingAddress?: Maybe<Scalars['String']['output']>;
-  getMailboxes?: Maybe<Array<Maybe<Mailbox>>>;
-  getMappedTPItemInfo?: Maybe<Scalars['JSON']['output']>;
-  getMonthlyLabourRevenue?: Maybe<Scalars['JSON']['output']>;
-  getMonthlyRevenue?: Maybe<Scalars['JSON']['output']>;
-  getMyMentions?: Maybe<MentionList>;
-  getNewInAppNotificationsCount?: Maybe<Scalars['Int']['output']>;
-  getNextBillDate?: Maybe<Scalars['String']['output']>;
-  getNotificationTemplate?: Maybe<NotificationTemplate>;
-  getNotificationTemplateByConstant?: Maybe<NotificationTemplate>;
-  getNotificationTemplateInfo?: Maybe<Array<Maybe<NotificationTemplateInfo>>>;
-  getNotificationTemplateMetaInfo?: Maybe<Scalars['JSON']['output']>;
-  getNotificationTemplates?: Maybe<Array<Maybe<NotificationTemplate>>>;
-  getOfferedItemListMeta?: Maybe<Scalars['JSON']['output']>;
-  getOfferedItemListViewMeta?: Maybe<Scalars['JSON']['output']>;
-  getOfferedItemModules?: Maybe<Array<Maybe<OfferedItemModule>>>;
+  /** Fetches a list of the offered services */
   getOfferedItems?: Maybe<OfferedItemList>;
-  getOfferedItemsListMeta?: Maybe<Scalars['JSON']['output']>;
-  getOnBoardingState?: Maybe<OnBoardingState>;
-  getOptions?: Maybe<Array<Maybe<Option>>>;
-  getOverageItems?: Maybe<OverageItemDetailList>;
-  getPaymentMethods?: Maybe<Array<Maybe<PaymentMethod>>>;
-  getPaymentSetting?: Maybe<PaymentSetting>;
-  getPaymentTerms?: Maybe<Array<Maybe<PaymentTerm>>>;
-  getPersonalizationByCategory?: Maybe<Array<Maybe<UserPersonalization>>>;
-  getPersonalizationByCategoryAndName?: Maybe<UserPersonalization>;
-  getPlaceholderTemplate?: Maybe<PlaceholderTemplate>;
-  getPlaceholderTemplateMetaInfo?: Maybe<Scalars['JSON']['output']>;
-  getPlaceholderTemplates?: Maybe<Array<Maybe<PlaceholderTemplate>>>;
-  getPlanFeatures?: Maybe<Scalars['JSON']['output']>;
-  getPlanFeaturesState?: Maybe<Scalars['JSON']['output']>;
-  getPlanProductFeatures?: Maybe<Array<Maybe<PlanProductFeature>>>;
-  getPolicyIntegrationSetupMeta?: Maybe<Scalars['JSON']['output']>;
-  getPrimaryCompany?: Maybe<Organization>;
-  getProductFeaturesCategories?: Maybe<Array<Maybe<ProductFeatureCategory>>>;
-  getProductOfferingEntities?: Maybe<Array<Maybe<ProductOfferingEntity>>>;
-  getProductSubscriptionEstimateForExistingLineItems?: Maybe<ProductSubscriptionEstimate>;
-  getProductSubscriptionEstimateForLineItems?: Maybe<ProductSubscriptionEstimate>;
-  getProductSubscriptionEstimateForUpsell?: Maybe<ProductSubscriptionEstimate>;
-  getProjectRoles?: Maybe<Array<Maybe<Role>>>;
-  getProratedAmount?: Maybe<Scalars['String']['output']>;
-  getProvisionRule?: Maybe<ProvisionRule>;
-  getProvisionRuleConditionMeta?: Maybe<Scalars['JSON']['output']>;
-  getProvisionRuleItems?: Maybe<ProvisionRuleItemList>;
-  getProvisionRuleTemplateList?: Maybe<ProvisionRuleList>;
-  getPurchaseProductFeatureMeta?: Maybe<Scalars['JSON']['output']>;
-  getQuickBooksAccounts?: Maybe<Array<Maybe<QuickBooksAccount>>>;
-  getQuickBooksDesktopIntegrationPassword?: Maybe<Scalars['String']['output']>;
+  /** Fetches the list of payment method list. */
+  getPaymentMethodList?: Maybe<Array<Maybe<PaymentMethod>>>;
+  /** Fetches the list of payment terms. */
+  getPaymentTermList?: Maybe<Array<Maybe<PaymentTerm>>>;
+  /** Fetches the list of available priority levels. */
+  getPriorityList?: Maybe<Array<Maybe<Priority>>>;
+  /** Fetches a quote. */
   getQuote?: Maybe<Quote>;
-  getQuoteAddress?: Maybe<BillingAddress>;
-  getQuoteConfiguration?: Maybe<BillingConfiguration>;
-  getQuoteEvents?: Maybe<QuoteEvents>;
+  /** Fetches a list of quotes. */
   getQuoteList?: Maybe<QuoteList>;
-  getQuoteTemplate?: Maybe<QuoteTemplate>;
-  getQuoteTemplatePlaceholdersMeta?: Maybe<Scalars['JSON']['output']>;
-  getQuoteVersions?: Maybe<Array<Maybe<Quote>>>;
-  getQuoteViews?: Maybe<Array<Maybe<ListView>>>;
-  getQuoteViewsCount?: Maybe<Array<Maybe<ListViewRecordsCount>>>;
-  getRecentSearchInfo?: Maybe<RecentSearchInfo>;
-  getRecordWiseAudit?: Maybe<AuditList>;
-  getReport?: Maybe<Report>;
-  getReportCalculationStatus?: Maybe<OfferedItemAuditStatus>;
-  getReportConfigMeta?: Maybe<Scalars['JSON']['output']>;
-  getReportData?: Maybe<ReportData>;
-  getReportExportConfig?: Maybe<ReportExportConfig>;
-  getReportExportConfigMeta?: Maybe<Scalars['JSON']['output']>;
-  getReportModules?: Maybe<Scalars['JSON']['output']>;
-  getReportSchedules?: Maybe<ReportScheduleList>;
-  getReports?: Maybe<ReportList>;
-  getRequesterList?: Maybe<UserList>;
-  getRequesterListByCriteria?: Maybe<UserList>;
-  getRoleFeatureDependencies?: Maybe<Scalars['JSON']['output']>;
-  getRoleList?: Maybe<Array<Maybe<Role>>>;
-  getRolePermissions?: Maybe<Role>;
-  /** Deprecated, use getTechnicianListByCriteria */
-  getRoleTypeDetails?: Maybe<Array<Maybe<RoleType>>>;
-  getRoleUsers?: Maybe<Role>;
-  getRoles?: Maybe<Array<Maybe<Role>>>;
-  getRolesWithApproveTicketPermission?: Maybe<Array<Maybe<Role>>>;
-  getSalesInboxViews?: Maybe<Array<Maybe<ListView>>>;
-  /** deprecated */
-  getSalesInboxViewsCount?: Maybe<Array<Maybe<ListViewRecordsCount>>>;
-  getSalesInboxViewsRecordCount?: Maybe<Array<Maybe<ListViewRecordsCount>>>;
-  getSamlIdentityProviderDetail?: Maybe<IdpSamlProviderDetail>;
-  getSamlServiceProviderDetail?: Maybe<SpSamlProviderDetail>;
-  /** Deprecated */
-  getSecureFieldValue?: Maybe<Scalars['String']['output']>;
-  getSequenceGenerators?: Maybe<Array<Maybe<SequenceGenerator>>>;
+  /** Fetches the list of requester-type roles. */
+  getRequesterRoleList?: Maybe<Array<Maybe<Role>>>;
+  /** Fetches the list of resolution codes. */
+  getResolutionCodeList?: Maybe<Array<Maybe<ResolutionCode>>>;
+  /** Fetch a list of available SLAs. */
+  getSLAList?: Maybe<Array<Maybe<Sla>>>;
+  /** Fetches all available scripts. */
+  getScriptList?: Maybe<ScriptList>;
+  /** Fetches all the Scripts supported to particular OS type Ex :Windows */
+  getScriptListByType?: Maybe<ScriptList>;
+  /** Retrieves a product or service. */
   getServiceCatalogItem?: Maybe<ServiceCatalogItem>;
-  getServiceCatalogItems?: Maybe<ServiceCatalogItemList>;
-  getServiceCategories?: Maybe<Array<Maybe<ServiceCategory>>>;
+  /** Retrieves a list of all products and services. */
+  getServiceCatalogItemList?: Maybe<ServiceCatalogItemList>;
+  /**
+   * Fetches a list of all the service categories created in the service catalog.
+   * Fetches a list of all the service categories created in the service catalog.
+   */
+  getServiceCategoryList?: Maybe<Array<Maybe<ServiceCategory>>>;
+  /**
+   * Fetch a service item.
+   * @deprecated Use getServiceCatalogItem
+   */
   getServiceItem?: Maybe<ServiceItem>;
-  getServiceItems?: Maybe<ServiceItemList>;
-  getServiceUtilisation?: Maybe<ServiceUtilisationList>;
-  getSharedReport?: Maybe<SharedReport>;
-  getSite?: Maybe<Site>;
-  getSiteList?: Maybe<Array<Maybe<Site>>>;
-  getSnapShotAudits?: Maybe<AuditList>;
-  getStickyNote?: Maybe<StickyNote>;
-  getStripeCustomerList?: Maybe<StripeCustomerList>;
-  getSubscriptionInvoices?: Maybe<SubscriptionInvoiceList>;
-  getSubscriptionItemQuantity?: Maybe<Scalars['String']['output']>;
-  getSupportAccess?: Maybe<SupportAccess>;
-  getTPEntitiesForMapping?: Maybe<Scalars['JSON']['output']>;
-  getTPEntityFields?: Maybe<Scalars['JSON']['output']>;
-  getTPEntityItems?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * Fetches a list of service items.
+   * @deprecated Use getServiceCatalogItemList
+   */
+  getServiceItemList?: Maybe<ServiceItemList>;
+  /** Fetch the list of available ticket statuses. */
+  getStatusList?: Maybe<Array<Maybe<Status>>>;
+  /** Fetches a task. */
+  getTask?: Maybe<Task>;
+  /** Fetches a list of tasks. */
+  getTaskList?: Maybe<TaskList>;
+  /** Fetches a tax rate from the list of saved tax rates. */
   getTax?: Maybe<Tax>;
+  /** Fetches all the tax rates saved in SuperOps.ai. */
   getTaxList?: Maybe<TaxList>;
+  /** Fetches the list of teams. */
   getTeamList?: Maybe<Array<Maybe<Team>>>;
-  getTechnicianGroups?: Maybe<Array<Maybe<Group>>>;
-  getTechnicianList?: Maybe<UserList>;
-  getTechnicianListByCriteria?: Maybe<UserList>;
-  /** Deprecated, use respective role type APIs */
-  getTechnicianRoleTypeRoles?: Maybe<Array<Maybe<Role>>>;
-  getTechnicianSCIMConfiguration?: Maybe<ScimConfiguration>;
-  getTechnicianUtilisation?: Maybe<TechnicianUtilisationList>;
-  getThirdPartyIntegratedAppStatus?: Maybe<Array<Maybe<OperationStatus>>>;
-  getTicketApproverList?: Maybe<UserList>;
-  getTopClientsByFinancialSegments?: Maybe<Array<ClientFinancialPerformanceMetric>>;
-  getTopContractsByFinancialSegments?: Maybe<Array<ContractFinancialPerformanceMetric>>;
-  getUnProvisionedIncludedItems?: Maybe<Array<ServiceCatalogItem>>;
-  getUnProvisionedTemplateIncludedItems?: Maybe<Array<ServiceCatalogItem>>;
-  getUnknownEmail?: Maybe<UnknownEmail>;
-  getUnknownEmails?: Maybe<UnknownEmailList>;
-  getUserRoleTypeRoles?: Maybe<Array<Maybe<Role>>>;
-  getVendorConversationContentFromTemplate?: Maybe<Conversation>;
-  getVendorConversationReplyRecipients?: Maybe<ReplyContext>;
-  getVendorConversationThreadedContent?: Maybe<Scalars['String']['output']>;
-  /** Vendor Conversation */
-  getVendorConversationsList?: Maybe<ConversationList>;
-  getView?: Maybe<ListView>;
-  getViews?: Maybe<Array<Maybe<ModuleListView>>>;
-  getViewsCount?: Maybe<Array<Maybe<ListViewRecordsCount>>>;
-  getWebSearchAcceptanceInfo?: Maybe<Scalars['JSON']['output']>;
-  /** webhookSubscription apis */
+  /** Fetches the list of technician groups. */
+  getTechnicianGroupList?: Maybe<Array<Maybe<TechnicianGroup>>>;
+  /** Fetches the list of technicians. */
+  getTechnicianList?: Maybe<TechnicianList>;
+  /** Fetches the list of technician-type roles. */
+  getTechnicianRoleList?: Maybe<Array<Maybe<Role>>>;
+  /** Fetches a ticket. */
+  getTicket?: Maybe<Ticket>;
+  /** Fetches the list of conversations in a ticket. */
+  getTicketConversationList?: Maybe<Array<Maybe<TicketConversation>>>;
+  /**
+   * Fetches a ticket custom field.
+   * @deprecated Use getField API
+   */
+  getTicketCustomField?: Maybe<CustomField>;
+  /**
+   * Fetches the list of ticket custom fields.
+   * @deprecated Use getFields API
+   */
+  getTicketCustomFieldList?: Maybe<Array<Maybe<CustomField>>>;
+  /** Fetches a list of tickets. */
+  getTicketList?: Maybe<TicketList>;
+  /** Fetches the list of notes in a ticket. */
+  getTicketNoteList?: Maybe<Array<Maybe<Note>>>;
+  /** Fetches the list of available urgency levels. */
+  getUrgencyList?: Maybe<Array<Maybe<Urgency>>>;
   getWebhookSubscription?: Maybe<WebhookSubscription>;
   getWebhookSubscriptionList?: Maybe<WebhookSubscriptionList>;
-  getWhitelistedServiceItems?: Maybe<ServiceItemList>;
-  getWorklogEntriesListViewMeta?: Maybe<Scalars['JSON']['output']>;
-  getWorklogModules?: Maybe<Array<Maybe<OfferedItemModule>>>;
-  getXeroAccounts?: Maybe<Array<Maybe<XeroAccount>>>;
-  hasNylasMailbox?: Maybe<Scalars['Boolean']['output']>;
-  isTfaEnforcedByAdmin?: Maybe<Scalars['Boolean']['output']>;
-  listACHAccounts?: Maybe<Array<Maybe<AchAccount>>>;
-  listCards?: Maybe<CardList>;
-  populateUserTerminalWssToken?: Maybe<Scalars['String']['output']>;
-  previewChart?: Maybe<Scalars['JSON']['output']>;
-  search?: Maybe<Scalars['JSON']['output']>;
-  verifyCustomMailServerConnection?: Maybe<Scalars['Boolean']['output']>;
-  verifyMailProviderConnection?: Maybe<Scalars['Boolean']['output']>;
+  /** Fetches a list of work (task/project) statuses. */
+  getWorkStatusList?: Maybe<Array<Maybe<WorkStatus>>>;
+  /** Fetches a worklog. */
+  getWorklog?: Maybe<Worklog>;
+  /** Fetches worklog Entries. */
+  getWorklogEntries?: Maybe<WorklogEntryList>;
+  /** Fetch a list of worklogs. */
+  getWorklogList?: Maybe<Array<Maybe<Worklog>>>;
+  getWorklogTimerEntries?: Maybe<WorklogTimerEntryList>;
 };
 
 
-export type QueryConstructInvoiceItemsArgs = {
-  input: Array<InputMaybe<OfferedItemIdentifierInput>>;
+export type QueryGetAlertListArgs = {
+  input: ListInfoInput;
 };
 
 
-export type QueryExportChartArgs = {
-  input?: InputMaybe<ChartIdentifierInput>;
-};
-
-
-export type QueryExportReportArgs = {
-  input: ExportReportIdentifierInput;
-};
-
-
-export type QueryFetchClientContractArgs = {
-  input: ContractIdentifierInput;
-};
-
-
-export type QueryFetchClientContractListArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryFetchTfaStatusArgs = {
-  email?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryFetchTpEntityListArgs = {
-  input: FetchTpEntityListInput;
-};
-
-
-export type QueryFetchTpMappingRuleConditionArgs = {
-  input: FetchTpMappingRuleConditionInput;
-};
-
-
-export type QueryGenerateAndSendReportArgs = {
-  filterConditions?: InputMaybe<Scalars['JSON']['input']>;
-  module?: InputMaybe<Scalars['String']['input']>;
-  reportId: Scalars['ID']['input'];
-  type?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryGetAiFeatureArgs = {
-  input: AiFeatureIdentifierInput;
-};
-
-
-export type QueryGetAiFeatureFeedbackListArgs = {
-  input: GetAiFeatureFeedbackListInput;
-};
-
-
-export type QueryGetAiFeatureListArgs = {
-  input: GetAiFeatureListInput;
-};
-
-
-export type QueryGetAcronisProtectionPlansForClientArgs = {
-  clientId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryGetActiveRecurringRevenueArgs = {
-  input?: InputMaybe<ClientIdentifierInput>;
-};
-
-
-export type QueryGetAddOnBillingDetailsArgs = {
-  addOnId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetAddOnDetailsArgs = {
-  addOnId: Scalars['ID']['input'];
-  listInfo: ListInfoInput;
-};
-
-
-export type QueryGetAddOnItemListByClientArgs = {
-  addOnId?: InputMaybe<Scalars['ID']['input']>;
-  clientId?: InputMaybe<Scalars['ID']['input']>;
-  listInfoInput?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetAddOnStatusForLoggedInUserArgs = {
-  addOnIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-};
-
-
-export type QueryGetAddOnUsageByChargeBeeItemIdArgs = {
-  chargeBeeItemId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryGetAddressesArgs = {
-  input: GetAddressInput;
-};
-
-
-export type QueryGetAgentInstallerDetailsArgs = {
-  installerType?: InputMaybe<Scalars['Int']['input']>;
-  policyCategoryId?: InputMaybe<Scalars['ID']['input']>;
-  siteId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetAggregatedValuesArgs = {
-  input: GetAggregatedValuesInput;
-};
-
-
-export type QueryGetAllCustomFieldsArgs = {
-  module: Scalars['String']['input'];
+export type QueryGetAlertsForAssetArgs = {
+  input: AssetDetailsListInput;
 };
 
 
@@ -7533,409 +3193,123 @@ export type QueryGetAllFieldsArgs = {
 };
 
 
-export type QueryGetAllHomePageWidgetsArgs = {
-  listInfo: ListInfoInput;
-};
-
-
-export type QueryGetAllowedClientSitesArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-
 export type QueryGetAllowedServiceItemsArgs = {
   input: GetAllowedServiceItemsInput;
 };
 
 
-export type QueryGetAllowedTechnicianGroupsArgs = {
-  input: GetAllowedTechnicianGroupsInput;
+export type QueryGetAssetArgs = {
+  input: AssetIdentifierInput;
 };
 
 
-export type QueryGetAppPersonalizationArgs = {
-  input: PersonalizationInput;
+export type QueryGetAssetActivityArgs = {
+  input: AssetDetailsListInput;
 };
 
 
-export type QueryGetAuditsArgs = {
-  listInfo: ListInfoInput;
+export type QueryGetAssetCustomFieldsArgs = {
+  input?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 
-export type QueryGetBillingTemplateListArgs = {
-  listInfo: ListInfoInput;
+export type QueryGetAssetDiskDetailsArgs = {
+  input: AssetIdentifierInput;
 };
 
 
-export type QueryGetBitDefenderInstallationPackagesForClientArgs = {
-  clientId?: InputMaybe<Scalars['ID']['input']>;
+export type QueryGetAssetInfoByTpEndpointIdsArgs = {
+  input?: InputMaybe<TpAssetInfoInput>;
 };
 
 
-export type QueryGetBlockItemConsumptionInfoArgs = {
-  input: GetBlockItemConsumptionInfoInput;
+export type QueryGetAssetListArgs = {
+  input: ListInfoInput;
 };
 
 
-export type QueryGetBlockItemInfoArgs = {
-  input: GetBlockItemInfoInput;
+export type QueryGetAssetPatchDetailsArgs = {
+  input: AssetDetailsListInput;
 };
 
 
-export type QueryGetBusinessFunctionArgs = {
-  input: BusinessFunctionIdentifierInput;
+export type QueryGetAssetPatchStatusArgs = {
+  input: AssetIdentifierInput;
 };
 
 
-export type QueryGetCreCompanyBaselineMetricsArgs = {
-  input: RuleConditionInput;
+export type QueryGetAssetSoftwareListArgs = {
+  input: AssetDetailsListInput;
 };
 
 
-export type QueryGetCreTicketsByCategoryArgs = {
-  input: CreTicketsByCategoryInput;
+export type QueryGetAssetSummaryArgs = {
+  input: AssetIdentifierInput;
 };
 
 
-export type QueryGetCreTrendAnalysisArgs = {
-  input: CreTrendAnalysisInput;
-};
-
-
-export type QueryGetChartArgs = {
-  chartId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetChartsArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
+export type QueryGetAssetUserLogArgs = {
+  input: AssetIdentifierInput;
 };
 
 
 export type QueryGetClientArgs = {
-  clientId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetClientApproversForTicketArgs = {
-  clientId: Scalars['ID']['input'];
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetClientAttachmentsArgs = {
-  clientId: Scalars['ID']['input'];
-  listInfo?: InputMaybe<ListInfoInput>;
+  input: ClientIdentifierInput;
 };
 
 
 export type QueryGetClientContractArgs = {
-  clientId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetClientContractTemplateArgs = {
-  templateId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetClientContractTemplatesArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetClientConversationAttachmentsArgs = {
-  clientId: Scalars['ID']['input'];
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetClientConversationListArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetClientConversationReplyRecipientsArgs = {
-  input: ConversationIdentifierInput;
-};
-
-
-export type QueryGetClientConversationThreadedContentArgs = {
-  input: GetConversationThreadedContentInput;
-};
-
-
-export type QueryGetClientConversationsArgs = {
-  clientId: Scalars['ID']['input'];
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetClientEfficiencyRankingArgs = {
-  input: ClientEfficiencyRankingInput;
-};
-
-
-export type QueryGetClientFinancialPerformanceMetricsArgs = {
-  input: ListInfoInput;
-};
-
-
-export type QueryGetClientHeadQuarterSiteArgs = {
-  clientId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetClientListArgs = {
-  listInfo: ListInfoInput;
-};
-
-
-export type QueryGetClientProvisionRuleListArgs = {
-  input: ClientIdentifierInput;
-};
-
-
-export type QueryGetClientRankingByWorklogHoursLoggedArgs = {
-  input: ClientRankingByWorklogHoursInput;
-};
-
-
-export type QueryGetClientRevenueMetricsArgs = {
-  input: ClientIdentifierInput;
-};
-
-
-export type QueryGetClientSiteArgs = {
-  input: SiteIdentifierInput;
-};
-
-
-export type QueryGetClientSiteListArgs = {
-  input?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetClientSpecificEfficiencyArgs = {
-  input: ClientSpecificEfficiencyInput;
-};
-
-
-export type QueryGetClientUserArgs = {
-  userId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetClientUserAssociationsListArgs = {
-  input?: InputMaybe<GetClientUsersListInput>;
-};
-
-
-export type QueryGetClientUserGroupsArgs = {
-  accountId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetClientUserListArgs = {
-  clientId: Scalars['ID']['input'];
-  listInfo: ListInfoInput;
-  siteId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryGetClientUsersArgs = {
-  accountId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetClientUsersListArgs = {
-  input: GetClientUsersListInput;
-};
-
-
-export type QueryGetCommonTechGroupsForClientsArgs = {
-  clientIds?: InputMaybe<Array<Scalars['ID']['input']>>;
-};
-
-
-export type QueryGetCommonTechGroupsUsersForClientsArgs = {
-  clientIds?: InputMaybe<Array<Scalars['ID']['input']>>;
-};
-
-
-export type QueryGetCompanySiteArgs = {
-  input: SiteIdentifierInput;
-};
-
-
-export type QueryGetCompanySiteListArgs = {
-  input?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetCompanyUserArgs = {
-  userId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetCompanyUsersListArgs = {
-  listInfo: ListInfoInput;
-};
-
-
-export type QueryGetContentForSendInvoiceArgs = {
-  input: InvoiceIdentifierInput;
-};
-
-
-export type QueryGetContentForSendQuoteArgs = {
-  input: QuoteIdentifierInput;
-};
-
-
-export type QueryGetContractExpiredSubscriptionsArgs = {
-  contractId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetContractFinancialPerformanceMetricsArgs = {
-  input: ListInfoInput;
-};
-
-
-export type QueryGetContractNextBillDateArgs = {
-  input: GetContractNextBillDateInput;
-};
-
-
-export type QueryGetContractProRatedAmountArgs = {
-  input: GetContractProRatedAmountInput;
-};
-
-
-export type QueryGetContractRevenueMetricsArgs = {
-  input?: InputMaybe<ClientIdentifierInput>;
-};
-
-
-export type QueryGetContractTemplateArgs = {
   input: ContractIdentifierInput;
 };
 
 
-export type QueryGetContractTemplatesArgs = {
-  input: BillingTemplateIdentifierInput;
+export type QueryGetClientContractListArgs = {
+  input?: InputMaybe<ListInfoInput>;
 };
 
 
-export type QueryGetCustomFieldArgs = {
-  fieldId: Scalars['ID']['input'];
-  module: Scalars['String']['input'];
+export type QueryGetClientCustomFieldArgs = {
+  input?: InputMaybe<CustomFieldIdentifierInput>;
 };
 
 
-export type QueryGetCustomFieldByNameArgs = {
-  assetClassEntityName?: InputMaybe<Scalars['String']['input']>;
-  columnName: Scalars['String']['input'];
-  module: Scalars['String']['input'];
+export type QueryGetClientListArgs = {
+  input: ListInfoInput;
 };
 
 
-export type QueryGetCustomFieldConstraintsArgs = {
-  module: Scalars['String']['input'];
+export type QueryGetClientSiteArgs = {
+  input: ClientSiteIdentifierInput;
 };
 
 
-export type QueryGetCustomFieldsForAlertConditionsArgs = {
-  classId: Scalars['ID']['input'];
+export type QueryGetClientSiteListArgs = {
+  input: GetClientSiteListInput;
 };
 
 
-export type QueryGetCustomFilterValuesArgs = {
-  input: CustomFilterInput;
+export type QueryGetClientUserArgs = {
+  input: ClientUserIdentifierInput;
 };
 
 
-export type QueryGetDataMappingArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
-  name: Scalars['String']['input'];
-  page?: InputMaybe<Scalars['Int']['input']>;
-  pageSize?: InputMaybe<Scalars['Int']['input']>;
+export type QueryGetClientUserAssociationListArgs = {
+  input: ListInfoInput;
 };
 
 
-export type QueryGetDataMappingV2Args = {
-  entityName?: InputMaybe<Scalars['String']['input']>;
-  integrationRefId?: InputMaybe<Scalars['ID']['input']>;
-  listInfo?: InputMaybe<ListInfoInput>;
+export type QueryGetClientUserCustomFieldArgs = {
+  input?: InputMaybe<CustomFieldIdentifierInput>;
 };
 
 
-export type QueryGetDataSourceArgs = {
-  name: Scalars['String']['input'];
-};
-
-
-export type QueryGetDeletedCustomFieldsArgs = {
-  module: Scalars['String']['input'];
-};
-
-
-export type QueryGetDeletedFieldsArgs = {
-  input: Scalars['String']['input'];
-};
-
-
-export type QueryGetDependentFieldOptionsArgs = {
-  input: GetDependentFieldOptionsInput;
-};
-
-
-export type QueryGetDownloadInventoryListArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
-  module: Scalars['String']['input'];
-  moduleSpecificId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetEligibleParentFieldsArgs = {
-  input: Scalars['String']['input'];
+export type QueryGetClientUserListArgs = {
+  input: GetClientUserListInput;
 };
 
 
 export type QueryGetEligibleServiceCatalogItemsArgs = {
-  input: GetEligibleCatalogServiceItemsInput;
-};
-
-
-export type QueryGetEmployeeArgs = {
-  userId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetEntitiesMetaArgs = {
-  entityNames?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryGetEntityMetaArgs = {
-  entityName?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryGetEnumerationsArgs = {
-  entity?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryGetExpandedClientConversationContentArgs = {
-  input: GetExpandedClientConversationContentInput;
-};
-
-
-export type QueryGetExpandedVendorConversationContentArgs = {
-  input: GetExpandedVendorConversationContentInput;
+  input: GetEligibleServiceCatalogItemsInput;
 };
 
 
@@ -7944,44 +3318,8 @@ export type QueryGetFieldArgs = {
 };
 
 
-export type QueryGetFieldConstraintsArgs = {
-  input: Scalars['String']['input'];
-};
-
-
-export type QueryGetFieldOptionsArgs = {
-  input: GetFieldOptionsInput;
-};
-
-
 export type QueryGetFieldsArgs = {
   input: Array<FieldIdentifierInput>;
-};
-
-
-export type QueryGetGroupArgs = {
-  groupId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetGroupClientsArgs = {
-  groupId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetGroupUsersArgs = {
-  groupId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetHolidayListArgs = {
-  id: Scalars['ID']['input'];
-  year: Scalars['Int']['input'];
-};
-
-
-export type QueryGetInAppNotificationsArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
 };
 
 
@@ -7990,317 +3328,38 @@ export type QueryGetInstallerInfoArgs = {
 };
 
 
-export type QueryGetIntegrationArgs = {
-  integrationId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetIntegrationAddOnContractItemArgs = {
-  input?: InputMaybe<GetIntegrationAddonContractItemInput>;
-};
-
-
-export type QueryGetIntegrationAddOnsArgs = {
-  integrationRefId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetIntegrationConfigForMappedClientsArgs = {
-  integrationId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryGetIntegrationDataMappingByTpItemIdsArgs = {
-  integrationRefId: Scalars['ID']['input'];
-  tpEntityId: Scalars['String']['input'];
-  tpItemIds?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryGetIntegrationDataSyncReportArgs = {
-  entityName: Scalars['String']['input'];
-  integrationRefId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetIntegrationEntityDefaultMappingInfoArgs = {
-  entityName: Scalars['String']['input'];
-  integrationRefId: Scalars['ID']['input'];
-  tpEntityId?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryGetIntegrationEntityFieldsArgs = {
-  entityName: Scalars['String']['input'];
-  integrationRefId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetIntegrationEntityMappingArgs = {
-  entityName?: InputMaybe<Scalars['String']['input']>;
-  integrationRefId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryGetIntegrationSetupCurrentStateArgs = {
-  integrationRefId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryGetIntegrationSetupMetaArgs = {
-  integrationRefId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryGetIntegrationV2Args = {
-  integrationRefId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetIntegrationsByIdsArgs = {
-  ids?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-};
-
-
-export type QueryGetIntegrationsByIdsV2Args = {
-  ids?: InputMaybe<Array<Scalars['ID']['input']>>;
+export type QueryGetIntegrationDataMappingArgs = {
+  input?: InputMaybe<TpItemsInput>;
 };
 
 
 export type QueryGetInvoiceArgs = {
-  invoiceId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetInvoiceAddressArgs = {
-  input?: InputMaybe<GetBillingAddressInput>;
-};
-
-
-export type QueryGetInvoiceDownloadLinkArgs = {
-  invoiceId?: InputMaybe<Scalars['String']['input']>;
+  input: InvoiceIdentifierInput;
 };
 
 
 export type QueryGetInvoiceItemListArgs = {
-  listInfo: ListInfoInput;
-};
-
-
-export type QueryGetInvoiceLineItemPlaceholdersArgs = {
-  module: Scalars['String']['input'];
+  input: ListInfoInput;
 };
 
 
 export type QueryGetInvoiceListArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetInvoiceListViewMetaArgs = {
-  input?: InputMaybe<InvoiceMetaSource>;
-};
-
-
-export type QueryGetInvoiceSettingArgs = {
-  clientId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetInvoiceSettingsArgs = {
-  input?: InputMaybe<ClientIdentifierInput>;
-};
-
-
-export type QueryGetInvoiceSummaryArgs = {
-  clientId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetInvoiceTemplateArgs = {
-  input: InvoiceTemplateIdentifierInput;
-};
-
-
-export type QueryGetInvoiceViewsCountArgs = {
-  viewIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-};
-
-
-export type QueryGetLabourRevenueArgs = {
   input: ListInfoInput;
 };
 
 
-export type QueryGetMailProviderConfigsArgs = {
-  boxId: Scalars['ID']['input'];
+export type QueryGetItDocumentationArgs = {
+  input: ItDocumentationIdentifierInput;
 };
 
 
-export type QueryGetMailboxForwardingAddressArgs = {
-  input: Scalars['String']['input'];
-};
-
-
-export type QueryGetMappedTpItemInfoArgs = {
-  entityName?: InputMaybe<Scalars['String']['input']>;
-  integrationRefId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryGetMonthlyLabourRevenueArgs = {
-  input: ListInfoInput;
-};
-
-
-export type QueryGetMonthlyRevenueArgs = {
-  input: ListInfoInput;
-};
-
-
-export type QueryGetMyMentionsArgs = {
-  listInfo: ListInfoInput;
-};
-
-
-export type QueryGetNextBillDateArgs = {
-  input: GetNextBillDateInput;
-};
-
-
-export type QueryGetNotificationTemplateArgs = {
-  notificationTemplateType: Scalars['String']['input'];
-  templateId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetNotificationTemplateByConstantArgs = {
-  constant: Scalars['String']['input'];
-  notificationTemplateType: Scalars['String']['input'];
-};
-
-
-export type QueryGetNotificationTemplateInfoArgs = {
-  templateType: Scalars['String']['input'];
-};
-
-
-export type QueryGetNotificationTemplateMetaInfoArgs = {
-  constant?: InputMaybe<Scalars['String']['input']>;
-  templateSubtype?: InputMaybe<Scalars['String']['input']>;
-  templateType: Scalars['String']['input'];
-};
-
-
-export type QueryGetNotificationTemplatesArgs = {
-  notificationTemplateType: Scalars['String']['input'];
-};
-
-
-export type QueryGetOfferedItemListMetaArgs = {
-  input: Scalars['String']['input'];
+export type QueryGetItDocumentationListArgs = {
+  input: ItDocumentationListInput;
 };
 
 
 export type QueryGetOfferedItemsArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetOptionsArgs = {
-  input: GetOptionsInput;
-};
-
-
-export type QueryGetOverageItemsArgs = {
-  billableItems?: InputMaybe<Scalars['Boolean']['input']>;
-  entityId?: InputMaybe<Scalars['ID']['input']>;
-  listInfoInput: ListInfoInput;
-};
-
-
-export type QueryGetPaymentSettingArgs = {
-  clientId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetPersonalizationByCategoryArgs = {
-  category: Scalars['String']['input'];
-  userId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetPersonalizationByCategoryAndNameArgs = {
-  category: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-  userId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetPlaceholderTemplateArgs = {
-  constant?: InputMaybe<Scalars['String']['input']>;
-  templateId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryGetPlaceholderTemplateMetaInfoArgs = {
-  constant: Scalars['String']['input'];
-};
-
-
-export type QueryGetPlaceholderTemplatesArgs = {
-  constant: Scalars['String']['input'];
-};
-
-
-export type QueryGetPolicyIntegrationSetupMetaArgs = {
-  classId?: InputMaybe<Scalars['String']['input']>;
-  integrationCategory?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryGetProductFeaturesCategoriesArgs = {
-  input: GetProductFeaturesCategoriesInput;
-};
-
-
-export type QueryGetProductSubscriptionEstimateForExistingLineItemsArgs = {
-  input?: InputMaybe<IdentifierInput>;
-};
-
-
-export type QueryGetProductSubscriptionEstimateForLineItemsArgs = {
-  input: GetProductSubscriptionEstimateForLineItemsInput;
-};
-
-
-export type QueryGetProductSubscriptionEstimateForUpsellArgs = {
-  input: GetProductSubscriptionEstimateForUpsellInput;
-};
-
-
-export type QueryGetProratedAmountArgs = {
-  input?: InputMaybe<GetProratedAmountInput>;
-};
-
-
-export type QueryGetProvisionRuleArgs = {
-  input: ProvisionRuleIdentifierInput;
-};
-
-
-export type QueryGetProvisionRuleConditionMetaArgs = {
-  input: GetProvisionRuleConditionMetaInput;
-};
-
-
-export type QueryGetProvisionRuleItemsArgs = {
   input?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetProvisionRuleTemplateListArgs = {
-  input: BillingTemplateIdentifierInput;
 };
 
 
@@ -8309,115 +3368,18 @@ export type QueryGetQuoteArgs = {
 };
 
 
-export type QueryGetQuoteAddressArgs = {
-  input?: InputMaybe<GetBillingAddressInput>;
-};
-
-
-export type QueryGetQuoteEventsArgs = {
-  input: GetQuoteEventsInput;
-};
-
-
 export type QueryGetQuoteListArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
+  input: ListInfoInput;
 };
 
 
-export type QueryGetQuoteTemplateArgs = {
-  input: QuoteTemplateIdentifierInput;
+export type QueryGetScriptListArgs = {
+  input: ListInfoInput;
 };
 
 
-export type QueryGetQuoteVersionsArgs = {
-  input: QuoteIdentifierInput;
-};
-
-
-export type QueryGetQuoteViewsCountArgs = {
-  viewIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-};
-
-
-export type QueryGetRecordWiseAuditArgs = {
-  entityId: Scalars['ID']['input'];
-  listInfo: ListInfoInput;
-};
-
-
-export type QueryGetReportArgs = {
-  reportId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetReportConfigMetaArgs = {
-  reportId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetReportDataArgs = {
-  input: GetReportDataInput;
-};
-
-
-export type QueryGetReportExportConfigArgs = {
-  input: ReportExportConfigInput;
-};
-
-
-export type QueryGetReportSchedulesArgs = {
-  input: ReportIdentifierInput;
-};
-
-
-export type QueryGetReportsArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetRequesterListArgs = {
-  listInfo: ListInfoInput;
-};
-
-
-export type QueryGetRequesterListByCriteriaArgs = {
-  clientIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  listInfo: ListInfoInput;
-};
-
-
-export type QueryGetRoleFeatureDependenciesArgs = {
-  roleTypeId?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-export type QueryGetRoleListArgs = {
-  input: RoleTypeInput;
-};
-
-
-export type QueryGetRolePermissionsArgs = {
-  roleId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetRoleUsersArgs = {
-  roleId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetSalesInboxViewsCountArgs = {
-  viewIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-};
-
-
-export type QueryGetSalesInboxViewsRecordCountArgs = {
-  input: GetSalesInboxViewsCountInput;
-};
-
-
-export type QueryGetSecureFieldValueArgs = {
-  input: SecureFieldValueInput;
+export type QueryGetScriptListByTypeArgs = {
+  input: ScriptListByTypeInput;
 };
 
 
@@ -8426,178 +3388,68 @@ export type QueryGetServiceCatalogItemArgs = {
 };
 
 
-export type QueryGetServiceCatalogItemsArgs = {
-  listInfo: ListInfoInput;
+export type QueryGetServiceCatalogItemListArgs = {
+  input: ListInfoInput;
 };
 
 
 export type QueryGetServiceItemArgs = {
-  itemId: Scalars['ID']['input'];
+  input: ServiceItemIdentifierInput;
 };
 
 
-export type QueryGetServiceItemsArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetServiceUtilisationArgs = {
+export type QueryGetServiceItemListArgs = {
   input: ListInfoInput;
 };
 
 
-export type QueryGetSharedReportArgs = {
-  sharedReportId?: InputMaybe<Scalars['ID']['input']>;
+export type QueryGetTaskArgs = {
+  input: GetTaskInput;
 };
 
 
-export type QueryGetSiteArgs = {
-  siteId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetSiteListArgs = {
-  accountId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetSnapShotAuditsArgs = {
-  entityId: Scalars['ID']['input'];
-  entityName?: InputMaybe<Scalars['String']['input']>;
-  listInfo: ListInfoInput;
-};
-
-
-export type QueryGetStripeCustomerListArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
-};
-
-
-export type QueryGetSubscriptionInvoicesArgs = {
-  offset?: InputMaybe<Scalars['String']['input']>;
-  pageSize?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-export type QueryGetSubscriptionItemQuantityArgs = {
-  input?: InputMaybe<GetSubscriptionItemQuantityInput>;
-};
-
-
-export type QueryGetTpEntitiesForMappingArgs = {
-  entityName?: InputMaybe<Scalars['String']['input']>;
-  integrationRefId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryGetTpEntityFieldsArgs = {
-  integrationRefId?: InputMaybe<Scalars['ID']['input']>;
-  tpEntityId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryGetTpEntityItemsArgs = {
-  destinationParentId?: InputMaybe<Scalars['String']['input']>;
-  entityName?: InputMaybe<Scalars['String']['input']>;
-  integrationRefId?: InputMaybe<Scalars['ID']['input']>;
-  tpEntityId?: InputMaybe<Scalars['String']['input']>;
+export type QueryGetTaskListArgs = {
+  input: GetTaskListInput;
 };
 
 
 export type QueryGetTaxArgs = {
-  taxId: Scalars['ID']['input'];
+  input: TaxIdentifierInput;
 };
 
 
 export type QueryGetTaxListArgs = {
-  listInfo?: InputMaybe<ListInfoInput>;
+  input: ListInfoInput;
 };
 
 
 export type QueryGetTechnicianListArgs = {
-  input: GetTechnicianListInput;
-};
-
-
-export type QueryGetTechnicianListByCriteriaArgs = {
-  clientIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  listInfo: ListInfoInput;
-};
-
-
-export type QueryGetTechnicianUtilisationArgs = {
   input: ListInfoInput;
 };
 
 
-export type QueryGetTicketApproverListArgs = {
-  input: GetTicketApproverInput;
+export type QueryGetTicketArgs = {
+  input: TicketIdentifierInput;
 };
 
 
-export type QueryGetTopClientsByFinancialSegmentsArgs = {
+export type QueryGetTicketConversationListArgs = {
+  input: TicketIdentifierInput;
+};
+
+
+export type QueryGetTicketCustomFieldArgs = {
+  input?: InputMaybe<CustomFieldIdentifierInput>;
+};
+
+
+export type QueryGetTicketListArgs = {
   input: ListInfoInput;
 };
 
 
-export type QueryGetTopContractsByFinancialSegmentsArgs = {
-  input: ListInfoInput;
-};
-
-
-export type QueryGetUnProvisionedIncludedItemsArgs = {
-  input: ClientIdentifierInput;
-};
-
-
-export type QueryGetUnProvisionedTemplateIncludedItemsArgs = {
-  input: BillingTemplateIdentifierInput;
-};
-
-
-export type QueryGetUnknownEmailArgs = {
-  unknownEmailId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetUnknownEmailsArgs = {
-  listInfo: ListInfoInput;
-};
-
-
-export type QueryGetVendorConversationContentFromTemplateArgs = {
-  input: GetVendorConversationContentFromTemplateInput;
-};
-
-
-export type QueryGetVendorConversationReplyRecipientsArgs = {
-  input: GetVendorConversationThreadedContentInput;
-};
-
-
-export type QueryGetVendorConversationThreadedContentArgs = {
-  input: GetVendorConversationThreadedContentInput;
-};
-
-
-export type QueryGetVendorConversationsListArgs = {
-  input: GetVendorConversationListInput;
-};
-
-
-export type QueryGetViewArgs = {
-  module: Scalars['String']['input'];
-  viewId: Scalars['ID']['input'];
-};
-
-
-export type QueryGetViewsArgs = {
-  modules?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-};
-
-
-export type QueryGetViewsCountArgs = {
-  input: GetViewsCountInput;
+export type QueryGetTicketNoteListArgs = {
+  input: TicketIdentifierInput;
 };
 
 
@@ -8611,1833 +3463,1228 @@ export type QueryGetWebhookSubscriptionListArgs = {
 };
 
 
-export type QueryGetWhitelistedServiceItemsArgs = {
-  clientId: Scalars['ID']['input'];
-  listInfo?: InputMaybe<ListInfoInput>;
+export type QueryGetWorklogArgs = {
+  input: GetWorklogInput;
 };
 
 
-export type QueryListAchAccountsArgs = {
-  clientId: Scalars['ID']['input'];
+export type QueryGetWorklogEntriesArgs = {
+  input: GetWorklogEntriesInput;
 };
 
 
-export type QueryListCardsArgs = {
-  clientId: Scalars['ID']['input'];
-  listInfo?: InputMaybe<ListInfoInput>;
+export type QueryGetWorklogListArgs = {
+  input: GetWorklogListInput;
 };
 
 
-export type QueryPreviewChartArgs = {
-  input: PreviewChartInput;
-};
-
-
-export type QuerySearchArgs = {
-  filters?: InputMaybe<Scalars['JSON']['input']>;
-  modules?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  pageInfo?: InputMaybe<Scalars['JSON']['input']>;
-  term: Scalars['String']['input'];
-};
-
-
-export type QueryVerifyCustomMailServerConnectionArgs = {
-  input?: InputMaybe<VerifyCustomMailServerConnectionInput>;
-};
-
-
-export type QueryVerifyMailProviderConnectionArgs = {
-  input?: InputMaybe<VerifyMailProviderConnectionInput>;
-};
-
-export type QuickBooksAccount = {
-  __typename?: 'QuickBooksAccount';
-  accountId?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+export type QueryGetWorklogTimerEntriesArgs = {
+  input: ListInfoInput;
 };
 
 export type Quote = {
   __typename?: 'Quote';
+  /** The additional discount amount applied on the quote. */
   additionalDiscount?: Maybe<Scalars['String']['output']>;
+  /** The additional discount rate applied on the quote. */
   additionalDiscountRate?: Maybe<Scalars['String']['output']>;
-  additionalDiscountType?: Maybe<DiscountType>;
-  approverName?: Maybe<Scalars['String']['output']>;
-  billingAddress?: Maybe<Scalars['String']['output']>;
-  client?: Maybe<Organization>;
-  createdTime?: Maybe<Scalars['String']['output']>;
+  /** The client to whom the quote is created. */
+  client?: Maybe<Scalars['JSON']['output']>;
+  /** Specifies the description of the quote. */
   description?: Maybe<Scalars['String']['output']>;
+  /** The sum of discount amounts applied on each line items. */
   discountAmount?: Maybe<Scalars['String']['output']>;
-  discountRate?: Maybe<Scalars['String']['output']>;
-  displayId: Scalars['ID']['output'];
+  /** The system-generated, human-readable ID of the quote. */
+  displayId: Scalars['String']['output'];
+  /** The expiration date of the quote. */
   expiryDate: Scalars['String']['output'];
+  /** Specifies the footer of the quote. */
   footer?: Maybe<Scalars['String']['output']>;
-  invoice?: Maybe<Invoice>;
+  /** The list of line items. */
   items?: Maybe<Array<Maybe<QuoteItem>>>;
+  /** Specifies the memo of the quote. */
   memo?: Maybe<Scalars['String']['output']>;
+  /** The quote date. */
   quoteDate: Scalars['String']['output'];
+  /** The ID of the quote */
   quoteId: Scalars['ID']['output'];
-  senderAddress?: Maybe<Scalars['String']['output']>;
-  site?: Maybe<Site>;
+  /** The client site to which the quote is created. */
+  site?: Maybe<Scalars['JSON']['output']>;
+  /** The quote status. */
   statusEnum?: Maybe<QuoteStatusEnum>;
-  taxAmount?: Maybe<Scalars['String']['output']>;
+  /** The list of tax line items. */
   taxes?: Maybe<Array<Maybe<QuoteTaxItem>>>;
+  /** Specifies the title of the quote. */
   title?: Maybe<Scalars['String']['output']>;
+  /** The total amount of the quote includes all the discounts and taxes. */
   totalAmount?: Maybe<Scalars['String']['output']>;
 };
 
-export type QuoteApproval = {
-  __typename?: 'QuoteApproval';
-  approvalId: Scalars['ID']['output'];
-  approver?: Maybe<User>;
-  comment?: Maybe<Scalars['String']['output']>;
-  status: QuoteApprovalStatus;
-};
-
-export type QuoteApprovalInput = {
-  approver: QuoteApproverInput;
-  /** QuoteApprovalStatus */
-  comment?: InputMaybe<Scalars['String']['input']>;
-  status: Scalars['String']['input'];
-};
-
-export enum QuoteApprovalStatus {
-  Approved = 'APPROVED',
-  Rejected = 'REJECTED'
-}
-
-export type QuoteApproverInput = {
-  approverId?: InputMaybe<Scalars['ID']['input']>;
-  approverName: Scalars['String']['input'];
-};
-
-export type QuoteEvent = {
-  __typename?: 'QuoteEvent';
-  approval?: Maybe<QuoteApproval>;
-  conversation?: Maybe<Conversation>;
-  createdTime: Scalars['String']['output'];
-  eventType?: Maybe<QuoteEventType>;
-};
-
-export enum QuoteEventType {
-  Approval = 'APPROVAL',
-  Conversation = 'CONVERSATION'
-}
-
-export type QuoteEvents = {
-  __typename?: 'QuoteEvents';
-  events?: Maybe<Array<Maybe<QuoteEvent>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
+/** Specifies the identifier input for the quote. */
 export type QuoteIdentifierInput = {
+  /** The ID of the quote. */
   quoteId: Scalars['ID']['input'];
 };
 
+/** Denotes the line items on the quote */
 export type QuoteItem = {
   __typename?: 'QuoteItem';
+  /** The total amount of the line item, excluding tax i.,e (unitPrice * quantity) - discount */
   amount: Scalars['String']['output'];
+  /** The details about the line item. */
   details?: Maybe<Scalars['String']['output']>;
+  /** The discount amount applied for the line item. */
   discountAmount?: Maybe<Scalars['String']['output']>;
+  /** The discount rate applied for the line item. */
   discountRate?: Maybe<Scalars['String']['output']>;
-  discountType?: Maybe<DiscountType>;
+  /** The ID of the quote line item. */
   itemId: Scalars['ID']['output'];
-  itemOrder?: Maybe<Scalars['Int']['output']>;
+  /** The quantity of the line item. */
   quantity: Scalars['String']['output'];
-  serviceCatalogItem?: Maybe<ServiceCatalogItem>;
-  serviceItem?: Maybe<ServiceItem>;
-  tax?: Maybe<Tax>;
+  /** The service item. */
+  serviceItem: Scalars['JSON']['output'];
+  /** The applicable tax for the line item. */
+  tax?: Maybe<Scalars['JSON']['output']>;
+  /** Shows the tax amount applied for the line item. */
   taxAmount?: Maybe<Scalars['String']['output']>;
-  taxRate?: Maybe<Scalars['String']['output']>;
+  /** Specifies whether the line item is taxable or not. */
   taxable?: Maybe<Scalars['Boolean']['output']>;
+  /** Indicates the total amount for the line item. This includes the total of all the charges and the taxes. */
   totalAmount?: Maybe<Scalars['String']['output']>;
+  /** The unit price of the line item. */
   unitPrice: Scalars['String']['output'];
 };
 
+/** Specifies the identifier input for the quote item. */
 export type QuoteItemIdentifierInput = {
+  /** Specifies the ID of the quote item. */
   itemId: Scalars['ID']['input'];
 };
 
+/** The response payload for list of quotes fetched. */
 export type QuoteList = {
   __typename?: 'QuoteList';
+  /** The detail about the list. */
   listInfo?: Maybe<ListInfo>;
+  /** The list of quotes. */
   quotes?: Maybe<Array<Maybe<Quote>>>;
 };
 
+/** Specifies the status of the quote. */
 export enum QuoteStatusEnum {
+  /** Denotes that the quote has been finalized. The quote is moved to this status when it is sent to the client and approved. */
   Approved = 'APPROVED',
+  /** Denotes that the quote has been created. */
   Draft = 'DRAFT',
+  /** Denoted that the quote has been expired. */
   Expired = 'EXPIRED',
+  /** Denotes that the quote is waiting for approval. */
   Pending = 'PENDING',
+  /** Denotes that the quote has been rejected. */
   Rejected = 'REJECTED'
 }
 
+/** The quote tax line item. */
 export type QuoteTaxItem = {
   __typename?: 'QuoteTaxItem';
+  /** Id of the tax Item. */
   id: Scalars['ID']['output'];
-  rate: TaxRate;
-  tax: Tax;
+  /** The rate under a tax. */
+  rate: Scalars['JSON']['output'];
+  /** The tax. The actual type of this field is Tax. This field returns taxId and name fields of Tax as JSON. */
+  tax: Scalars['JSON']['output'];
+  /** The tax amount. */
   taxAmount: Scalars['String']['output'];
+  /** The rate of the tax. */
   taxRate: Scalars['String']['output'];
+  /** The taxable amount. */
   taxableAmount: Scalars['String']['output'];
 };
 
-export type QuoteTemplate = {
-  __typename?: 'QuoteTemplate';
-  footer?: Maybe<Scalars['String']['output']>;
-  layoutConfiguration?: Maybe<Scalars['JSON']['output']>;
-  memo?: Maybe<Scalars['String']['output']>;
-  preferences?: Maybe<Scalars['JSON']['output']>;
-  templateId?: Maybe<Scalars['ID']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+/** Specifies the identifier input for the conversation recipient. */
+export type RecipientIdentifierInput = {
+  /** The Recepient's email. */
+  email: Scalars['String']['input'];
 };
 
-export type QuoteTemplateIdentifierInput = {
-  templateId: Scalars['ID']['input'];
-};
-
-export enum RatingType {
-  Star = 'STAR',
-  Thumbs = 'THUMBS'
-}
-
-export type RecentSearchInfo = {
-  __typename?: 'RecentSearchInfo';
-  recentHits?: Maybe<Scalars['JSON']['output']>;
-  recentTerms?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type Recipient = {
-  __typename?: 'Recipient';
-  email?: Maybe<Scalars['String']['output']>;
-  /** RecipientType */
-  group?: Maybe<Group>;
-  placeHolder?: Maybe<Scalars['String']['output']>;
-  type: Scalars['String']['output'];
-  user?: Maybe<User>;
-  userTypeRole?: Maybe<Role>;
-};
-
+/** The conversation recipient. */
 export type RecipientInfo = {
   __typename?: 'RecipientInfo';
+  /** The delivery status. */
   mailDeliveryStatus?: Maybe<Scalars['String']['output']>;
-  mailFailureReason?: Maybe<Scalars['JSON']['output']>;
-  user?: Maybe<User>;
+  /**
+   * The recipient of the conversation.
+   * The actual type of this field is User. Returns userId, name and email fields as JSON
+   * It is possible that the email conversation can be sent to a user who does not exist in the system, in which case, only the email field will be returned.
+   */
+  user: Scalars['JSON']['output'];
 };
 
-export type RecipientInput = {
-  email?: InputMaybe<Scalars['String']['input']>;
-  /** RecipientType */
-  group?: InputMaybe<GroupInput>;
-  placeHolder?: InputMaybe<Scalars['String']['input']>;
-  type: Scalars['String']['input'];
-  user?: InputMaybe<UserInput>;
-  userTypeRole?: InputMaybe<RoleInput>;
-};
-
-export enum RecipientType {
-  Email = 'EMAIL',
-  Group = 'GROUP',
-  Placeholder = 'PLACEHOLDER',
-  User = 'USER',
-  UserTypeRole = 'USER_TYPE_ROLE'
-}
-
+/** Specifies the recurring contract. */
 export type RecurringContract = {
   __typename?: 'RecurringContract';
+  /** The billing offset of the recurring contract. */
   billingOffset: Scalars['Int']['output'];
+  /** The ID of the contract. */
   contractId: Scalars['ID']['output'];
+  /** The frequency duration unit of the recurring contract. */
   frequencyDurationUnit: FrequencyDurationUnit;
+  /** The frequency interval of the recurring contract. */
   frequencyInterval: Scalars['Int']['output'];
+  /** The next bill date of the recurring contract. */
   nextBillDate?: Maybe<Scalars['String']['output']>;
-  pax8Subscription?: Maybe<Pax8Subscription>;
+  /** The recurring mode of the recurring contract. */
   recurringMode: RecurringMode;
 };
 
-export type RecurringContractFrequencyInput = {
-  billingOffset?: InputMaybe<Scalars['Int']['input']>;
-  frequencyDurationUnit: FrequencyDurationUnit;
-  frequencyInterval: Scalars['Int']['input'];
-  recurringMode: RecurringMode;
-};
-
+/** Specifies the input required for a recurring contract. */
 export type RecurringContractInput = {
+  /** The billing offset recurring contract. This input is mandatory if the recurring mode is 'ADVANCE'. */
   billingOffset?: InputMaybe<Scalars['Int']['input']>;
+  /** The frequency duration unit of a recurring contract. This input is mandatory. */
   frequencyDurationUnit: FrequencyDurationUnit;
+  /** The frequency interval of a recurring contract. This input is mandatory. */
   frequencyInterval: Scalars['Int']['input'];
+  /** The recurring mode of a recurring contract. This input is mandatory. */
   recurringMode: RecurringMode;
 };
 
+/** Specifies the recurring mode of a recurring contract. */
 export enum RecurringMode {
+  /** Indicates the contract's recurring mode is 'ADVANCE'. */
   Advance = 'ADVANCE',
+  /** Indicates the contract's recurring mode is 'ARREAR'. */
   Arrear = 'ARREAR',
+  /** Indicates the contract's recurring mode is 'UPFRONT'. */
   Upfront = 'UPFRONT'
 }
 
+/** Specifies the applicable hours type for a redeemable bundle. */
 export enum RedeemableBundleApplicableHours {
+  /** Indicates that the redeemable bundle is applicable in after hours. */
   AfterHours = 'AFTER_HOURS',
+  /** Indicates that the redeemable bundle is applicable in all hours. */
   AllHours = 'ALL_HOURS',
+  /** Indicates that the redeemable bundle is applicable in business hours. */
   BusinessHours = 'BUSINESS_HOURS'
 }
 
+/** Specifies the applicable items for a redeemable bundle. */
 export enum RedeemableBundleApplicableType {
+  /** Indicates that redeemable bundle is applicable for all items. */
   AllItems = 'ALL_ITEMS',
+  /** Indicates that redeemable bundle is applicable for the included items. */
   IncludedItems = 'INCLUDED_ITEMS'
 }
 
+/** Specifies the redeemable contract. */
 export type RedeemableContract = {
   __typename?: 'RedeemableContract';
+  /** Specifies the applicable type of the redeemable bundle. */
   applicableHours: RedeemableBundleApplicableHours;
+  /** Specifies the applicable type of the redeemable bundle. */
   applicableType: RedeemableBundleApplicableType;
+  /** Specifies the applicable type of the redeemable bundle. */
   carryForwardRemainingQuantity: Scalars['Boolean']['output'];
+  /** The ID of the contract. */
   contractId: Scalars['ID']['output'];
-  reminderThreshold?: Maybe<Scalars['Int']['output']>;
 };
 
-export type RedeemableContractInput = {
-  applicableHours: RedeemableBundleApplicableHours;
-  applicableType: RedeemableBundleApplicableType;
-  carryForwardRemainingQuantity?: InputMaybe<Scalars['Boolean']['input']>;
-  reminderThreshold?: InputMaybe<Scalars['Int']['input']>;
-};
-
+/** Contains Details for a Retainer(BLOCK_HOUR/BLOCK_MONEY). */
 export type RedeemableServiceBundle = {
   __typename?: 'RedeemableServiceBundle';
+  /** Denotes when the retainer can be applied */
   applicableHours: RedeemableBundleApplicableHours;
+  /** Denotes Whether the retainer can be used for all items or only included items. If INCLUDED_ITEMS is used it is mandatory to add items under bundledItems */
   applicableType: RedeemableBundleApplicableType;
+  /** Identifier of the item */
   itemId: Scalars['ID']['output'];
+  /** Quantity that the retainer can be redeemed */
   redeemableQuantity: Scalars['String']['output'];
 };
 
-export type RemoteDesktopConfig = {
-  __typename?: 'RemoteDesktopConfig';
-  config?: Maybe<Scalars['JSON']['output']>;
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-  integrationId: Scalars['ID']['output'];
-};
-
-export type ReplyContext = {
-  __typename?: 'ReplyContext';
-  bcc?: Maybe<Array<Maybe<ConversationRecipient>>>;
-  cc?: Maybe<Array<Maybe<ConversationRecipient>>>;
-  hasAdditionalRecipients?: Maybe<Scalars['Boolean']['output']>;
-  mailboxes?: Maybe<Array<Maybe<ReplyMailbox>>>;
-  selectedMailbox?: Maybe<ReplyMailbox>;
-  to?: Maybe<Array<Maybe<ConversationRecipient>>>;
-};
-
-export type ReplyMailbox = {
-  __typename?: 'ReplyMailbox';
-  boxId: Scalars['ID']['output'];
-  /** Below field is added, only for vendor conversations. */
-  emailSignature?: Maybe<Scalars['String']['output']>;
-  outgoingAddress: Scalars['String']['output'];
-  outgoingDomainVerified?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type Report = {
-  __typename?: 'Report';
-  charts?: Maybe<Array<Maybe<Chart>>>;
-  createdBy?: Maybe<User>;
-  createdTime?: Maybe<Scalars['String']['output']>;
-  dataCondition?: Maybe<Scalars['JSON']['output']>;
+/** The ticket's resolution code. */
+export type ResolutionCode = {
+  __typename?: 'ResolutionCode';
+  /** The description of the resolution code. */
   description?: Maybe<Scalars['String']['output']>;
-  /** The below attributes are mandatory if the reportType is 'DATA' */
-  entity?: Maybe<Scalars['String']['output']>;
-  filterCondition?: Maybe<Scalars['JSON']['output']>;
-  fullScreenModeEnabled?: Maybe<Scalars['Boolean']['output']>;
-  fullScreenModeRefreshInterval?: Maybe<Scalars['Int']['output']>;
-  groupBy?: Maybe<Scalars['JSON']['output']>;
-  internalName?: Maybe<Scalars['String']['output']>;
-  layout?: Maybe<Scalars['JSON']['output']>;
+  /** The ID of the resolution code. */
+  id: Scalars['ID']['output'];
+  /** The name of the resolution code. */
   name: Scalars['String']['output'];
-  notificationTemplateId?: Maybe<Scalars['ID']['output']>;
-  reportConfig?: Maybe<Scalars['JSON']['output']>;
-  reportId: Scalars['ID']['output'];
-  reportType?: Maybe<ReportType>;
-  scheduleDefinition?: Maybe<Scalars['JSON']['output']>;
-  selectAttributes?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** Below attributes are deprecated, use ReportSchedule API to access this */
-  shareFilterCondition?: Maybe<Scalars['JSON']['output']>;
-  shareUsers?: Maybe<Array<Maybe<ShareReportUser>>>;
-  sharedUsers?: Maybe<Array<Maybe<User>>>;
-  systemReport?: Maybe<Scalars['Boolean']['output']>;
 };
 
-export type ReportData = {
-  __typename?: 'ReportData';
-  data?: Maybe<Scalars['JSON']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pageSize?: Maybe<Scalars['Int']['output']>;
-  totalCount?: Maybe<Scalars['Int']['output']>;
-};
-
-export type ReportExportConfig = {
-  __typename?: 'ReportExportConfig';
-  pdfReportConfig?: Maybe<PdfReportExportConfig>;
-  reportType: Scalars['String']['output'];
-};
-
-export type ReportExportConfigInput = {
-  pdfReportConfig?: InputMaybe<Scalars['JSON']['input']>;
-  reportType?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ReportIdentifierInput = {
-  reportId: Scalars['ID']['input'];
-};
-
-export type ReportInput = {
-  addCharts?: InputMaybe<Array<InputMaybe<ChartInput>>>;
-  addShareUsers?: InputMaybe<Array<InputMaybe<ShareReportUserInput>>>;
-  dataCondition?: InputMaybe<Scalars['JSON']['input']>;
-  deleteCharts?: InputMaybe<Array<InputMaybe<ChartInput>>>;
-  deleteShareUsers?: InputMaybe<Array<InputMaybe<ShareReportUserInput>>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The below attributes are mandatory if the reportType is 'DATA' */
-  entity?: InputMaybe<Scalars['String']['input']>;
-  filterCondition?: InputMaybe<Scalars['JSON']['input']>;
-  fullScreenModeEnabled?: InputMaybe<Scalars['Boolean']['input']>;
-  fullScreenModeRefreshInterval?: InputMaybe<Scalars['Int']['input']>;
-  groupBy?: InputMaybe<Array<InputMaybe<GroupByInput>>>;
-  layout?: InputMaybe<Scalars['JSON']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Below attributes are deprecated, use ReportSchedule API to access this */
-  notificationTemplate?: InputMaybe<NotificationTemplateInput>;
-  reportConfig?: InputMaybe<Scalars['JSON']['input']>;
-  reportId?: InputMaybe<Scalars['ID']['input']>;
-  reportType?: InputMaybe<ReportType>;
-  scheduleDefinition?: InputMaybe<Scalars['JSON']['input']>;
-  selectAttributes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  shareFilterCondition?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-export type ReportList = {
-  __typename?: 'ReportList';
-  listInfo?: Maybe<ListInfo>;
-  reports?: Maybe<Array<Maybe<Report>>>;
-};
-
-export type ReportSchedule = {
-  __typename?: 'ReportSchedule';
-  filterCondition?: Maybe<Scalars['JSON']['output']>;
-  id: Scalars['ID']['output'];
-  notificationTemplate?: Maybe<NotificationTemplate>;
-  scheduleDefinition?: Maybe<Scalars['JSON']['output']>;
-  shareUsers?: Maybe<Array<Maybe<ReportScheduleUser>>>;
-  userType: UserType;
-};
-
-export type ReportScheduleList = {
-  __typename?: 'ReportScheduleList';
-  schedules?: Maybe<Array<Maybe<ReportSchedule>>>;
-};
-
-export type ReportScheduleUser = {
-  __typename?: 'ReportScheduleUser';
-  client?: Maybe<Account>;
-  user: User;
-};
-
-export enum ReportType {
-  Data = 'DATA',
-  Efficiency = 'EFFICIENCY',
-  Metric = 'METRIC',
-  Pdf = 'PDF',
-  Profitability = 'PROFITABILITY'
-}
-
-export type ResellingClientConfig = {
-  __typename?: 'ResellingClientConfig';
-  addOn?: Maybe<IntegrationAddOn>;
-  addToContract?: Maybe<Scalars['Boolean']['output']>;
-  client?: Maybe<Account>;
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  itemCount?: Maybe<Scalars['Int']['output']>;
-};
-
-export type ResellingClientConfigInput = {
-  addAllClientItems?: InputMaybe<Scalars['Boolean']['input']>;
-  addItems?: InputMaybe<Array<InputMaybe<ResellingItemConfigInput>>>;
-  addToContract?: InputMaybe<Scalars['Boolean']['input']>;
-  clientId?: InputMaybe<Scalars['String']['input']>;
-  deleteItems?: InputMaybe<Array<InputMaybe<ResellingItemConfigInput>>>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  updateItems?: InputMaybe<Array<InputMaybe<ResellingItemConfigInput>>>;
-};
-
-export type ResellingItem = {
-  __typename?: 'ResellingItem';
-  assetItem?: Maybe<Asset>;
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-  itemId?: Maybe<Scalars['ID']['output']>;
-  itemType?: Maybe<Scalars['String']['output']>;
-  requesterItem?: Maybe<User>;
-};
-
-export type ResellingItemConfig = {
-  __typename?: 'ResellingItemConfig';
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  user?: Maybe<User>;
-};
-
-export type ResellingItemConfigInput = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-  itemId?: InputMaybe<Scalars['String']['input']>;
-  itemType?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ResellingItemList = {
-  __typename?: 'ResellingItemList';
-  clientId?: Maybe<Scalars['String']['output']>;
-  itemType?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<ResellingItem>>>;
-  listInfo?: Maybe<ListInfo>;
-  totalSelectCount?: Maybe<Scalars['Int']['output']>;
-};
-
-export type ResellingLicenseDetails = {
-  __typename?: 'ResellingLicenseDetails';
-  clientCount?: Maybe<Scalars['Int']['output']>;
-  itemCount?: Maybe<Scalars['Int']['output']>;
-};
-
-export type ResendVendorConversationInput = {
-  conversation: ConversationIdentifierInput;
-  workItem: WorkItemIdentifierInput;
-};
-
-export type ReservedSubDomain = {
-  __typename?: 'ReservedSubDomain';
-  domainName?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  matchType?: Maybe<Scalars['String']['output']>;
-};
-
-export type ReservedSubDomainInput = {
-  domainName?: InputMaybe<Scalars['String']['input']>;
+/** Specifies the input required to resolve an existing alert. */
+export type ResolveAlertInput = {
+  /** ID of the Alert need to be Resolved */
   id: Scalars['ID']['input'];
-  matchType?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type ResyncItems = {
-  __typename?: 'ResyncItems';
-  createItemsCount?: Maybe<Scalars['Int']['output']>;
-  isResyncTriggered?: Maybe<Scalars['Boolean']['output']>;
-};
-
+/** The role defines access permissions for user authorization. */
 export type Role = {
   __typename?: 'Role';
-  creationType?: Maybe<Scalars['String']['output']>;
+  /** The description of the role. */
   description?: Maybe<Scalars['String']['output']>;
-  editable?: Maybe<Scalars['Boolean']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  /** RoleCreationType */
+  /** The name of the role. */
+  name: Scalars['String']['output'];
+  /** The set of allowed features and permissions. */
   roleFeatureList?: Maybe<Array<Maybe<RoleFeature>>>;
+  /** The ID of the role. */
   roleId: Scalars['ID']['output'];
+  /** The role type denotes whether the role belongs to a technician or a client user. */
   roleType?: Maybe<RoleType>;
-  roleUserList?: Maybe<Array<Maybe<User>>>;
+  /**
+   * The set of users who has the particular role.
+   * The actual type of this field is User. Returns array of objects as JSON, each object contains userId and name fields.
+   */
+  roleUserList?: Maybe<Scalars['JSON']['output']>;
 };
 
+/** The combination of a feature and permitted operations. */
 export type RoleFeature = {
   __typename?: 'RoleFeature';
-  feature?: Maybe<Feature>;
-  operationList?: Maybe<Array<Maybe<Operation>>>;
+  /** The feature. */
+  feature: Feature;
+  /** The permitted operations. */
+  operationList: Array<Maybe<Operation>>;
 };
 
-export type RoleFeatureInput = {
-  feature?: InputMaybe<FeatureInput>;
-  operationList?: InputMaybe<Array<InputMaybe<OperationInput>>>;
+/** Specifies the identifier input for the role. */
+export type RoleIdentifierInput = {
+  /** The ID of the role. */
+  roleId: Scalars['ID']['input'];
 };
 
-export type RoleInput = {
-  addUserList?: InputMaybe<Array<InputMaybe<UserInput>>>;
-  deleteUserList?: InputMaybe<Array<InputMaybe<UserInput>>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  roleFeatureList?: InputMaybe<Array<InputMaybe<RoleFeatureInput>>>;
-  roleId?: InputMaybe<Scalars['ID']['input']>;
-  roleType?: InputMaybe<RoleTypeInput>;
-};
-
+/** The role type denotes whether a role belongs to a technician or a client user. */
 export type RoleType = {
   __typename?: 'RoleType';
-  name?: Maybe<Scalars['String']['output']>;
-  roleTypeFeatureList?: Maybe<Array<Maybe<RoleTypeFeature>>>;
+  /** The name of the role. */
+  name: Scalars['String']['output'];
+  /** The ID of the role type. */
   roleTypeId: Scalars['ID']['output'];
-  type: RoleTypeEnum;
 };
 
-export enum RoleTypeEnum {
-  Requester = 'REQUESTER',
-  Technician = 'TECHNICIAN'
-}
-
-export type RoleTypeFeature = {
-  __typename?: 'RoleTypeFeature';
-  feature?: Maybe<Feature>;
-  operationList?: Maybe<Array<Maybe<Operation>>>;
-};
-
-export type RoleTypeInput = {
-  name?: InputMaybe<Scalars['String']['input']>;
-  roleTypeId?: InputMaybe<Scalars['ID']['input']>;
-  type?: InputMaybe<RoleTypeEnum>;
-};
-
+/** Specifies the conditional input used to filter the records. */
 export type RuleConditionInput = {
+  /** The Condition attribute. */
   attribute?: InputMaybe<Scalars['String']['input']>;
+  /** The join operator helps specify how multiple conditions should be matched. (This is an optional field.) */
   joinOperator?: InputMaybe<Scalars['String']['input']>;
+  /** The list of operands (i.e., conditions) for the join operator. The operands will be matched based on the join operator. (This field is mandatory if joinOperator is given.) */
   operands?: InputMaybe<Array<RuleConditionInput>>;
+  /** The Condition operator. */
   operator?: InputMaybe<Scalars['String']['input']>;
-  operatorValue?: InputMaybe<Scalars['String']['input']>;
+  /** The Condition value. */
   value?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type Runbook = {
-  __typename?: 'Runbook';
-  actions?: Maybe<Array<Maybe<RunbookAction>>>;
-  associatedCount?: Maybe<Scalars['Int']['output']>;
-  completedCount?: Maybe<Scalars['Int']['output']>;
-  createdAt?: Maybe<Scalars['String']['output']>;
-  createdBy?: Maybe<User>;
-  description?: Maybe<Scalars['String']['output']>;
-  displayIcon?: Maybe<Scalars['String']['output']>;
-  layoutMeta?: Maybe<Scalars['JSON']['output']>;
-  name: Scalars['String']['output'];
-  sopId: Scalars['ID']['output'];
-  status?: Maybe<RunbookStatus>;
+/** Specifies the output response of the Run Script Action on an asset */
+export type RunScriptData = {
+  __typename?: 'RunScriptData';
+  /** The action ID Related to the action */
+  actionConfigId?: Maybe<Scalars['ID']['output']>;
+  /** Specifies the user who created the action */
+  addedBy?: Maybe<Scalars['JSON']['output']>;
+  /** The configured script for the action */
+  script?: Maybe<Scalars['JSON']['output']>;
+  /** The script arguments passed to the script while running */
+  scriptArguments?: Maybe<Scalars['JSON']['output']>;
 };
 
-export type RunbookAction = {
-  __typename?: 'RunbookAction';
-  actionOrder?: Maybe<Scalars['Int']['output']>;
-  flowAction?: Maybe<FlowAction>;
-  parentFlowAction?: Maybe<FlowActionIdentifier>;
+/** Specifies the input required to run a script on an asset */
+export type RunScriptInput = {
+  /** The ID of the asset on which the script needs to be run on */
+  assetId: Scalars['ID']['input'];
+  /**
+   * The script's runtime arguments that need to be passed to run this script
+   * ex:[{"name": "appName", "value": "SuperOps.ai"},{"name": "downloadURL", "value": "superops.ai/download"}] here appName is used inside script like $appName for that variable the value will be "SuperOps.ai"
+   */
+  scriptArguments?: InputMaybe<Scalars['JSON']['input']>;
+  /** The ID of the script needs to be triggered */
+  scriptId: Scalars['ID']['input'];
 };
 
-export enum RunbookStatus {
-  Active = 'ACTIVE',
-  Inactive = 'INACTIVE'
-}
-
-export type ScimConfiguration = {
-  __typename?: 'SCIMConfiguration';
-  /** AccountType */
-  account?: Maybe<Organization>;
-  accountType?: Maybe<Scalars['String']['output']>;
-  authToken?: Maybe<Scalars['String']['output']>;
-  url?: Maybe<Scalars['String']['output']>;
-};
-
-export type ScimConfigurationInput = {
-  /** AccountType */
-  accountId?: InputMaybe<Scalars['ID']['input']>;
-  accountType?: InputMaybe<Scalars['String']['input']>;
-};
-
+/** The SLA for ticket. */
 export type Sla = {
   __typename?: 'SLA';
-  active?: Maybe<Scalars['Boolean']['output']>;
-  associatedClients?: Maybe<Array<Maybe<Organization>>>;
-  clients?: Maybe<Array<Maybe<ClientSla>>>;
-  description?: Maybe<Scalars['String']['output']>;
-  executeForAllClients?: Maybe<Scalars['Boolean']['output']>;
+  /** The ID of the SLA. */
   id: Scalars['ID']['output'];
-  name: Scalars['String']['output'];
-  slaCondition?: Maybe<Scalars['JSON']['output']>;
-  slaEscalationAction?: Maybe<SlaEscalationAction>;
-  slaOrder?: Maybe<Scalars['Int']['output']>;
-  slaTiming: Array<SlaTiming>;
-};
-
-export type SlaDuration = {
-  __typename?: 'SLADuration';
-  /** SLA_DURATION_TYPE */
-  fixedDuration?: Maybe<Array<Maybe<FixedDuration>>>;
-  relativeDuration?: Maybe<Scalars['String']['output']>;
-  type?: Maybe<Scalars['String']['output']>;
-};
-
-export type SlaDurationInput = {
-  /** SLA_DURATION_TYPE */
-  fixedDuration?: InputMaybe<Array<InputMaybe<FixedDurationInput>>>;
-  relativeDuration?: InputMaybe<Scalars['String']['input']>;
-  type?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type SlaEscalationAction = {
-  __typename?: 'SLAEscalationAction';
-  escalatedTo?: Maybe<Array<Maybe<Recipient>>>;
-  techGroup?: Maybe<Group>;
-  technician?: Maybe<User>;
-};
-
-export type SlaEscalationActionInput = {
-  escalatedTo?: InputMaybe<Array<InputMaybe<RecipientInput>>>;
-  techGroup?: InputMaybe<GroupInput>;
-  technician?: InputMaybe<UserInput>;
-};
-
-export type SlaInput = {
-  active?: InputMaybe<Scalars['Boolean']['input']>;
-  addClients?: InputMaybe<Array<InputMaybe<ClientSlaInput>>>;
-  deleteClients?: InputMaybe<Array<InputMaybe<ClientSlaInput>>>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  executeForAllClients?: InputMaybe<Scalars['Boolean']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  slaCondition?: InputMaybe<RuleConditionInput>;
-  slaEscalationAction?: InputMaybe<SlaEscalationActionInput>;
-  slaTiming?: InputMaybe<Array<InputMaybe<SlaTimingInput>>>;
-};
-
-export type SlaTiming = {
-  __typename?: 'SLATiming';
-  executeIn: Scalars['String']['output'];
-  firstResponseEscalation?: Maybe<SlaDuration>;
-  /** SLA_EXECUTION_HOURS */
-  firstResponseTarget?: Maybe<SlaDuration>;
-  id?: Maybe<Scalars['ID']['output']>;
-  priority: Scalars['String']['output'];
-  resolutionEscalation?: Maybe<SlaDuration>;
-  resolutionTarget?: Maybe<SlaDuration>;
-};
-
-export type SlaTimingInput = {
-  executeIn: Scalars['String']['input'];
-  firstResponseEscalation?: InputMaybe<SlaDurationInput>;
-  /** SLA_EXECUTION_HOURS */
-  firstResponseTarget?: InputMaybe<SlaDurationInput>;
-  priority: Scalars['String']['input'];
-  resolutionEscalation?: InputMaybe<SlaDurationInput>;
-  resolutionTarget?: InputMaybe<SlaDurationInput>;
-};
-
-export type SopTaskTemplate = {
-  __typename?: 'SOPTaskTemplate';
-  taskOrder?: Maybe<Scalars['Int']['output']>;
-  taskTemplate?: Maybe<TaskTemplate>;
-};
-
-export enum ScopeEnum {
-  Asset = 'ASSET',
-  Policy = 'POLICY'
-}
-
-export type ScriptAdditionalFile = {
-  __typename?: 'ScriptAdditionalFile';
-  fileId?: Maybe<Scalars['ID']['output']>;
-  fileName?: Maybe<Scalars['String']['output']>;
-  fileSize?: Maybe<Scalars['String']['output']>;
-};
-
-export type ScriptPlaceHolderVariables = {
-  __typename?: 'ScriptPlaceHolderVariables';
-  columnName?: Maybe<Scalars['String']['output']>;
-  labelName?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type ScriptRuntimeVariables = {
-  __typename?: 'ScriptRuntimeVariables';
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type ScriptVariables = {
-  __typename?: 'ScriptVariables';
-  placeHolders?: Maybe<Array<Maybe<ScriptPlaceHolderVariables>>>;
-  runTime?: Maybe<Array<Maybe<ScriptRuntimeVariables>>>;
-};
-
-export type SecureFieldValueInput = {
-  customFieldName: Scalars['String']['input'];
-  entityId: Scalars['ID']['input'];
-  module: Scalars['String']['input'];
-};
-
-export type SelectionInput = {
-  filterCondition?: InputMaybe<RuleConditionInput>;
-  /** SelectionType */
-  ids?: InputMaybe<Array<InputMaybe<IdentifierInput>>>;
-  selectionType?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type SequenceGenerator = {
-  __typename?: 'SequenceGenerator';
-  name: IdentifierName;
-  value: Scalars['Int']['output'];
-};
-
-export type ServiceCatalogItem = {
-  __typename?: 'ServiceCatalogItem';
-  category?: Maybe<ServiceCategory>;
-  costPrice?: Maybe<PricingModel>;
-  description?: Maybe<Scalars['String']['output']>;
-  integrationAddOn?: Maybe<IntegrationAddOn>;
-  integrationState: ServiceCatalogItemIntegrationState;
-  itemId: Scalars['ID']['output'];
-  itemType: ServiceCatalogItemType;
-  name: Scalars['String']['output'];
-  offerAsWorklogItem: Scalars['Boolean']['output'];
-  salesTax?: Maybe<Tax>;
-  sellingPrice?: Maybe<PricingModel>;
-  serviceTypeItem?: Maybe<ServiceTypeItem>;
-  status: ServiceCatalogItemStatus;
-  taxable: Scalars['Boolean']['output'];
-};
-
-export type ServiceCatalogItemIdentifier = {
-  __typename?: 'ServiceCatalogItemIdentifier';
-  itemId?: Maybe<Scalars['ID']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServiceCatalogItemIdentifierInput = {
-  itemId: Scalars['ID']['input'];
-};
-
-export type ServiceCatalogItemIntegrationState = {
-  __typename?: 'ServiceCatalogItemIntegrationState';
-  pax8?: Maybe<Scalars['Boolean']['output']>;
-  quickbooks?: Maybe<Scalars['Boolean']['output']>;
-  xero?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type ServiceCatalogItemList = {
-  __typename?: 'ServiceCatalogItemList';
-  items?: Maybe<Array<ServiceCatalogItem>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
-export enum ServiceCatalogItemStatus {
-  Active = 'ACTIVE',
-  Inactive = 'INACTIVE'
-}
-
-export enum ServiceCatalogItemType {
-  Product = 'PRODUCT',
-  Service = 'SERVICE'
-}
-
-export type ServiceCategory = {
-  __typename?: 'ServiceCategory';
-  categoryId: Scalars['ID']['output'];
+  /** The name of the SLA. */
   name: Scalars['String']['output'];
 };
 
-export type ServiceCategoryInput = {
-  categoryId?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServiceItem = {
-  __typename?: 'ServiceItem';
-  /** BLOCK_ITEM_USAGE_TYPE # deprecated */
-  adjustBlockItemAgainstAllItems?: Maybe<Scalars['Boolean']['output']>;
-  afterHoursUnitPrice?: Maybe<Scalars['String']['output']>;
-  amount?: Maybe<Scalars['String']['output']>;
-  blockHoursAdjustedItems?: Maybe<Array<Maybe<ServiceItem>>>;
-  /** deprecated */
-  blockHoursUsedIn?: Maybe<Scalars['String']['output']>;
-  /** BLOCK_ITEM_USAGE_TYPE */
-  blockItemAdjustedItems?: Maybe<Array<Maybe<ServiceItem>>>;
-  blockItemUsedIn?: Maybe<Scalars['String']['output']>;
-  businessHoursUnitPrice?: Maybe<Scalars['String']['output']>;
-  category?: Maybe<ServiceCategory>;
-  costPrice?: Maybe<Scalars['String']['output']>;
-  defaultItem?: Maybe<Scalars['Boolean']['output']>;
-  integrationAddOn?: Maybe<IntegrationAddOn>;
-  integrationState?: Maybe<ServiceItemIntegrationState>;
-  invoiceDescription?: Maybe<Scalars['String']['output']>;
-  isDefault?: Maybe<Scalars['Boolean']['output']>;
-  itemId: Scalars['ID']['output'];
-  name: Scalars['String']['output'];
-  quantity?: Maybe<Scalars['String']['output']>;
-  quantityType: Scalars['String']['output'];
-  /** ServiceItemQuantityType */
-  roundUpValue?: Maybe<Scalars['Int']['output']>;
-  salesTax?: Maybe<Tax>;
-  salesTaxEnabled?: Maybe<Scalars['Boolean']['output']>;
-  unitPrice?: Maybe<Scalars['String']['output']>;
-  useAsWorklogItem?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type ServiceItemCustomPrice = {
-  __typename?: 'ServiceItemCustomPrice';
-  afterHoursUnitPrice?: Maybe<Scalars['String']['output']>;
-  discountRate?: Maybe<Scalars['String']['output']>;
-  itemId: Scalars['ID']['output'];
-  serviceItem: ServiceItem;
-  unitPrice: Scalars['String']['output'];
-};
-
-export type ServiceItemCustomPriceInput = {
-  discountRate?: InputMaybe<Scalars['String']['input']>;
-  itemId?: InputMaybe<Scalars['ID']['input']>;
-  serviceItem?: InputMaybe<ServiceItemInput>;
-};
-
-export type ServiceItemIdentifier = {
-  __typename?: 'ServiceItemIdentifier';
-  itemId?: Maybe<Scalars['ID']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServiceItemIdentifierInput = {
-  itemId?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServiceItemInput = {
-  /** BLOCK_ITEM_USAGE_TYPE  # deprecated */
-  addBlockHoursAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  /** BLOCK_ITEM_USAGE_TYPE */
-  addBlockItemAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  adjustBlockItemAgainstAllItems?: InputMaybe<Scalars['Boolean']['input']>;
-  afterHoursUnitPrice?: InputMaybe<Scalars['String']['input']>;
-  /** deprecated */
-  amount?: InputMaybe<Scalars['String']['input']>;
-  blockHoursUsedIn?: InputMaybe<Scalars['String']['input']>;
-  blockItemUsedIn?: InputMaybe<Scalars['String']['input']>;
-  businessHoursUnitPrice?: InputMaybe<Scalars['String']['input']>;
-  category?: InputMaybe<ServiceCategoryInput>;
-  costPrice?: InputMaybe<Scalars['String']['input']>;
-  /** deprecated */
-  deleteBlockHoursAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  deleteBlockItemAdjustedItems?: InputMaybe<Array<InputMaybe<ServiceItemInput>>>;
-  invoiceDescription?: InputMaybe<Scalars['String']['input']>;
-  itemId?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  quantity?: InputMaybe<Scalars['String']['input']>;
-  quantityType?: InputMaybe<Scalars['String']['input']>;
-  /** ServiceItemQuantityType */
-  roundUpValue?: InputMaybe<Scalars['Int']['input']>;
-  salesTax?: InputMaybe<TaxInput>;
-  salesTaxEnabled?: InputMaybe<Scalars['Boolean']['input']>;
-  unitPrice?: InputMaybe<Scalars['String']['input']>;
-  useAsWorklogItem?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type ServiceItemIntegrationState = {
-  __typename?: 'ServiceItemIntegrationState';
-  pax8?: Maybe<Scalars['Boolean']['output']>;
-  quickbooks?: Maybe<Scalars['Boolean']['output']>;
-  xero?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type ServiceItemList = {
-  __typename?: 'ServiceItemList';
-  customPriceItems?: Maybe<Array<Maybe<Scalars['ID']['output']>>>;
-  items?: Maybe<Array<Maybe<ServiceItem>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
-export type ServiceTypeItem = {
-  __typename?: 'ServiceTypeItem';
-  bundledItems?: Maybe<Array<ServiceCatalogItem>>;
-  hourlyServiceTypeItem?: Maybe<HourlyServiceTypeItem>;
-  itemId: Scalars['ID']['output'];
-  offeringType: ServiceTypeItemOfferingType;
-  redeemableServiceBundle?: Maybe<RedeemableServiceBundle>;
-};
-
-export enum ServiceTypeItemOfferingType {
-  BlockHour = 'BLOCK_HOUR',
-  BlockMoney = 'BLOCK_MONEY',
-  Hours = 'HOURS',
-  Quantity = 'QUANTITY',
-  ServiceBundle = 'SERVICE_BUNDLE'
-}
-
-export type ServiceUtilisation = {
-  __typename?: 'ServiceUtilisation';
-  billedHours?: Maybe<Scalars['String']['output']>;
-  revenue?: Maybe<Scalars['String']['output']>;
-  serviceCatalog: ServiceCatalogItem;
-};
-
-export type ServiceUtilisationList = {
-  __typename?: 'ServiceUtilisationList';
-  listInfo: ListInfo;
-  serviceUtilisationList?: Maybe<Array<ServiceUtilisation>>;
-};
-
-export enum SessionAppType {
-  Android = 'ANDROID',
-  Apple = 'APPLE',
-  Chrome = 'CHROME',
-  Safari = 'SAFARI'
-}
-
-export type SetupIntegratedPaymentMethodInput = {
-  /** PaymentMethodEnum */
-  client: ClientIdentifierInput;
-  integration: IntegrationIdentifierInput;
-  type: Scalars['String']['input'];
-};
-
-export type ShareReportInput = {
-  notificationTemplate?: InputMaybe<NotificationTemplateInput>;
-  reportId?: InputMaybe<Scalars['ID']['input']>;
-  shareFilterCondition?: InputMaybe<Scalars['JSON']['input']>;
-  shareUsers?: InputMaybe<Array<InputMaybe<ShareReportUserInput>>>;
-};
-
-/** Below attributes are deprecated, use ReportScheduleUser type */
-export type ShareReportUser = {
-  __typename?: 'ShareReportUser';
-  client: Organization;
-  user: User;
-};
-
-export type ShareReportUserInput = {
-  client?: InputMaybe<ClientIdentifierInput>;
-  user: UserIdentifierInput;
-};
-
-export type SharedReport = {
-  __typename?: 'SharedReport';
-  data?: Maybe<Scalars['JSON']['output']>;
-  endDateTime?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  layout?: Maybe<Scalars['JSON']['output']>;
-  reportName?: Maybe<Scalars['String']['output']>;
-  startDateTime?: Maybe<Scalars['String']['output']>;
-  user?: Maybe<User>;
-};
-
-export type SilentInstaller = {
-  __typename?: 'SilentInstaller';
-  arch?: Maybe<Scalars['String']['output']>;
-  command?: Maybe<Scalars['String']['output']>;
-  os?: Maybe<Os>;
-  scriptType?: Maybe<Scalars['String']['output']>;
-};
-
-export type Site = {
-  __typename?: 'Site';
-  account?: Maybe<Organization>;
-  /** deprecated */
-  address?: Maybe<Address>;
-  businessHour?: Maybe<Array<Maybe<BusinessHour>>>;
-  /** deprecated */
-  city?: Maybe<Scalars['String']['output']>;
-  /** deprecated */
-  contactNumber?: Maybe<Scalars['String']['output']>;
-  /** deprecated */
-  country?: Maybe<Scalars['String']['output']>;
-  /** deprecated */
-  countryCode?: Maybe<Scalars['String']['output']>;
-  holidayList?: Maybe<HolidayList>;
-  hq?: Maybe<Scalars['Boolean']['output']>;
-  id: Scalars['ID']['output'];
-  installerInfo?: Maybe<Array<Maybe<InstallerInfo>>>;
-  line1?: Maybe<Scalars['String']['output']>;
-  /** deprecated */
-  line2?: Maybe<Scalars['String']['output']>;
-  /** deprecated */
-  line3?: Maybe<Scalars['String']['output']>;
-  name: Scalars['String']['output'];
-  /** deprecated */
-  postalCode?: Maybe<Scalars['String']['output']>;
-  state?: Maybe<Scalars['String']['output']>;
-  /** deprecated */
-  stateCode?: Maybe<Scalars['String']['output']>;
-  timezoneCode?: Maybe<Scalars['String']['output']>;
-  working24x7?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type SiteContext = {
-  __typename?: 'SiteContext';
-  businessHour?: Maybe<Array<Maybe<BusinessHour>>>;
-  countryCode?: Maybe<Scalars['String']['output']>;
-  timezoneCode?: Maybe<Scalars['String']['output']>;
-  working24x7?: Maybe<Scalars['Boolean']['output']>;
-};
-
-export type SiteIdentifierInput = {
+/** Specifies the identifier input for the SLA. */
+export type SlaIdentifierInput = {
+  /** The ID of the SLA. */
   id: Scalars['ID']['input'];
 };
 
-export type SiteInput = {
-  businessHour?: InputMaybe<Array<InputMaybe<BusinessHourInput>>>;
-  city?: InputMaybe<Scalars['String']['input']>;
-  contactNumber?: InputMaybe<Scalars['String']['input']>;
-  country?: InputMaybe<Scalars['String']['input']>;
-  countryCode?: InputMaybe<Scalars['String']['input']>;
-  holidayList?: InputMaybe<HolidayListInput>;
-  hq?: InputMaybe<Scalars['Boolean']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  line1?: InputMaybe<Scalars['String']['input']>;
-  line2?: InputMaybe<Scalars['String']['input']>;
-  line3?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  postalCode?: InputMaybe<Scalars['String']['input']>;
-  /**
-   * deprecated
-   *  deprecated
-   */
-  state?: InputMaybe<Scalars['String']['input']>;
-  stateCode?: InputMaybe<Scalars['String']['input']>;
-  timezoneCode?: InputMaybe<Scalars['String']['input']>;
-  working24x7?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type SiteList = {
-  __typename?: 'SiteList';
-  listInfo?: Maybe<ListInfo>;
-  sites?: Maybe<Array<Maybe<Site>>>;
-};
-
-export type SlackWebHook = {
-  __typename?: 'SlackWebHook';
+/** Specifies the script's details */
+export type Script = {
+  __typename?: 'Script';
+  /** The user that created the script */
+  addedBy?: Maybe<Scalars['JSON']['output']>;
+  /** The time of creation of the Script */
+  createdTime?: Maybe<Scalars['String']['output']>;
+  /** Description of the script */
+  description?: Maybe<Scalars['String']['output']>;
+  /** Specifies whether this script marked as a Favourite */
+  favourite?: Maybe<Scalars['Boolean']['output']>;
+  /** Language of the script */
+  language?: Maybe<Scalars['String']['output']>;
+  /** Name of the script */
   name?: Maybe<Scalars['String']['output']>;
-  url?: Maybe<Scalars['String']['output']>;
-  webHookId: Scalars['ID']['output'];
+  /** ReadMe content of the script */
+  readMe?: Maybe<Scalars['String']['output']>;
+  /** 'Run as' configuration of the script. Ex: run as SystemUser/LoggedInUser */
+  runAs?: Maybe<Scalars['String']['output']>;
+  /** Script runtime variable that needs to be passed while running this script */
+  runTimeVariables?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** ID of the script */
+  scriptId: Scalars['ID']['output'];
+  /** Tags of the script */
+  tags?: Maybe<Scalars['JSON']['output']>;
+  /** Timeout of the script, in seconds */
+  timeOut?: Maybe<Scalars['Int']['output']>;
 };
 
+/** Specifies the list of scripts that are fetched */
+export type ScriptList = {
+  __typename?: 'ScriptList';
+  /** details about the list */
+  listInfo?: Maybe<ListInfo>;
+  /** specifies the list of scripts */
+  scripts?: Maybe<Array<Maybe<Script>>>;
+};
+
+/** Specifies the input required to fetch a script list, including predefined scripts by OS type */
+export type ScriptListByTypeInput = {
+  /** List info details */
+  listInfo?: InputMaybe<ListInfoInput>;
+  /** Specifies the type of script Ex: WINDOWS or MAC */
+  type: Scalars['String']['input'];
+};
+
+/** The service catalog item */
+export type ServiceCatalogItem = {
+  __typename?: 'ServiceCatalogItem';
+  /** The category of the service catalog item. */
+  category?: Maybe<ServiceCategory>;
+  /** The cost price of the item. */
+  costPrice?: Maybe<PricingModel>;
+  /** The service catalog item's description. */
+  description?: Maybe<Scalars['String']['output']>;
+  /** The ID of the service catalog item. */
+  itemId: Scalars['ID']['output'];
+  /** The type of the service catalog item. */
+  itemType: ServiceCatalogItemType;
+  /** The name of the service catalog item. It is unique in the Catalog. */
+  name: Scalars['String']['output'];
+  /** If the itemType is PRODUCT or itemType is SERVICE and offeringType is QUANTITY, it denotes whether the service catalog item can be used in worklog. */
+  offerAsWorklogItem?: Maybe<Scalars['Boolean']['output']>;
+  /** Sales tax for the item */
+  salesTax?: Maybe<Tax>;
+  /** The selling price of the item. */
+  sellingPrice?: Maybe<PricingModel>;
+  /** Details of an Item for itemType SERVICE. */
+  serviceTypeItem?: Maybe<ServiceTypeItem>;
+  /** It denotes the status of the service catalog item */
+  status?: Maybe<ServiceCatalogItemStatus>;
+  /** It is set to true if the item is taxable */
+  taxable?: Maybe<Scalars['Boolean']['output']>;
+};
+
+/** Specifies the identifier input for service catalog item. */
+export type ServiceCatalogItemIdentifierInput = {
+  /** The ID of the service catalog item. */
+  itemId: Scalars['ID']['input'];
+};
+
+/** The response payload for list of service catalog items fetched. */
+export type ServiceCatalogItemList = {
+  __typename?: 'ServiceCatalogItemList';
+  /** The list of service catalog items. */
+  items?: Maybe<Array<Maybe<ServiceCatalogItem>>>;
+  /** The detail about the list. */
+  listInfo?: Maybe<ListInfo>;
+};
+
+/** Specifies the status of the item */
+export enum ServiceCatalogItemStatus {
+  /** Indicates that the listed item is available for use. */
+  Active = 'ACTIVE',
+  /** Indicates that the listed item is currently unavailable for use. */
+  Inactive = 'INACTIVE'
+}
+
+/** Defines the type of item. */
+export enum ServiceCatalogItemType {
+  /** Represents an item that is a product for sale. */
+  Product = 'PRODUCT',
+  /** Represents an item that is a service being offered. */
+  Service = 'SERVICE'
+}
+
+/** The response payload for the service category. */
+export type ServiceCategory = {
+  __typename?: 'ServiceCategory';
+  /** The ID of the service category. */
+  categoryId: Scalars['ID']['output'];
+  /** The name of the service category. */
+  name: Scalars['String']['output'];
+};
+
+/** Specifies the identifier input for the service category. */
+export type ServiceCategoryIdentifierInput = {
+  /** The ID of the category. */
+  categoryId: Scalars['ID']['input'];
+};
+
+/** The service item */
+export type ServiceItem = {
+  __typename?: 'ServiceItem';
+  /** Denotes whether block money/items can be adjusted for the service item against all items. */
+  adjustBlockItemAgainstAllItems?: Maybe<Scalars['Boolean']['output']>;
+  /** The unit price of the service item for after hours. */
+  afterHoursUnitPrice?: Maybe<Scalars['String']['output']>;
+  /** The amount of the service item (applicable for block hour/money items). */
+  amount?: Maybe<Scalars['String']['output']>;
+  /** The list of identifier inputs for block items. */
+  blockItemAdjustedItems?: Maybe<Array<Maybe<ServiceItem>>>;
+  /** Denotes the usage type of the block item. */
+  blockItemUsedIn?: Maybe<Block_Item_Usage_Type>;
+  /** The unit price of the service item for business hours. */
+  businessHoursUnitPrice?: Maybe<Scalars['String']['output']>;
+  /** The category of the service item. */
+  category?: Maybe<ServiceCategory>;
+  /** The service item's description. */
+  description?: Maybe<Scalars['String']['output']>;
+  /** The ID of the service item. */
+  itemId: Scalars['ID']['output'];
+  /** The name of the service item. */
+  name: Scalars['String']['output'];
+  /** The quantity of the service item (applicable for block hour/money items). */
+  quantity?: Maybe<Scalars['String']['output']>;
+  /** The type of the service item. */
+  quantityType: ServiceItemQuantityType;
+  /** The rounded value of the service item. */
+  roundUpValue?: Maybe<Scalars['Int']['output']>;
+  /** Returns the specified tax rate. */
+  salesTax?: Maybe<Tax>;
+  /** Denotes whether the sales tax has been enabled. */
+  salesTaxEnabled?: Maybe<Scalars['Boolean']['output']>;
+  /** The unit price of the service item. */
+  unitPrice?: Maybe<Scalars['String']['output']>;
+  /** If the quantityType is UNITS, it denotes whether the service item can be used in worklog. */
+  useAsWorklogItem?: Maybe<Scalars['Boolean']['output']>;
+};
+
+/** Specifies the identifier input for the service item. */
+export type ServiceItemIdentifierInput = {
+  /** The ID of the service item. */
+  itemId: Scalars['ID']['input'];
+};
+
+/** The response payload for list of service items fetched. */
+export type ServiceItemList = {
+  __typename?: 'ServiceItemList';
+  /** The list of service items. */
+  items?: Maybe<Array<Maybe<ServiceItem>>>;
+  /** The detail about the list. */
+  listInfo?: Maybe<ListInfo>;
+};
+
+/** The type of the service item. */
+export enum ServiceItemQuantityType {
+  /** Denotes the block hour service. */
+  BlockHours = 'BLOCK_HOURS',
+  /** Denotes the block money service. */
+  BlockMoney = 'BLOCK_MONEY',
+  /** Denotes the service. */
+  Hours = 'HOURS',
+  /** Denotes the product. */
+  Units = 'UNITS'
+}
+
+/** Contains additional details specific to the SERVICE itemType of an Item */
+export type ServiceTypeItem = {
+  __typename?: 'ServiceTypeItem';
+  /** Contains a list of item which can be use by a Package or a Retainer Item. It is mandatory for offering type BLOCK_HOUR, BLOCK_MONEY, SERVICE_BUNDLE. */
+  bundledItems?: Maybe<Array<ServiceCatalogItem>>;
+  /** Contains details for HOURS type SERVICE item */
+  hourlyServiceTypeItem?: Maybe<HourlyServiceTypeItem>;
+  /** Identifier of the item */
+  itemId: Scalars['ID']['output'];
+  /** Denotes the type in which the SERVICE itemType item is offered to a client */
+  offeringType: ServiceTypeItemOfferingType;
+  /** Contains details required by a Retainer. It is mandatory for BLOCK_HOUR and BLOCK_MONEY */
+  redeemableServiceBundle?: Maybe<RedeemableServiceBundle>;
+};
+
+/** Denotes how the SERVICE item is offered to clients */
+export enum ServiceTypeItemOfferingType {
+  /** A block of Hours Prepaid, Available for consumption by the items included under it */
+  BlockHour = 'BLOCK_HOUR',
+  /** A block of Money Prepaid, Available for consumption by the items included under it */
+  BlockMoney = 'BLOCK_MONEY',
+  /** Used for manual service offered for the client */
+  Hours = 'HOURS',
+  /** A product is offered as a service to a client */
+  Quantity = 'QUANTITY',
+  /** A package of items bundled which is offered to a client */
+  ServiceBundle = 'SERVICE_BUNDLE'
+}
+
+/** Defines how the available records will be sorted. */
 export type Sort = {
   __typename?: 'Sort';
+  /** The sort attribute. */
   attribute?: Maybe<Scalars['String']['output']>;
-  order?: Maybe<Scalars['String']['output']>;
+  /** Denotes the order of the sorting. */
+  order?: Maybe<SortOrder>;
 };
 
+/** Specifies the input required for sorting. */
 export type SortInput = {
+  /** The sort attribute. */
   attribute?: InputMaybe<Scalars['String']['input']>;
-  /** SortOrder */
+  /** Moves the null values to the end of the list */
   emptyAtLast?: InputMaybe<Scalars['Boolean']['input']>;
-  order?: InputMaybe<Scalars['String']['input']>;
+  /** Denotes the order of the sorting. */
+  order?: InputMaybe<SortOrder>;
 };
 
-export type SpSamlProviderDetail = {
-  __typename?: 'SpSamlProviderDetail';
-  spConsumerUrl?: Maybe<Scalars['String']['output']>;
-};
-
-export type SsoDetail = {
-  __typename?: 'SsoDetail';
-  /** SSO_TYPE('NONE','SAML') */
-  idpDetail?: Maybe<IdpSamlProviderDetail>;
-  spDetail?: Maybe<SpSamlProviderDetail>;
-  ssoType?: Maybe<Scalars['String']['output']>;
-};
-
-export type SsoDetailInput = {
-  /** SSO_TYPE('NONE','SAML') */
-  idpDetail?: InputMaybe<IdpSamlProviderDetailInput>;
-  ssoType?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type StandardOperatingProcedure = {
-  __typename?: 'StandardOperatingProcedure';
-  approverList?: Maybe<Array<Maybe<Recipient>>>;
-  description?: Maybe<Scalars['String']['output']>;
-  emailTemplateList?: Maybe<Array<Maybe<NotificationTemplate>>>;
-  name?: Maybe<Scalars['String']['output']>;
-  sopId: Scalars['ID']['output'];
-  /** @deprecated Use taskTemplates */
-  taskTemplateList?: Maybe<Array<Maybe<TaskTemplate>>>;
-  taskTemplates?: Maybe<Array<Maybe<SopTaskTemplate>>>;
-};
-
-/** --------------- RMM ------------------- */
-export enum State {
-  Delete = 'DELETE',
-  Disable = 'DISABLE',
-  Enable = 'ENABLE'
+/** Specifies the order in which the records will be sorted ie. ascending or descending. */
+export enum SortOrder {
+  Asc = 'ASC',
+  Desc = 'DESC'
 }
 
+/** The ticket status. */
 export type Status = {
   __typename?: 'Status';
+  /** The description of the status. */
   description?: Maybe<Scalars['String']['output']>;
+  /** The ID of the status. */
   id: Scalars['ID']['output'];
+  /** The name of the status. */
   name: Scalars['String']['output'];
 };
 
-export enum StatusEnum {
-  Completed = 'COMPLETED',
-  Ended = 'ENDED',
-  Failed = 'FAILED',
-  InProgress = 'IN_PROGRESS',
-  Scheduled = 'SCHEDULED'
-}
-
-export type StickyNote = {
-  __typename?: 'StickyNote';
-  content?: Maybe<Scalars['String']['output']>;
-};
-
-export type StripeCustomer = {
-  __typename?: 'StripeCustomer';
-  name?: Maybe<Scalars['String']['output']>;
-  stripeCustomerId?: Maybe<Scalars['String']['output']>;
-};
-
-export type StripeCustomerList = {
-  __typename?: 'StripeCustomerList';
-  listInfo?: Maybe<ListInfo>;
-  stripeCustomers?: Maybe<Array<Maybe<StripeCustomer>>>;
-};
-
+/** The ticket subcategory. */
 export type SubCategory = {
   __typename?: 'SubCategory';
+  /** The ID of the subcategory. */
   id: Scalars['ID']['output'];
+  /** The name of the subcategory */
   name: Scalars['String']['output'];
 };
 
-export type SubscribedAddon = {
-  __typename?: 'SubscribedAddon';
-  addon?: Maybe<Addon>;
-  addonLicenseCount?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
+/** The ticket sub cause. */
+export type SubCause = {
+  __typename?: 'SubCause';
+  /** The description of the sub cause. */
+  description?: Maybe<Scalars['String']['output']>;
+  /** The ID of the sub cause. */
+  id: Scalars['ID']['output'];
+  /** The name of the sub cause. */
+  name: Scalars['String']['output'];
 };
 
-export type SubscriptionContext = {
-  __typename?: 'SubscriptionContext';
-  activatedDateTime?: Maybe<Scalars['String']['output']>;
-  chargeBeePlanId?: Maybe<Scalars['String']['output']>;
-  daysSinceActivated?: Maybe<Scalars['Int']['output']>;
-  planName?: Maybe<Scalars['String']['output']>;
-  subscriptionStatus: SubscriptionStatus;
-  trialExpiryDays?: Maybe<Scalars['String']['output']>;
+/** Specifies The input Required to fetch SuperOps Asset Info */
+export type TpAssetInfoInput = {
+  /** SuperOps ThirdParty Integration Reference ID */
+  integrationRefId: Scalars['ID']['input'];
+  /** The Endpoint ID of the ThirdParty Integration */
+  tpEndpointIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
-export enum SubscriptionDurationUnit {
-  Day = 'DAY',
-  Month = 'MONTH',
-  Week = 'WEEK',
-  Year = 'YEAR'
-}
-
-export type SubscriptionInvoice = {
-  __typename?: 'SubscriptionInvoice';
-  addonQuantity?: Maybe<Scalars['Int']['output']>;
-  /** SubscriptionInvoiceStatus */
-  date?: Maybe<Scalars['String']['output']>;
-  hasOverageDevice?: Maybe<Scalars['Boolean']['output']>;
-  id?: Maybe<Scalars['String']['output']>;
-  licenseQuantity?: Maybe<Scalars['Int']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
-  total?: Maybe<Scalars['Int']['output']>;
+/** Specifies The SuperOps Asset Info for Given TP Endpoint Ids */
+export type TpEndpointAssetInfo = {
+  __typename?: 'TPEndpointAssetInfo';
+  /** SuperOps Asset Info For Respective ThirdParty Integration Endpoint ID */
+  superOpsAssetInfo?: Maybe<Asset>;
+  /** The Endpoint ID of the ThirdParty Integration */
+  tpEndpointId?: Maybe<Scalars['String']['output']>;
 };
 
-export type SubscriptionInvoiceList = {
-  __typename?: 'SubscriptionInvoiceList';
-  invoices?: Maybe<Array<Maybe<SubscriptionInvoice>>>;
-  offset?: Maybe<Scalars['String']['output']>;
+/** specifies the input required to get Integration data mapping by TP Item Id */
+export type TpItemsInput = {
+  /** Third party Integration ID provided by Superops */
+  integrationRefId: Scalars['ID']['input'];
+  /** Third party entity ID mapped with superops entity */
+  tpEntityId: Scalars['String']['input'];
+  /** Third party item ID mapped with Superops item */
+  tpItemIds: Array<InputMaybe<Scalars['String']['input']>>;
 };
 
-export enum SubscriptionStatus {
-  Active = 'ACTIVE',
-  Cancelled = 'CANCELLED',
-  NonRenewing = 'NON_RENEWING',
-  Paused = 'PAUSED',
-  Trial = 'TRIAL',
-  TrialExpired = 'TRIAL_EXPIRED'
-}
-
-export type SupportAccess = {
-  __typename?: 'SupportAccess';
-  email?: Maybe<Scalars['String']['output']>;
-  password?: Maybe<Scalars['String']['output']>;
-  remainingTime?: Maybe<Scalars['Int']['output']>;
-};
-
-export enum TpEntityType {
-  BookkeepingAccount = 'BOOKKEEPING_ACCOUNT',
-  Client = 'CLIENT',
-  ServiceItem = 'SERVICE_ITEM'
-}
-
-export type TpMappingRuleCondition = {
-  __typename?: 'TPMappingRuleCondition';
-  conditionAttribute: Scalars['String']['output'];
-  conditionValue: MappingObject;
-  destination: MappingObject;
-  entityType: TpEntityType;
-  ruleId: Scalars['ID']['output'];
-};
-
-export type TpMappingRuleIdentifierInput = {
-  ruleId: Scalars['ID']['input'];
-};
-
-export type TpSourceInput = {
-  integrationId?: InputMaybe<Scalars['ID']['input']>;
-  tpItemId?: InputMaybe<Scalars['String']['input']>;
-};
-
+/** The major work (ticket or project) can be divided into multiple units of tasks. The task can also delegated to other technicians. */
 export type Task = {
   __typename?: 'Task';
+  /** The actual end datetime of the task i.,e when the task status is set to COMPLETED. */
   actualEndDate?: Maybe<Scalars['String']['output']>;
+  /** The actual start datetime of the task i.,e when the task status is set to PROGRESS first time. */
   actualStartDate?: Maybe<Scalars['String']['output']>;
-  createdTime: Scalars['String']['output'];
+  /** The description of the task. */
   description?: Maybe<Scalars['String']['output']>;
+  /** The human readable ID of the task. */
   displayId: Scalars['ID']['output'];
+  /** The due datetime of the task */
   dueDate?: Maybe<Scalars['String']['output']>;
+  /** The estimated time of the task in minutes. */
   estimatedTime?: Maybe<Scalars['Int']['output']>;
-  milestone?: Maybe<Milestone>;
-  module?: Maybe<Scalars['String']['output']>;
+  /**
+   * The entity for which the task is created.
+   * @deprecated The module field within the workItem field replaces this field
+   */
+  module?: Maybe<TaskModule>;
+  /** Indicates whether the task is overdue i.e, crossed the due time. */
   overdue?: Maybe<Scalars['Boolean']['output']>;
-  project?: Maybe<Project>;
+  /** The scheduled start datetime of the task. */
   scheduledStartDate?: Maybe<Scalars['String']['output']>;
+  /** The status of the task. */
   status: Scalars['String']['output'];
+  /** The ID of the task. */
   taskId: Scalars['ID']['output'];
+  /** The Order in which the tasks should be displayed in UI */
   taskOrder?: Maybe<Scalars['Int']['output']>;
-  techGroup?: Maybe<Group>;
-  technician?: Maybe<User>;
-  /** TaskModule */
-  ticket?: Maybe<TaskTicket>;
-  ticketPermission?: Maybe<Scalars['JSON']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-  workItem?: Maybe<WorkItem>;
+  /**
+   * The technician group to which the task is assigned.
+   * The actual type of this field is TechnicianGroup. Returns groupId and name fields as JSON.
+   * The name field can be used in the filter condition.
+   */
+  techGroup?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * The technician to whom the task is assigned.
+   * The actual type of this field is Technician. Returns userId and name fields as JSON.
+   * The name and email fields can be used in the filter condition.
+   */
+  technician?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * The ticket under which the task is created. Available only if the module is TICKET.
+   * The actual type of this field is Ticket. Returns ticketId, displayId, subject fields as JSON.
+   * The displayId and subject can be used in the filter condition.
+   * @deprecated The workItem field replaces this field
+   */
+  ticket?: Maybe<Scalars['JSON']['output']>;
+  /** The title of the task. */
+  title: Scalars['String']['output'];
+  /**
+   * It indicates the work item (ticket/project) to which the task belongs. The actual type of this
+   * field is WorkItem. Returns workId, displayId, module fields as JSON
+   */
+  workItem?: Maybe<Scalars['JSON']['output']>;
 };
 
-export type TaskTemplate = {
-  __typename?: 'TaskTemplate';
-  description?: Maybe<Scalars['String']['output']>;
-  dueDate?: Maybe<Scalars['JSON']['output']>;
-  estimatedTime?: Maybe<Scalars['Int']['output']>;
-  scheduledStartDate?: Maybe<Scalars['JSON']['output']>;
-  taskOrder?: Maybe<Scalars['Int']['output']>;
-  taskTemplateId: Scalars['ID']['output'];
-  techGroup?: Maybe<Group>;
-  technician?: Maybe<User>;
-  title?: Maybe<Scalars['String']['output']>;
+/** Specifies the identifier input for the task. */
+export type TaskIdentifierInput = {
+  /** The ID of the task. */
+  taskId: Scalars['ID']['input'];
 };
 
-export type TaskTicket = {
-  __typename?: 'TaskTicket';
-  approvalStatus?: Maybe<Scalars['String']['output']>;
-  displayId: Scalars['ID']['output'];
-  loggedInUserAsFollower?: Maybe<LoggedInUserAsFollower>;
-  priority?: Maybe<Scalars['String']['output']>;
-  subject?: Maybe<Scalars['String']['output']>;
-  technician?: Maybe<User>;
-  ticketId: Scalars['ID']['output'];
+/** The response payload for list of tasks fetched. */
+export type TaskList = {
+  __typename?: 'TaskList';
+  /** The detail about the list. */
+  listInfo?: Maybe<ListInfo>;
+  /** The list of tasks. */
+  tasks?: Maybe<Array<Maybe<Task>>>;
 };
 
+/** Represents the entity/type. */
+export enum TaskModule {
+  /** The ticket entity. */
+  Ticket = 'TICKET'
+}
+
+/** The response payload for the tax. */
 export type Tax = {
   __typename?: 'Tax';
-  integrated?: Maybe<Scalars['Boolean']['output']>;
+  /** The name of the tax. */
   name: Scalars['String']['output'];
+  /** The list of tax rates. */
   rates?: Maybe<Array<Maybe<TaxRate>>>;
+  /** The ID of the tax. */
   taxId: Scalars['ID']['output'];
+  /** The sum of all the tax rates. */
   totalRate?: Maybe<Scalars['String']['output']>;
 };
 
+/** Specifies the identifier input for the tax. */
 export type TaxIdentifierInput = {
+  /** The ID of the tax. */
   taxId: Scalars['ID']['input'];
 };
 
-export type TaxInput = {
-  addRates?: InputMaybe<Array<InputMaybe<TaxRateInput>>>;
-  deleteRates?: InputMaybe<Array<InputMaybe<TaxRateInput>>>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  taxId?: InputMaybe<Scalars['ID']['input']>;
-  updateRates?: InputMaybe<Array<InputMaybe<TaxRateInput>>>;
-};
-
+/** The response payload for the list of taxes. */
 export type TaxList = {
   __typename?: 'TaxList';
+  /** The details about the list. */
   listInfo?: Maybe<ListInfo>;
+  /** The list of taxes. */
   taxes?: Maybe<Array<Maybe<Tax>>>;
 };
 
+/** Specifies the response for tax rates. */
 export type TaxRate = {
   __typename?: 'TaxRate';
+  /** The name of the tax rate. */
   name: Scalars['String']['output'];
+  /** The ID of the tax rate. */
   rateId: Scalars['ID']['output'];
+  /** The value of the tax rate. */
   rateValue: Scalars['String']['output'];
 };
 
-export type TaxRateInput = {
-  name?: InputMaybe<Scalars['String']['input']>;
-  rateId?: InputMaybe<Scalars['ID']['input']>;
-  rateValue?: InputMaybe<Scalars['String']['input']>;
-};
-
+/** The technician's team. */
 export type Team = {
   __typename?: 'Team';
-  name?: Maybe<Scalars['String']['output']>;
+  /** The name of the team. */
+  name: Scalars['String']['output'];
+  /** The ID of the team. */
   teamId: Scalars['ID']['output'];
 };
 
-export type TeamInput = {
-  name?: InputMaybe<Scalars['String']['input']>;
-  teamId?: InputMaybe<Scalars['ID']['input']>;
+/** Specifies the identifier input for the technician's team. */
+export type TeamIdentifierInput = {
+  /** The ID of the team. */
+  teamId: Scalars['ID']['input'];
 };
 
+/** The user of the MSP. */
+export type Technician = {
+  __typename?: 'Technician';
+  /**
+   * The business function of the technician.
+   * The actual type of this field is BusinessFunction. Returns as JSON, object contains businessFunctionId and name fields.
+   */
+  businessFunction?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * The contact number of the technician.
+   * It is recommended to provide the value in the standard format [+][country code][area code][local phone number].
+   */
+  contactNumber?: Maybe<Scalars['String']['output']>;
+  /**
+   * The designation of the technician.
+   * The actual type of this field is Designation. Returns as JSON, object contains designationId and name fields.
+   */
+  designation?: Maybe<Scalars['JSON']['output']>;
+  /** The email address of the technician. */
+  email: Scalars['String']['output'];
+  /** The email signature of the technician which will be used in their email responses. */
+  emailSignature?: Maybe<Scalars['String']['output']>;
+  /** The first name of the technician. */
+  firstName: Scalars['String']['output'];
+  /**
+   * The list of technician groups to which the technician is associated.
+   * The actual type of this field is Technician Group. Returns array of objects as JSON, each object contains groupId and name fields.
+   */
+  groups?: Maybe<Scalars['JSON']['output']>;
+  /** The last name of the technician. */
+  lastName?: Maybe<Scalars['String']['output']>;
+  /** The full name of the technician. */
+  name: Scalars['String']['output'];
+  /**
+   * The technician's reporting manager.
+   * The actual type of this field is User. Returns as JSON, object contains userId and name fields.
+   */
+  reportingManager?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * The application role of the technician.
+   * The actual type of this field is Role. Returns as JSON, object contains roleId and name fields.
+   */
+  role?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * The technician's team.
+   * The actual type of this field is Team. Returns as JSON, object contains teamId and name fields.
+   */
+  team?: Maybe<Scalars['JSON']['output']>;
+  /** The ID of the technician. */
+  userId: Scalars['ID']['output'];
+};
+
+/**
+ * Technician groups help group a set of technicians together based on function, expertise, etc for the purpose of easy assignment of tickets.
+ * Clients can be associated to one or more technician groups so that the technicians in those groups can access the client's data.
+ */
+export type TechnicianGroup = {
+  __typename?: 'TechnicianGroup';
+  /** The ID of the technician group. */
+  groupId: Scalars['ID']['output'];
+  /** The name of the technician group. */
+  name: Scalars['String']['output'];
+};
+
+/** Specifies the identifier input for the technician group. */
 export type TechnicianGroupIdentifierInput = {
+  /** The ID of the technician group. */
   groupId: Scalars['ID']['input'];
 };
 
-export type TechnicianUtilisation = {
-  __typename?: 'TechnicianUtilisation';
-  billedHours?: Maybe<Scalars['String']['output']>;
-  cost?: Maybe<Scalars['String']['output']>;
-  profit?: Maybe<Scalars['String']['output']>;
-  revenue?: Maybe<Scalars['String']['output']>;
-  user: User;
+/** Specifies the identifier input for the technician. */
+export type TechnicianIdentifierInput = {
+  /** The ID of the technician. */
+  userId: Scalars['ID']['input'];
 };
 
-export type TechnicianUtilisationList = {
-  __typename?: 'TechnicianUtilisationList';
-  listInfo: ListInfo;
-  technicianUtilisationList?: Maybe<Array<TechnicianUtilisation>>;
+/** The response payload for list of technicians fetched. */
+export type TechnicianList = {
+  __typename?: 'TechnicianList';
+  /** The detail about the list. */
+  listInfo?: Maybe<ListInfo>;
+  /** The list of technicians. */
+  userList?: Maybe<Array<Maybe<Technician>>>;
 };
 
-export type ThirdPartyApplication = {
-  __typename?: 'ThirdPartyApplication';
-  applicationReferenceId?: Maybe<Scalars['ID']['output']>;
-  applicationUrl?: Maybe<Scalars['String']['output']>;
-  author?: Maybe<Scalars['String']['output']>;
-  dependencies?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  iconUrl?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  lastSyncedTime?: Maybe<Scalars['String']['output']>;
-  lastUpdatedTime?: Maybe<Scalars['String']['output']>;
-  latestVersion?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  packageApprovedDate?: Maybe<Scalars['String']['output']>;
-  packageStatus?: Maybe<Scalars['String']['output']>;
-  patchOptions?: Maybe<Scalars['JSON']['output']>;
-  publishedAt?: Maybe<Scalars['String']['output']>;
-  summary?: Maybe<Scalars['String']['output']>;
-  thirdPartyPackageManager?: Maybe<ThirdPartyPackageManager>;
-  title?: Maybe<Scalars['String']['output']>;
+/** Specifies the Third Party Integration source details Input */
+export type ThirdPartySourceInput = {
+  /** Third party Integration ID provided by Superops */
+  integrationId: Scalars['ID']['input'];
+  /** Third party item ID to be mapped with Superops item. */
+  tpItemId: Scalars['String']['input'];
 };
 
-export type ThirdPartyApplicationBundle = {
-  __typename?: 'ThirdPartyApplicationBundle';
-  applications?: Maybe<Array<Maybe<ThirdPartyApplication>>>;
-  assetClassId?: Maybe<Scalars['ID']['output']>;
-  id?: Maybe<Scalars['ID']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type ThirdPartyApplicationPatchConfig = {
-  __typename?: 'ThirdPartyApplicationPatchConfig';
-  application?: Maybe<ThirdPartyApplication>;
-  patchType?: Maybe<Scalars['String']['output']>;
-};
-
-export type ThirdPartyApplicationPolicyBundleConfig = {
-  __typename?: 'ThirdPartyApplicationPolicyBundleConfig';
-  applicationConfigs?: Maybe<Array<Maybe<ThirdPartyApplicationPatchConfig>>>;
-  bundle?: Maybe<ThirdPartyApplicationBundle>;
-};
-
-export type ThirdPartyApplicationPolicyConfig = {
-  __typename?: 'ThirdPartyApplicationPolicyConfig';
-  applicationConfigs?: Maybe<Array<Maybe<ThirdPartyApplicationPatchConfig>>>;
-  bundleConfigs?: Maybe<Array<Maybe<ThirdPartyApplicationPolicyBundleConfig>>>;
-  scheduleDetail?: Maybe<Scalars['JSON']['output']>;
-};
-
-export type ThirdPartyPackageManager = {
-  __typename?: 'ThirdPartyPackageManager';
-  packageManager?: Maybe<Scalars['String']['output']>;
-  pmId?: Maybe<Scalars['Int']['output']>;
-};
-
+/** The ticket is a type of record used to track and manage issues or requests */
 export type Ticket = {
   __typename?: 'Ticket';
-  /** TicketOperationalStatus */
-  activeType?: Maybe<Scalars['String']['output']>;
-  additionalRequester?: Maybe<Array<Maybe<User>>>;
+  /**
+   * The list of client users who act as additional requesters.
+   * The actual type of this field is ClientUser. Returns array of objects as JSON, each object contains userId and name fields.
+   */
+  additionalRequester?: Maybe<Scalars['JSON']['output']>;
+  /** The approval status of the ticket. */
   approvalStatus?: Maybe<Scalars['String']['output']>;
-  approverPermission?: Maybe<Scalars['JSON']['output']>;
-  assets?: Maybe<Array<Maybe<AssetBase>>>;
+  /** The category of the ticket. */
   category?: Maybe<Scalars['String']['output']>;
+  /** The cause of the ticket. */
   cause?: Maybe<Scalars['String']['output']>;
-  childTickets?: Maybe<Array<Maybe<Ticket>>>;
-  client?: Maybe<Organization>;
-  completedTasks?: Maybe<Scalars['Int']['output']>;
-  contractTicketMapping?: Maybe<Array<Maybe<ContractTicketMapping>>>;
-  createdBy?: Maybe<User>;
-  createdTime: Scalars['String']['output'];
+  /**
+   * The client to whom the ticket is associated.
+   * The actual type of this field is Client. Returns accountId and name fields as JSON.
+   * The name field can be used in the filter condition.
+   */
+  client?: Maybe<Scalars['JSON']['output']>;
+  /** The time when the ticket was created. */
+  createdTime?: Maybe<Scalars['String']['output']>;
+  /**
+   * Specifies the custom field values for the ticket. Each entry in the JSON would be a key-value.
+   * The key will be a system-generated unique name of the custom field (columnName field of CustomField type).
+   * The value for text, paragraph, radio, select, numeric, decimal, date, datetime should be given as a string.
+   * The value for checkbox, multi-select should be an array of string.
+   *
+   * For example, the value could be {"udf1text": "value", "udf2mselect": ["value1", "value2"]}
+   */
   customFields?: Maybe<Scalars['JSON']['output']>;
-  department?: Maybe<BusinessFunction>;
+  /** The system-generated, human-readable ID of the ticket. */
   displayId: Scalars['String']['output'];
-  /** TicketActiveType */
-  dormantType?: Maybe<Scalars['String']['output']>;
+  /** The due time of first response metric. */
   firstResponseDueTime?: Maybe<Scalars['String']['output']>;
-  firstResponseDueTimeLeft?: Maybe<Scalars['Int']['output']>;
+  /** The first response time of the ticket. */
   firstResponseTime?: Maybe<Scalars['String']['output']>;
+  /** Denotes whether the first response metric is violated. */
   firstResponseViolated?: Maybe<Scalars['Boolean']['output']>;
-  /** TODO - Remove */
-  followerPermission?: Maybe<Scalars['JSON']['output']>;
-  followers?: Maybe<Array<Maybe<User>>>;
-  form?: Maybe<TicketForm>;
+  /**
+   * The list of technicians who follow the ticket.
+   * The actual type of this field is Technician. Returns array of objects as JSON, each object contains userId and name fields.
+   */
+  followers?: Maybe<Scalars['JSON']['output']>;
+  /** The impact of the ticket. */
   impact?: Maybe<Scalars['String']['output']>;
-  latestReply?: Maybe<Conversation>;
-  loggedInUserAsApprover?: Maybe<LoggedInUserAsApprover>;
-  loggedInUserAsFollower?: Maybe<LoggedInUserAsFollower>;
-  numberOfUnreadVendorConversation?: Maybe<Scalars['Int']['output']>;
-  operationalStatus?: Maybe<Scalars['String']['output']>;
-  parentTicket?: Maybe<Ticket>;
+  /** The priority of the ticket. */
   priority?: Maybe<Scalars['String']['output']>;
-  readStatus?: Maybe<Scalars['Boolean']['output']>;
-  requester?: Maybe<User>;
+  /** Specifies the type of the ticket. */
+  requestType?: Maybe<Scalars['String']['output']>;
+  /**
+   * The client user for whom the ticket is created.
+   * The actual type of this field is ClientUser. Returns userId and name fields as JSON.
+   * The name and email fields can be used in the filter condition.
+   */
+  requester?: Maybe<Scalars['JSON']['output']>;
+  /** The resolution code of the ticket. */
   resolutionCode?: Maybe<Scalars['String']['output']>;
+  /** The due time of resolution metric. */
   resolutionDueTime?: Maybe<Scalars['String']['output']>;
-  resolutionDueTimeLeft?: Maybe<Scalars['Int']['output']>;
-  resolutionPauseTime?: Maybe<Scalars['String']['output']>;
+  /** The resolution time of the ticket. */
   resolutionTime?: Maybe<Scalars['String']['output']>;
+  /** Denotes whether the resolution metric is violated. */
   resolutionViolated?: Maybe<Scalars['Boolean']['output']>;
-  site?: Maybe<Site>;
-  sla?: Maybe<Sla>;
-  sop?: Maybe<StandardOperatingProcedure>;
-  source: Scalars['String']['output'];
-  status: Scalars['String']['output'];
+  /**
+   * The site to which the ticket is associated.
+   * The actual type of this field is ClientSite. Returns ID and name fields as JSON.
+   * The name field can be used in the filter condition.
+   */
+  site?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * The SLA of the ticket.
+   * The actual type of this field is SLA. Returns id and name fields as JSON.
+   */
+  sla?: Maybe<Scalars['JSON']['output']>;
+  /** The creation source of the ticket. */
+  source: TicketSource;
+  /** The status of the ticket. */
+  status?: Maybe<Scalars['String']['output']>;
+  /** The subcategory of the ticket. */
   subcategory?: Maybe<Scalars['String']['output']>;
+  /** The sub cause of the ticket. */
   subcause?: Maybe<Scalars['String']['output']>;
+  /** The subject of the ticket. */
   subject: Scalars['String']['output'];
-  techGroup?: Maybe<Group>;
-  technician?: Maybe<User>;
+  /**
+   * The technician group to which the ticket is assigned.
+   * The actual type of this field is TechnicianGroup. Returns groupId and name fields as JSON.
+   * The name field can be used in the filter condition.
+   */
+  techGroup?: Maybe<Scalars['JSON']['output']>;
+  /**
+   * The technician to whom the ticket is assigned.
+   * The actual type of this field is Technician. Returns userId and name fields as JSON.
+   * The name and email fields can be used in the filter condition.
+   */
+  technician?: Maybe<Scalars['JSON']['output']>;
+  /** The ID of the ticket. */
   ticketId: Scalars['ID']['output'];
+  /**
+   * The type of the ticket.
+   * @deprecated As Ticket Type value is customizable, instead of this field, requestType field will have the value
+   */
   ticketType?: Maybe<Scalars['String']['output']>;
-  /** TicketDormantType */
-  totalTasks?: Maybe<Scalars['Int']['output']>;
+  /** The time when the ticket was updated. */
   updatedTime?: Maybe<Scalars['String']['output']>;
+  /** The urgency of the ticket. */
   urgency?: Maybe<Scalars['String']['output']>;
-  worklogTimerStarted?: Maybe<Scalars['Boolean']['output']>;
-  worklogTimespent?: Maybe<Scalars['String']['output']>;
 };
 
 
+/** The ticket is a type of record used to track and manage issues or requests */
 export type TicketCustomFieldsArgs = {
   fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type TicketData = {
-  __typename?: 'TicketData';
+/** The conversations of the ticket. */
+export type TicketConversation = {
+  __typename?: 'TicketConversation';
+  /** The list of attachments. */
   attachments?: Maybe<Array<Maybe<Attachment>>>;
-  category?: Maybe<Scalars['String']['output']>;
-  cause?: Maybe<Scalars['String']['output']>;
-  client?: Maybe<Organization>;
-  customFields?: Maybe<Scalars['JSON']['output']>;
-  dataId?: Maybe<Scalars['ID']['output']>;
-  dataSource?: Maybe<Scalars['String']['output']>;
-  department?: Maybe<BusinessFunction>;
-  description?: Maybe<Scalars['String']['output']>;
-  impact?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  /** TicketDataSource */
-  placeholdersUsed?: Maybe<Scalars['String']['output']>;
-  priority?: Maybe<Scalars['String']['output']>;
-  requester?: Maybe<User>;
-  resolutionCode?: Maybe<Scalars['String']['output']>;
-  site?: Maybe<Site>;
-  /** TicketTypeEnum */
-  status?: Maybe<Scalars['String']['output']>;
-  subcategory?: Maybe<Scalars['String']['output']>;
-  subcause?: Maybe<Scalars['String']['output']>;
-  subject?: Maybe<Scalars['String']['output']>;
-  techGroup?: Maybe<Group>;
-  technician?: Maybe<User>;
-  ticketType?: Maybe<Scalars['String']['output']>;
-  urgency?: Maybe<Scalars['String']['output']>;
-};
-
-
-export type TicketDataCustomFieldsArgs = {
-  fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type TicketForm = {
-  __typename?: 'TicketForm';
-  allowDeleteOrClientVisibilityUpdate?: Maybe<Scalars['Boolean']['output']>;
-  clientVisibility?: Maybe<Scalars['String']['output']>;
-  /** ClientVisibility */
-  clients?: Maybe<Array<Maybe<Organization>>>;
-  defaultForm?: Maybe<Scalars['Boolean']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  fieldDetails?: Maybe<Scalars['String']['output']>;
-  formDescription?: Maybe<Scalars['String']['output']>;
-  formId: Scalars['ID']['output'];
-  formName?: Maybe<Scalars['String']['output']>;
-  formStatus?: Maybe<Scalars['String']['output']>;
-  runbook?: Maybe<Runbook>;
+  /** The list of BCC recipients. */
+  bccUsers?: Maybe<Array<Maybe<RecipientInfo>>>;
+  /** The list of CC recipients. */
+  ccUsers?: Maybe<Array<Maybe<RecipientInfo>>>;
+  /** The content/description of the conversation. */
+  content?: Maybe<Scalars['String']['output']>;
+  /** The ID of the conversation */
+  conversationId: Scalars['ID']['output'];
+  /** The created datetime of the conversation. */
+  time: Scalars['String']['output'];
+  /** The list of TO recipients. */
+  toUsers?: Maybe<Array<Maybe<RecipientInfo>>>;
+  /** The type of the ticket conversation. */
+  type: TicketConversationType;
   /**
-   * this will have value only if visibility is SPEICFIC
-   * @deprecated No longer supported
+   * The user who created the conversation.
+   * The actual type of this field is User. Returns userId, name and email fields as JSON.
+   * It is possible that the user who not exist in the system can create the conversation (through email), returns email field only in that case.
    */
-  standardOperatingProcedure?: Maybe<StandardOperatingProcedure>;
-  /** FormStatus */
-  subject?: Maybe<Scalars['String']['output']>;
+  user?: Maybe<Scalars['JSON']['output']>;
 };
 
-export type TicketTemplate = {
-  __typename?: 'TicketTemplate';
-  category?: Maybe<Category>;
-  customFields?: Maybe<Scalars['JSON']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  impact?: Maybe<Impact>;
-  name?: Maybe<Scalars['String']['output']>;
-  priority?: Maybe<Priority>;
-  status?: Maybe<Status>;
-  subject?: Maybe<Scalars['String']['output']>;
-  templateId?: Maybe<Scalars['ID']['output']>;
-  templateLayout?: Maybe<Scalars['String']['output']>;
-  urgency?: Maybe<Urgency>;
-};
-
-
-export type TicketTemplateCustomFieldsArgs = {
-  fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type TimeseriesAggregationInput = {
-  function?: InputMaybe<Scalars['String']['input']>;
-  interval?: InputMaybe<Scalars['Int']['input']>;
-  unit?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type TpEntityList = {
-  __typename?: 'TpEntityList';
-  listInfo: ListInfo;
-  objects: Array<Maybe<MappingObject>>;
-};
-
-export type TransientInvoiceItem = {
-  __typename?: 'TransientInvoiceItem';
-  amount: Scalars['String']['output'];
-  billedDate: Scalars['String']['output'];
-  details?: Maybe<Scalars['String']['output']>;
-  discountRate?: Maybe<Scalars['String']['output']>;
-  discountType?: Maybe<DiscountType>;
-  offeredItem: OfferedItem;
-  quantity: Scalars['String']['output'];
-  serviceCatalogItem?: Maybe<ServiceCatalogItem>;
-  serviceItem?: Maybe<ServiceItem>;
-  site?: Maybe<Site>;
-  tax?: Maybe<Tax>;
-  taxable?: Maybe<Scalars['Boolean']['output']>;
-  unitPrice: Scalars['String']['output'];
-};
-
-export type TrayIcon = {
-  __typename?: 'TrayIcon';
-  description?: Maybe<Scalars['String']['output']>;
-  enabled?: Maybe<Scalars['Boolean']['output']>;
-  iconId?: Maybe<Scalars['ID']['output']>;
-  logoFileName?: Maybe<Scalars['String']['output']>;
-  menus?: Maybe<Array<Maybe<TrayIconMenu>>>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type TrayIconMenu = {
-  __typename?: 'TrayIconMenu';
-  aboutMessage?: Maybe<Scalars['String']['output']>;
-  menuId: Scalars['ID']['output'];
-  /** TrayIconMenuType */
-  menuOrder?: Maybe<Scalars['Int']['output']>;
-  name: Scalars['String']['output'];
-  scripts?: Maybe<Array<Maybe<TrayIconMenuScript>>>;
-  ticketFormId?: Maybe<Scalars['String']['output']>;
-  toolTipText?: Maybe<Scalars['String']['output']>;
-  type: Scalars['String']['output'];
-  url?: Maybe<Scalars['String']['output']>;
-};
-
-export type TrayIconMenuScript = {
-  __typename?: 'TrayIconMenuScript';
-  /** TrayIconMenuScriptType */
-  arguments?: Maybe<Scalars['JSON']['output']>;
-  script: AssetScript;
-  type: Scalars['String']['output'];
-};
-
-export enum User_Email_Validation_Status {
-  Available = 'AVAILABLE',
-  DuplicateEmailAddress = 'DUPLICATE_EMAIL_ADDRESS',
-  DuplicateEmailAddressAsMailboxAddress = 'DUPLICATE_EMAIL_ADDRESS_AS_MAILBOX_ADDRESS',
-  DuplicateEmailAddressInDifferentAccountType = 'DUPLICATE_EMAIL_ADDRESS_IN_DIFFERENT_ACCOUNT_TYPE',
-  InvalidDomain = 'INVALID_DOMAIN'
+/** Denotes the type of the ticket conversation. */
+export enum TicketConversationType {
+  /** Denotes the description of the ticket since it will be created as the first message of a conversation. */
+  Description = 'DESCRIPTION',
+  /** Denotes the requester notification. */
+  ReqNotification = 'REQ_NOTIFICATION',
+  /** Denotes the requester reply. */
+  ReqReply = 'REQ_REPLY',
+  /** Denotes the technician notification. */
+  TechNotification = 'TECH_NOTIFICATION',
+  /** Denotes the technician reply. */
+  TechReply = 'TECH_REPLY'
 }
 
-export type UnknownEmail = {
-  __typename?: 'UnknownEmail';
-  attachments?: Maybe<Array<Maybe<Attachment>>>;
-  ccRecipients?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  fromAddress?: Maybe<Scalars['String']['output']>;
-  messageId?: Maybe<Scalars['String']['output']>;
-  meta?: Maybe<Scalars['JSON']['output']>;
-  module?: Maybe<Scalars['String']['output']>;
-  readStatus?: Maybe<Scalars['Boolean']['output']>;
-  /** EmailModule */
-  receivedTime?: Maybe<Scalars['String']['output']>;
-  subject?: Maybe<Scalars['String']['output']>;
-  toRecipients?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  unknownEmailId: Scalars['ID']['output'];
+/** Specifies the identifier input for the ticket. */
+export type TicketIdentifierInput = {
+  /** The ID of the ticket. */
+  ticketId: Scalars['ID']['input'];
 };
 
-export type UnknownEmailList = {
-  __typename?: 'UnknownEmailList';
+/** The response payload for list of tickets fetched. */
+export type TicketList = {
+  __typename?: 'TicketList';
+  /** The detail about the list. */
   listInfo?: Maybe<ListInfo>;
-  unknownEmails?: Maybe<Array<Maybe<UnknownEmail>>>;
+  /** The list of tickets. */
+  tickets?: Maybe<Array<Maybe<Ticket>>>;
 };
 
-export type UpdateAiFeatureGroupInput = {
-  enabled: Scalars['Boolean']['input'];
-  featureGroupId: Scalars['ID']['input'];
-};
+/** The creation source of the ticket. */
+export enum TicketSource {
+  /** Denotes the ticket is created from SuperOps agent (i.,e from tray icon). */
+  Agent = 'AGENT',
+  /** Denotes the ticket is created from AI */
+  Ai = 'AI',
+  /** Denotes the ticket is created from contract. */
+  Contract = 'CONTRACT',
+  /** Denotes the ticket is created from contract reminder. */
+  ContractReminder = 'CONTRACT_REMINDER',
+  /** Denotes the ticket is created from email. */
+  Email = 'EMAIL',
+  /** Denotes the ticket is created from the form. */
+  Form = 'FORM',
+  /** Denotes the ticket is created via Integration Platform. */
+  Integration = 'INTEGRATION',
+  /** Denotes the ticket is created from Phone. */
+  Phone = 'PHONE',
+  /** Denotes the ticket is created from Ticket Schedule. */
+  Schedule = 'SCHEDULE'
+}
 
-export type UpdateAiFeatureInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** Deprecated */
-  displayIcon?: InputMaybe<Scalars['String']['input']>;
-  enabled?: InputMaybe<Scalars['Boolean']['input']>;
-  featureId: Scalars['ID']['input'];
+/** specifies the input to update an Asset API */
+export type UpdateAssetInput = {
+  /** The ID of the asset which needs to be updated */
+  assetId: Scalars['ID']['input'];
+  /** Client details of the asset to be updated */
+  client?: InputMaybe<ClientIdentifierInput>;
+  /** The custom fields that need to be updated */
+  customFields?: InputMaybe<Scalars['JSON']['input']>;
+  /** Name of the asset to be updated */
   name?: InputMaybe<Scalars['String']['input']>;
-  prompt?: InputMaybe<AiPromptInput>;
-  state?: InputMaybe<AiFeatureState>;
+  /** The Purchased Date of the Asset */
+  purchasedDate?: InputMaybe<Scalars['String']['input']>;
+  /** The requester that needs to be updated */
+  requester?: InputMaybe<ClientUserIdentifierInput>;
+  /** Site details of the asset to be updated */
+  site?: InputMaybe<ClientSiteIdentifierInput>;
+  /** The Warranty Expiration Date of the Asset */
+  warrantyExpiryDate?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type UpdateAiFeatureUsageCountInput = {
-  featureId: Scalars['ID']['input'];
-  usageCount: Scalars['Int']['input'];
-};
-
-export type UpdateAddonInput = {
-  active?: InputMaybe<Scalars['Boolean']['input']>;
-  addApplicablePlans?: InputMaybe<Array<InputMaybe<PlanIdentifierInput>>>;
-  addFeatures?: InputMaybe<Array<InputMaybe<ProductFeatureIdentifierInput>>>;
-  addonId: Scalars['ID']['input'];
-  addonOrder?: InputMaybe<Scalars['Int']['input']>;
-  countPerLicense?: InputMaybe<Scalars['Int']['input']>;
-  deleteApplicablePlans?: InputMaybe<Array<InputMaybe<PlanIdentifierInput>>>;
-  deleteFeatures?: InputMaybe<Array<InputMaybe<ProductFeatureIdentifierInput>>>;
-  offeringEntityType?: InputMaybe<ProductOfferingEntityType>;
-};
-
+/** Specifies the input required to update a billable contract. */
 export type UpdateBillableContractInput = {
-  addIncludedItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  addSites?: InputMaybe<Array<SiteIdentifierInput>>;
-  billableSiteType?: InputMaybe<BillableSiteType>;
+  /** Specifies the billable contract quantity change input details. */
   change?: InputMaybe<BillableContractQuantityChangeInput>;
-  deleteIncludedItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  deleteSites?: InputMaybe<Array<SiteIdentifierInput>>;
-  discountRate?: InputMaybe<Scalars['String']['input']>;
-  frequencyType?: InputMaybe<ContractFrequencyType>;
-  generateInvoice?: InputMaybe<Scalars['Boolean']['input']>;
-  paymentTerm?: InputMaybe<PaymentTermIdentifierInput>;
-  perpetualContract?: InputMaybe<PerpetualContractInput>;
-  project?: InputMaybe<ProjectIdentifierInput>;
-  provisionRule?: InputMaybe<ProvisionRuleIdentifierInput>;
-  quantityCalculationType?: InputMaybe<ContractQuantityCalculationType>;
-  recurringContract?: InputMaybe<RecurringContractInput>;
-  redeemableContract?: InputMaybe<RedeemableContractInput>;
+  /** The selling price of the contract, applicable if the price is overridden. */
   sellingPrice?: InputMaybe<PricingModelInput>;
-  sellingPriceCalculationType?: InputMaybe<ContractSellingPriceCalculationType>;
+  /** Indicates whether the contract's selling price is overridden. */
   sellingPriceOverridden?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type UpdateBillableContractPricesInput = {
-  /** PriceChangeOperation! */
-  changeValue: PricingModelInput;
-  clientContracts: Array<ContractIdentifierInput>;
-  /** PriceUpdateByMetric! */
-  priceChangeOperation: Scalars['String']['input'];
-  priceUpdateByMetric: Scalars['String']['input'];
-};
-
-export type UpdateBillingTemplateInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  templateId: Scalars['ID']['input'];
-};
-
-export type UpdateCheckListInput = {
-  addItems?: InputMaybe<Array<InputMaybe<CreateCheckListItemInput>>>;
-  deleteItems?: InputMaybe<Array<InputMaybe<CheckListItemRefInput>>>;
-  updateItems?: InputMaybe<Array<InputMaybe<UpdateCheckListItemInput>>>;
-};
-
-export type UpdateCheckListItemInput = {
-  content: Scalars['String']['input'];
-  itemId: Scalars['ID']['input'];
-};
-
+/** Specifies the input required to update a client contract. */
 export type UpdateClientContractInput = {
+  /** Specifies the contract input. */
   contract: UpdateContractInput;
+  /** Specifies the contract's end date. */
   endDate?: InputMaybe<Scalars['String']['input']>;
-  remindDuration?: InputMaybe<FixedDurationInput>;
-  startDate?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type UpdateClientProvisionRuleLayoutInput = {
-  client: ClientIdentifierInput;
-  layout: Scalars['JSON']['input'];
-};
-
-export type UpdateContractApplicationInput = {
-  addAutoApproveItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  addBlacklistedItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  addContractSLA?: InputMaybe<Array<CreateContractSlaInput>>;
-  addOverrides?: InputMaybe<Array<CreateContractPricingOverrideInput>>;
-  applicationRuleCondition?: InputMaybe<Scalars['JSON']['input']>;
-  contractOrder?: InputMaybe<Scalars['Int']['input']>;
-  deleteAutoApproveItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  deleteBlacklistedItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  deleteContractSLA?: InputMaybe<Array<ContractSlaIdentifierInput>>;
-  deleteOverrides?: InputMaybe<Array<ContractPricingOverrideIdentifierInput>>;
-  updateContractSLA?: InputMaybe<Array<UpdateContractSlaInput>>;
-  updateOverrides?: InputMaybe<Array<UpdateContractPricingOverrideInput>>;
-};
-
-export type UpdateContractInput = {
-  billableContract?: InputMaybe<UpdateBillableContractInput>;
-  contractApplication?: InputMaybe<UpdateContractApplicationInput>;
-  contractId: Scalars['ID']['input'];
-  description?: InputMaybe<Scalars['String']['input']>;
+/** Specifies input required to update an existing client. */
+export type UpdateClientInput = {
+  /** The ID of the client who is going to be updated. */
+  accountId: Scalars['ID']['input'];
+  /** Specifies the account manager of the client. */
+  accountManager?: InputMaybe<TechnicianIdentifierInput>;
+  /** Specifies the list of technician groups to be associated to the client. */
+  addTechnicianGroups?: InputMaybe<Array<InputMaybe<TechnicianGroupIdentifierInput>>>;
+  /**
+   * Specifies the custom fields values for the client. Each entry in the JSON would be key-value.
+   * The key will be system generated unique name of the custom field (columnName field of CustomField type).
+   * The value for text, paragraph, radio, select, numeric, decimal, date, datetime should be given as a string.
+   * The value for checkbox, multi select should be array of string.
+   *
+   * For example, the value could be {"udf1text": "value", "udf2mselect": ["value1", "value2"]}
+   */
+  customFields?: InputMaybe<Scalars['JSON']['input']>;
+  /** Specifies the list of technician groups to be disassociated to the client. */
+  deleteTechnicianGroups?: InputMaybe<Array<InputMaybe<TechnicianGroupIdentifierInput>>>;
+  /**
+   * Specifies the list of email domains (for example, acme.com) of the client. These domains will be used to identify the client
+   * when receiving emails from the client user. This input must be unique.
+   */
+  emailDomains?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specifies the headquarters site of the client. */
+  hqSite?: InputMaybe<ClientSiteIdentifierInput>;
+  /** Specifies the name of the client. Cannot be set to null. */
   name?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the primary contact of the client. */
+  primaryContact?: InputMaybe<ClientUserIdentifierInput>;
+  /** Specifies the secondary contact of the client. */
+  secondaryContact?: InputMaybe<ClientUserIdentifierInput>;
+  /** Specifies the stage of the client. Cannot be set to null. */
+  stage?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the status of the client. */
+  status?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type UpdateContractPricingOverrideInput = {
-  addOverrideItems?: InputMaybe<Array<ContractPricingOverrideItemInput>>;
-  conditionalPricing?: InputMaybe<ContractConditionalPricingOverrideInput>;
-  deleteOverrideItems?: InputMaybe<Array<ContractPricingOverrideItemIdentifierInput>>;
-  overrideCategory?: InputMaybe<ContractPricingOverrideCategory>;
-  overrideId: Scalars['ID']['input'];
-  updateOverrideItems?: InputMaybe<Array<ContractPricingOverrideItemInput>>;
-};
-
-export type UpdateContractSlaInput = {
+/** Specifies the input required to update the client user association. */
+export type UpdateClientUserAssociationInput = {
+  /** Specifies the ID of the association. */
   id: Scalars['ID']['input'];
-  slaOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** Specifies the site which will be updated. */
+  site: ClientSiteIdentifierInput;
 };
 
-export type UpdateContractTemplateInput = {
-  contract: UpdateContractInput;
+/** Specifies the input required to update the information of an existing client user ie. requester. */
+export type UpdateClientUserInput = {
+  /**
+   * Specifies the contact number of the client user.
+   * It is recommended to provide the value in the standard format [+][country code][area code][local phone number].
+   */
+  contactNumber?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Specifies the custom fields values for the client user. Each entry in the JSON would be key-value.
+   * The key will be a system-generated, unique name of the custom field (columnName field of CustomField type).
+   * The value for text, paragraph, radio, select, numeric, decimal, date, datetime should be given as a string.
+   * The value for checkbox, multi-select should be an array of string.
+   *
+   * For example, the value could be {"udf1text": "value", "udf2mselect": ["value1", "value2"]}
+   */
+  customFields?: InputMaybe<Scalars['JSON']['input']>;
+  /** Specifies the email address of the client user. Cannot be set to null. */
+  email?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the first name of the client user. Cannot be set to null. */
+  firstName?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the last name of the client user. */
+  lastName?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the reporting manager identifier input for the client user. */
+  reportingManager?: InputMaybe<ClientUserIdentifierInput>;
+  /** Specifies the application role identifier input for the client user. Cannot be set to null. */
+  role?: InputMaybe<RoleIdentifierInput>;
+  /** Specifies the site identifier input for the client user. Cannot be set to null. */
+  site?: InputMaybe<ClientSiteIdentifierInput>;
+  /** Specifies ID of the client user whose recored is to be updated. */
+  userId: Scalars['ID']['input'];
 };
 
-export type UpdateCustomerOnPostSignupInput = {
-  billingPeriod?: InputMaybe<Scalars['String']['input']>;
-  /** BillingPeriod */
-  billingPeriodFrequency?: InputMaybe<Scalars['Int']['input']>;
-  chargeBeePlanId?: InputMaybe<Scalars['String']['input']>;
-  leadCategory?: InputMaybe<Scalars['String']['input']>;
-  technicianSizeRange?: InputMaybe<Scalars['String']['input']>;
+/** Specifies the input required to update a contract. */
+export type UpdateContractInput = {
+  /** Specifies the billable contract input. */
+  billableContract?: InputMaybe<UpdateBillableContractInput>;
+  /** The ID of the contract to be updated. */
+  contractId: Scalars['ID']['input'];
 };
 
+/** Specifies the input required to update an existing field of an entity */
 export type UpdateFieldInput = {
+  /** This is for adding the options for a custom field */
   addOptions?: InputMaybe<Array<InputMaybe<CreateFieldOptionInput>>>;
+  /** This is for deleting the options in a custom field */
   deleteOptions?: InputMaybe<Array<InputMaybe<IdentifierInput>>>;
+  /** The description of the field */
   description?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the Field. */
   id: Scalars['ID']['input'];
+  /** The label of the field */
   label?: InputMaybe<Scalars['String']['input']>;
+  /** This is for fields of TICKET module whether the field value is mandatory when ticket is closed or resolved */
   mandatoryOnClosure?: InputMaybe<Scalars['Boolean']['input']>;
+  /** This is for fields of TICKET module whether the field value is mandatory when ticket is created */
   mandatoryOnCreate?: InputMaybe<Scalars['Boolean']['input']>;
-  showToClient?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The field which denotes whether field should be visible to requesters or not */
+  showToRequester?: InputMaybe<Scalars['Boolean']['input']>;
+  /** This is for updating the options in a custom field */
   updateOptions?: InputMaybe<Array<InputMaybe<UpdateFieldOptionInput>>>;
 };
 
+/** Specifies the the update option input */
 export type UpdateFieldOptionInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
@@ -10445,356 +4692,204 @@ export type UpdateFieldOptionInput = {
   value?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type UpdateHourlyServiceTypeItemInput = {
-  roundUpValue?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type UpdateInAppNotificationInput = {
-  allNotifications?: InputMaybe<Scalars['Boolean']['input']>;
-  notificationIds?: InputMaybe<Array<InputMaybe<InAppNotificationIdentifierInput>>>;
-  state: InAppNotificationState;
-};
-
+/** Specifies the input required to update an existing invoice. */
 export type UpdateInvoiceInput = {
-  addItems?: InputMaybe<Array<InputMaybe<CreateInvoiceItemInput>>>;
-  additionalDiscount?: InputMaybe<Scalars['String']['input']>;
-  additionalDiscountRate?: InputMaybe<Scalars['String']['input']>;
-  conversation?: InputMaybe<ConversationInput>;
-  deleteItems?: InputMaybe<Array<InputMaybe<InvoiceItemRefInput>>>;
+  /** The due date of the invoice */
   dueDate?: InputMaybe<Scalars['String']['input']>;
-  footer?: InputMaybe<Scalars['String']['input']>;
-  inlineImages?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** The creation date of the invoice. */
   invoiceDate?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the invoice going to be updated. */
   invoiceId: Scalars['ID']['input'];
-  memo?: InputMaybe<Scalars['String']['input']>;
-  notes?: InputMaybe<Scalars['String']['input']>;
+  /** The payment term of the invoice. */
+  invoicePaymentTerm?: InputMaybe<PaymentTermIdentifierInput>;
+  /** The payment date of the invoice. */
   paymentDate?: InputMaybe<Scalars['String']['input']>;
   paymentLink?: InputMaybe<Scalars['String']['input']>;
+  /** The payment method of the invoice. */
   paymentMethod?: InputMaybe<PaymentMethodIdentifierInput>;
+  /**
+   * Specifies comments, notes, or references related to a payment, providing additional context or information.
+   * The maximum length of the value is 255 characters.
+   */
   paymentReference?: InputMaybe<Scalars['String']['input']>;
-  paymentTerm?: InputMaybe<PaymentTermIdentifierInput>;
-  statusEnum?: InputMaybe<InvoiceStatusEnum>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  updateItems?: InputMaybe<Array<InputMaybe<UpdateInvoiceItemInput>>>;
+  /** The status of the invoice. */
+  statusEnum?: InputMaybe<InvoiceStatus>;
 };
 
-export type UpdateInvoiceItemInput = {
-  billedDate?: InputMaybe<Scalars['String']['input']>;
-  details?: InputMaybe<Scalars['String']['input']>;
-  discountAmount?: InputMaybe<Scalars['String']['input']>;
-  discountRate?: InputMaybe<Scalars['String']['input']>;
-  itemId: Scalars['ID']['input'];
-  itemOrder?: InputMaybe<Scalars['Int']['input']>;
-  quantity?: InputMaybe<Scalars['String']['input']>;
-  serviceCatalogItem?: InputMaybe<ServiceCatalogItemIdentifierInput>;
-  serviceItem?: InputMaybe<ServiceItemInput>;
-  tax?: InputMaybe<TaxInput>;
-  taxable?: InputMaybe<Scalars['Boolean']['input']>;
-  unitPrice?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type UpdateInvoiceSettingInput = {
-  allowEmptyInvoice?: InputMaybe<Scalars['Boolean']['input']>;
-  attachPdf?: InputMaybe<Scalars['Boolean']['input']>;
-  autoPushInvoice?: InputMaybe<Scalars['Boolean']['input']>;
-  autoSendInvoice?: InputMaybe<Scalars['Boolean']['input']>;
-  clientId?: InputMaybe<Scalars['ID']['input']>;
-  generateSiteSpecific?: InputMaybe<Scalars['Boolean']['input']>;
-  ignoreConsumedItem?: InputMaybe<Scalars['Boolean']['input']>;
-  invoiceDueDays?: InputMaybe<Scalars['Int']['input']>;
-  invoicePaymentMethod?: InputMaybe<PaymentMethodInput>;
-  invoicePaymentTerm?: InputMaybe<PaymentTermIdentifierInput>;
-  invoiceSchedule?: InputMaybe<Scalars['JSON']['input']>;
-  invoiceTemplate?: InputMaybe<InvoiceTemplateIdentifierInput>;
-  projectLineItemContent?: InputMaybe<Scalars['String']['input']>;
-  projectLineItemPlaceholdersUsed?: InputMaybe<Scalars['JSON']['input']>;
-  quoteTemplate?: InputMaybe<QuoteTemplateIdentifierInput>;
-  salesTax?: InputMaybe<TaxInput>;
-  scheduleEnabled?: InputMaybe<Scalars['Boolean']['input']>;
-  sendTemplate?: InputMaybe<NotificationTemplateInput>;
-  subscriptionLineItemContent?: InputMaybe<Scalars['String']['input']>;
-  subscriptionLineItemPlaceholdersUsed?: InputMaybe<Scalars['JSON']['input']>;
-  taxExempted?: InputMaybe<Scalars['Boolean']['input']>;
-  ticketLineItemContent?: InputMaybe<Scalars['String']['input']>;
-  ticketLineItemPlaceholdersUsed?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-export type UpdateInvoiceTemplateInput = {
-  footer?: InputMaybe<Scalars['String']['input']>;
-  inlineImages?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  layoutConfiguration?: InputMaybe<Scalars['JSON']['input']>;
-  memo?: InputMaybe<Scalars['String']['input']>;
-  preferences?: InputMaybe<Scalars['JSON']['input']>;
-  templateId: Scalars['ID']['input'];
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type UpdateMailProviderConfigInput = {
-  customServer?: InputMaybe<Scalars['Boolean']['input']>;
-  imapHost?: InputMaybe<Scalars['String']['input']>;
-  imapPort?: InputMaybe<Scalars['Int']['input']>;
-  mailProviderConfigId?: InputMaybe<Scalars['ID']['input']>;
-  password?: InputMaybe<Scalars['String']['input']>;
-  priority?: InputMaybe<Scalars['Int']['input']>;
-  smtpHost?: InputMaybe<Scalars['String']['input']>;
-  smtpPort?: InputMaybe<Scalars['Int']['input']>;
-  sslRequired?: InputMaybe<Scalars['Boolean']['input']>;
-  userName?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type UpdateMailboxInput = {
-  boxId: Scalars['ID']['input'];
-  client?: InputMaybe<ClientInput>;
-  /** OutgoingAddressType */
-  conversationOnBehalfOf?: InputMaybe<Scalars['String']['input']>;
-  customServerOutgoingOnly?: InputMaybe<Scalars['Boolean']['input']>;
-  customServerType?: InputMaybe<CustomMailServerType>;
-  defaultBox?: InputMaybe<Scalars['Boolean']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  emailSignature?: InputMaybe<Scalars['String']['input']>;
-  hasAdvancedConfiguration?: InputMaybe<Scalars['Boolean']['input']>;
-  hasCustomImapSettingsChanged?: InputMaybe<Scalars['Boolean']['input']>;
-  imapHost?: InputMaybe<Scalars['String']['input']>;
-  imapPort?: InputMaybe<Scalars['Int']['input']>;
-  incomingAddress?: InputMaybe<Scalars['String']['input']>;
+/** Specifies the input required to update an existing IT document */
+export type UpdateItDocumentationInput = {
+  /** Client details that need to be updated */
+  client?: InputMaybe<ClientIdentifierInput>;
+  /** Custom fields that need to be updated */
+  customFields?: InputMaybe<Scalars['JSON']['input']>;
+  /** The ID of the IT document that needs to be updated */
+  itDocId: Scalars['ID']['input'];
+  /** The name that needs to be updated for the IT document */
   name?: InputMaybe<Scalars['String']['input']>;
-  /** ConversationOnBehalf -> Deprecated */
-  onBehalfOf?: InputMaybe<Scalars['String']['input']>;
-  outgoingAddress?: InputMaybe<Scalars['String']['input']>;
-  outgoingAddressType?: InputMaybe<Scalars['String']['input']>;
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** ConversationOnBehalf */
-  senderName?: InputMaybe<Scalars['String']['input']>;
-  site?: InputMaybe<SiteIdentifierInput>;
-  smtpHost?: InputMaybe<Scalars['String']['input']>;
-  smtpPort?: InputMaybe<Scalars['Int']['input']>;
-  sslRequired?: InputMaybe<Scalars['Boolean']['input']>;
-  techGroup?: InputMaybe<TechnicianGroupIdentifierInput>;
-  userName?: InputMaybe<Scalars['String']['input']>;
+  /** Site details that need to be updated */
+  site?: InputMaybe<ClientSiteIdentifierInput>;
+  /** Type ID of the IT document category */
+  typeId: Scalars['ID']['input'];
 };
 
-export type UpdateNotificationTemplateInfoInput = {
-  dataCondition?: InputMaybe<Scalars['JSON']['input']>;
-  id: Scalars['ID']['input'];
-  templateType: NotificationTemplateType;
-};
-
-export type UpdateOrganizationInput = {
-  accountId: Scalars['ID']['input'];
-  addEmailDomains?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  deleteEmailDomains?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** It is applicable only for company. */
-  details?: InputMaybe<OrganizationDetailsInput>;
-  hqSite?: InputMaybe<UpdateSiteInput>;
-  logoFileName?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  primaryContact?: InputMaybe<UserIdentifierInput>;
-  secondaryContact?: InputMaybe<UserIdentifierInput>;
-};
-
-export type UpdatePaymentMethodsInput = {
-  addPaymentMethods?: InputMaybe<Array<InputMaybe<PaymentMethodInput>>>;
-  deletePaymentMethods?: InputMaybe<Array<InputMaybe<PaymentMethodIdentifierInput>>>;
-  updatePaymentMethods?: InputMaybe<Array<InputMaybe<PaymentMethodInput>>>;
-};
-
-export type UpdatePaymentTermInput = {
-  addPaymentTerms?: InputMaybe<Array<InputMaybe<PaymentTermInput>>>;
-  deletePaymentTerms?: InputMaybe<Array<InputMaybe<PaymentTermIdentifierInput>>>;
-  updatePaymentTerms?: InputMaybe<Array<InputMaybe<PaymentTermInput>>>;
-};
-
-export type UpdatePlaceholderTemplateInput = {
-  constant?: InputMaybe<PlaceholderTemplateConstant>;
-  content?: InputMaybe<Scalars['String']['input']>;
-  enabled?: InputMaybe<Scalars['Boolean']['input']>;
-  placeholdersUsed?: InputMaybe<Scalars['JSON']['input']>;
-  templateId?: InputMaybe<Scalars['ID']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type UpdatePlanInput = {
-  active?: InputMaybe<Scalars['Boolean']['input']>;
-  addFeatures?: InputMaybe<Array<InputMaybe<CreatePlanProductFeatureInput>>>;
-  deleteFeatures?: InputMaybe<Array<InputMaybe<PlanProductFeatureIdentifierInput>>>;
-  planId: Scalars['ID']['input'];
-  updateFeatures?: InputMaybe<Array<InputMaybe<UpdatePlanProductFeatureInput>>>;
-  upgradePlanId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type UpdatePlanProductFeatureInput = {
-  available?: InputMaybe<Scalars['Boolean']['input']>;
-  availableWithAddOn?: InputMaybe<Scalars['Boolean']['input']>;
-  enabled?: InputMaybe<Scalars['Boolean']['input']>;
-  enabledInTrial?: InputMaybe<Scalars['Boolean']['input']>;
-  enabledWithFlag?: InputMaybe<Scalars['Boolean']['input']>;
-  planProductFeatureId: Scalars['ID']['input'];
-  upsellAddon?: InputMaybe<AddonIdentifierInput>;
-  upsellPlan?: InputMaybe<PlanIdentifierInput>;
-};
-
-export type UpdatePortalDomainInput = {
-  domainId: Scalars['String']['input'];
-  domainName: Scalars['String']['input'];
-  isDefault?: InputMaybe<Scalars['Boolean']['input']>;
-  type?: InputMaybe<DomainType>;
-};
-
-export type UpdateProductFeatureCategoryInput = {
-  categoryId: Scalars['ID']['input'];
-  labelKey?: InputMaybe<Scalars['String']['input']>;
-  order?: InputMaybe<Scalars['Int']['input']>;
-  parentCategoryId?: InputMaybe<Scalars['ID']['input']>;
-  releaseState?: InputMaybe<ProductFeatureReleaseState>;
-};
-
-export type UpdateProductFeatureInput = {
-  category?: InputMaybe<ProductFeatureCategoryIdentifierInput>;
-  featureId: Scalars['String']['input'];
-  labelKey?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  order?: InputMaybe<Scalars['Int']['input']>;
-  releaseState?: InputMaybe<ProductFeatureReleaseState>;
-  visibleInPurchase?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateProvisionRuleInput = {
-  addItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  deleteItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  parentRule?: InputMaybe<ProvisionRuleIdentifierInput>;
-  provisionRuleId: Scalars['ID']['input'];
-  ruleCondition?: InputMaybe<RuleConditionInput>;
-};
-
-export type UpdateProvisionRuleTemplateLayoutInput = {
-  layout: Scalars['JSON']['input'];
-  template: BillingTemplateIdentifierInput;
-};
-
-export type UpdatePurchaseSubscriptionStatusInput = {
-  /** either SUCCESS/CANCEL */
-  status?: InputMaybe<OperationStatus>;
-};
-
+/** Specifies the input required to update a quote. */
 export type UpdateQuoteInput = {
+  /** Specifies the list of service items to be added to the quote. */
   addItems?: InputMaybe<Array<InputMaybe<CreateQuoteItemInput>>>;
+  /** Specifies the additional discount amount applied on the quote. */
   additionalDiscount?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the additional discount rate applied on the quote. */
   additionalDiscountRate?: InputMaybe<Scalars['String']['input']>;
-  conversation?: InputMaybe<ConversationInput>;
+  /** Specifies the list of quote items to be deleted from the quote. */
   deleteItems?: InputMaybe<Array<InputMaybe<QuoteItemIdentifierInput>>>;
+  /** Specifies the description of the quote. */
   description?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the expiry date of the quote. */
   expiryDate?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the footer of the quote. */
   footer?: InputMaybe<Scalars['String']['input']>;
-  inlineImages?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specifies the memo of the quote. */
   memo?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the quote date. */
   quoteDate?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the ID of the quote going to be updated. */
   quoteId: Scalars['ID']['input'];
+  /** Specifies the status of the quote. */
   statusEnum?: InputMaybe<QuoteStatusEnum>;
+  /** Specifies the title of the quote. */
   title?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the list of quote items to be updated in the quote. */
   updateItems?: InputMaybe<Array<InputMaybe<UpdateQuoteItemInput>>>;
 };
 
+/** Specifies the input required to update a quote item. */
 export type UpdateQuoteItemInput = {
+  /** Specifies the details of the quote item. */
   details?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the discount amount applied for the quote item. */
   discountAmount?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the discount rate applied for the quote item. */
   discountRate?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the ID of the quote item which needs to be updated. */
   itemId: Scalars['ID']['input'];
-  itemOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** Specifies the quantity of the quote item. */
   quantity?: InputMaybe<Scalars['String']['input']>;
-  serviceCatalogItem?: InputMaybe<ServiceCatalogItemIdentifierInput>;
-  serviceItem?: InputMaybe<ServiceItemInput>;
-  tax?: InputMaybe<TaxInput>;
+  /** Specifies the service item. */
+  serviceItem?: InputMaybe<ServiceItemIdentifierInput>;
+  /** Specifies the applicable tax for the quote item. */
+  tax?: InputMaybe<TaxIdentifierInput>;
+  /** Specifies whether the quote item is taxable or not. */
   taxable?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specifies the unit price of the quote item. */
   unitPrice?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type UpdateQuoteTemplateInput = {
-  footer?: InputMaybe<Scalars['String']['input']>;
-  inlineImages?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  layoutConfiguration?: InputMaybe<Scalars['JSON']['input']>;
-  memo?: InputMaybe<Scalars['String']['input']>;
-  preferences?: InputMaybe<Scalars['JSON']['input']>;
-  templateId: Scalars['ID']['input'];
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type UpdateRedeemableServiceBundleInput = {
-  applicableHours?: InputMaybe<RedeemableBundleApplicableHours>;
-  applicableType?: InputMaybe<RedeemableBundleApplicableType>;
-  redeemableQuantity?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type UpdateReportScheduleInput = {
-  addShareUsers?: InputMaybe<Array<InputMaybe<ShareReportUserInput>>>;
-  deleteShareUsers?: InputMaybe<Array<InputMaybe<ShareReportUserInput>>>;
-  filterCondition?: InputMaybe<Scalars['JSON']['input']>;
-  id: Scalars['ID']['input'];
-  notificationTemplate?: InputMaybe<NotificationTemplateInput>;
-  scheduleDefinition?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-export type UpdateSequenceGeneratorInput = {
-  name: IdentifierName;
-  value: Scalars['Int']['input'];
-};
-
-export type UpdateServiceCatalogItemInput = {
-  category?: InputMaybe<ServiceCategoryInput>;
-  costPrice?: InputMaybe<PricingModelInput>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  itemId: Scalars['ID']['input'];
-  name?: InputMaybe<Scalars['String']['input']>;
-  offerAsWorklogItem?: InputMaybe<Scalars['Boolean']['input']>;
-  salesTax?: InputMaybe<TaxIdentifierInput>;
-  sellingPrice?: InputMaybe<PricingModelInput>;
-  serviceTypeItem?: InputMaybe<UpdateServiceTypeItemInput>;
-  taxable?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateServiceTypeItemInput = {
-  addBundledItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  deleteBundledItems?: InputMaybe<Array<ServiceCatalogItemIdentifierInput>>;
-  hourlyServiceTypeItem?: InputMaybe<UpdateHourlyServiceTypeItemInput>;
-  redeemableServiceBundle?: InputMaybe<UpdateRedeemableServiceBundleInput>;
-};
-
-export type UpdateSiteInput = {
-  address?: InputMaybe<AddressInput>;
-  businessHour?: InputMaybe<Array<InputMaybe<BusinessHourInput>>>;
+/** Specifies the input required to update the information of an existing technician. */
+export type UpdateTechnicianInput = {
+  /** Specifies the list of technician groups that the technician will be associated with. */
+  addGroups?: InputMaybe<Array<InputMaybe<TechnicianGroupIdentifierInput>>>;
+  /** Specifies the business function of the technician. */
+  businessFunction?: InputMaybe<BusinessFunctionIdentifierInput>;
+  /**
+   * The contact number of the technician.
+   * It is recommended to provide the value in the standard format [+][country code][area code][local phone number].
+   */
   contactNumber?: InputMaybe<Scalars['String']['input']>;
-  holidayList?: InputMaybe<HolidayListInputIdentifierInput>;
-  hq?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['ID']['input'];
-  name?: InputMaybe<Scalars['String']['input']>;
-  timezoneCode?: InputMaybe<Scalars['String']['input']>;
-  working24x7?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specified the list of technician groups from which the technician will be disassociated. */
+  deleteGroups?: InputMaybe<Array<InputMaybe<TechnicianGroupIdentifierInput>>>;
+  /** Specifies the designation of the technician. */
+  designation?: InputMaybe<DesignationIdentifierInput>;
+  /** The email address of the technician. This input cannot be set to null. */
+  email?: InputMaybe<Scalars['String']['input']>;
+  /** The email signature of the technician which will be used in email reply. */
+  emailSignature?: InputMaybe<Scalars['String']['input']>;
+  /** The first name of the technician. This input cannot be set to null. */
+  firstName?: InputMaybe<Scalars['String']['input']>;
+  /** The last name of the technician. */
+  lastName?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the reporting manager of the technician. */
+  reportingManager?: InputMaybe<TechnicianIdentifierInput>;
+  /** Specifies the application role of the technician. This input cannot be set to null. */
+  role?: InputMaybe<RoleIdentifierInput>;
+  /** Specifies the technician's team. */
+  team?: InputMaybe<TeamIdentifierInput>;
+  /** The ID of the technician who is going to be updated. This input is mandatory. */
+  userId: Scalars['ID']['input'];
 };
 
-export type UpdateTpMappingRuleInput = {
-  conditionAttribute: Scalars['String']['input'];
-  conditionValue: MappingObjectInput;
-  destination: MappingObjectInput;
-  ruleId: Scalars['ID']['input'];
-};
-
-export type UpdateUserAssociationInput = {
+/** Specifies the input required to update an existing ticket. */
+export type UpdateTicketInput = {
+  /** Specifies the additional requesters to be added. */
+  addAdditionalRequester?: InputMaybe<Array<InputMaybe<ClientUserIdentifierInput>>>;
+  /** Specifies the followers to be added. */
+  addFollowers?: InputMaybe<Array<InputMaybe<TechnicianIdentifierInput>>>;
+  /** Specifies the category of the ticket. The value should be from the Category (name field) type. */
+  category?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the cause of the ticket. The value should be from the Cause (name field) type. */
+  cause?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the client to whom the ticket is associated. Cannot be set to null. */
   client?: InputMaybe<ClientIdentifierInput>;
-  id: Scalars['ID']['input'];
-  organization?: InputMaybe<OrganizationIdentifierInput>;
-  site?: InputMaybe<SiteIdentifierInput>;
-};
-
-export type UpdateVendorConversationReadStatusInput = {
-  /** parent conversation */
-  conversation: ConversationIdentifierInput;
-  status: Scalars['Boolean']['input'];
-  workItem: WorkItemIdentifierInput;
+  /**
+   * Specifies the custom fields values for the ticket. Each entry in the JSON would be key-value.
+   * The key will be a system-generated, unique name of the custom field (columnName field of CustomField type).
+   * The value for text, paragraph, radio, select, numeric, decimal, date, datetime should be given as a string.
+   * The value for checkbox, multi-select should be an array of string.
+   *
+   * For example, the value could be {"udf1text": "value", "udf2mselect": ["value1", "value2"]}
+   */
+  customFields?: InputMaybe<Scalars['JSON']['input']>;
+  /** Specifies the additional requesters to be deleted. */
+  deleteAdditionalRequester?: InputMaybe<Array<InputMaybe<ClientUserIdentifierInput>>>;
+  /** Specifies the followers to be deleted. */
+  deleteFollowers?: InputMaybe<Array<InputMaybe<TechnicianIdentifierInput>>>;
+  /** The first response time of the ticket. */
+  firstResponseTime?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the impact of the ticket. The value should be from the Impact (name field) type. */
+  impact?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the priority of the ticket. The value should be from the Priority (name field) type. */
+  priority?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the type of the ticket. Cannot be set to null. */
+  requestType?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the requester for whom the ticket is created. Cannot be set to null. */
+  requester?: InputMaybe<ClientUserIdentifierInput>;
+  /** Specifies the resolution code of the ticket. */
+  resolutionCode?: InputMaybe<Scalars['String']['input']>;
+  /** The resolution time of the ticket. */
+  resolutionTime?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the site to which the ticket is associated. Cannot be set to null. */
+  site?: InputMaybe<ClientSiteIdentifierInput>;
+  /** Specifies the creation source of the ticket. Cannot be set to null. */
+  source?: InputMaybe<TicketSource>;
+  /** Specifies the status of the ticket. The value should be from the Status (name field) type. Cannot be set to null. */
+  status?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the subcategory of the ticket. The value should be from the SubCategory (name field) type. */
+  subcategory?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the sub cause of the ticket. The value should be from the SubCause (name field) type. */
+  subcause?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the subject of the ticket. */
+  subject?: InputMaybe<Scalars['String']['input']>;
+  /** Indicates whether the close notification has to be suppressed while closing the ticket */
+  suppressCloseNotification?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specifies the technician group to which the ticket is assigned. */
+  techGroup?: InputMaybe<TechnicianGroupIdentifierInput>;
+  /** Specifies the technician to whom the ticket is assigned. */
+  technician?: InputMaybe<TechnicianIdentifierInput>;
+  /** The ID of the ticket going to be updated. */
+  ticketId: Scalars['ID']['input'];
+  /** Specifies the type of the ticket. Cannot be set to null. */
+  ticketType?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Specifies the third Party Integration source details from
+   * which the ticket will be updated.
+   */
+  tpSource?: InputMaybe<ThirdPartySourceInput>;
+  /** Specifies the urgency of the ticket. The value should be from the Urgency (name field) type. */
+  urgency?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type UpdateWebhookSubscriptionInput = {
-  addEvents?: InputMaybe<Array<WebhookSubscriptionEventInput>>;
-  deleteEvents?: InputMaybe<Array<WebhookSubscriptionEventInput>>;
+  addEvents?: InputMaybe<Array<InputMaybe<WebhookSubscriptionEventInput>>>;
+  deleteEvents?: InputMaybe<Array<InputMaybe<WebhookSubscriptionEventInput>>>;
   description?: InputMaybe<Scalars['String']['input']>;
   headers?: InputMaybe<Scalars['JSON']['input']>;
   status?: InputMaybe<WebhookSubscriptionStatusInput>;
@@ -10802,253 +4897,96 @@ export type UpdateWebhookSubscriptionInput = {
   webhookUrl?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type UpdateWorklogEntryInput = {
+  /** Denotes whether the service is provided after the business hours. */
+  afterHours?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The date and time that the worklog was added. */
+  billDateTime?: InputMaybe<Scalars['String']['input']>;
+  /** Denotes whether the service item is billable or not. */
+  billable?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The ID of the worklog item. */
+  itemId: Scalars['ID']['input'];
+  /** The notes added to the worklog. */
+  notes?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The number of offered units/hours.
+   * The unit is hrs for HOURS type item.
+   */
+  qty?: InputMaybe<Scalars['String']['input']>;
+  /** Specifies the service item. */
+  serviceItem?: InputMaybe<ServiceItemIdentifierInput>;
+  /** The unit price of the worklog item. */
+  unitPrice?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpdateWorklogTimerEntryInput = {
+  /** The below fields are applicable only for MANUAL timer. */
+  addSegments?: InputMaybe<Array<InputMaybe<CreateWorklogTimerSegmentInput>>>;
+  billable?: InputMaybe<Scalars['Boolean']['input']>;
+  deleteSegments?: InputMaybe<Array<InputMaybe<WorklogTimerSegmentIdentifierInput>>>;
+  notes?: InputMaybe<Scalars['String']['input']>;
+  /** The below fields are applicable only for AUTOMATIC timer. */
+  running?: InputMaybe<Scalars['Boolean']['input']>;
+  serviceItem?: InputMaybe<ServiceItemIdentifierInput>;
+  timerId: Scalars['ID']['input'];
+  type?: InputMaybe<WorklogTimerType>;
+  updateSegments?: InputMaybe<Array<InputMaybe<UpdateWorklogTimerSegmentInput>>>;
+  workItem?: InputMaybe<WorkItemIdentifierInput>;
+};
+
+export type UpdateWorklogTimerSegmentInput = {
+  afterHours?: InputMaybe<Scalars['Boolean']['input']>;
+  endTime?: InputMaybe<Scalars['String']['input']>;
+  segmentId: Scalars['ID']['input'];
+  startTime?: InputMaybe<Scalars['String']['input']>;
+  timeSpent?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Specifies the details about the updated asset */
+export type UpdatedAsset = {
+  __typename?: 'UpdatedAsset';
+  /** Asset class details of the asset */
+  assetClass: Scalars['JSON']['output'];
+  /** ID of the asset */
+  assetId?: Maybe<Scalars['ID']['output']>;
+  /** Client details of the asset */
+  client: Scalars['JSON']['output'];
+  /** Custom field details of the asset */
+  customFields?: Maybe<Scalars['JSON']['output']>;
+  /** Name of the asset */
+  name: Scalars['String']['output'];
+  /** The requester of the asset */
+  requester: Scalars['JSON']['output'];
+  /** Site details of the asset */
+  site: Scalars['JSON']['output'];
+};
+
+/** The ticket's urgency. */
 export type Urgency = {
   __typename?: 'Urgency';
+  /** The ID of the urgency. */
   id: Scalars['ID']['output'];
+  /** The name of the urgency. */
   name: Scalars['String']['output'];
 };
 
-export type UsageContract = {
-  __typename?: 'UsageContract';
-  contractId: Scalars['ID']['output'];
-  costPrice?: Maybe<PricingModel>;
-  integrationSource: IntegrationSource;
-};
-
-export type User = {
-  __typename?: 'User';
-  account?: Maybe<Account>;
-  accountType?: Maybe<Scalars['String']['output']>;
-  /** deprecated */
-  activated?: Maybe<Scalars['Boolean']['output']>;
-  /** MailStatus */
-  activationMailFailureReason?: Maybe<Scalars['JSON']['output']>;
-  /** It will be return while creating an client user to indicate whether activation mail has been sent or not */
-  activationMailSent?: Maybe<Scalars['Boolean']['output']>;
-  /** MailDeliveryStatus enum values */
-  activationMailStatus?: Maybe<Scalars['String']['output']>;
-  /** This user association is only for requester */
-  associations?: Maybe<Array<Maybe<UserAssociation>>>;
-  authenticated?: Maybe<Scalars['Boolean']['output']>;
-  avatarFileName?: Maybe<Scalars['String']['output']>;
-  businessFunction?: Maybe<BusinessFunction>;
-  calendarIntegrated?: Maybe<Scalars['Boolean']['output']>;
-  chargeBeePlanId?: Maybe<Scalars['String']['output']>;
-  contactNumber?: Maybe<Scalars['String']['output']>;
-  contactType?: Maybe<Scalars['Int']['output']>;
-  countryCode?: Maybe<Scalars['String']['output']>;
-  customFields?: Maybe<Scalars['JSON']['output']>;
-  customer?: Maybe<CustomerDetail>;
-  customerId?: Maybe<Scalars['String']['output']>;
-  deletedTime?: Maybe<Scalars['String']['output']>;
-  designation?: Maybe<Designation>;
-  domain?: Maybe<Scalars['String']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
-  emailSignature?: Maybe<Scalars['String']['output']>;
-  firstName?: Maybe<Scalars['String']['output']>;
-  forgotten?: Maybe<Scalars['Boolean']['output']>;
-  groups?: Maybe<Array<Maybe<Group>>>;
-  lastName?: Maybe<Scalars['String']['output']>;
-  loginRequired?: Maybe<Scalars['Boolean']['output']>;
-  mspLogoFileName?: Maybe<Scalars['String']['output']>;
-  /** Deprecated use activationMailStatus */
-  mspName?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  operationalStatus?: Maybe<UserOperationalStatus>;
-  phoneNumber?: Maybe<Scalars['String']['output']>;
-  planName?: Maybe<Scalars['String']['output']>;
-  remoteDesktopAddOnEnabledStatus?: Maybe<Scalars['JSON']['output']>;
-  reportingManager?: Maybe<User>;
-  role?: Maybe<Role>;
-  roles?: Maybe<Array<Maybe<Role>>>;
-  site?: Maybe<Site>;
-  splashtopWFHEnabled?: Maybe<Scalars['Boolean']['output']>;
-  subscriptionStatus?: Maybe<Scalars['String']['output']>;
-  team?: Maybe<Team>;
-  techRoleType?: Maybe<RoleTypeEnum>;
-  technicianBurnRate?: Maybe<Scalars['String']['output']>;
-  /** SubscriptionStatus */
-  trialExpiryDays?: Maybe<Scalars['String']['output']>;
-  userId?: Maybe<Scalars['ID']['output']>;
-};
-
-
-export type UserCustomFieldsArgs = {
-  fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type UserAssociation = {
-  __typename?: 'UserAssociation';
-  client?: Maybe<Organization>;
-  id: Scalars['ID']['output'];
-  org?: Maybe<Organization>;
-  site?: Maybe<Site>;
-  user?: Maybe<User>;
-};
-
-export type UserAssociationIdentifierInput = {
-  id: Scalars['ID']['input'];
-};
-
-export type UserAssociationList = {
-  __typename?: 'UserAssociationList';
-  associations?: Maybe<Array<Maybe<UserAssociation>>>;
-  listInfo?: Maybe<ListInfo>;
-};
-
-export type UserBackupCode = {
-  __typename?: 'UserBackupCode';
-  backupCode?: Maybe<Scalars['String']['output']>;
-  isActive?: Maybe<Scalars['String']['output']>;
-};
-
-export type UserEmailAddressAvailability = {
-  __typename?: 'UserEmailAddressAvailability';
-  status?: Maybe<User_Email_Validation_Status>;
-  userId?: Maybe<Scalars['ID']['output']>;
-};
-
+/** Specifies the identifier input for the technician or client user. */
 export type UserIdentifierInput = {
-  email?: InputMaybe<Scalars['String']['input']>;
-  userId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type UserInput = {
-  activated?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Requester Association */
-  addAssociations?: InputMaybe<Array<InputMaybe<CreateUserAssociationInput>>>;
-  addGroups?: InputMaybe<Array<InputMaybe<GroupInput>>>;
-  businessFunction?: InputMaybe<BusinessFunctionInput>;
-  contactNumber?: InputMaybe<Scalars['String']['input']>;
-  contactType?: InputMaybe<Scalars['Int']['input']>;
-  countryCode?: InputMaybe<Scalars['String']['input']>;
-  customFields?: InputMaybe<Scalars['JSON']['input']>;
-  deleteAssociations?: InputMaybe<Array<InputMaybe<UserAssociationIdentifierInput>>>;
-  deleteGroups?: InputMaybe<Array<InputMaybe<GroupInput>>>;
-  designation?: InputMaybe<DesignationInput>;
-  email?: InputMaybe<Scalars['String']['input']>;
-  emailSignature?: InputMaybe<Scalars['String']['input']>;
-  firstName?: InputMaybe<Scalars['String']['input']>;
-  lastName?: InputMaybe<Scalars['String']['input']>;
-  /** deprecated */
-  loginRequired?: InputMaybe<Scalars['Boolean']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  phoneNumber?: InputMaybe<Scalars['String']['input']>;
-  reportingManager?: InputMaybe<UserInput>;
-  role?: InputMaybe<RoleInput>;
-  roles?: InputMaybe<Array<InputMaybe<RoleInput>>>;
-  sendActivationMail?: InputMaybe<Scalars['Boolean']['input']>;
-  site?: InputMaybe<SiteInput>;
-  team?: InputMaybe<TeamInput>;
-  technicianBurnRate?: InputMaybe<Scalars['String']['input']>;
-  updateAssociations?: InputMaybe<Array<InputMaybe<UpdateUserAssociationInput>>>;
-  userId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type UserList = {
-  __typename?: 'UserList';
-  listInfo?: Maybe<ListInfo>;
-  userList?: Maybe<Array<Maybe<User>>>;
-};
-
-export enum UserOperationalStatus {
-  Active = 'ACTIVE',
-  UnLicensed = 'UN_LICENSED'
-}
-
-export type UserPersonalization = {
-  __typename?: 'UserPersonalization';
-  category?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  value?: Maybe<Scalars['String']['output']>;
-};
-
-export type UserPersonalizationInput = {
-  category?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  user?: InputMaybe<UserInput>;
-  value?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type UserSessionDeviceInfoInput = {
-  appType?: InputMaybe<SessionAppType>;
-  appVersion?: InputMaybe<Scalars['String']['input']>;
-  deviceFCMId: Scalars['String']['input'];
-  deviceIdentifier?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type UserTfaDetail = {
-  __typename?: 'UserTfaDetail';
-  /** TFA_TYPE */
-  authenticatorSecretKey?: Maybe<Scalars['String']['output']>;
-  tfaType?: Maybe<Scalars['String']['output']>;
-};
-
-export enum UserType {
-  Requester = 'REQUESTER',
-  Technician = 'TECHNICIAN'
-}
-
-export type ValidateAchAccountInput = {
-  deposit1?: InputMaybe<Scalars['String']['input']>;
-  deposit2?: InputMaybe<Scalars['String']['input']>;
-  descriptorCode?: InputMaybe<Scalars['String']['input']>;
-  paymentMethodId: Scalars['ID']['input'];
-};
-
-export type VendorsInput = {
-  accountNumber?: InputMaybe<Scalars['String']['input']>;
-  contactCountryCode?: InputMaybe<Scalars['Int']['input']>;
-  contactEmail?: InputMaybe<Scalars['String']['input']>;
-  contactName?: InputMaybe<Scalars['String']['input']>;
-  contactPhNo?: InputMaybe<Scalars['String']['input']>;
-  countryCode?: InputMaybe<Scalars['Int']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  orgName?: InputMaybe<Scalars['String']['input']>;
-  phoneNumber?: InputMaybe<Scalars['String']['input']>;
-  sla?: InputMaybe<Scalars['String']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type VerifyCustomMailServerConnectionInput = {
-  boxId?: InputMaybe<Scalars['ID']['input']>;
-  imapHost: Scalars['String']['input'];
-  imapPort: Scalars['Int']['input'];
-  name?: InputMaybe<Scalars['String']['input']>;
-  outgoingAddress: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-  smtpHost: Scalars['String']['input'];
-  smtpPort: Scalars['Int']['input'];
-  sslRequired: Scalars['Boolean']['input'];
-  userName: Scalars['String']['input'];
-};
-
-export type VerifyMailProviderConnectionInput = {
-  boxId?: InputMaybe<Scalars['ID']['input']>;
-  customServerProvider: Scalars['String']['input'];
-  imapHost: Scalars['String']['input'];
-  imapPort: Scalars['Int']['input'];
-  name?: InputMaybe<Scalars['String']['input']>;
-  outgoingAddress: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-  smtpHost: Scalars['String']['input'];
-  smtpPort: Scalars['Int']['input'];
-  sslRequired: Scalars['Boolean']['input'];
-  userName: Scalars['String']['input'];
+  /** The ID of the user. */
+  userId: Scalars['ID']['input'];
 };
 
 export type WebhookSubscription = {
   __typename?: 'WebhookSubscription';
   createdAt?: Maybe<Scalars['String']['output']>;
-  createdBy?: Maybe<User>;
+  createdBy?: Maybe<Scalars['JSON']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   events?: Maybe<Array<Maybe<WebhookSubscriptionEvent>>>;
   headers?: Maybe<Scalars['JSON']['output']>;
   signingSecret: Scalars['String']['output'];
   status: WebhookSubscriptionStatus;
   updatedAt?: Maybe<Scalars['String']['output']>;
-  updatedBy?: Maybe<User>;
+  updatedBy?: Maybe<Scalars['JSON']['output']>;
   webhookSubscriptionId: Scalars['ID']['output'];
   webhookUrl: Scalars['String']['output'];
 };
@@ -11083,255 +5021,201 @@ export enum WebhookSubscriptionStatusInput {
   Enabled = 'ENABLED'
 }
 
-export type WorkItem = {
-  __typename?: 'WorkItem';
-  /** WorkModule */
-  client?: Maybe<Organization>;
-  displayId: Scalars['String']['output'];
-  module: Scalars['String']['output'];
-  /** If the module is 'PROJECT', then this field will contains the project specific fields. */
-  project?: Maybe<Project>;
-  site?: Maybe<Site>;
-  subject?: Maybe<Scalars['String']['output']>;
-  /** If the module is TICKET, this field used to fetch the ticket specific properties */
-  ticket?: Maybe<Ticket>;
-  workId: Scalars['ID']['output'];
-};
-
+/** Specifies the identifier input for the work. */
 export type WorkItemIdentifierInput = {
-  module: Scalars['String']['input'];
+  /** Used to distinguish the work item. */
+  module: WorkModule;
+  /** The ID of the work item */
   workId: Scalars['ID']['input'];
 };
 
-export type WorkStation = AssetBase & {
-  __typename?: 'WorkStation';
-  agentVersion?: Maybe<Scalars['String']['output']>;
-  assetAge?: Maybe<Scalars['Int']['output']>;
-  assetClass?: Maybe<AssetClass>;
-  assetId?: Maybe<Scalars['ID']['output']>;
-  assetMake?: Maybe<AssetMake>;
-  assetModel?: Maybe<AssetModel>;
-  assetProtocolMapping?: Maybe<Array<Maybe<AssetProtocolMapping>>>;
-  /** AssetPlatformCategory */
-  associatedAssets?: Maybe<Scalars['JSON']['output']>;
-  biosInstallDate?: Maybe<Scalars['String']['output']>;
-  biosVersion?: Maybe<Scalars['String']['output']>;
-  bitLockerStatus?: Maybe<Scalars['String']['output']>;
-  /** AdvanceRuleBuilder */
-  categoryAssignedStrategy?: Maybe<PolicyCategoryAssignedBy>;
-  chocolateyInstalled?: Maybe<Scalars['Boolean']['output']>;
-  client?: Maybe<Organization>;
-  customFields?: Maybe<Scalars['JSON']['output']>;
-  cwcIntegrated?: Maybe<Scalars['Boolean']['output']>;
-  department?: Maybe<BusinessFunction>;
-  domain?: Maybe<Scalars['String']['output']>;
-  domainFirewall?: Maybe<Scalars['Boolean']['output']>;
-  gateway?: Maybe<Scalars['String']['output']>;
-  /** @deprecated Use IPAsset.hostName */
-  hostName?: Maybe<Scalars['String']['output']>;
-  isMetricDataAvailable?: Maybe<Scalars['Boolean']['output']>;
-  /** @deprecated Use IPAsset.isProbe */
-  isProbe?: Maybe<Scalars['Boolean']['output']>;
-  islIntegrated?: Maybe<Scalars['Boolean']['output']>;
-  lastCommunicatedTime?: Maybe<Scalars['String']['output']>;
-  lastMetricDataTime?: Maybe<Scalars['String']['output']>;
-  lastReportedTime?: Maybe<Scalars['String']['output']>;
-  loggedInUser?: Maybe<Scalars['String']['output']>;
-  /** @deprecated Use IPAsset.make.name */
-  manufacturer?: Maybe<Scalars['String']['output']>;
-  /** @deprecated Use IPAsset.model.name */
-  model?: Maybe<Scalars['String']['output']>;
-  monitoringStatus?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  nextPolicyCategory?: Maybe<PolicyCategory>;
-  osInstallDate?: Maybe<Scalars['String']['output']>;
-  owner?: Maybe<User>;
-  patchStatus?: Maybe<Scalars['String']['output']>;
-  platform?: Maybe<Scalars['String']['output']>;
-  platformCategory?: Maybe<Scalars['String']['output']>;
-  platformFamily?: Maybe<Scalars['String']['output']>;
-  platformVersion?: Maybe<Scalars['String']['output']>;
-  policyCategory?: Maybe<PolicyCategory>;
-  /** @deprecated Use IPAsset.publicIpAddress */
-  primaryIp?: Maybe<Scalars['String']['output']>;
-  /** @deprecated Use IPAsset.macAddress */
-  primaryMac?: Maybe<Scalars['String']['output']>;
-  privateFirewall?: Maybe<Scalars['Boolean']['output']>;
-  privateIp?: Maybe<Scalars['String']['output']>;
-  publicFirewall?: Maybe<Scalars['Boolean']['output']>;
-  purchasedDate?: Maybe<Scalars['String']['output']>;
-  rebootCause?: Maybe<Scalars['JSON']['output']>;
-  rebootNeeded?: Maybe<Scalars['Boolean']['output']>;
-  registeredTime?: Maybe<Scalars['String']['output']>;
-  remoteDesktopEnabledStatus?: Maybe<Scalars['JSON']['output']>;
-  serialKey?: Maybe<Scalars['String']['output']>;
-  /** @deprecated Use IPAsset.serialNumber */
-  serialNumber?: Maybe<Scalars['String']['output']>;
-  site?: Maybe<Site>;
-  splashtopIntegrated?: Maybe<Scalars['Boolean']['output']>;
-  /** @deprecated Use IPAsset.status */
-  status?: Maybe<Scalars['String']['output']>;
-  /** @deprecated Use IPAsset.sysUptime */
-  sysUptime?: Maybe<Scalars['String']['output']>;
-  tag?: Maybe<Scalars['String']['output']>;
-  teamViewerIntegrated?: Maybe<Scalars['Boolean']['output']>;
-  timeZone?: Maybe<Scalars['String']['output']>;
-  warrantyExpiry?: Maybe<Scalars['Int']['output']>;
-  warrantyExpiryDate?: Maybe<Scalars['String']['output']>;
+export enum WorkModule {
+  Project = 'PROJECT',
+  Ticket = 'TICKET'
+}
+
+/** The system defined constants used to identify the task/project statuses programmatically. */
+export enum WorkState {
+  /** Denotes that the work is blocked/on hold. */
+  Blocked = 'BLOCKED',
+  /** Denotes that the work is cancelled. */
+  Cancelled = 'CANCELLED',
+  /** Denotes that the work is completed. */
+  Completed = 'COMPLETED',
+  /** Denotes that the work is planned. */
+  Planned = 'PLANNED',
+  /** Denotes that the work is in progress. */
+  Progress = 'PROGRESS'
+}
+
+/** The work status. It is used to define the status for task and project. */
+export type WorkStatus = {
+  __typename?: 'WorkStatus';
+  /** The name of the status. */
+  name: Scalars['String']['output'];
+  /** The system defined constant used to identify the status programmatically. */
+  state?: Maybe<WorkState>;
+  /** The ID of the status. */
+  statusId: Scalars['ID']['output'];
 };
 
-
-export type WorkStationAssociatedAssetsArgs = {
-  refEntityAttributes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type WorkStationCustomFieldsArgs = {
-  fields?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type WorkStationInfo = {
-  __typename?: 'WorkStationInfo';
-  assetUserLoggedIn?: Maybe<Array<Maybe<AssetUserLoggedIn>>>;
-  cwcIntegrated?: Maybe<Scalars['Boolean']['output']>;
-  islIntegrated?: Maybe<Scalars['Boolean']['output']>;
-  remoteDesktopEnabledStatus?: Maybe<Scalars['JSON']['output']>;
-  splashtopIntegrated?: Maybe<Scalars['Boolean']['output']>;
-  teamViewerIntegrated?: Maybe<Scalars['Boolean']['output']>;
-};
-
+/** The worklog used to log the work done by the technician under a ticket, task, project. */
 export type Worklog = {
   __typename?: 'Worklog';
-  client?: Maybe<Organization>;
+  /** The created datetime of the worklog. */
   createdTime?: Maybe<Scalars['String']['output']>;
-  module?: Maybe<Scalars['String']['output']>;
+  /** The entity under which the worklog is created. */
+  module: WorklogModule;
+  /** The notes of the worklog. */
   notes?: Maybe<Scalars['String']['output']>;
-  project?: Maybe<Project>;
-  site?: Maybe<Site>;
-  technician: User;
-  ticket?: Maybe<Ticket>;
+  /**
+   * The technician who logged the work.
+   * The actual type of this field is Technician. Returns userId and name fields as JSON.
+   */
+  technician: Scalars['JSON']['output'];
+  /** The date of the worklog. */
   worklogDate?: Maybe<Scalars['String']['output']>;
+  /** The ID of the worklog. */
   worklogId: Scalars['ID']['output'];
+  /** The list of offered services/items */
   worklogItems?: Maybe<Array<Maybe<WorklogItem>>>;
 };
 
+export type WorklogEntry = {
+  __typename?: 'WorklogEntry';
+  /** Denotes whether the service is provided after business hours. */
+  afterHours: Scalars['Boolean']['output'];
+  /** The datetime of the worklog. */
+  billDateTime: Scalars['String']['output'];
+  /** Denotes whether the service item is billable or not. */
+  billable: Scalars['Boolean']['output'];
+  /** The ID of the worklog item. */
+  itemId: Scalars['ID']['output'];
+  /** The notes added to the worklog. */
+  notes?: Maybe<Scalars['String']['output']>;
+  /**
+   * The number of offered units/hours.
+   * The unit is hrs for HOURS type item.
+   */
+  qty: Scalars['String']['output'];
+  /** The revised quantity of the worklog item. */
+  revisedQuantity?: Maybe<Scalars['String']['output']>;
+  /**
+   * The offered service item.
+   * The actual type of this field is ServiceItem. Returns itemId and name fields as JSON.
+   */
+  serviceItem: Scalars['JSON']['output'];
+  /** The invoicing status of the worklog item. */
+  status: OfferedItemAuditStatus;
+  /**
+   * The technician who logged the work.
+   * The actual type of this field is Technician. Returns userId and name fields as JSON.
+   */
+  technician: Scalars['JSON']['output'];
+  /** The unit price of the worklog item. */
+  unitPrice?: Maybe<Scalars['String']['output']>;
+  /** The WorkItem under which the worklog is created. */
+  workItem: Scalars['JSON']['output'];
+};
+
+/** Specifies the identifier input for the worklog. */
+export type WorklogEntryIdentifier = {
+  /** The ID of the worklog. */
+  itemId: Scalars['ID']['input'];
+};
+
+/** The response payload for a list of worklog entries */
+export type WorklogEntryList = {
+  __typename?: 'WorklogEntryList';
+  /** The list of worklog entries. */
+  entries?: Maybe<Array<Maybe<WorklogEntry>>>;
+  /** The details about the list */
+  listInfo?: Maybe<ListInfo>;
+};
+
+/** The offered service/item through worklogs. */
 export type WorklogItem = {
   __typename?: 'WorklogItem';
+  /** Denotes whether the service is provided after the business hours. */
   afterHours?: Maybe<Scalars['Boolean']['output']>;
-  /** OfferedItemAuditStatus */
+  /** Denotes whether the service item is billable or not. */
   billable?: Maybe<Scalars['Boolean']['output']>;
+  /** The ID of the worklog item. */
   itemId: Scalars['ID']['output'];
+  /** The number of offered units/hours. */
   qty: Scalars['String']['output'];
-  serviceItem?: Maybe<ServiceItem>;
-  status?: Maybe<Scalars['String']['output']>;
-  worklog?: Maybe<Worklog>;
+  /**
+   * The offered service item.
+   * The actual type of this field is ServiceItem. Returns itemId and name fields as JSON.
+   */
+  serviceItem?: Maybe<Scalars['JSON']['output']>;
+  /** The invoicing status of the worklog item. */
+  status?: Maybe<OfferedItemAuditStatus>;
 };
 
-export type XeroAccount = {
-  __typename?: 'XeroAccount';
-  accountId?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+/** Represents the entity/type. */
+export enum WorklogModule {
+  /** The ticket entity. */
+  Ticket = 'TICKET'
+}
+
+export type WorklogTimerEntry = {
+  __typename?: 'WorklogTimerEntry';
+  billable?: Maybe<Scalars['Boolean']['output']>;
+  notes?: Maybe<Scalars['String']['output']>;
+  /** The below fields are applicable only for AUTOMATIC timer. */
+  running?: Maybe<Scalars['Boolean']['output']>;
+  segments?: Maybe<Array<Maybe<WorklogTimerSegment>>>;
+  serviceItem?: Maybe<Scalars['JSON']['output']>;
+  timerId?: Maybe<Scalars['ID']['output']>;
+  /** Sum of timespent of all segments */
+  timespent?: Maybe<Scalars['Int']['output']>;
+  type?: Maybe<WorklogTimerType>;
+  workItem?: Maybe<Scalars['JSON']['output']>;
 };
 
-export type BlockItemInfo = {
-  __typename?: 'blockItemInfo';
-  balance?: Maybe<Scalars['String']['output']>;
-  blockItemId?: Maybe<Scalars['ID']['output']>;
+export type WorklogTimerEntryIdentifier = {
+  timerId: Scalars['ID']['input'];
 };
 
-export type ParentDetailsDto = {
-  __typename?: 'parentDetailsDTO';
-  id?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  tpItemId?: Maybe<Scalars['String']['output']>;
-  tpItemLabel?: Maybe<Scalars['String']['output']>;
+export type WorklogTimerEntryList = {
+  __typename?: 'WorklogTimerEntryList';
+  entries?: Maybe<Array<Maybe<WorklogTimerEntry>>>;
+  listInfo?: Maybe<ListInfo>;
 };
 
-export type GetAllEmployeesQueryVariables = Exact<{ [key: string]: never; }>;
+export type WorklogTimerSegment = {
+  __typename?: 'WorklogTimerSegment';
+  afterHours: Scalars['Boolean']['output'];
+  endTime: Scalars['String']['output'];
+  segmentId: Scalars['ID']['output'];
+  startTime: Scalars['String']['output'];
+  timespent: Scalars['String']['output'];
+};
 
+export type WorklogTimerSegmentIdentifierInput = {
+  segmentId: Scalars['ID']['input'];
+};
 
-export type GetAllEmployeesQuery = { __typename?: 'Query', getAllEmployees?: Array<{ __typename?: 'User', userId?: string | null, name?: string | null, email?: string | null, countryCode?: string | null, phoneNumber?: string | null, customFields?: any | null, designation?: { __typename?: 'Designation', designationId: string, name?: string | null } | null, team?: { __typename?: 'Team', teamId: string, name?: string | null } | null } | null> | null };
+export enum WorklogTimerType {
+  Automatic = 'AUTOMATIC',
+  Manual = 'MANUAL'
+}
 
-export type GetAllMailboxesQueryVariables = Exact<{
-  isClientMailbox: Scalars['Boolean']['input'];
-  isMSPProduct: Scalars['Boolean']['input'];
+export type GetClientListQueryVariables = Exact<{
+  listInfo: ListInfoInput;
 }>;
 
 
-export type GetAllMailboxesQuery = { __typename?: 'Query', getMailboxes?: Array<{ __typename?: 'Mailbox', boxId: string, type: string, systemBox?: boolean | null, incomingAddress?: string | null, outgoingAddress?: string | null, customServer?: boolean | null, customServerType?: CustomMailServerType | null, customServerOutgoingOnly?: boolean | null, imapHost?: string | null, userName?: string | null, imapPort?: number | null, smtpHost?: string | null, smtpPort?: number | null, sslRequired?: boolean | null, customServerAccountSyncState?: CustomMailServerAccountSyncState | null, outgoingAddressType: string, outgoingDomainVerified?: boolean | null, onBehalfOf?: string | null, senderName?: string | null, emailSignature?: string | null, hasAdvancedConfiguration?: boolean | null, defaultBox?: boolean | null, name?: string | null, description?: string | null, mailProviderConfigs?: Array<{ __typename?: 'MailProviderConfig', providerConfigId: string, customServerProvider?: string | null, imapHost?: string | null } | null> | null, senderConfiguration?: { __typename?: 'MailSenderConfiguration', verificationRecords?: Array<{ __typename?: 'MailConfigurationRecord', recordType?: string | null, host: string, value?: string | null } | null> | null } | null, client?: { __typename?: 'Organization', accountId: string, name?: string | null } | null, site?: { __typename?: 'Site', id: string, name: string } | null, techGroup?: { __typename?: 'Group', groupId: string, name?: string | null } | null } | null> | null };
+export type GetClientListQuery = { __typename?: 'Query', getClientList?: { __typename?: 'ClientList', clients?: Array<{ __typename?: 'Client', accountId: string } | null> | null } | null };
 
 
-export const GetAllEmployeesDocument = gql`
-    query GetAllEmployees {
-  getAllEmployees {
-    userId
-    name
-    email
-    countryCode
-    phoneNumber
-    designation {
-      designationId
-      name
-    }
-    team {
-      teamId
-      name
-    }
-    customFields
-  }
-}
-    `;
-export const GetAllMailboxesDocument = gql`
-    query GetAllMailboxes($isClientMailbox: Boolean!, $isMSPProduct: Boolean!) {
-  getMailboxes {
-    boxId
-    type
-    systemBox
-    incomingAddress
-    outgoingAddress
-    customServer
-    customServerType
-    customServerOutgoingOnly
-    mailProviderConfigs {
-      providerConfigId
-      customServerProvider
-      imapHost
-    }
-    imapHost
-    userName
-    imapPort
-    smtpHost
-    smtpPort
-    sslRequired
-    customServerAccountSyncState
-    outgoingAddressType
-    senderConfiguration {
-      verificationRecords {
-        recordType
-        host
-        value
-      }
-    }
-    outgoingDomainVerified
-    onBehalfOf
-    senderName
-    emailSignature
-    client @include(if: $isMSPProduct) {
+export const GetClientListDocument = gql`
+    query GetClientList($listInfo: ListInfoInput!) {
+  getClientList(input: $listInfo) {
+    clients {
       accountId
-      name
     }
-    site @include(if: $isClientMailbox) {
-      id
-      name
-    }
-    techGroup @include(if: $isClientMailbox) {
-      groupId
-      name
-    }
-    hasAdvancedConfiguration @include(if: $isClientMailbox)
-    defaultBox @include(if: $isClientMailbox)
-    name @include(if: $isClientMailbox)
-    description @include(if: $isClientMailbox)
   }
 }
     `;
@@ -11343,11 +5227,8 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    GetAllEmployees(variables?: GetAllEmployeesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetAllEmployeesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetAllEmployeesQuery>(GetAllEmployeesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetAllEmployees', 'query', variables);
-    },
-    GetAllMailboxes(variables: GetAllMailboxesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetAllMailboxesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetAllMailboxesQuery>(GetAllMailboxesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetAllMailboxes', 'query', variables);
+    GetClientList(variables: GetClientListQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetClientListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetClientListQuery>(GetClientListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetClientList', 'query', variables);
     }
   };
 }
